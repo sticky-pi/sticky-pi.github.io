@@ -1,4 +1,0 @@
-scientific-context
-sticky-pi-devices
-platform
-machine-learning
