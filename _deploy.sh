@@ -16,4 +16,4 @@ cd book-output
 cp -r ../_book/* ./
 git add --all *
 git commit -m"Automatic deployment after $TRAVIS_COMMIT [ci skip]" || true
-git push -q origin main
+git push -q origin main 
