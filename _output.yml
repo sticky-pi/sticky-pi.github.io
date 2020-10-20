@@ -4,7 +4,7 @@ bookdown::gitbook:
     toc:
       collapse: section
       before: |
-        <li><a href="./">Sticky Pi Documentation</a></li>
+        <li><a href="./"><img width="264" height="88" src="assets/logo/sticky_logo-text-doc.png"</a></li>
       after: |
         <li>
         <a href="TODO" target="blank">Cite Sticky Pis</a>
