@@ -1,0 +1,71 @@
+--- 
+title: "Sticky Pi, a high-frequency smart insect trap to study daily activity in the field"
+author: "Quentin Geissmann"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: 
+  bookdown::gitbook:
+    includes:
+       in_header: ga-script.html
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: sticky-pi/sticky-pi.github.io
+description: "This is the documentation for the Sticky Pi project, a system to study insect activity in the field."
+---
+```{r include=FALSE, cache=FALSE}
+options("datatable.print.nrows" = 30)
+```
+
+```{r, echo=FALSE}
+options("datatable.print.nrows" = 30)
+```
+
+# Introduction{-}
+
+
+TODO description of the project 
+
+<!--chapter:end:index.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+options("datatable.print.nrows" = 30)
+```
+# Overview{#overview -}
+
+## Scientific Context
+## Sticky Pi Devices
+## Platform
+## Machine Learning
+
+<!--chapter:end:01-intro.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+options("datatable.print.nrows" = 30)
+```
+# Issues and community {#community -}
+
+## Citation{-}
+
+`retomics` is an academic software. As such, it is -- and will always be -- completely free and open source. 
+**If you use rethomics as part of your research, please cite [our reference publication](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0209331).**
+
+## Having troubles{-}
+
+If you are having issues or you want help with something, the best thing you can do is **fill an "issue" on the github repository** of the relevant package.
+For instance, if you are struggling to load DAMS data, you should go to the [the damr package](https://github.com/rethomics/damr/issues).
+This way, you can see if other users have had the same issue, and if we are already working on it!
+
+## Contributing {-}
+
+We welcome external contributions and hope rethomics develops as a community.
+There are several ways you can contribute:
+
+* By requesting features and reporting bugs through the github issue system
+* By sending pull requests to preexisting packages
+* By volunteering to develop a new package (for instance to import a new type of data)
+
+
+<!--chapter:end:99-contact.Rmd-->
+

@@ -1,0 +1,7 @@
+book_filename: "sticky-pi.Rmd"
+delete_merged_file: true
+language:
+  ui:
+    chapter_name: "Chapter "
+
+before_chapter_script: "r_options.R"
