@@ -1,0 +1,42 @@
+# Platform Overview{#overview -}
+
+The Sticky Pi project contains several interconnected tools. 
+A [github organisation](https://github.com/sticky-pi) features the material (source code, data, CAD files, ...) for each individual tool.
+
+Here is a list of all the tools:
+```{r, echo=FALSE}
+df <- tibble::tribble(
+  ~Name,~Description,
+  "sticky-pi-device","The Hardware and software for the Sticky Pi cameras (i.e. device)",
+  "sticky-pi-device-v2","The improved version of the smart traps (in development)",
+  "sticky-pi-api","Server and client api and the docker services for the server webapps",
+  "sticky-pi-ml","Machine learning for the Sticky Pi project",
+  "sticky-pi-manuscript","Manuscipt material and experiments for the 2021 method publication",
+  "sticky-pi.github.io ","Source code of this documentation"
+)
+url = sprintf("https://github.com/sticky-pi/%s", df$Name)
+  
+knitr::kable(df, link=url)
+```
+
+
+**TODO include image here: platform. a clickable svg would be great**
+
+This is an overview of the main components of the platform. 
+The details of each part will be explain further.
+
+* [Hardware](/hardware.html)
+  * [Sticky Pi devices](/hardware.html#device) -- Takes pictures of traps and record environmental conditions
+  * [Data harvester](/hardware.html#datat-harvester) -- Manage devices and retrieve their data (in the field)
+* [Web server](/web-server)
+  * [Database](/web-server#db) -- Store image metadata as well as, processing results, users...
+  * [S3 server](/web-server#s3) -- Store and serve image data and ML models
+  * [API](/web-server#api) -- Parses client requests to put/get resources from the underlying database
+  * [Webapp](/web-server#webapp) -- a frontend website to visualise/plot the images taken and processing results
+  * [Nginx server](/web-server#nginx) -- secure and rout connections between above services and to the outside world
+  * [Analysis pipeline](/web-server#ml) -- pre-process images in real time
+* [Machine Learning](/ml)
+  * [Universal Insect Detector](/ml#uid) -- Detect insect vs background, in all images
+  * [Siamese Insect Matcher](/ml#uid) -- Track insect instances across imaged
+  * [Insect Tuboid Classifier](/ml#uid) --  Predict insect taxonomy from a tracked instance
+

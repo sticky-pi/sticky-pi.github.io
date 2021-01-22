@@ -2,21 +2,19 @@
 
 ## Citation{-}
 
-`retomics` is an academic software. As such, it is -- and will always be -- completely free and open source. 
-**If you use rethomics as part of your research, please cite [our reference publication](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0209331).**
+`Sticky Pis` are a research tool. As such, they are -- and will always be -- as free and open-source as possible. 
+**If you use Sticky Pis as part of your research, please cite [our reference publication](`r PUBLICATION_URL`).**
 
 ## Having troubles{-}
 
-If you are having issues or you want help with something, the best thing you can do is **fill an "issue" on the github repository** of the relevant package.
-For instance, if you are struggling to load DAMS data, you should go to the [the damr package](https://github.com/rethomics/damr/issues).
-This way, you can see if other users have had the same issue, and if we are already working on it!
+If you are having issues or you want help with something, the best thing you can do is **fill an "issue" on the github repository** of the relevant tool.
 
 ## Contributing {-}
 
-We welcome external contributions and hope rethomics develops as a community.
+We welcome external contributions and hope Sticky Pis develops as part of a computational entomology community.
+
 There are several ways you can contribute:
 
 * By requesting features and reporting bugs through the github issue system
-* By sending pull requests to preexisting packages
-* By volunteering to develop a new package (for instance to import a new type of data)
-
+* By sending pull requests to preexisting tools
+* By volunteering to maintain/develop a tools

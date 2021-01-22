@@ -16,10 +16,23 @@ description: "This is the documentation for the Sticky Pi project, a system to s
 ---
 
 ```{r, echo=FALSE}
+source('./global_variables.R')
 options("datatable.print.nrows" = 30)
 ```
 
 # Introduction{-}
 
+This is the reference documentation for the Sticky Pi project. 
+It describes the different parts of the projects, how to build, deploy and use the various resources.
 
-TODO description of the project 
+Sticky Pis are smart sticky traps using a [Raspberry Pi](https://www.raspberrypi.org/) camera to automatically score *when, which and where* insects were captured (using modern AI tools). 
+They take very frequent pictures (three per hour), which reveals much more information compared to traditional traps (such as insects' response to weather fluctuations and effect of the time of the day).
+
+Sticky Pis integrate into a *scalable platform*, where individual devices send their data to a centralised web-server. A single team can deploy multiple devices and compile large ecological datasets.
+
+The Sticky Pi  project is a community open-source academic resource.
+They are affordable and can be easily adapted for research, teaching and applied for work. 
+If you use Sticky Pis in your research, please cite [our publication](`r PUBLICATION_URL`).
+
+
+

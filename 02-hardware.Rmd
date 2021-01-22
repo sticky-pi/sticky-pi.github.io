@@ -1,0 +1,17 @@
+# Hardware{#hardware -}
+
+This page describes and explains how to build the two main components of the hardware:
+the Sticky Pi device and the Data harvester.
+Briefly, multiple Sticky Pis are deployed in the field. Each device stores its images on its own SD card.
+On a regular basis (e.g. weekly), experimenters use a data harvester to retrieve the data from multiple devices.
+Silently, the data harvester also sync the location and time of the devices it communicates with.
+One data harvester may be used to maintain multiple traps. Multiple data harvesters can exist in the same platform (e.g. five experimenters, one harvester per experimenter, ten devices per experimenter).
+
+
+This section involve familiarity with 3D printing, electronics, DIY, ... 
+We are working on streamlining the assembly process towards a more off-the-shelf tool, but are generally happy to collaborate and help building devices --do not hesitate to [contact us](/community#contact).
+
+## Device{-}
+
+## Data harvester{-}
+
