@@ -2,7 +2,7 @@
 
 ## Citation{-}
 
-`Sticky Pis` are a research tool. As such, they are -- and will always be -- as free and open-source as possible. 
+Sticky Pis are a research tool. As such, they are -- and will always be -- as free and open-source as possible. 
 **If you use Sticky Pis as part of your research, please cite [our reference publication](`r PUBLICATION_URL`).**
 
 ## Having troubles{-}
@@ -18,3 +18,8 @@ There are several ways you can contribute:
 * By requesting features and reporting bugs through the github issue system
 * By sending pull requests to preexisting tools
 * By volunteering to maintain/develop a tools
+
+## Contact {-}
+
+Sticky Pis are developed at the [Plant-Insect Ecology and Evolution lab] at UBC, Vancouver(https://lfs-carrillo.sites.olt.ubc.ca/) in collaboration with the [Haney Lab](https://haneylab.msl.ubc.ca/) and the [todo](todo). Do not hesitate to contact [Quentin Geissmann](qgeissmann@gmail.com), the main contributor of the project for inquiries.
+main contributor 

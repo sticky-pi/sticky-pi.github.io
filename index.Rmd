@@ -22,8 +22,11 @@ options("datatable.print.nrows" = 30)
 
 # Introduction{-}
 
-This is the reference documentation for the Sticky Pi project. 
-It describes the different parts of the projects, how to build, deploy and use the various resources.
+
+*This is the reference documentation for the Sticky Pi project. 
+It describes the different parts of the projects, how to build, deploy and use the various resources.*
+
+![The principle behind Sticky Pis](assets/description_animation.gif)
 
 Sticky Pis are smart sticky traps using a [Raspberry Pi](https://www.raspberrypi.org/) camera to automatically score *when, which and where* insects were captured (using modern AI tools). 
 They take very frequent pictures (three per hour), which reveals much more information compared to traditional traps (such as insects' response to weather fluctuations and effect of the time of the day).
