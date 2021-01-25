@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Overview | Sticky Pi, a high-frequency smart insect trap to study daily activity in the field</title>
+  <title>Platform Overview | Sticky Pi, a high-frequency smart insect trap to study daily activity in the field</title>
   <meta name="description" content="This is the documentation for the Sticky Pi project, a system to study insect activity in the field." />
-  <meta name="generator" content="bookdown 0.21.2 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21.6 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Overview | Sticky Pi, a high-frequency smart insect trap to study daily activity in the field" />
+  <meta property="og:title" content="Platform Overview | Sticky Pi, a high-frequency smart insect trap to study daily activity in the field" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="sticky-pi/sticky-pi.github.io" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Overview | Sticky Pi, a high-frequency smart insect trap to study daily activity in the field" />
+  <meta name="twitter:title" content="Platform Overview | Sticky Pi, a high-frequency smart insect trap to study daily activity in the field" />
   
   <meta name="twitter:description" content="This is the documentation for the Sticky Pi project, a system to study insect activity in the field." />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Quentin Geissmann" />
 
 
-<meta name="date" content="2020-10-20" />
+<meta name="date" content="2021-01-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="index.html"/>
-<link rel="next" href="community.html"/>
+<link rel="next" href="hardware.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,6 +50,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110947778-1"></script>
 <script>
@@ -61,6 +63,7 @@
 </script>
 
 <link rel="shortcut icon" href="assets/logo/sticky_logo-064.png" />
+
 
 
 
@@ -81,12 +84,13 @@
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
-<li class="chapter" data-level="" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i>Overview</a><ul>
-<li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#scientific-context"><i class="fa fa-check"></i>Scientific Context</a></li>
-<li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#sticky-pi-devices"><i class="fa fa-check"></i>Sticky Pi Devices</a></li>
-<li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#platform"><i class="fa fa-check"></i>Platform</a></li>
-<li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#machine-learning"><i class="fa fa-check"></i>Machine Learning</a></li>
+<li class="chapter" data-level="" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i>Platform Overview</a></li>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html"><i class="fa fa-check"></i>Hardware</a><ul>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#device"><i class="fa fa-check"></i>Device</a></li>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#data-harvester"><i class="fa fa-check"></i>Data harvester</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html"><i class="fa fa-check"></i>Web Server</a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html"><i class="fa fa-check"></i>Machine Learning</a></li>
 <li class="chapter" data-level="" data-path="community.html"><a href="community.html"><i class="fa fa-check"></i>Issues and community</a><ul>
 <li class="chapter" data-level="" data-path="community.html"><a href="community.html#citation"><i class="fa fa-check"></i>Citation</a></li>
 <li class="chapter" data-level="" data-path="community.html"><a href="community.html#having-troubles"><i class="fa fa-check"></i>Having troubles</a></li>
@@ -116,20 +120,66 @@
 
             <section class="normal" id="section-">
 <div id="overview" class="section level1 unnumbered">
-<h1>Overview</h1>
-<div id="scientific-context" class="section level2 unnumbered">
-<h2>Scientific Context</h2>
-</div>
-<div id="sticky-pi-devices" class="section level2 unnumbered">
-<h2>Sticky Pi Devices</h2>
-</div>
-<div id="platform" class="section level2 unnumbered">
-<h2>Platform</h2>
-</div>
-<div id="machine-learning" class="section level2 unnumbered">
-<h2>Machine Learning</h2>
+<h1>Platform Overview</h1>
+<p>The Sticky Pi project contains several interconnected tools. A <a href="https://github.com/sticky-pi">github organisation</a> features the material (source code, data, CAD files, ...) for each individual tool.</p>
+<p>Here is a list of all the tools:</p>
+<table>
+<colgroup>
+<col width="23%" />
+<col width="76%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">sticky-pi-device</td>
+<td align="left">The Hardware and software for the Sticky Pi cameras (i.e. device)</td>
+</tr>
+<tr class="even">
+<td align="left">sticky-pi-device-v2</td>
+<td align="left">The improved version of the smart traps (in development)</td>
+</tr>
+<tr class="odd">
+<td align="left">sticky-pi-api</td>
+<td align="left">Server and client api and the docker services for the server webapps</td>
+</tr>
+<tr class="even">
+<td align="left">sticky-pi-ml</td>
+<td align="left">Machine learning for the Sticky Pi project</td>
+</tr>
+<tr class="odd">
+<td align="left">sticky-pi-manuscript</td>
+<td align="left">Manuscipt material and experiments for the 2021 method publication</td>
+</tr>
+<tr class="even">
+<td align="left">sticky-pi.github.io</td>
+<td align="left">Source code of this documentation</td>
+</tr>
+</tbody>
+</table>
+<p><strong>TODO include image here: platform. a clickable svg would be great</strong></p>
+<p>This is an overview of the main components of the platform. The details of each part will be explain further.</p>
+<ul>
+<li><a href="/hardware.html">Hardware</a></li>
+<li><a href="/hardware.html#device">Sticky Pi devices</a> -- Takes pictures of traps and record environmental conditions</li>
+<li><a href="/hardware.html#datat-harvester">Data harvester</a> -- Manage devices and retrieve their data (in the field)</li>
+<li><a href="/web-server">Web server</a></li>
+<li><a href="/web-server#db">Database</a> -- Store image metadata as well as, processing results, users...</li>
+<li><a href="/web-server#s3">S3 server</a> -- Store and serve image data and ML models</li>
+<li><a href="/web-server#api">API</a> -- Parses client requests to put/get resources from the underlying database</li>
+<li><a href="/web-server#webapp">Webapp</a> -- a frontend website to visualise/plot the images taken and processing results</li>
+<li><a href="/web-server#nginx">Nginx server</a> -- secure and rout connections between above services and to the outside world</li>
+<li><a href="/web-server#ml">Analysis pipeline</a> -- pre-process images in real time</li>
+<li><a href="/ml">Machine Learning</a></li>
+<li><a href="/ml#uid">Universal Insect Detector</a> -- Detect insect vs background, in all images</li>
+<li><a href="/ml#uid">Siamese Insect Matcher</a> -- Track insect instances across imaged</li>
+<li><a href="/ml#uid">Insect Tuboid Classifier</a> -- Predict insect taxonomy from a tracked instance</li>
+</ul>
 
-</div>
 </div>
             </section>
 
@@ -137,7 +187,7 @@
         </div>
       </div>
 <a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="community.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="hardware.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -168,7 +218,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/sticky-pi/sticky-pi.github.io/edit/source/01-intro.Rmd",
+"link": "https://github.com/sticky-pi/sticky-pi.github.io/edit/source/01-overview.Rmd",
 "text": "Edit"
 },
 "history": {

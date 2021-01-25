@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Issues and community | Sticky Pi, a high-frequency smart insect trap to study daily activity in the field</title>
   <meta name="description" content="This is the documentation for the Sticky Pi project, a system to study insect activity in the field." />
-  <meta name="generator" content="bookdown 0.21.2 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21.6 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Issues and community | Sticky Pi, a high-frequency smart insect trap to study daily activity in the field" />
   <meta property="og:type" content="book" />
@@ -24,14 +24,14 @@
 <meta name="author" content="Quentin Geissmann" />
 
 
-<meta name="date" content="2020-10-20" />
+<meta name="date" content="2021-01-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="overview.html"/>
+<link rel="prev" href="ml.html"/>
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -50,6 +50,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110947778-1"></script>
 <script>
@@ -61,6 +63,7 @@
 </script>
 
 <link rel="shortcut icon" href="assets/logo/sticky_logo-064.png" />
+
 
 
 
@@ -81,12 +84,13 @@
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
-<li class="chapter" data-level="" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i>Overview</a><ul>
-<li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#scientific-context"><i class="fa fa-check"></i>Scientific Context</a></li>
-<li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#sticky-pi-devices"><i class="fa fa-check"></i>Sticky Pi Devices</a></li>
-<li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#platform"><i class="fa fa-check"></i>Platform</a></li>
-<li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#machine-learning"><i class="fa fa-check"></i>Machine Learning</a></li>
+<li class="chapter" data-level="" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i>Platform Overview</a></li>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html"><i class="fa fa-check"></i>Hardware</a><ul>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#device"><i class="fa fa-check"></i>Device</a></li>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#data-harvester"><i class="fa fa-check"></i>Data harvester</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html"><i class="fa fa-check"></i>Web Server</a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html"><i class="fa fa-check"></i>Machine Learning</a></li>
 <li class="chapter" data-level="" data-path="community.html"><a href="community.html"><i class="fa fa-check"></i>Issues and community</a><ul>
 <li class="chapter" data-level="" data-path="community.html"><a href="community.html#citation"><i class="fa fa-check"></i>Citation</a></li>
 <li class="chapter" data-level="" data-path="community.html"><a href="community.html#having-troubles"><i class="fa fa-check"></i>Having troubles</a></li>
@@ -119,19 +123,20 @@
 <h1>Issues and community</h1>
 <div id="citation" class="section level2 unnumbered">
 <h2>Citation</h2>
-<p><code>retomics</code> is an academic software. As such, it is -- and will always be -- completely free and open source. <strong>If you use rethomics as part of your research, please cite <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0209331">our reference publication</a>.</strong></p>
+<p><code>Sticky Pis</code> are a research tool. As such, they are -- and will always be -- as free and open-source as possible. <strong>If you use Sticky Pis as part of your research, please cite <a href="https://example.org">our reference publication</a>.</strong></p>
 </div>
 <div id="having-troubles" class="section level2 unnumbered">
 <h2>Having troubles</h2>
-<p>If you are having issues or you want help with something, the best thing you can do is <strong>fill an &quot;issue&quot; on the github repository</strong> of the relevant package. For instance, if you are struggling to load DAMS data, you should go to the <a href="https://github.com/rethomics/damr/issues">the damr package</a>. This way, you can see if other users have had the same issue, and if we are already working on it!</p>
+<p>If you are having issues or you want help with something, the best thing you can do is <strong>fill an &quot;issue&quot; on the github repository</strong> of the relevant tool.</p>
 </div>
 <div id="contributing" class="section level2 unnumbered">
 <h2>Contributing</h2>
-<p>We welcome external contributions and hope rethomics develops as a community. There are several ways you can contribute:</p>
+<p>We welcome external contributions and hope Sticky Pis develops as part of a computational entomology community.</p>
+<p>There are several ways you can contribute:</p>
 <ul>
 <li>By requesting features and reporting bugs through the github issue system</li>
-<li>By sending pull requests to preexisting packages</li>
-<li>By volunteering to develop a new package (for instance to import a new type of data)</li>
+<li>By sending pull requests to preexisting tools</li>
+<li>By volunteering to maintain/develop a tools</li>
 </ul>
 
 </div>
@@ -141,7 +146,7 @@
           </div>
         </div>
       </div>
-<a href="overview.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ml.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>

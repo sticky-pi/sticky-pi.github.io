@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Sticky Pi, a high-frequency smart insect trap to study daily activity in the field</title>
+  <title>Hardware | Sticky Pi, a high-frequency smart insect trap to study daily activity in the field</title>
   <meta name="description" content="This is the documentation for the Sticky Pi project, a system to study insect activity in the field." />
   <meta name="generator" content="bookdown 0.21.6 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Sticky Pi, a high-frequency smart insect trap to study daily activity in the field" />
+  <meta property="og:title" content="Hardware | Sticky Pi, a high-frequency smart insect trap to study daily activity in the field" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="sticky-pi/sticky-pi.github.io" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Sticky Pi, a high-frequency smart insect trap to study daily activity in the field" />
+  <meta name="twitter:title" content="Hardware | Sticky Pi, a high-frequency smart insect trap to study daily activity in the field" />
   
   <meta name="twitter:description" content="This is the documentation for the Sticky Pi project, a system to study insect activity in the field." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="overview.html"/>
+<link rel="prev" href="overview.html"/>
+<link rel="next" href="web-server.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -119,26 +119,25 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Sticky Pi, a high-frequency smart insect trap to study daily activity in the field</h1>
-<p class="author"><em>Quentin Geissmann</em></p>
-<p class="date"><em>2021-01-25</em></p>
+<div id="hardware" class="section level1 unnumbered">
+<h1>Hardware</h1>
+<p>This page describes and explains how to build the two main components of the hardware: the Sticky Pi device and the Data harvester. Briefly, multiple Sticky Pis are deployed in the field. Each device stores its images on its own SD card. On a regular basis (e.g. weekly), experimenters use a data harvester to retrieve the data from multiple devices. Silently, the data harvester also sync the location and time of the devices it communicates with. One data harvester may be used to maintain multiple traps. Multiple data harvesters can exist in the same platform (e.g. five experimenters, one harvester per experimenter, ten devices per experimenter).</p>
+<p>This section involve familiarity with 3D printing, electronics, DIY, ... We are working on streamlining the assembly process towards a more off-the-shelf tool, but are generally happy to collaborate and help building devices --do not hesitate to <a href="/community#contact">contact us</a>.</p>
+<div id="device" class="section level2 unnumbered">
+<h2>Device</h2>
 </div>
-<div id="introduction" class="section level1 unnumbered">
-<h1>Introduction</h1>
-<p>This is the reference documentation for the Sticky Pi project. It describes the different parts of the projects, how to build, deploy and use the various resources.</p>
-<p>Sticky Pis are smart sticky traps using a <a href="https://www.raspberrypi.org/">Raspberry Pi</a> camera to automatically score <em>when, which and where</em> insects were captured (using modern AI tools). They take very frequent pictures (three per hour), which reveals much more information compared to traditional traps (such as insects' response to weather fluctuations and effect of the time of the day).</p>
-<p>Sticky Pis integrate into a <em>scalable platform</em>, where individual devices send their data to a centralised web-server. A single team can deploy multiple devices and compile large ecological datasets.</p>
-<p>The Sticky Pi project is a community open-source academic resource. They are affordable and can be easily adapted for research, teaching and applied for work. If you use Sticky Pis in your research, please cite <a href="https://example.org">our publication</a>.</p>
+<div id="data-harvester" class="section level2 unnumbered">
+<h2>Data harvester</h2>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="overview.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="overview.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="web-server.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -169,7 +168,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/sticky-pi/sticky-pi.github.io/edit/source/index.Rmd",
+"link": "https://github.com/sticky-pi/sticky-pi.github.io/edit/source/02-hardware.Rmd",
 "text": "Edit"
 },
 "history": {
