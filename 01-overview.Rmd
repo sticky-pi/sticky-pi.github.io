@@ -20,23 +20,23 @@ knitr::kable(df, link=url)
 ```
 
 
-**TODO include image here: platform. a clickable svg would be great**
+**TODO include image here: platform. A clickable svg would be great**
 
 This is an overview of the main components of the platform. 
 The details of each part will be explain further.
 
 * [Hardware](/hardware.html)
-  - [Sticky Pi devices](/hardware.html#device) -- Takes pictures of traps and record environmental conditions
-  - [Data harvester](/hardware.html#datat-harvester) -- Manage devices and retrieve their data (in the field)
+    * [Sticky Pi devices](/hardware.html#device) -- Takes pictures of traps and record environmental conditions
+    * [Data harvester](/hardware.html#datat-harvester) -- Manage devices and retrieve their data (in the field)
 * [Web server](/web-server)
-  - [Database](/web-server#db) -- Store image metadata as well as, processing results, users...
-  - [S3 server](/web-server#s3) -- Store and serve image data and ML models
-  - [API](/web-server#api) -- Parses client requests to put/get resources from the underlying database
-  - [Webapp](/web-server#webapp) -- a frontend website to visualise/plot the images taken and processing results
-  - [Nginx server](/web-server#nginx) -- secure and rout connections between above services and to the outside world
-  - [Analysis pipeline](/web-server#ml) -- pre-process images in real time
+    * [Database](/web-server#db) -- Store image metadata as well as, processing results, users...
+    * [S3 server](/web-server#s3) -- Store and serve image data and ML models
+    * [API](/web-server#api) -- Parses client requests to put/get resources from the underlying database
+    * [Webapp](/web-server#webapp) -- a frontend website to visualise/plot the images taken and processing results
+    * [Nginx server](/web-server#nginx) -- secure and rout connections between above services and to the outside world
+    * [Analysis pipeline](/web-server#ml) -- pre-process images in real time
 * [Machine Learning](/ml)
-  - [Universal Insect Detector](/ml#uid) -- Detect insect vs background, in all images
-  - [Siamese Insect Matcher](/ml#uid) -- Track insect instances across imaged
-  - [Insect Tuboid Classifier](/ml#uid) --  Predict insect taxonomy from a tracked instance
+    * [Universal Insect Detector](/ml#uid) -- Detect insect vs background, in all images
+    * [Siamese Insect Matcher](/ml#uid) -- Track insect instances across imaged
+    * [Insect Tuboid Classifier](/ml#uid) --  Predict insect taxonomy from a tracked instance
 

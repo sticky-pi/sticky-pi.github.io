@@ -3,11 +3,6 @@ title: "Sticky Pi, a high-frequency smart insect trap to study daily activity in
 author: "Quentin Geissmann"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
-output: 
-  bookdown::gitbook:
-    includes:
-       in_header: header.html
-documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
@@ -20,13 +15,13 @@ source('./global_variables.R')
 options("datatable.print.nrows" = 30)
 ```
 
-# Introduction{-}
-
-
-*This is the reference documentation for the Sticky Pi project. 
+*This is the reference documentation for the Sticky Pi framework 
 It describes the different parts of the projects, how to build, deploy and use the various resources.*
 
-![The principle behind Sticky Pis](assets/description_animation.gif)
+
+# Introduction{-}
+
+![The principle behind Sticky Pis](assets/description_animation.gif){width=75%}
 
 Sticky Pis are smart sticky traps using a [Raspberry Pi](https://www.raspberrypi.org/) camera to automatically score *when, which and where* insects were captured (using modern AI tools). 
 They take very frequent pictures (three per hour), which reveals much more information compared to traditional traps (such as insects' response to weather fluctuations and effect of the time of the day).

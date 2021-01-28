@@ -21,5 +21,6 @@ There are several ways you can contribute:
 
 ## Contact {-}
 
-Sticky Pis are developed at the [Plant-Insect Ecology and Evolution lab] at UBC, Vancouver(https://lfs-carrillo.sites.olt.ubc.ca/) in collaboration with the [Haney Lab](https://haneylab.msl.ubc.ca/) and the [todo](todo). Do not hesitate to contact [Quentin Geissmann](qgeissmann@gmail.com), the main contributor of the project for inquiries.
-main contributor 
+Sticky Pis are developed at the [Plant-Insect Ecology and Evolution lab] at UBC, Vancouver(https://lfs-carrillo.sites.olt.ubc.ca/) in collaboration with the [Haney Lab](https://haneylab.msl.ubc.ca/) and the [Insect Biocontrol lab](https://profils-profiles.science.gc.ca/en/profile/paul-k-abram-phd). Do not hesitate to contact [Quentin Geissmann](qgeissmann@gmail.com), the main contributor of the project for inquiries.
+main contributor.
+
