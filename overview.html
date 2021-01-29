@@ -24,7 +24,7 @@
 <meta name="author" content="Quentin Geissmann" />
 
 
-<meta name="date" content="2021-01-25" />
+<meta name="date" content="2021-01-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,17 +52,6 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-188039384-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-188039384-1');
-</script>
-
-<link rel="shortcut icon" href="assets/logo/sticky_logo-064.png" />
 
 
 
@@ -86,7 +75,12 @@
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
 <li class="chapter" data-level="" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i>Platform Overview</a></li>
 <li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html"><i class="fa fa-check"></i>Hardware</a><ul>
-<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#device"><i class="fa fa-check"></i>Device</a></li>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#device"><i class="fa fa-check"></i>Device</a><ul>
+<li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#overview"><i class="fa fa-check"></i>Overview</a></li>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#assembly"><i class="fa fa-check"></i>Assembly</a></li>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#qc-and-troubleshooting"><i class="fa fa-check"></i>QC and troubleshooting</a></li>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#use"><i class="fa fa-check"></i>Use</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#data-harvester"><i class="fa fa-check"></i>Data harvester</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html"><i class="fa fa-check"></i>Web Server</a></li>
@@ -162,23 +156,29 @@
 </tr>
 </tbody>
 </table>
-<p><strong>TODO include image here: platform. a clickable svg would be great</strong></p>
+<p><strong>TODO include image here: platform. A clickable svg would be great</strong></p>
 <p>This is an overview of the main components of the platform. The details of each part will be explain further.</p>
 <ul>
-<li><a href="/hardware.html">Hardware</a></li>
+<li><a href="/hardware.html">Hardware</a>
+<ul>
 <li><a href="/hardware.html#device">Sticky Pi devices</a> -- Takes pictures of traps and record environmental conditions</li>
 <li><a href="/hardware.html#datat-harvester">Data harvester</a> -- Manage devices and retrieve their data (in the field)</li>
-<li><a href="/web-server">Web server</a></li>
+</ul></li>
+<li><a href="/web-server">Web server</a>
+<ul>
 <li><a href="/web-server#db">Database</a> -- Store image metadata as well as, processing results, users...</li>
 <li><a href="/web-server#s3">S3 server</a> -- Store and serve image data and ML models</li>
 <li><a href="/web-server#api">API</a> -- Parses client requests to put/get resources from the underlying database</li>
 <li><a href="/web-server#webapp">Webapp</a> -- a frontend website to visualise/plot the images taken and processing results</li>
 <li><a href="/web-server#nginx">Nginx server</a> -- secure and rout connections between above services and to the outside world</li>
 <li><a href="/web-server#ml">Analysis pipeline</a> -- pre-process images in real time</li>
-<li><a href="/ml">Machine Learning</a></li>
+</ul></li>
+<li><a href="/ml">Machine Learning</a>
+<ul>
 <li><a href="/ml#uid">Universal Insect Detector</a> -- Detect insect vs background, in all images</li>
 <li><a href="/ml#uid">Siamese Insect Matcher</a> -- Track insect instances across imaged</li>
 <li><a href="/ml#uid">Insect Tuboid Classifier</a> -- Predict insect taxonomy from a tracked instance</li>
+</ul></li>
 </ul>
 
 </div>

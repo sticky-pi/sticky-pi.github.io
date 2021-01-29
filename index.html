@@ -24,7 +24,7 @@
 <meta name="author" content="Quentin Geissmann" />
 
 
-<meta name="date" content="2021-01-25" />
+<meta name="date" content="2021-01-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,17 +52,6 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-188039384-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-188039384-1');
-</script>
-
-<link rel="shortcut icon" href="assets/logo/sticky_logo-064.png" />
 
 
 
@@ -86,7 +75,12 @@
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
 <li class="chapter" data-level="" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i>Platform Overview</a></li>
 <li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html"><i class="fa fa-check"></i>Hardware</a><ul>
-<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#device"><i class="fa fa-check"></i>Device</a></li>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#device"><i class="fa fa-check"></i>Device</a><ul>
+<li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#overview"><i class="fa fa-check"></i>Overview</a></li>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#assembly"><i class="fa fa-check"></i>Assembly</a></li>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#qc-and-troubleshooting"><i class="fa fa-check"></i>QC and troubleshooting</a></li>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#use"><i class="fa fa-check"></i>Use</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#data-harvester"><i class="fa fa-check"></i>Data harvester</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html"><i class="fa fa-check"></i>Web Server</a></li>
@@ -123,13 +117,12 @@
 <div id="header">
 <h1 class="title">Sticky Pi, a high-frequency smart insect trap to study daily activity in the field</h1>
 <p class="author"><em>Quentin Geissmann</em></p>
-<p class="date"><em>2021-01-25</em></p>
+<p class="date"><em>2021-01-29</em></p>
 </div>
 <div id="introduction" class="section level1 unnumbered">
 <h1>Introduction</h1>
-<p><em>This is the reference documentation for the Sticky Pi project. It describes the different parts of the projects, how to build, deploy and use the various resources.</em></p>
 <div class="figure">
-<img src="assets/description_animation.gif" alt="The principle behind Sticky Pis" />
+<img src="assets/description_animation.gif" alt="The principle behind Sticky Pis" style="width:75.0%" />
 <p class="caption">The principle behind Sticky Pis</p>
 </div>
 <p>Sticky Pis are smart sticky traps using a <a href="https://www.raspberrypi.org/">Raspberry Pi</a> camera to automatically score <em>when, which and where</em> insects were captured (using modern AI tools). They take very frequent pictures (three per hour), which reveals much more information compared to traditional traps (such as insects' response to weather fluctuations and effect of the time of the day).</p>

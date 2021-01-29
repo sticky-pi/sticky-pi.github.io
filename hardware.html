@@ -24,7 +24,7 @@
 <meta name="author" content="Quentin Geissmann" />
 
 
-<meta name="date" content="2021-01-25" />
+<meta name="date" content="2021-01-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,17 +52,6 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-188039384-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-188039384-1');
-</script>
-
-<link rel="shortcut icon" href="assets/logo/sticky_logo-064.png" />
 
 
 
@@ -86,7 +75,12 @@
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
 <li class="chapter" data-level="" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i>Platform Overview</a></li>
 <li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html"><i class="fa fa-check"></i>Hardware</a><ul>
-<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#device"><i class="fa fa-check"></i>Device</a></li>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#device"><i class="fa fa-check"></i>Device</a><ul>
+<li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#overview"><i class="fa fa-check"></i>Overview</a></li>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#assembly"><i class="fa fa-check"></i>Assembly</a></li>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#qc-and-troubleshooting"><i class="fa fa-check"></i>QC and troubleshooting</a></li>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#use"><i class="fa fa-check"></i>Use</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#data-harvester"><i class="fa fa-check"></i>Data harvester</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html"><i class="fa fa-check"></i>Web Server</a></li>
@@ -122,10 +116,167 @@
             <section class="normal" id="section-">
 <div id="hardware" class="section level1 unnumbered">
 <h1>Hardware</h1>
-<p>This page describes and explains how to build the two main components of the hardware: the Sticky Pi device and the Data harvester. Briefly, multiple Sticky Pis are deployed in the field. Each device stores its images on its own SD card. On a regular basis (e.g. weekly), experimenters use a data harvester to retrieve the data from multiple devices. Silently, the data harvester also sync the location and time of the devices it communicates with. One data harvester may be used to maintain multiple traps. Multiple data harvesters can exist in the same platform (e.g. five experimenters, one harvester per experimenter, ten devices per experimenter).</p>
-<p>This section involve familiarity with 3D printing, electronics, DIY, ... We are working on streamlining the assembly process towards a more off-the-shelf tool, but are generally happy to collaborate and help building devices --do not hesitate to <a href="/community#contact">contact us</a>.</p>
+<p>This page describes and explains how to build the two main components of the hardware: the <em>Sticky Pi Device</em> and the <em>Data Harvester</em>. Briefly, multiple Sticky Pis are deployed in the field. Each device stores its images on its own SD card. On a regular basis (<em>e.g.</em> weekly), experimenters use a data harvester to retrieve the data from multiple devices. Silently, the data harvester also sync the location and time of the devices it communicates with. One Data Harvester may be used to maintain multiple traps. Multiple Data Harvesters can exist in the same platform (e.g. five experimenters, one harvester per experimenter, ten devices per experimenter).</p>
+<p>This section involve familiarity with 3D printing, electronics, DIY, ... We are working on streamlining the assembly process towards a more off-the-shelf tool, but are generally happy to collaborate and help building devices -- do not hesitate to <a href="/community#contact">contact us</a>.</p>
 <div id="device" class="section level2 unnumbered">
 <h2>Device</h2>
+<div id="overview" class="section level3 unnumbered">
+<h3>Overview</h3>
+<!-- ![Sticky Pi Device](assets/device_overview.png) -->
+<div class="figure"><span id="fig:device-overview"></span>
+<img src="assets/device_overview.png" alt="Sticky Pi Device"  />
+<p class="caption">
+Figure 1: Sticky Pi Device
+</p>
+</div>
+<p>As you can see in Figure <a href="hardware.html#fig:device-overview">1</a>, the device has two main parts, which are connected with a ribbon cable: the <em>camera box</em> and the <em>light box</em>.</p>
+<p>A complete description of the part, price and reference is available in our <a href="https://github.com/sticky-pi/sticky-pi-device/blob/main/hardware/BOM.csv">Bill of Material</a></p>
+<p>Note that all 3d-printed parts are available on <a href="https://cad.onshape.com/documents/73922dc6e3c6d7006b309c14/w/7e4fb88a2e93b6adba33fd5a/e/708b4c330014fa7fbda6bdeb">our onshape repository</a> where they can be exported in a variety of formats.</p>
+</div>
+<div id="assembly" class="section level3 unnumbered">
+<h3>Assembly</h3>
+<p>Camera Box and light box can be assembled separately and swapped between devices (.i.e. the light box acts as a plug and play module for the camera box).</p>
+<div id="camera-box" class="section level4 unnumbered">
+<h4>Camera box</h4>
+<div class="figure"><span id="fig:camera-box-breakdown"></span>
+<img src="assets/camera_box_breakdown.png" alt="Needed parts for the camera box"  />
+<p class="caption">
+Figure 2: Needed parts for the camera box
+</p>
+</div>
+<ol style="list-style-type: decimal">
+<li>Burn <a href="https://todo.com">our OS image</a> onto the SD card (note you can also make your own from scratch image by adapting<a href="https://github.com/sticky-pi/sticky-pi-device/tree/main/software">the scripts in</a>).
+<div class="rmdwarning">
+<p>
+<strong>Danger Zone!</strong> Ensure you know what you are doing here. In particular, give the path to the correct drive otherwise you may wipe out the wrong SD-card/hard drive/... On Unix-like systems, use <code>lsblk</code> to see all drives.
+</p>
+</div>
+<p>To burn an SD card use <a href="https://github.com/sticky-pi/sticky-pi-device/blob/main/software/burn_image.sh">our script</a> like <code>sh burn_image.sh -i &lt;PATH_TO_LOCAL_IMAGE&gt; -d &lt;DEVICE&gt;</code>, where <code>&lt;PATH_TO_LOCAL_IMAGE&gt;</code> is the OS image you just downloaded, and <code>&lt;DEVICE&gt;</code> the SD card location <code>e.g. /dev/mmcblk0</code> -- you need <a href="https://github.com/balena-io/etcher-cli"><code>etcher-cli</code></a>.</p></li>
+<li>Prepare the Raspberry Pi.
+<div class="figure"><span id="fig:pi-modifs"></span>
+<img src="assets/pi_modifs.png" alt="Modifications to the Raspberry Pi Zero"  />
+<p class="caption">
+Figure 3: Modifications to the Raspberry Pi Zero
+</p>
+</div>
+<ol style="list-style-type: decimal">
+<li>Solder 2x5 headers for the Real Time Clock on pins 1-10. Mount the clock (Figure <a href="hardware.html#fig:pi-modifs">3</a>A).</li>
+<li>Solder directly the IDC right angle connector onto the board on pins 35-40 (Figure <a href="hardware.html#fig:pi-modifs">3</a>A).</li>
+<li>On the back of the Raspberry pi board, use a jumper cable to solder GPIO pin 40 to +5V (this provides power to the Pi, Figure <a href="hardware.html#fig:pi-modifs">3</a>B)
+<div class="figure"><span id="fig:pi-sledge"></span>
+<img src="assets/pi_sledge.png" alt="Mounting the Raspberry Pi on the sledge"  />
+<p class="caption">
+Figure 4: Mounting the Raspberry Pi on the sledge
+</p>
+</div></li>
+<li>Use four screws to mount the pi on the &quot;Pi sledge&quot;. Plug the ribbon cable for the camera (Figure <a href="hardware.html#fig:pi-sledge">4</a>A).</li>
+<li>Fold the ribbon cable around the sledge as in the picture, and mount the camera with another four screws (Figure <a href="hardware.html#fig:pi-sledge">4</a>B-C)</li>
+<li>Insert the OS SD card (burnt as described above)</li>
+<li>Focus the camera. For those who want to assemble multiple devices, we recommend a &quot;camera focusing station&quot; that can adapt a Pi sledge and has a display, keyboard... this way, one can use <a href="https://www.raspberrypi.org/documentation/usage/camera/raspicam/raspivid.md">raspivid</a> in preview mode to check focus and alignment.</li>
+<li>Initialize your device (you can do that at the same time as focusing), which you can do with the <a href="hardware.html#data-harvester">Data harvester</a>:
+<ol style="list-style-type: decimal">
+<li>Power the data harvester, and ensure the time is set (not it is in GMT/UTC).</li>
+<li>Plug it to the pi's USB port.</li>
+<li>Boot/power the pi.</li>
+<li>The data harvester should then display information, including <strong>the unique ID of the pi</strong>. It will be an eight-digit hexadecimal number (e.g. <code>abcd0123</code>). Make a couple of physical label with this tag and stick them to the box (and write them on the sledge).</li>
+<li>As part of the communication process, the <strong>clock of the raspberry pi will be updated</strong>(indeed the factory RTC is unset)</li>
+</ol></li>
+<li>Thread the 1x6 ribbon cable (it should be at least 50cm long) through the &quot;camera box&quot; <strong>before</strong> clamping the 2x3 IDC connector on each side. <strong>You want have the two connectors in the same orientation</strong> (i.e. a wire connect pin 1 of the left connector to pin 1 o the right connector -- and <em>not</em> pin 6): <img src="" alt="IDC" /></li>
+<li>Plug the ITC connector on the Pi GPIO, and gently slide the Pi sledge inside the camera box, while pulling the slack cable from the outside. Note, at the stage, you can also add some desiccant inside the box to reduce fogging.</li>
+<li>Assemble the &quot;camera box lid&quot;:
+<div class="figure"><span id="fig:glass-window"></span>
+<img src="assets/glass_window.png" alt="Assembly of the camera box lid"  />
+<p class="caption">
+Figure 5: Assembly of the camera box lid
+</p>
+</div>
+<ol style="list-style-type: decimal">
+<li>Cut a glass microscope slide into a 25x25mm square with a glass cutter (e.g. with a <a href="https://cad.onshape.com/documents/73922dc6e3c6d7006b309c14/w/7e4fb88a2e93b6adba33fd5a/e/3f9dffd97a216a2d1bbd77ce">3d printed gauge and snaping tool</a> and tool it takes just a few seconds, Figure <a href="hardware.html#fig:glass-window">5</a>A-C).</li>
+<li>Place the glass window on the slot, use masking tape /duct tape to cover the central area and the back. Cast a layer of epoxy resin, and let it set for a day this will embed the glass in the lid. Note that it makes sense to make multiple lids at the same time and avoid wasting time and epoxy (Figure <a href="hardware.html#fig:glass-window">5</a>D-E).</li>
+<li>Clean the lid. Optionally coat it with water repellent such as <a href="https://www.rainx.com/">Rain-X</a></li>
+</ol></li>
+<li>Add calk at the junction between the lid and the box, screw the lid on the box. Also use calk to seal the 6x1 ribbon cable outlet.</li>
+<li>Coat the whole box with a layer of epoxy (note you can also chose to do that before assembly)</li>
+</ol></li>
+</ol>
+</div>
+<div id="light-box" class="section level4 unnumbered">
+<h4>Light box</h4>
+<div class="figure">
+<img src="assets/light_box_breakdown.png" alt="Needed parts for the light box" />
+<p class="caption">Needed parts for the light box</p>
+</div>
+<ol style="list-style-type: decimal">
+<li>Assemble our custom PCB:
+<div class="figure"><span id="fig:custom-board"></span>
+<img src="assets/custom_board.png" alt="Assembly of the custom PCB"  />
+<p class="caption">
+Figure 6: Assembly of the custom PCB
+</p>
+</div>
+<ol style="list-style-type: decimal">
+<li>Manufacture/order the PCB from the <a href="https://github.com/sticky-pi/sticky-pi-device/tree/main/hardware/main_gerber">gerber files</a> (Figure <a href="hardware.html#fig:custom-board">6</a>A)</li>
+<li>Prepare the timer (scratch the board to disable the built-in potentiometer) -- (red in Figure <a href="hardware.html#fig:custom-board">6</a>B).</li>
+<li>Solder all parts to the board. This should be fairly self explanatory from the labels (Figure <a href="hardware.html#fig:custom-board">6</a>C).</li>
+<li>Make a custom connection to our push button (red in Figure <a href="hardware.html#fig:custom-board">6</a>C). This is arguably a bit of a hack, but that allows us to mimic the built-in TLP5110 push button, with our own.</li>
+<li>Thread the push button (before soldering it, not to twist the cables)</li>
+<li>Screw the PCB to the bottom of the light box (be careful not to split the material, do not hesitate to use shorter screw).
+<div class="figure"><span id="fig:light-box"></span>
+<img src="assets/light_box.png" alt="Assembly of the custom PCB"  />
+<p class="caption">
+Figure 7: Assembly of the custom PCB
+</p>
+</div></li>
+<li>Insert the battery connector (Figure <a href="hardware.html#fig:light-box">7</a>A)</li>
+<li>Screw the Humidity and temperature sensor to the outside the box (Figure <a href="hardware.html#fig:light-box">7</a>A-B).</li>
+<li>Glue the solar panel in the top slot</li>
+</ol></li>
+<li>Assemble the light diffuser:
+<div class="figure"><span id="fig:light-diffuser"></span>
+<img src="assets/light_diffuser.png" alt="Assembly of the custom PCB"  />
+<p class="caption">
+Figure 8: Assembly of the custom PCB
+</p>
+</div>
+<ol style="list-style-type: decimal">
+<li>Cut six 5V, white, led light strips (Figure <a href="hardware.html#fig:light-diffuser">8</a>A).</li>
+<li>On one side, cut away the + pad, and the - on the other side.</li>
+<li>Align all the + pads on the top, and solder them together, in parallel, with a transverse wire</li>
+<li>Solder the 1x2 header to be connected to our PCB as in the picture (the male pins will be protruding downward). Use superglue to glue the header to the diffuser (Figure <a href="hardware.html#fig:light-diffuser">8</a>B).</li>
+</ol></li>
+<li>Test setup: Connect a camera box, using the 1x6 cable. Plug the light diffuser (or just a placeholder 5v LED light for now). Plug a battery. You should see the LED of the timer glowing (if not, press the push button to force reset the timer). After less than a minute, the The flash should be triggered, and the timer should shut down. Pressing the push button should restart the whole process. If left untouched, this should happen every 20min, approximately.</li>
+</ol>
+</div>
+</div>
+<div id="qc-and-troubleshooting" class="section level3 unnumbered">
+<h3>QC and troubleshooting</h3>
+<p>Controlling the assembly before deployment in the field will save you a lot of trouble. A few suggestions:</p>
+<ol style="list-style-type: decimal">
+<li>Plug all devices, and press the push button to initiate the image acquisition.</li>
+<li>Ensure all devices flash. <strong>The light should blink twice</strong>.
+<ul>
+<li>If the light does not blink. Check power/timer/light connection</li>
+<li>If the light blinks more than twice, the device is reporting an error. Typically, the camera cannot be found.</li>
+</ul></li>
+<li>Plug the Data Harvester and boot a device you want to test. Data transfer should be initiated.
+<ul>
+<li>Check the label of the pi matches the ID displayed by the harvester.</li>
+<li>Monitor image transfer.</li>
+</ul></li>
+<li>Once all devices have been harvested, retrieve the memory stick of the harvester and inspect the content.
+<ul>
+<li>There should be one directory for each device</li>
+<li>Each directory contains all the pictures for this device and <strong>a log file</strong></li>
+<li>Open the log file to check no errors were reported</li>
+<li>The name of each image contains the time in UTC. Ensure the time is correct.</li>
+<li>Open the images to check exposure, focus,...</li>
+<li>The environmental data (temperature, relative humidity, GPS coordinates and other meta variables) are encoded in the exif metadata inside the &quot;Make&quot; field (Sometime, though rarely, the temperature/humidity sensor fails, so you may have missing values).</li>
+</ul></li>
+</ol>
+</div>
+<div id="use" class="section level3 unnumbered">
+<h3>Use</h3>
+</div>
 </div>
 <div id="data-harvester" class="section level2 unnumbered">
 <h2>Data harvester</h2>

@@ -1,0 +1,8 @@
+fig:device-overview
+fig:camera-box-breakdown
+fig:pi-modifs
+fig:pi-sledge
+fig:glass-window
+fig:custom-board
+fig:light-box
+fig:light-diffuser
