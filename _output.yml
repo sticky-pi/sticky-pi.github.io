@@ -12,6 +12,8 @@ bookdown::gitbook:
         </li>
     edit: https://github.com/sticky-pi/sticky-pi.github.io/edit/source/%s
     download: ["pdf", "epub"]
+  includes:
+    in_header: header.html
     
 bookdown::pdf_book:
   includes:
