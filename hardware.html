@@ -24,7 +24,7 @@
 <meta name="author" content="Quentin Geissmann" />
 
 
-<meta name="date" content="2021-02-02" />
+<meta name="date" content="2021-02-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -68,6 +68,43 @@
 <link rel="manifest" href="site.webmanifest">
 
 
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
 
 
 <link rel="stylesheet" href="css/my_style.css" type="text/css" />
@@ -97,7 +134,14 @@
 </ul></li>
 <li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#data-harvester"><i class="fa fa-check"></i>Data harvester</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html"><i class="fa fa-check"></i>Web Server</a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html"><i class="fa fa-check"></i>Web Server</a><ul>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#github-repository"><i class="fa fa-check"></i>Github repository</a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#hosting"><i class="fa fa-check"></i>Hosting</a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#configuration-and-important-files"><i class="fa fa-check"></i>Configuration and important files</a><ul>
+<li><a href="web-server.html#env-file"><code>.env</code> file</a></li>
+<li><a href="web-server.html#secret.env-file"><code>.secret.env</code> file</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="ml.html"><a href="ml.html"><i class="fa fa-check"></i>Machine Learning</a></li>
 <li class="chapter" data-level="" data-path="community.html"><a href="community.html"><i class="fa fa-check"></i>Issues and community</a><ul>
 <li class="chapter" data-level="" data-path="community.html"><a href="community.html#citation"><i class="fa fa-check"></i>Citation</a></li>
@@ -130,7 +174,7 @@
             <section class="normal" id="section-">
 <div id="hardware" class="section level1 unnumbered">
 <h1>Hardware</h1>
-<p>This page describes and explains how to build the two main components of the hardware: the <em>Sticky Pi Device</em> and the <em>Data Harvester</em>. Briefly, multiple Sticky Pis are deployed in the field. Each device stores its images on its own SD card. On a regular basis (<em>e.g.</em> weekly), experimenters use a data harvester to retrieve the data from multiple devices. Silently, the data harvester also sync the location and time of the devices it communicates with. One Data Harvester may be used to maintain multiple traps. Multiple Data Harvesters can exist in the same platform (e.g. five experimenters, one harvester per experimenter, ten devices per experimenter).</p>
+<p>This page describes and explains how to build the two main components of the hardware: the <em>Sticky Pi Device</em> and the <em>Data Harvester</em>. Briefly, multiple Sticky Pis are deployed in the field. Each device stores its images on its own SD card. On a regular basis (<em>e.g.</em> weekly), experimenters use a data harvester to retrieve the data from multiple devices. Silently, the data harvester also syncs the location and time of the devices it communicates with. One Data Harvester may be used to maintain multiple traps. Multiple Data Harvesters can exist in the same platform (<em>e.g.</em> five experimenters, one harvester per experimenter, ten devices per experimenter).</p>
 <p>This section involve familiarity with 3D printing, electronics, DIY, ... We are working on streamlining the assembly process towards a more off-the-shelf tool, but are generally happy to collaborate and help building devices -- do not hesitate to <a href="/community#contact">contact us</a>.</p>
 <div id="device" class="section level2 unnumbered">
 <h2>Device</h2>
@@ -144,12 +188,12 @@ Figure 1: Sticky Pi Device
 </p>
 </div>
 <p>As you can see in Figure <a href="hardware.html#fig:device-overview">1</a>, the device has two main parts, which are connected with a ribbon cable: the <em>camera box</em> and the <em>light box</em>.</p>
-<p>A complete description of the part, price and reference is available in our <a href="https://github.com/sticky-pi/sticky-pi-device/blob/main/hardware/BOM.csv">Bill of Material</a></p>
-<p>Note that all 3d-printed parts are available on <a href="https://cad.onshape.com/documents/73922dc6e3c6d7006b309c14/w/7e4fb88a2e93b6adba33fd5a/e/708b4c330014fa7fbda6bdeb">our onshape repository</a> where they can be exported in a variety of formats.</p>
+<p>A complete description of the parts, price and reference is available in our <a href="https://github.com/sticky-pi/sticky-pi-device/blob/main/hardware/BOM.csv">Bill of Material</a></p>
+<p>Note that all 3D-printed parts are available on <a href="https://cad.onshape.com/documents/73922dc6e3c6d7006b309c14/w/7e4fb88a2e93b6adba33fd5a/e/708b4c330014fa7fbda6bdeb">our onshape repository</a> where they can be exported in a variety of formats.</p>
 </div>
 <div id="assembly" class="section level3 unnumbered">
 <h3>Assembly</h3>
-<p>Camera Box and light box can be assembled separately and swapped between devices (.i.e. the light box acts as a plug and play module for the camera box).</p>
+<p>Camera Box and light box can be assembled separately and swapped between devices (<em>i.e.</em> the light box acts as a plug and play module for the camera box).</p>
 <div id="camera-box" class="section level4 unnumbered">
 <h4>Camera box</h4>
 <div class="figure"><span id="fig:camera-box-breakdown"></span>
@@ -162,7 +206,7 @@ Figure 2: Needed parts for the camera box
 <li>Burn <a href="https://todo.com">our OS image</a> onto the SD card (note you can also make your own from scratch image by adapting<a href="https://github.com/sticky-pi/sticky-pi-device/tree/main/software">the scripts in</a>).
 <div class="rmdwarning">
 <p>
-<strong>Danger Zone!</strong> Ensure you know what you are doing here. In particular, give the path to the correct drive otherwise you may wipe out the wrong SD-card/hard drive/... On Unix-like systems, use <code>lsblk</code> to see all drives.
+<strong>Danger Zone!</strong> Ensure you know what you are doing here. In particular, give the path to the correct drive otherwise you may wipe out the wrong drive, and <em>lose data</em>. On Unix-like systems, use <code>lsblk</code> to see all drives.
 </p>
 </div>
 <p>To burn an SD card use <a href="https://github.com/sticky-pi/sticky-pi-device/blob/main/software/burn_image.sh">our script</a> like <code>sh burn_image.sh -i &lt;PATH_TO_LOCAL_IMAGE&gt; -d &lt;DEVICE&gt;</code>, where <code>&lt;PATH_TO_LOCAL_IMAGE&gt;</code> is the OS image you just downloaded, and <code>&lt;DEVICE&gt;</code> the SD card location <code>e.g. /dev/mmcblk0</code> -- you need <a href="https://github.com/balena-io/etcher-cli"><code>etcher-cli</code></a>.</p></li>
@@ -186,14 +230,14 @@ Figure 4: Mounting the Raspberry Pi on the sledge
 <li>Use four screws to mount the pi on the &quot;Pi sledge&quot;. Plug the ribbon cable for the camera (Figure <a href="hardware.html#fig:pi-sledge">4</a>A).</li>
 <li>Fold the ribbon cable around the sledge as in the picture, and mount the camera with another four screws (Figure <a href="hardware.html#fig:pi-sledge">4</a>B-C)</li>
 <li>Insert the OS SD card (burnt as described above)</li>
-<li>Focus the camera. For those who want to assemble multiple devices, we recommend a &quot;camera focusing station&quot; that can adapt a Pi sledge and has a display, keyboard... this way, one can use <a href="https://www.raspberrypi.org/documentation/usage/camera/raspicam/raspivid.md">raspivid</a> in preview mode to check focus and alignment.</li>
+<li>Focus the camera. For those who want to assemble multiple devices, we recommend a &quot;camera focusing station&quot; that can adapt a Pi sledge and has a display, keyboard... This way, one can use <a href="https://www.raspberrypi.org/documentation/usage/camera/raspicam/raspivid.md">raspivid</a> in preview mode to check focus and alignment.</li>
 <li>Initialize your device (you can do that at the same time as focusing), which you can do with the <a href="hardware.html#data-harvester">Data harvester</a>:
 <ol style="list-style-type: decimal">
 <li>Power the data harvester, and ensure the time is set (not it is in GMT/UTC).</li>
 <li>Plug it to the pi's USB port.</li>
 <li>Boot/power the pi.</li>
 <li>The data harvester should then display information, including <strong>the unique ID of the pi</strong>. It will be an eight-digit hexadecimal number (e.g. <code>abcd0123</code>). Make a couple of physical label with this tag and stick them to the box (and write them on the sledge).</li>
-<li>As part of the communication process, the <strong>clock of the raspberry pi will be updated</strong>(indeed the factory RTC is unset)</li>
+<li>As part of the communication process, the <strong>clock of the raspberry pi will be updated</strong> (indeed the factory RTC is unset)</li>
 </ol></li>
 <li>Thread the 1x6 ribbon cable (it should be at least 50cm long) through the &quot;camera box&quot; <strong>before</strong> clamping the 2x3 IDC connector on each side. <strong>You want have the two connectors in the same orientation</strong> (i.e. a wire connect pin 1 of the left connector to pin 1 o the right connector -- and <em>not</em> pin 6): <img src="" alt="IDC" /></li>
 <li>Plug the ITC connector on the Pi GPIO, and gently slide the Pi sledge inside the camera box, while pulling the slack cable from the outside. Note, at the stage, you can also add some desiccant inside the box to reduce fogging.</li>
@@ -206,7 +250,7 @@ Figure 5: Assembly of the camera box lid
 </div>
 <ol style="list-style-type: decimal">
 <li>Cut a glass microscope slide into a 25x25mm square with a glass cutter (e.g. with a <a href="https://cad.onshape.com/documents/73922dc6e3c6d7006b309c14/w/7e4fb88a2e93b6adba33fd5a/e/3f9dffd97a216a2d1bbd77ce">3d printed gauge and snaping tool</a> and tool it takes just a few seconds, Figure <a href="hardware.html#fig:glass-window">5</a>A-C).</li>
-<li>Place the glass window on the slot, use masking tape /duct tape to cover the central area and the back. Cast a layer of epoxy resin, and let it set for a day this will embed the glass in the lid. Note that it makes sense to make multiple lids at the same time and avoid wasting time and epoxy (Figure <a href="hardware.html#fig:glass-window">5</a>D-E).</li>
+<li>Place the glass window on the slot, use masking tape or duct tape to cover the central area and the back. Cast a layer of epoxy resin, and let it set for a day this will embed the glass in the lid. Note that it makes sense to make multiple lids at the same time and avoid wasting time and epoxy (Figure <a href="hardware.html#fig:glass-window">5</a>D-E).</li>
 <li>Clean the lid. Optionally coat it with water repellent such as <a href="https://www.rainx.com/">Rain-X</a></li>
 </ol></li>
 <li>Add calk at the junction between the lid and the box, screw the lid on the box. Also use calk to seal the 6x1 ribbon cable outlet.</li>

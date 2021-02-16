@@ -24,7 +24,7 @@
 <meta name="author" content="Quentin Geissmann" />
 
 
-<meta name="date" content="2021-02-02" />
+<meta name="date" content="2021-02-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -68,6 +68,43 @@
 <link rel="manifest" href="site.webmanifest">
 
 
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
 
 
 <link rel="stylesheet" href="css/my_style.css" type="text/css" />
@@ -97,7 +134,14 @@
 </ul></li>
 <li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#data-harvester"><i class="fa fa-check"></i>Data harvester</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html"><i class="fa fa-check"></i>Web Server</a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html"><i class="fa fa-check"></i>Web Server</a><ul>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#github-repository"><i class="fa fa-check"></i>Github repository</a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#hosting"><i class="fa fa-check"></i>Hosting</a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#configuration-and-important-files"><i class="fa fa-check"></i>Configuration and important files</a><ul>
+<li><a href="web-server.html#env-file"><code>.env</code> file</a></li>
+<li><a href="web-server.html#secret.env-file"><code>.secret.env</code> file</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="ml.html"><a href="ml.html"><i class="fa fa-check"></i>Machine Learning</a></li>
 <li class="chapter" data-level="" data-path="community.html"><a href="community.html"><i class="fa fa-check"></i>Issues and community</a><ul>
 <li class="chapter" data-level="" data-path="community.html"><a href="community.html#citation"><i class="fa fa-check"></i>Citation</a></li>
@@ -130,8 +174,63 @@
             <section class="normal" id="section-">
 <div id="web-server" class="section level1 unnumbered">
 <h1>Web Server</h1>
-<p>todo</p>
+<p>This page describes and explains how to deploy and maintain the web server. As much as we try to streamline this process, deploying our web server on the cloud does require some familiarity with <a href="https://en.wikipedia.org/wiki/Linux">Unix/Linux</a> systems, <a href="https://www.docker.com/">Docker</a>. We are open for collaboration and may be able to help you deploy you server, so do not hesitate to <a href="/community#contact">contact us</a>.</p>
+<p>As described in the <a href="/overview">overview</a>, it contains these key components: * <a href="/web-server#db">Database</a> -- Stores image metadata as well as, processing results, users... * <a href="/web-server#s3">S3 server</a> -- Store and serve image data and ML models * <a href="/web-server#api">API</a> -- Parses client requests to put/get resources from the underlying database * <a href="/web-server#webapp">Webapp</a> -- A frontend website to visualise/plot the images taken and processing results * <a href="/web-server#nginx">Nginx server</a> -- Secures and rout connections between above services and to the outside world.</p>
+<p>Here is a schematics of how these services interact:</p>
+<p>TODO.</p>
+<div id="github-repository" class="section level2 unnumbered">
+<h2>Github repository</h2>
+<p>The all the source code needed for deployement can be found on the <a href="https://github.com/sticky-pi/sticky-pi-api">sticky-pi-api github repository</a>. It contains two important subdirectories: <code>src</code>, a python package used to create the API, and <code>server</code>, a set of docker services orchestrated with <a href="https://docs.docker.com/compose/">docker compose</a>.</p>
+<p>For deployment, we only care about the <code>server</code> -- if you are interested, the API is documented on <a href="https://sticky-pi-api.readthedocs.io/en/develop/">readthedoc</a>, but it should only concern you if you want to take part in development.</p>
+</div>
+<div id="hosting" class="section level2 unnumbered">
+<h2>Hosting</h2>
+<p>The simplest way to deploy the Sticky Pi server stack is on a remote Linux virtual machine. Perhaps your institudion provides some cloud hosting, for instance [Compute Canada Cloud](<a href="https://www.computecanada.ca/research-portal/national-services/compute-canada-cloud/" class="uri">https://www.computecanada.ca/research-portal/national-services/compute-canada-cloud/</a>, or you can opt for a commercial cloud provider. You can also decide to run the server on a custom machine within a restricted network.</p>
+</div>
+<div id="configuration-and-important-files" class="section level2 unnumbered">
+<h2>Configuration and important files</h2>
+<p>Within the <code>server</code> directory, there are a few noticeable files we will describe:</p>
+<ul>
+<li><code>deploy.sh</code> -- A script you can run to deploy the whole stack. More details later.</li>
+<li><code>docker-compose.yml</code> -- The base docker-compose configuration file.</li>
+<li><code>docker-compose.prod.yml</code> -- The specification of the above file, for production.</li>
+<li><code>.env</code> -- An overall configuration file defining. <strong>You will need to modify some variables in it</strong>.</li>
+<li><code>.secret.env</code> -- Contains credentials. For security reasons, this file does not exist yet <strong>you need to create it</strong>. Do not share this file, and ensure the permissions are restrictive.</li>
+</ul>
+<div id="env-file" class="section level3 unnumbered">
+<h3><code>.env</code> file</h3>
+<p>You need to create a directory that will contain all the server data (except the s3-hosted files). Set <code>LOCAL_VOLUME_ROOT</code> in the <code>.env</code> file accordingly: <code>LOCAL_VOLUME_ROOT=/your/root/dirctory</code>.</p>
+<p>In order to encrypt data flow between client and server, we enforce https. That implies the registration of a domain name. Typically, you want to: 1. Ensure your cloud provider can provide a static/floating IP address for your instance, say <code>111.112.113.114</code>. 1. Find a DNS provider and register your domain name, say <code>sticky.net</code>. 1. Use your DNS provider to create two A records: <code>sticky.net</code> -&gt; <code>111.112.113.114</code> and <code>*.sticky.net</code> -&gt; <code>111.112.113.114</code> 1. Define <code>ROOT_DOMAIN_NAME</code> in the <code>.env</code> file to your registered domain name. E.g. <code>ROOT_DOMAIN_NAME=sticky.net</code></p>
+</div>
+<div id="secret.env-file" class="section level3 unnumbered">
+<h3><code>.secret.env</code> file</h3>
+<p>Create or add to <code>.secret.env</code> file the variables by modifiying this template:</p>
+<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="co"># En encryption key can be any long sting of ascii characters,</span>
+<span class="co"># e.g.  something like `cfbewif7y8rfy4w3aNIKFW9Yfh89HFN9`</span>
+<span class="va">SECRET_API_KEY=</span>
 
+<span class="co"># Your S3 host. We will describe further the difference between</span>
+<span class="co"># external and local S3 provider </span>
+<span class="co"># For local option we can set</span>
+<span class="co"># S3_HOST=s3.${ROOT_DOMAIN_NAME}</span>
+<span class="co"># for remote option this would be a hostname like `my-s3.provider.com`</span>
+<span class="va">S3_HOST=</span>
+
+<span class="co"># For local s3 option, you want to define arbitrary keys:</span>
+<span class="co"># e.g. S3_ACCESS_KEY=fnwfnoAEVikenAV and </span>
+<span class="co"># S3_PRIVATE_KEY=cfweavb87eabv8uehabv98hwAW7</span>
+<span class="co"># For remote option, you will need to issue a key pair and paste it</span>
+<span class="va">S3_ACCESS_KEY=</span>
+<span class="va">S3_PRIVATE_KEY=</span>
+
+<span class="va">MYSQL_PASSWORD=</span>
+<span class="va">API_ADMIN_PASSWORD=</span>
+<span class="va">ADMIN_EMAIL=</span>
+<span class="va">S3_BUCKET_NAME=</span>
+<span class="va">UID_PASSWORD=</span></code></pre></div>
+
+</div>
+</div>
 </div>
             </section>
 

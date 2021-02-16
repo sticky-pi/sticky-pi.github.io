@@ -24,7 +24,7 @@
 <meta name="author" content="Quentin Geissmann" />
 
 
-<meta name="date" content="2021-02-02" />
+<meta name="date" content="2021-02-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -68,6 +68,43 @@
 <link rel="manifest" href="site.webmanifest">
 
 
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
 
 
 <link rel="stylesheet" href="css/my_style.css" type="text/css" />
@@ -97,7 +134,14 @@
 </ul></li>
 <li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#data-harvester"><i class="fa fa-check"></i>Data harvester</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html"><i class="fa fa-check"></i>Web Server</a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html"><i class="fa fa-check"></i>Web Server</a><ul>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#github-repository"><i class="fa fa-check"></i>Github repository</a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#hosting"><i class="fa fa-check"></i>Hosting</a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#configuration-and-important-files"><i class="fa fa-check"></i>Configuration and important files</a><ul>
+<li><a href="web-server.html#env-file"><code>.env</code> file</a></li>
+<li><a href="web-server.html#secret.env-file"><code>.secret.env</code> file</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="ml.html"><a href="ml.html"><i class="fa fa-check"></i>Machine Learning</a></li>
 <li class="chapter" data-level="" data-path="community.html"><a href="community.html"><i class="fa fa-check"></i>Issues and community</a><ul>
 <li class="chapter" data-level="" data-path="community.html"><a href="community.html#citation"><i class="fa fa-check"></i>Citation</a></li>
@@ -176,22 +220,22 @@
 <li><a href="/hardware.html">Hardware</a>
 <ul>
 <li><a href="/hardware.html#device">Sticky Pi devices</a> -- Takes pictures of traps and record environmental conditions</li>
-<li><a href="/hardware.html#datat-harvester">Data harvester</a> -- Manage devices and retrieve their data (in the field)</li>
+<li><a href="/hardware.html#datat-harvester">Data harvester</a> -- Manages devices and retrieve their data (in the field)</li>
 </ul></li>
 <li><a href="/web-server">Web server</a>
 <ul>
-<li><a href="/web-server#db">Database</a> -- Store image metadata as well as, processing results, users...</li>
+<li><a href="/web-server#db">Database</a> -- Stores image metadata as well as, processing results, users...</li>
 <li><a href="/web-server#s3">S3 server</a> -- Store and serve image data and ML models</li>
 <li><a href="/web-server#api">API</a> -- Parses client requests to put/get resources from the underlying database</li>
-<li><a href="/web-server#webapp">Webapp</a> -- a frontend website to visualise/plot the images taken and processing results</li>
-<li><a href="/web-server#nginx">Nginx server</a> -- secure and rout connections between above services and to the outside world</li>
-<li><a href="/web-server#ml">Analysis pipeline</a> -- pre-process images in real time</li>
+<li><a href="/web-server#webapp">Webapp</a> -- A frontend website to visualise/plot the images taken and processing results</li>
+<li><a href="/web-server#nginx">Nginx server</a> -- Secures and rout connections between above services and to the outside world</li>
+<li><a href="/web-server#ml">Analysis pipeline</a> -- Pre-processes images in real time</li>
 </ul></li>
 <li><a href="/ml">Machine Learning</a>
 <ul>
-<li><a href="/ml#uid">Universal Insect Detector</a> -- Detect insect vs background, in all images</li>
-<li><a href="/ml#uid">Siamese Insect Matcher</a> -- Track insect instances across imaged</li>
-<li><a href="/ml#uid">Insect Tuboid Classifier</a> -- Predict insect taxonomy from a tracked instance</li>
+<li><a href="/ml#uid">Universal Insect Detector</a> -- Detects insect vs background, in all images</li>
+<li><a href="/ml#uid">Siamese Insect Matcher</a> -- Tracks insect instances across imaged</li>
+<li><a href="/ml#uid">Insect Tuboid Classifier</a> -- Predictss insect taxonomy from a tracked instance</li>
 </ul></li>
 </ul>
 
