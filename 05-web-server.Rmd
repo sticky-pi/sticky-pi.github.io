@@ -1,3 +1,72 @@
 # Web Server{#web-server -}
 
-todo
+This page describes and explains how to deploy and maintain the web server.
+As much as we try to streamline this process, deploying our web server on the cloud does require some familiarity with [Unix/Linux](https://en.wikipedia.org/wiki/Linux) systems, [Docker](https://www.docker.com/). We are open for collaboration and may be able to help you deploy you server, so do not hesitate to [contact us](/community#contact).
+
+As described in the [overview](/overview), it contains these key components:
+   * [Database](/web-server#db) -- Stores image metadata as well as, processing results, users...
+    * [S3 server](/web-server#s3) -- Store and serve image data and ML models
+    * [API](/web-server#api) -- Parses client requests to put/get resources from the underlying database
+    * [Webapp](/web-server#webapp) -- A frontend website to visualise/plot the images taken and processing results
+    * [Nginx server](/web-server#nginx) -- Secures and rout connections between above services and to the outside world.
+    
+Here is a schematics of how these services interact:
+
+TODO.
+
+## Github repository{-}
+The all the source code needed for deployement can be found on the [sticky-pi-api github repository](https://github.com/sticky-pi/sticky-pi-api). It contains two important subdirectories: `src`, a python package used to create the API, and `server`, a set of docker services orchestrated with [docker compose](https://docs.docker.com/compose/).
+
+For deployment, we only care about the `server` -- if you are interested, the API is documented on [readthedoc](https://sticky-pi-api.readthedocs.io/en/develop/), but it should only concern you if you want to take part in development.
+
+## Hosting{-}
+The simplest way to deploy the Sticky Pi server stack is on a remote Linux virtual machine.
+Perhaps your institudion provides some cloud hosting, for instance [Compute Canada Cloud](https://www.computecanada.ca/research-portal/national-services/compute-canada-cloud/, or you can opt for a commercial cloud provider. You can also decide to run the server on a custom machine within a restricted network.
+
+## Configuration and important files{-}
+Within the `server` directory, there are a few noticeable files we will describe:
+
+* `deploy.sh` -- A script you can run to deploy the whole stack. More details later.
+* `docker-compose.yml` -- The base docker-compose configuration file.
+* `docker-compose.prod.yml` -- The specification of the above file, for production.
+* `.env` -- An overall configuration file defining. **You will need to modify some variables in it**.
+* `.secret.env` -- Contains credentials. For security reasons, this file does not exist yet **you need to create it**. Do not share this file, and ensure the permissions are restrictive.
+
+### `.env` file{-}
+
+You need to create a directory that will contain all the server data (except the s3-hosted files). Set  `LOCAL_VOLUME_ROOT` in the `.env` file accordingly: `LOCAL_VOLUME_ROOT=/your/root/dirctory`.
+
+In order to encrypt data flow between client and server, we enforce https. That implies the registration of a domain name. Typically, you want to:
+1. Ensure your cloud provider can provide a static/floating IP address for your instance, say `111.112.113.114`.
+1. Find a DNS provider and register your domain name, say `sticky.net`. 
+1. Use your DNS provider to create two A records:  `sticky.net` -> `111.112.113.114` and `*.sticky.net` -> `111.112.113.114`
+1. Define `ROOT_DOMAIN_NAME` in the `.env` file to your registered domain name. E.g. `ROOT_DOMAIN_NAME=sticky.net`
+
+### `.secret.env` file{-}
+Create or add to `.secret.env` file the variables by modifiying this template:
+```sh
+# En encryption key can be any long sting of ascii characters,
+# e.g.  something like `cfbewif7y8rfy4w3aNIKFW9Yfh89HFN9`
+SECRET_API_KEY=
+
+# Your S3 host. We will describe further the difference between
+# external and local S3 provider 
+# For local option we can set
+# S3_HOST=s3.${ROOT_DOMAIN_NAME}
+# for remote option this would be a hostname like `my-s3.provider.com`
+S3_HOST=
+
+# For local s3 option, you want to define arbitrary keys:
+# e.g. S3_ACCESS_KEY=fnwfnoAEVikenAV and 
+# S3_PRIVATE_KEY=cfweavb87eabv8uehabv98hwAW7
+# For remote option, you will need to issue a key pair and paste it
+S3_ACCESS_KEY=
+S3_PRIVATE_KEY=
+
+MYSQL_PASSWORD=
+API_ADMIN_PASSWORD=
+ADMIN_EMAIL=
+S3_BUCKET_NAME=
+UID_PASSWORD=
+```
+

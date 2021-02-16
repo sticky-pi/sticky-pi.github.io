@@ -4,8 +4,8 @@ This page describes and explains how to build the two main components of the har
 the *Sticky Pi Device* and the *Data Harvester*.
 Briefly, multiple Sticky Pis are deployed in the field. Each device stores its images on its own SD card.
 On a regular basis (*e.g.* weekly), experimenters use a data harvester to retrieve the data from multiple devices.
-Silently, the data harvester also sync the location and time of the devices it communicates with.
-One Data Harvester may be used to maintain multiple traps. Multiple Data Harvesters can exist in the same platform (e.g. five experimenters, one harvester per experimenter, ten devices per experimenter).
+Silently, the data harvester also syncs the location and time of the devices it communicates with.
+One Data Harvester may be used to maintain multiple traps. Multiple Data Harvesters can exist in the same platform (*e.g.* five experimenters, one harvester per experimenter, ten devices per experimenter).
 
 
 This section involve familiarity with 3D printing, electronics, DIY, ... 
@@ -19,12 +19,12 @@ knitr::include_graphics("assets/device_overview.png")
 ```
 As you can see in Figure \@ref(fig:device-overview), the device has two main parts, which are connected with a ribbon cable: the *camera box* and the *light box*. 
 
-A complete description of the part, price and reference is available in our [Bill of Material](https://github.com/sticky-pi/sticky-pi-device/blob/main/hardware/BOM.csv)
+A complete description of the parts, price and reference is available in our [Bill of Material](https://github.com/sticky-pi/sticky-pi-device/blob/main/hardware/BOM.csv)
 
-Note that all 3d-printed parts are available on [our onshape repository](https://cad.onshape.com/documents/73922dc6e3c6d7006b309c14/w/7e4fb88a2e93b6adba33fd5a/e/708b4c330014fa7fbda6bdeb) where they can be exported in a variety of formats.
+Note that all 3D-printed parts are available on [our onshape repository](https://cad.onshape.com/documents/73922dc6e3c6d7006b309c14/w/7e4fb88a2e93b6adba33fd5a/e/708b4c330014fa7fbda6bdeb) where they can be exported in a variety of formats.
 
 ### Assembly{-}
-Camera Box and light box can be assembled separately and swapped between devices (.i.e. the light box acts as a plug and play module for the camera box).
+Camera Box and light box can be assembled separately and swapped between devices (*i.e.* the light box acts as a plug and play module for the camera box).
 
 #### Camera box{-}
 
@@ -34,7 +34,7 @@ knitr::include_graphics("assets/camera_box_breakdown.png")
 
 1. Burn [our OS image](https://todo.com) onto the SD card (note you can also make your own from scratch image by adapting[the scripts in](https://github.com/sticky-pi/sticky-pi-device/tree/main/software)).
 ```{block, type='rmdwarning'}
-**Danger Zone!** Ensure you know what you are doing here. In particular, give the path to the correct drive otherwise you may wipe out the wrong SD-card/hard drive/... On Unix-like systems, use `lsblk` to see all drives.
+**Danger Zone!** Ensure you know what you are doing here. In particular, give the path to the correct drive otherwise you may wipe out the wrong drive, and *lose data*. On Unix-like systems, use `lsblk` to see all drives.
 ```
 To burn an SD card use [our script](https://github.com/sticky-pi/sticky-pi-device/blob/main/software/burn_image.sh) like `sh burn_image.sh -i <PATH_TO_LOCAL_IMAGE> -d <DEVICE>`, where `<PATH_TO_LOCAL_IMAGE>` is the OS image you just downloaded, and `<DEVICE>` the SD card location `e.g. /dev/mmcblk0` -- you need [`etcher-cli`](https://github.com/balena-io/etcher-cli).
 
@@ -51,13 +51,13 @@ knitr::include_graphics("assets/pi_sledge.png")
     4. Use four screws to mount the pi on the "Pi sledge". Plug the ribbon cable for the camera (Figure \@ref(fig:pi-sledge)A).
     5. Fold the ribbon cable around the sledge as in the picture, and mount the camera with another four screws (Figure \@ref(fig:pi-sledge)B-C)
     5. Insert the OS SD card (burnt as described above)
-    6. Focus the camera. For those who want to assemble multiple devices, we recommend a "camera focusing station" that can adapt a Pi sledge and has a display, keyboard... this way, one can use [raspivid](https://www.raspberrypi.org/documentation/usage/camera/raspicam/raspivid.md) in preview mode to check focus and alignment.
+    6. Focus the camera. For those who want to assemble multiple devices, we recommend a "camera focusing station" that can adapt a Pi sledge and has a display, keyboard... This way, one can use [raspivid](https://www.raspberrypi.org/documentation/usage/camera/raspicam/raspivid.md) in preview mode to check focus and alignment.
     6. Initialize your device (you can do that at the same time as focusing), which you can do with the [Data harvester](#data-harvester):
         1. Power the data harvester, and ensure the time is set (not it is in GMT/UTC). 
         2. Plug it to the pi's USB port. 
         3. Boot/power the pi. 
         4. The data harvester should then display information, including **the unique ID of the pi**. It will be an eight-digit hexadecimal number (e.g. `abcd0123`). Make a couple of physical label with this tag and stick them to the box (and write them on the sledge).
-        5. As part of the communication process, the **clock of the raspberry pi will be updated**(indeed the factory RTC is unset)
+        5. As part of the communication process, the **clock of the raspberry pi will be updated** (indeed the factory RTC is unset)
     7. Thread the 1x6 ribbon cable (it should be at least 50cm long) through the "camera box" **before** clamping the 2x3 IDC connector on each side. **You want have the two connectors in the same orientation** (i.e. a wire connect pin 1 of the left connector to pin 1 o the right connector -- and *not* pin 6):
     ![IDC]()
     8. Plug the ITC connector on the Pi GPIO, and gently slide the Pi sledge inside the camera box, while pulling the slack cable from the outside. Note, at the stage, you can also add some desiccant inside the box to reduce fogging.
@@ -67,7 +67,7 @@ knitr::include_graphics("assets/glass_window.png")
 # \@ref(fig:xxxx)
 ```
         1. Cut a glass microscope slide into a 25x25mm square with a glass cutter (e.g. with a [3d printed gauge and snaping tool](https://cad.onshape.com/documents/73922dc6e3c6d7006b309c14/w/7e4fb88a2e93b6adba33fd5a/e/3f9dffd97a216a2d1bbd77ce) and tool it takes just a few seconds,  Figure \@ref(fig:glass-window)A-C).
-        2. Place the glass window on the slot, use masking tape /duct tape to cover the central area and the back. Cast a layer of epoxy resin, and let it set for a day this will embed the glass in the lid. Note that it makes sense to make multiple lids at the same time and avoid wasting time and epoxy (Figure \@ref(fig:glass-window)D-E).
+        2. Place the glass window on the slot, use masking tape or duct tape to cover the central area and the back. Cast a layer of epoxy resin, and let it set for a day this will embed the glass in the lid. Note that it makes sense to make multiple lids at the same time and avoid wasting time and epoxy (Figure \@ref(fig:glass-window)D-E).
         3. Clean the lid. Optionally coat it with water repellent such as [Rain-X](https://www.rainx.com/)
     10. Add calk at the junction between the lid and the box, screw the lid on the box. Also use calk to seal the 6x1 ribbon cable outlet.
     11. Coat the whole box with a layer of epoxy (note you can also chose to do that before assembly)
