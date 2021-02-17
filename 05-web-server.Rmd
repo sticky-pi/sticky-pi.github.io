@@ -1,29 +1,54 @@
 # Web Server{#web-server -}
 
 This page describes and explains how to deploy and maintain the web server.
-As much as we try to streamline this process, deploying our web server on the cloud does require some familiarity with [Unix/Linux](https://en.wikipedia.org/wiki/Linux) systems, [Docker](https://www.docker.com/). We are open for collaboration and may be able to help you deploy you server, so do not hesitate to [contact us](/community#contact).
+As much as we try to streamline this process, deploying our web server on the cloud does require some familiarity with [Unix/Linux](https://en.wikipedia.org/wiki/Linux) systems, [Docker](https://www.docker.com/). We are open for collaboration and may be able to help you deploy you server, so do not hesitate to [contact us](/community#contact). 
+First, describe the general function of the server. 
+Second, we explain how to deploy it  and test it.
+Last, for completeness, we provide additional information on the individual components.
 
-As described in the [overview](/overview), it contains these key components:
-   * [Database](/web-server#db) -- Stores image metadata as well as, processing results, users...
-    * [S3 server](/web-server#s3) -- Store and serve image data and ML models
-    * [API](/web-server#api) -- Parses client requests to put/get resources from the underlying database
-    * [Webapp](/web-server#webapp) -- A frontend website to visualise/plot the images taken and processing results
-    * [Nginx server](/web-server#nginx) -- Secures and rout connections between above services and to the outside world.
-    
+## General description{-}
 Here is a schematics of how these services interact:
 
-TODO.
+```{r web-server, fig.cap="Schematics of the web server services", echo=FALSE}
+knitr::include_graphics("assets/web-server.png")
+```
 
-## Github repository{-}
-The all the source code needed for deployement can be found on the [sticky-pi-api github repository](https://github.com/sticky-pi/sticky-pi-api). It contains two important subdirectories: `src`, a python package used to create the API, and `server`, a set of docker services orchestrated with [docker compose](https://docs.docker.com/compose/).
+As shown in Figure \@ref(fig:web-server), the web server is a suite of docker containers.
+The entry point is an [Nginx](https://en.wikipedia.org/wiki/Nginx) server, `spi_nginx`, routes requests to the appropriate service:
+
+* `spi_api` <- `api.` -- our overall API server (*i.e.* a server that handles client requests to, for instance, upload/download images, create new users, retrieve image metadata, etc).
+* `spi_webapp` <- `webapp.` -- an [Rshiny](https://shiny.rstudio.com/) web interface to visualize data in real time.
+* `spi_s3` <- `s3.` -- an optional local s3 server, using [localstack](https://github.com/localstack/localstack). This is an alternative to subscribe to a commercial s3 server.
+
+The other services are not routed (i.e must not be accessible by external users):
+
+* `spi_db` -- a [mariadb](https://mariadb.org/) database that stores image metadata, user data, processing results, ...
+* `spi_uid` -- a service that automatically pre-process all images, running the Universal Insect Detector, to segment insects vs background.
+* `certbot` -- a service based on [certbot](https://certbot.eff.org/) that issues and renews SSL certificates in the background (for HTTPS)
+
+## Deployment{-}
+
+### Github repository{-}
+The all the source code needed for deployment can be found on the [sticky-pi-api github repository](https://github.com/sticky-pi/sticky-pi-api). It contains two important subdirectories: `src`, a python package used to create the API, and `server`, a set of docker services orchestrated with [docker compose](https://docs.docker.com/compose/).
 
 For deployment, we only care about the `server` -- if you are interested, the API is documented on [readthedoc](https://sticky-pi-api.readthedocs.io/en/develop/), but it should only concern you if you want to take part in development.
 
-## Hosting{-}
-The simplest way to deploy the Sticky Pi server stack is on a remote Linux virtual machine.
-Perhaps your institudion provides some cloud hosting, for instance [Compute Canada Cloud](https://www.computecanada.ca/research-portal/national-services/compute-canada-cloud/, or you can opt for a commercial cloud provider. You can also decide to run the server on a custom machine within a restricted network.
+Typically, you would clone this repository on your host.
 
-## Configuration and important files{-}
+### Hosting{-}
+The simplest way to deploy the Sticky Pi server stack is on a remote Linux virtual machine.
+Perhaps your institution provides some cloud hosting, for instance [Compute Canada Cloud](https://www.computecanada.ca/research-portal/national-services/compute-canada-cloud/, or you can opt for a commercial cloud provider. You can also decide to run the server on a custom machine within a restricted network.
+
+### Security{-}
+A remote web resources implies security considerations:
+
+* Your host should provide firewalls, the web-server only needs ports 80 (http) and 443 (https) -- only open the ports you need.
+* Ensure you use long high entropy passwords
+* Update your host system
+* Use ssh keys rather than passwords
+
+
+### Configuration and important files{-}
 Within the `server` directory, there are a few noticeable files we will describe:
 
 * `deploy.sh` -- A script you can run to deploy the whole stack. More details later.
@@ -34,7 +59,7 @@ Within the `server` directory, there are a few noticeable files we will describe
 
 ### `.env` file{-}
 
-You need to create a directory that will contain all the server data (except the s3-hosted files). Set  `LOCAL_VOLUME_ROOT` in the `.env` file accordingly: `LOCAL_VOLUME_ROOT=/your/root/dirctory`.
+You need to create a directory that will contain all the server data (except the s3-hosted files). Set  `LOCAL_VOLUME_ROOT` in the `.env` file accordingly: `LOCAL_VOLUME_ROOT=/your/stpicky-pi/root/dirctory`.
 
 In order to encrypt data flow between client and server, we enforce https. That implies the registration of a domain name. Typically, you want to:
 1. Ensure your cloud provider can provide a static/floating IP address for your instance, say `111.112.113.114`.
@@ -43,7 +68,7 @@ In order to encrypt data flow between client and server, we enforce https. That 
 1. Define `ROOT_DOMAIN_NAME` in the `.env` file to your registered domain name. E.g. `ROOT_DOMAIN_NAME=sticky.net`
 
 ### `.secret.env` file{-}
-Create or add to `.secret.env` file the variables by modifiying this template:
+Create or add to `.secret.env` file the variables by modifying this template:
 ```sh
 # En encryption key can be any long sting of ascii characters,
 # e.g.  something like `cfbewif7y8rfy4w3aNIKFW9Yfh89HFN9`
@@ -63,10 +88,117 @@ S3_HOST=
 S3_ACCESS_KEY=
 S3_PRIVATE_KEY=
 
+# An arbitrary password, only used internally
+# Should be more than 10-characters long
 MYSQL_PASSWORD=
+
+# Another arbitrary password, only used internally
+# Should be more than 10-characters long
 API_ADMIN_PASSWORD=
+
+# Your email address (or the main admin's)
 ADMIN_EMAIL=
+
+# The name of the S3 bucket storing the images 
+# and other binary files. E.g. `sticky-pi-prod`
 S3_BUCKET_NAME=
+
+# An arbitrary password for the special user/internal bot `uid`,
+# which can preprocess images automatically (universal insect detector). 
+# Should be more than 10-characters long
 UID_PASSWORD=
 ```
+
+### Alternative local S3 server{-}
+The our recommended option is to use an external provider for S3.
+However, you can also run your own S3 as a docker container.
+To do that you just need to set `S3_HOST=s3.${ROOT_DOMAIN_NAME}` in the `.secret.env` file.
+Your data will be stored, by default on `${LOCAL_VOLUME_ROOT}/s3`. 
+Beware that overall data can be large -- typically [1, 2] GB per device per week. 
+
+### Deploy script{-}
+Once we have set up the environment variables, we are ready to deploy. For convenience, we provide a script: `server/deploy.sh` that should be used this way for a production server: 
+
+```
+# sh deploy.sh prod-init
+# sh deploy.sh prod
+```
+`prod-init` initializes SSL certificates. You should need to do that only once. 
+If you want to subsequently restart/redeploy the server, just run `sh deploy.sh prod`.
+
+The first time, it may take a wile to build all the docker images.
+
+Once all the images have been built, ensure containers are running using `docker ps`. you can also debug and check the logs by using `docker logs <service_name>`.
+
+### Check the API{-}
+The simplest way to test the API end to end is to use [cURL](https://en.wikipedia.org/wiki/CURL) -- you could also use our python client.
+For instance, we can ask the API to issue a temporary logging token for the admin user.
+Replace `<API_ADMIN_PASSWORD>` and `<ROOT_DOMAIN_NAME>` by their value (same as in `.secret.env`).
+
+```
+curl --user admin:<API_ADMIN_PASSWORD> -X POST   https://api.<ROOT_DOMAIN_NAME>/get_token
+```
+
+This should return a json dictionary with the fields `"expiration"` and `"token"`. If this does not work, stop here, and debug.
+
+### Create users{-}
+We can also use cURL to create users.
+For instance, to create a read only user named `spi`, with password `R3ad_0nly`, and no email address, we can run:
+```
+curl  --user admin:<API_ADMIN_PASSWORD> -X POST -H "Content-Type: application/json" -d '[{"username": "spi", "password": "R3ad_0nly", "is_admin": 0, "email": "", "can_write":0}]' https://api.<ROOT_DOMAIN_NAME>/put_users
+```
+`"can_write":1` would create a user that can write, and `"is_admin": 1`, an admin user (*e.g.* that can create other users).
+Note that you will not be able to retrieve a user's password as passwords are internally encrypted. If a password is lost, the only way is to reset it.
+
+You can list users with:
+```
+curl --user admin:<API_ADMIN_PASSWORD> -X POST   https://api.sticky-pi.com/get_users
+```
+
+You can test users by requesting a token, using curl as [above](#check-the-api), replacing `--user admin:<API_ADMIN_PASSWORD>`, by `--user <USERNAME>:<USER_PASSWORD>`.
+
+### Backups{-}
+The raw image data is on the s3 server. Manual backups/archives can be done by doanlaoding all data to a separate resource/hard drive/... with tools such as [s3cmd](https://s3tools.org/s3cmd), using your credentials.
+In order to backup mariadb, you can run the following:
+
+```
+#sh deploy.sh mysql-backup
+```
+
+This will create a file like `spi_db.dump.YYYY-MM-DD.sql.gz` in the current working directory -- that you then manually copy/archive. In case of failure, the database could be restored this way.
+
+
+## Additional information{-}
+
+### Database{-}
+
+The database (`spi_db`) is the [stock MariaDB](https://hub.docker.com/_/mariadb).
+The database data is mounted on a persistant directory on the host: `${LOCAL_VOLUME_ROOT}/mysql` in the host maps `/var/lib/mysql` in the container.
+
+### Nginx{-}
+
+Nginx (`spi_nginx`) is the [stock Nginx](https://hub.docker.com/_/nginx).
+We use a custom configuration file to define routing (`nginx/nging.conf-template`).
+Note that this is a template file where we inject environment variable at built time.
+You should not need to modify the configuration file for standard deployment
+
+
+### API{-}
+The API (`spi_api`) is a [uwsgi](https://uwsgi-docs.readthedocs.io/en/latest/) + [flask](https://flask.palletsprojects.com/en/1.1.x/) server. the main file is `api/app.py`.
+This server depends extensively on our python package, [sticky_pi_api](https://sticky-pi-api.readthedocs.io/en/latest/).
+Note that the API and client are packaged together, which allows us to use mock local API vs remote API.
+
+
+### Universal Insect Detector{-}
+The UID (`spi_uid`) is a simple python script (`ml/uid.py`) that uses the API client and the our [sticky_pi_ml](https://github.com/sticky-pi/sticky-pi-ml) package. 
+It fetches the images that are not annotated (or obsolete) from client, analyse them, and upload the results (to the database, through the API). 
+This process runs automatically. Note that you need to have either trained the UID or download a reference model for this service to work. We explain how to set-up ML resources in a [dedicated section](/ml).
+
+
+
+### Webapp{-}
+The Webapp (`spi_webapp`) is an Rshiny interactive website. 
+It is mainly designed to visualise image and processing data.
+Typically hundreds of images are acquired every week, this interface allows you to select a date range to display a plot of environmental conditions and overlay images as well as UID results. This is very helpful to ensure the quality of your data in real time.
+
 

@@ -23,6 +23,8 @@ A complete description of the parts, price and reference is available in our [Bi
 
 Note that all 3D-printed parts are available on [our onshape repository](https://cad.onshape.com/documents/73922dc6e3c6d7006b309c14/w/7e4fb88a2e93b6adba33fd5a/e/708b4c330014fa7fbda6bdeb) where they can be exported in a variety of formats.
 
+You can also take a look at [our schematic](assets/spi_schematic.svg).
+
 ### Assembly{-}
 Camera Box and light box can be assembled separately and swapped between devices (*i.e.* the light box acts as a plug and play module for the camera box).
 
