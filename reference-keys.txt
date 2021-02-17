@@ -6,3 +6,4 @@ fig:glass-window
 fig:custom-board
 fig:light-box
 fig:light-diffuser
+fig:web-server

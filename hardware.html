@@ -24,7 +24,7 @@
 <meta name="author" content="Quentin Geissmann" />
 
 
-<meta name="date" content="2021-02-16" />
+<meta name="date" content="2021-02-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -135,11 +135,26 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#data-harvester"><i class="fa fa-check"></i>Data harvester</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html"><i class="fa fa-check"></i>Web Server</a><ul>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#general-description"><i class="fa fa-check"></i>General description</a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#deployment"><i class="fa fa-check"></i>Deployment</a><ul>
 <li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#github-repository"><i class="fa fa-check"></i>Github repository</a></li>
 <li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#hosting"><i class="fa fa-check"></i>Hosting</a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#configuration-and-important-files"><i class="fa fa-check"></i>Configuration and important files</a><ul>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#security"><i class="fa fa-check"></i>Security</a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#configuration-and-important-files"><i class="fa fa-check"></i>Configuration and important files</a></li>
 <li><a href="web-server.html#env-file"><code>.env</code> file</a></li>
 <li><a href="web-server.html#secret.env-file"><code>.secret.env</code> file</a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#alternative-local-s3-server"><i class="fa fa-check"></i>Alternative local S3 server</a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#deploy-script"><i class="fa fa-check"></i>Deploy script</a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#check-the-api"><i class="fa fa-check"></i>Check the API</a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#create-users"><i class="fa fa-check"></i>Create users</a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#backups"><i class="fa fa-check"></i>Backups</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#additional-information"><i class="fa fa-check"></i>Additional information</a><ul>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#database"><i class="fa fa-check"></i>Database</a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#nginx"><i class="fa fa-check"></i>Nginx</a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#api"><i class="fa fa-check"></i>API</a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#universal-insect-detector"><i class="fa fa-check"></i>Universal Insect Detector</a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#webapp"><i class="fa fa-check"></i>Webapp</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="ml.html"><a href="ml.html"><i class="fa fa-check"></i>Machine Learning</a></li>
@@ -190,6 +205,7 @@ Figure 1: Sticky Pi Device
 <p>As you can see in Figure <a href="hardware.html#fig:device-overview">1</a>, the device has two main parts, which are connected with a ribbon cable: the <em>camera box</em> and the <em>light box</em>.</p>
 <p>A complete description of the parts, price and reference is available in our <a href="https://github.com/sticky-pi/sticky-pi-device/blob/main/hardware/BOM.csv">Bill of Material</a></p>
 <p>Note that all 3D-printed parts are available on <a href="https://cad.onshape.com/documents/73922dc6e3c6d7006b309c14/w/7e4fb88a2e93b6adba33fd5a/e/708b4c330014fa7fbda6bdeb">our onshape repository</a> where they can be exported in a variety of formats.</p>
+<p>You can also take a look at <a href="assets/spi_schematic.svg">our schematic</a>.</p>
 </div>
 <div id="assembly" class="section level3 unnumbered">
 <h3>Assembly</h3>
