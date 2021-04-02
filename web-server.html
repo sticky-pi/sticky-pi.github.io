@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Web Server | Sticky Pi, a high-frequency smart insect trap to study daily activity in the field</title>
   <meta name="description" content="This is the documentation for the Sticky Pi project, a system to study insect activity in the field." />
-  <meta name="generator" content="bookdown 0.21.6 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21.9 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Web Server | Sticky Pi, a high-frequency smart insect trap to study daily activity in the field" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Quentin Geissmann" />
 
 
-<meta name="date" content="2021-02-17" />
+<meta name="date" content="2021-04-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -189,7 +189,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="web-server" class="section level1 unnumbered">
 <h1>Web Server</h1>
-<p>This page describes and explains how to deploy and maintain the web server. As much as we try to streamline this process, deploying our web server on the cloud does require some familiarity with <a href="https://en.wikipedia.org/wiki/Linux">Unix/Linux</a> systems, <a href="https://www.docker.com/">Docker</a>. We are open for collaboration and may be able to help you deploy you server, so do not hesitate to <a href="/community#contact">contact us</a>. First, describe the general function of the server. Second, we explain how to deploy it and test it. Last, for completeness, we provide additional information on the individual components.</p>
+<p>This page describes how to deploy and maintain the web server. As much as we try to streamline this process, deploying our web server on the cloud does require some familiarity with <a href="https://en.wikipedia.org/wiki/Linux">Unix/Linux</a> systems, <a href="https://www.docker.com/">Docker</a>. We are open for collaboration and may be able to help you deploy you server, so do not hesitate to <a href="/community#contact">contact us</a>. First, we describe the general function of the server. Second, we explain how to deploy and test it. Last, for completeness, we provide additional information on the individual components.</p>
 <div id="general-description" class="section level2 unnumbered">
 <h2>General description</h2>
 <p>Here is a schematics of how these services interact:</p>
@@ -222,14 +222,14 @@ Figure 9: Schematics of the web server services
 </div>
 <div id="hosting" class="section level3 unnumbered">
 <h3>Hosting</h3>
-<p>The simplest way to deploy the Sticky Pi server stack is on a remote Linux virtual machine. Perhaps your institution provides some cloud hosting, for instance [Compute Canada Cloud](<a href="https://www.computecanada.ca/research-portal/national-services/compute-canada-cloud/" class="uri">https://www.computecanada.ca/research-portal/national-services/compute-canada-cloud/</a>, or you can opt for a commercial cloud provider. You can also decide to run the server on a custom machine within a restricted network.</p>
+<p>The simplest way to deploy the Sticky Pi server stack is on a remote Linux virtual machine. Perhaps your institution provides some cloud hosting, for instance <a href="https://www.computecanada.ca/research-portal/national-services/compute-canada-cloud">Compute Canada Cloud</a>, or you can opt for a commercial cloud provider. You can also decide to run the server on a custom machine within a restricted network.</p>
 </div>
 <div id="security" class="section level3 unnumbered">
 <h3>Security</h3>
 <p>A remote web resources implies security considerations:</p>
 <ul>
-<li>Your host should provide firewalls, the web-server only needs ports 80 (http) and 443 (https) -- only open the ports you need.</li>
-<li>Ensure you use long high entropy passwords</li>
+<li>Your host should provide firewalls, the web-server only needs ports 80 (http) and 443 (https) open.</li>
+<li>Ensure you use long, high entropy, passwords</li>
 <li>Update your host system</li>
 <li>Use ssh keys rather than passwords</li>
 </ul>
@@ -247,8 +247,14 @@ Figure 9: Schematics of the web server services
 </div>
 <div id="env-file" class="section level3 unnumbered">
 <h3><code>.env</code> file</h3>
-<p>You need to create a directory that will contain all the server data (except the s3-hosted files). Set <code>LOCAL_VOLUME_ROOT</code> in the <code>.env</code> file accordingly: <code>LOCAL_VOLUME_ROOT=/your/stpicky-pi/root/dirctory</code>.</p>
-<p>In order to encrypt data flow between client and server, we enforce https. That implies the registration of a domain name. Typically, you want to: 1. Ensure your cloud provider can provide a static/floating IP address for your instance, say <code>111.112.113.114</code>. 1. Find a DNS provider and register your domain name, say <code>sticky.net</code>. 1. Use your DNS provider to create two A records: <code>sticky.net</code> -&gt; <code>111.112.113.114</code> and <code>*.sticky.net</code> -&gt; <code>111.112.113.114</code> 1. Define <code>ROOT_DOMAIN_NAME</code> in the <code>.env</code> file to your registered domain name. E.g. <code>ROOT_DOMAIN_NAME=sticky.net</code></p>
+<p>You need to create a directory that will contain all the server data (except the s3-hosted files). Set <code>LOCAL_VOLUME_ROOT</code> in the <code>.env</code> file accordingly: <code>LOCAL_VOLUME_ROOT=/your/sticky-pi/root/dirctory</code>.</p>
+<p>In order to encrypt data flow between client and server, we enforce https. That implies the registration of a domain name. Typically, you want to:</p>
+<ol style="list-style-type: decimal">
+<li>Ensure your cloud provider can provide a static/floating IP address for your instance, say <code>111.112.113.114</code>.</li>
+<li>Find a DNS provider and register your domain name, say <code>sticky.net</code>.</li>
+<li>Use your DNS provider to create two A records: <code>sticky.net</code> -&gt; <code>111.112.113.114</code> and <code>*.sticky.net</code> -&gt; <code>111.112.113.114</code></li>
+<li>Define <code>ROOT_DOMAIN_NAME</code> in the <code>.env</code> file to your registered domain name. E.g. <code>ROOT_DOMAIN_NAME=sticky.net</code></li>
+</ol>
 </div>
 <div id="secret.env-file" class="section level3 unnumbered">
 <h3><code>.secret.env</code> file</h3>
@@ -314,23 +320,23 @@ Figure 9: Schematics of the web server services
 <h3>Create users</h3>
 <p>We can also use cURL to create users. For instance, to create a read only user named <code>spi</code>, with password <code>R3ad_0nly</code>, and no email address, we can run:</p>
 <pre><code>curl  --user admin:&lt;API_ADMIN_PASSWORD&gt; -X POST -H &quot;Content-Type: application/json&quot; -d &#39;[{&quot;username&quot;: &quot;spi&quot;, &quot;password&quot;: &quot;R3ad_0nly&quot;, &quot;is_admin&quot;: 0, &quot;email&quot;: &quot;&quot;, &quot;can_write&quot;:0}]&#39; https://api.&lt;ROOT_DOMAIN_NAME&gt;/put_users</code></pre>
-<p><code>&quot;can_write&quot;:1</code> would create a user that can write, and <code>&quot;is_admin&quot;: 1</code>, an admin user (<em>e.g.</em> that can create other users). Note that you will not be able to retrieve a user's password as passwords are internally encrypted. If a password is lost, the only way is to reset it.</p>
+<p><code>&quot;can_write&quot;:1</code> would create a user that can write, and <code>&quot;is_admin&quot;: 1</code>, an admin user (<em>e.g.</em> that can create other users). Note that you will not be able to retrieve a user's password as passwords are internally encrypted. If a password is lost, the only way to log in is to reset it.</p>
 <p>You can list users with:</p>
 <pre><code>curl --user admin:&lt;API_ADMIN_PASSWORD&gt; -X POST   https://api.sticky-pi.com/get_users</code></pre>
 <p>You can test users by requesting a token, using curl as <a href="web-server.html#check-the-api">above</a>, replacing <code>--user admin:&lt;API_ADMIN_PASSWORD&gt;</code>, by <code>--user &lt;USERNAME&gt;:&lt;USER_PASSWORD&gt;</code>.</p>
 </div>
 <div id="backups" class="section level3 unnumbered">
 <h3>Backups</h3>
-<p>The raw image data is on the s3 server. Manual backups/archives can be done by doanlaoding all data to a separate resource/hard drive/... with tools such as <a href="https://s3tools.org/s3cmd">s3cmd</a>, using your credentials. In order to backup mariadb, you can run the following:</p>
+<p>The raw image data is on the s3 server. Manual backups/archives can be done by downlaoding all data to a separate resource/hard drive/... with tools such as <a href="https://s3tools.org/s3cmd">s3cmd</a>, using your credentials. In order to backup mariadb, you can use the deploy script:</p>
 <pre><code>#sh deploy.sh mysql-backup</code></pre>
-<p>This will create a file like <code>spi_db.dump.YYYY-MM-DD.sql.gz</code> in the current working directory -- that you then manually copy/archive. In case of failure, the database could be restored this way.</p>
+<p>This will create a file like <code>spi_db.dump.YYYY-MM-DD.sql.gz</code> in the current working directory -- that you then manually copy/archive. In case of catastrofic failure, the database could be restored with it.</p>
 </div>
 </div>
 <div id="additional-information" class="section level2 unnumbered">
 <h2>Additional information</h2>
 <div id="database" class="section level3 unnumbered">
 <h3>Database</h3>
-<p>The database (<code>spi_db</code>) is the <a href="https://hub.docker.com/_/mariadb">stock MariaDB</a>. The database data is mounted on a persistant directory on the host: <code>${LOCAL_VOLUME_ROOT}/mysql</code> in the host maps <code>/var/lib/mysql</code> in the container.</p>
+<p>The database (<code>spi_db</code>) is the <a href="https://hub.docker.com/_/mariadb">stock MariaDB</a>. The database data is mounted on a persistent directory on the host: <code>${LOCAL_VOLUME_ROOT}/mysql</code> in the host maps <code>/var/lib/mysql</code> in the container.</p>
 </div>
 <div id="nginx" class="section level3 unnumbered">
 <h3>Nginx</h3>
@@ -338,7 +344,7 @@ Figure 9: Schematics of the web server services
 </div>
 <div id="api" class="section level3 unnumbered">
 <h3>API</h3>
-<p>The API (<code>spi_api</code>) is a <a href="https://uwsgi-docs.readthedocs.io/en/latest/">uwsgi</a> + <a href="https://flask.palletsprojects.com/en/1.1.x/">flask</a> server. the main file is <code>api/app.py</code>. This server depends extensively on our python package, <a href="https://sticky-pi-api.readthedocs.io/en/latest/">sticky_pi_api</a>. Note that the API and client are packaged together, which allows us to use mock local API vs remote API.</p>
+<p>The API (<code>spi_api</code>) is a <a href="https://uwsgi-docs.readthedocs.io/en/latest/">uwsgi</a> + <a href="https://flask.palletsprojects.com/en/1.1.x/">flask</a> server. The main file is <code>api/app.py</code>. This server depends extensively on our python package, <a href="https://sticky-pi-api.readthedocs.io/en/latest/">sticky_pi_api</a>. Note that the API and client are packaged together, which allows us to use mock local API vs remote API.</p>
 </div>
 <div id="universal-insect-detector" class="section level3 unnumbered">
 <h3>Universal Insect Detector</h3>

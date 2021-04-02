@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Platform Overview | Sticky Pi, a high-frequency smart insect trap to study daily activity in the field</title>
   <meta name="description" content="This is the documentation for the Sticky Pi project, a system to study insect activity in the field." />
-  <meta name="generator" content="bookdown 0.21.6 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21.9 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Platform Overview | Sticky Pi, a high-frequency smart insect trap to study daily activity in the field" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Quentin Geissmann" />
 
 
-<meta name="date" content="2021-02-17" />
+<meta name="date" content="2021-04-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -193,8 +193,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Here is a list of all the tools:</p>
 <table>
 <colgroup>
-<col width="23%" />
-<col width="76%" />
+<col width="29%" />
+<col width="70%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -210,6 +210,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <tr class="even">
 <td align="left">sticky-pi-device-v2</td>
 <td align="left">The improved version of the smart traps (in development)</td>
+</tr>
+<tr class="odd">
+<td align="left">sticky-pi-data-harvester</td>
+<td align="left">The Hardware and software for the Data Harvester</td>
+</tr>
+<tr class="even">
+<td align="left">sticky-pi-data-harvester-v2</td>
+<td align="left">The improved version of the Data Harvester (in development)</td>
 </tr>
 <tr class="odd">
 <td align="left">sticky-pi-api</td>
@@ -239,18 +247,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li><a href="/web-server">Web server</a>
 <ul>
-<li><a href="/web-server#db">Database</a> -- Stores image metadata as well as, processing results, users...</li>
-<li><a href="/web-server#s3">S3 server</a> -- Store and serve image data and ML models</li>
+<li><a href="/web-server#db">Database</a> -- Stores image metadata as well as processing results, users...</li>
+<li><a href="/web-server#s3">S3 server</a> -- Store and serve image data and machine learning models</li>
 <li><a href="/web-server#api">API</a> -- Parses client requests to put/get resources from the underlying database</li>
 <li><a href="/web-server#webapp">Webapp</a> -- A frontend website to visualise/plot the images taken and processing results</li>
-<li><a href="/web-server#nginx">Nginx server</a> -- Secures and rout connections between above services and to the outside world</li>
+<li><a href="/web-server#nginx">Nginx server</a> -- Secures and routes connections between the above services and the outside world</li>
 <li><a href="/web-server#ml">Analysis pipeline</a> -- Pre-processes images in real time</li>
 </ul></li>
 <li><a href="/ml">Machine Learning</a>
 <ul>
 <li><a href="/ml#uid">Universal Insect Detector</a> -- Detects insect vs background, in all images</li>
 <li><a href="/ml#uid">Siamese Insect Matcher</a> -- Tracks insect instances across imaged</li>
-<li><a href="/ml#uid">Insect Tuboid Classifier</a> -- Predictss insect taxonomy from a tracked instance</li>
+<li><a href="/ml#uid">Insect Tuboid Classifier</a> -- Predicts insect taxonomy from a tracked instance</li>
 </ul></li>
 </ul>
 
