@@ -9,6 +9,8 @@ df <- tibble::tribble(
   ~Name,~Description,
   "sticky-pi-device","The Hardware and software for the Sticky Pi cameras (i.e. device)",
   "sticky-pi-device-v2","The improved version of the smart traps (in development)",
+  "sticky-pi-data-harvester","The Hardware and software for the Data Harvester",
+  "sticky-pi-data-harvester-v2","The improved version of the Data Harvester (in development)",
   "sticky-pi-api","Server and client api and the docker services for the server webapps",
   "sticky-pi-ml","Machine learning for the Sticky Pi project",
   "sticky-pi-manuscript","Manuscipt material and experiments for the 2021 method publication",
@@ -29,14 +31,14 @@ The details of each part will be explain further.
     * [Sticky Pi devices](/hardware.html#device) -- Takes pictures of traps and record environmental conditions
     * [Data harvester](/hardware.html#datat-harvester) -- Manages devices and retrieve their data (in the field)
 * [Web server](/web-server)
-    * [Database](/web-server#db) -- Stores image metadata as well as, processing results, users...
-    * [S3 server](/web-server#s3) -- Store and serve image data and ML models
+    * [Database](/web-server#db) -- Stores image metadata as well as processing results, users...
+    * [S3 server](/web-server#s3) -- Store and serve image data and machine learning models
     * [API](/web-server#api) -- Parses client requests to put/get resources from the underlying database
     * [Webapp](/web-server#webapp) -- A frontend website to visualise/plot the images taken and processing results
-    * [Nginx server](/web-server#nginx) -- Secures and rout connections between above services and to the outside world
+    * [Nginx server](/web-server#nginx) -- Secures and routes connections between the above services and the outside world
     * [Analysis pipeline](/web-server#ml) -- Pre-processes images in real time
 * [Machine Learning](/ml)
     * [Universal Insect Detector](/ml#uid) -- Detects insect vs background, in all images
     * [Siamese Insect Matcher](/ml#uid) -- Tracks insect instances across imaged
-    * [Insect Tuboid Classifier](/ml#uid) --  Predictss insect taxonomy from a tracked instance
+    * [Insect Tuboid Classifier](/ml#uid) --  Predicts insect taxonomy from a tracked instance
 

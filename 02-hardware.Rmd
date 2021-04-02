@@ -1,6 +1,6 @@
 # Hardware{#hardware -}
 
-This page describes and explains how to build the two main components of the hardware:
+This page describes how to build the two main components of the hardware:
 the *Sticky Pi Device* and the *Data Harvester*.
 Briefly, multiple Sticky Pis are deployed in the field. Each device stores its images on its own SD card.
 On a regular basis (*e.g.* weekly), experimenters use a data harvester to retrieve the data from multiple devices.
@@ -9,7 +9,7 @@ One Data Harvester may be used to maintain multiple traps. Multiple Data Harvest
 
 
 This section involve familiarity with 3D printing, electronics, DIY, ... 
-We are working on streamlining the assembly process towards a more off-the-shelf tool, but are generally happy to collaborate and help building devices -- do not hesitate to [contact us](/community#contact).
+We are working on streamlining the assembly process towards a more `off-the-shelf tool', but are generally happy to collaborate and help building devices -- do not hesitate to [contact us](/community#contact).
 
 ## Device{-}
 ### Overview{-}
@@ -26,7 +26,7 @@ Note that all 3D-printed parts are available on [our onshape repository](https:/
 You can also take a look at [our schematic](assets/spi_schematic.svg).
 
 ### Assembly{-}
-Camera Box and light box can be assembled separately and swapped between devices (*i.e.* the light box acts as a plug and play module for the camera box).
+The camera Box and light box can be assembled separately and swapped between devices (*i.e.* the light box acts as a plug and play module for the camera box).
 
 #### Camera box{-}
 

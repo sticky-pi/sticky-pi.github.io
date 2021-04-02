@@ -1,9 +1,9 @@
 # Web Server{#web-server -}
 
-This page describes and explains how to deploy and maintain the web server.
+This page describes how to deploy and maintain the web server.
 As much as we try to streamline this process, deploying our web server on the cloud does require some familiarity with [Unix/Linux](https://en.wikipedia.org/wiki/Linux) systems, [Docker](https://www.docker.com/). We are open for collaboration and may be able to help you deploy you server, so do not hesitate to [contact us](/community#contact). 
-First, describe the general function of the server. 
-Second, we explain how to deploy it  and test it.
+First, we describe the general function of the server. 
+Second, we explain how to deploy and test it.
 Last, for completeness, we provide additional information on the individual components.
 
 ## General description{-}
@@ -37,13 +37,13 @@ Typically, you would clone this repository on your host.
 
 ### Hosting{-}
 The simplest way to deploy the Sticky Pi server stack is on a remote Linux virtual machine.
-Perhaps your institution provides some cloud hosting, for instance [Compute Canada Cloud](https://www.computecanada.ca/research-portal/national-services/compute-canada-cloud/, or you can opt for a commercial cloud provider. You can also decide to run the server on a custom machine within a restricted network.
+Perhaps your institution provides some cloud hosting, for instance [Compute Canada Cloud](https://www.computecanada.ca/research-portal/national-services/compute-canada-cloud), or you can opt for a commercial cloud provider. You can also decide to run the server on a custom machine within a restricted network.
 
 ### Security{-}
 A remote web resources implies security considerations:
 
-* Your host should provide firewalls, the web-server only needs ports 80 (http) and 443 (https) -- only open the ports you need.
-* Ensure you use long high entropy passwords
+* Your host should provide firewalls, the web-server only needs ports 80 (http) and 443 (https) open.
+* Ensure you use long, high entropy, passwords
 * Update your host system
 * Use ssh keys rather than passwords
 
@@ -59,9 +59,10 @@ Within the `server` directory, there are a few noticeable files we will describe
 
 ### `.env` file{-}
 
-You need to create a directory that will contain all the server data (except the s3-hosted files). Set  `LOCAL_VOLUME_ROOT` in the `.env` file accordingly: `LOCAL_VOLUME_ROOT=/your/stpicky-pi/root/dirctory`.
+You need to create a directory that will contain all the server data (except the s3-hosted files). Set  `LOCAL_VOLUME_ROOT` in the `.env` file accordingly: `LOCAL_VOLUME_ROOT=/your/sticky-pi/root/dirctory`.
 
 In order to encrypt data flow between client and server, we enforce https. That implies the registration of a domain name. Typically, you want to:
+
 1. Ensure your cloud provider can provide a static/floating IP address for your instance, say `111.112.113.114`.
 1. Find a DNS provider and register your domain name, say `sticky.net`. 
 1. Use your DNS provider to create two A records:  `sticky.net` -> `111.112.113.114` and `*.sticky.net` -> `111.112.113.114`
@@ -148,7 +149,7 @@ For instance, to create a read only user named `spi`, with password `R3ad_0nly`,
 curl  --user admin:<API_ADMIN_PASSWORD> -X POST -H "Content-Type: application/json" -d '[{"username": "spi", "password": "R3ad_0nly", "is_admin": 0, "email": "", "can_write":0}]' https://api.<ROOT_DOMAIN_NAME>/put_users
 ```
 `"can_write":1` would create a user that can write, and `"is_admin": 1`, an admin user (*e.g.* that can create other users).
-Note that you will not be able to retrieve a user's password as passwords are internally encrypted. If a password is lost, the only way is to reset it.
+Note that you will not be able to retrieve a user's password as passwords are internally encrypted. If a password is lost, the only way to log in is to reset it.
 
 You can list users with:
 ```
@@ -158,14 +159,14 @@ curl --user admin:<API_ADMIN_PASSWORD> -X POST   https://api.sticky-pi.com/get_u
 You can test users by requesting a token, using curl as [above](#check-the-api), replacing `--user admin:<API_ADMIN_PASSWORD>`, by `--user <USERNAME>:<USER_PASSWORD>`.
 
 ### Backups{-}
-The raw image data is on the s3 server. Manual backups/archives can be done by doanlaoding all data to a separate resource/hard drive/... with tools such as [s3cmd](https://s3tools.org/s3cmd), using your credentials.
-In order to backup mariadb, you can run the following:
+The raw image data is on the s3 server. Manual backups/archives can be done by downlaoding all data to a separate resource/hard drive/... with tools such as [s3cmd](https://s3tools.org/s3cmd), using your credentials.
+In order to backup mariadb, you can use the deploy script:
 
 ```
 #sh deploy.sh mysql-backup
 ```
 
-This will create a file like `spi_db.dump.YYYY-MM-DD.sql.gz` in the current working directory -- that you then manually copy/archive. In case of failure, the database could be restored this way.
+This will create a file like `spi_db.dump.YYYY-MM-DD.sql.gz` in the current working directory -- that you then manually copy/archive. In case of catastrofic failure, the database could be restored with it.
 
 
 ## Additional information{-}
@@ -173,7 +174,7 @@ This will create a file like `spi_db.dump.YYYY-MM-DD.sql.gz` in the current work
 ### Database{-}
 
 The database (`spi_db`) is the [stock MariaDB](https://hub.docker.com/_/mariadb).
-The database data is mounted on a persistant directory on the host: `${LOCAL_VOLUME_ROOT}/mysql` in the host maps `/var/lib/mysql` in the container.
+The database data is mounted on a persistent directory on the host: `${LOCAL_VOLUME_ROOT}/mysql` in the host maps `/var/lib/mysql` in the container.
 
 ### Nginx{-}
 
@@ -184,7 +185,7 @@ You should not need to modify the configuration file for standard deployment
 
 
 ### API{-}
-The API (`spi_api`) is a [uwsgi](https://uwsgi-docs.readthedocs.io/en/latest/) + [flask](https://flask.palletsprojects.com/en/1.1.x/) server. the main file is `api/app.py`.
+The API (`spi_api`) is a [uwsgi](https://uwsgi-docs.readthedocs.io/en/latest/) + [flask](https://flask.palletsprojects.com/en/1.1.x/) server. The main file is `api/app.py`.
 This server depends extensively on our python package, [sticky_pi_api](https://sticky-pi-api.readthedocs.io/en/latest/).
 Note that the API and client are packaged together, which allows us to use mock local API vs remote API.
 
