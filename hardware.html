@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Hardware | Sticky Pi, a high-frequency smart insect trap to study daily activity in the field</title>
   <meta name="description" content="This is the documentation for the Sticky Pi project, a system to study insect activity in the field." />
-  <meta name="generator" content="bookdown 0.22.2 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22.3 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Hardware | Sticky Pi, a high-frequency smart insect trap to study daily activity in the field" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Quentin Geissmann" />
 
 
-<meta name="date" content="2021-05-14" />
+<meta name="date" content="2021-05-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -132,7 +132,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#qc-and-troubleshooting"><i class="fa fa-check"></i>QC and troubleshooting</a></li>
 <li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#use"><i class="fa fa-check"></i>Use</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#data-harvester"><i class="fa fa-check"></i>Data harvester</a></li>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#data-harvester"><i class="fa fa-check"></i>Data harvester</a><ul>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#rapsberry-pi"><i class="fa fa-check"></i>Rapsberry Pi</a></li>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#router"><i class="fa fa-check"></i>Router</a></li>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#assembly-1"><i class="fa fa-check"></i>Assembly</a></li>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#use-1"><i class="fa fa-check"></i>Use</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html"><i class="fa fa-check"></i>Web Server</a><ul>
 <li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#general-description"><i class="fa fa-check"></i>General description</a></li>
@@ -158,6 +163,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="ml.html"><a href="ml.html"><i class="fa fa-check"></i>Machine Learning</a></li>
+<li class="chapter" data-level="" data-path="outreach.html"><a href="outreach.html"><i class="fa fa-check"></i>Outreach</a><ul>
+<li class="chapter" data-level="0.1" data-path="outreach.html"><a href="outreach.html#wip"><i class="fa fa-check"></i><b>0.1</b> WIP</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="community.html"><a href="community.html"><i class="fa fa-check"></i>Issues and community</a><ul>
 <li class="chapter" data-level="" data-path="community.html"><a href="community.html#citation"><i class="fa fa-check"></i>Citation</a></li>
 <li class="chapter" data-level="" data-path="community.html"><a href="community.html#having-troubles"><i class="fa fa-check"></i>Having troubles</a></li>
@@ -196,7 +204,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="overview" class="section level3 unnumbered">
 <h3>Overview</h3>
 <!-- ![Sticky Pi Device](assets/device_overview.png) -->
-<div class="figure"><span id="fig:device-overview"></span>
+<div class="figure"><span style="display:block;" id="fig:device-overview"></span>
 <img src="assets/device_overview.png" alt="Sticky Pi Device"  />
 <p class="caption">
 Figure 1: Sticky Pi Device
@@ -212,7 +220,7 @@ Figure 1: Sticky Pi Device
 <p>The camera Box and light box can be assembled separately and swapped between devices (<em>i.e.</em> the light box acts as a plug and play module for the camera box).</p>
 <div id="camera-box" class="section level4 unnumbered">
 <h4>Camera box</h4>
-<div class="figure"><span id="fig:camera-box-breakdown"></span>
+<div class="figure"><span style="display:block;" id="fig:camera-box-breakdown"></span>
 <img src="assets/camera_box_breakdown.png" alt="Needed parts for the camera box"  />
 <p class="caption">
 Figure 2: Needed parts for the camera box
@@ -227,7 +235,7 @@ Figure 2: Needed parts for the camera box
 </div>
 <p>To burn an SD card use <a href="https://github.com/sticky-pi/sticky-pi-device/blob/main/software/burn_image.sh">our script</a> like <code>sh burn_image.sh -i &lt;PATH_TO_LOCAL_IMAGE&gt; -d &lt;DEVICE&gt;</code>, where <code>&lt;PATH_TO_LOCAL_IMAGE&gt;</code> is the OS image you just downloaded, and <code>&lt;DEVICE&gt;</code> the SD card location <code>e.g. /dev/mmcblk0</code> -- you need <a href="https://github.com/balena-io/etcher-cli"><code>etcher-cli</code></a>.</p></li>
 <li>Prepare the Raspberry Pi.
-<div class="figure"><span id="fig:pi-modifs"></span>
+<div class="figure"><span style="display:block;" id="fig:pi-modifs"></span>
 <img src="assets/pi_modifs.png" alt="Modifications to the Raspberry Pi Zero"  />
 <p class="caption">
 Figure 3: Modifications to the Raspberry Pi Zero
@@ -237,7 +245,7 @@ Figure 3: Modifications to the Raspberry Pi Zero
 <li>Solder 2x5 headers for the Real Time Clock on pins 1-10. Mount the clock (Figure <a href="hardware.html#fig:pi-modifs">3</a>A).</li>
 <li>Solder directly the IDC right angle connector onto the board on pins 35-40 (Figure <a href="hardware.html#fig:pi-modifs">3</a>A).</li>
 <li>On the back of the Raspberry pi board, use a jumper cable to solder GPIO pin 40 to +5V (this provides power to the Pi, Figure <a href="hardware.html#fig:pi-modifs">3</a>B)
-<div class="figure"><span id="fig:pi-sledge"></span>
+<div class="figure"><span style="display:block;" id="fig:pi-sledge"></span>
 <img src="assets/pi_sledge.png" alt="Mounting the Raspberry Pi on the sledge"  />
 <p class="caption">
 Figure 4: Mounting the Raspberry Pi on the sledge
@@ -258,7 +266,7 @@ Figure 4: Mounting the Raspberry Pi on the sledge
 <li>Thread the 1x6 ribbon cable (it should be at least 50cm long) through the &quot;camera box&quot; <strong>before</strong> clamping the 2x3 IDC connector on each side. <strong>You want have the two connectors in the same orientation</strong> (i.e. a wire connect pin 1 of the left connector to pin 1 o the right connector -- and <em>not</em> pin 6): <img src="" alt="IDC" /></li>
 <li>Plug the ITC connector on the Pi GPIO, and gently slide the Pi sledge inside the camera box, while pulling the slack cable from the outside. Note, at the stage, you can also add some desiccant inside the box to reduce fogging.</li>
 <li>Assemble the &quot;camera box lid&quot;:
-<div class="figure"><span id="fig:glass-window"></span>
+<div class="figure"><span style="display:block;" id="fig:glass-window"></span>
 <img src="assets/glass_window.png" alt="Assembly of the camera box lid"  />
 <p class="caption">
 Figure 5: Assembly of the camera box lid
@@ -282,7 +290,7 @@ Figure 5: Assembly of the camera box lid
 </div>
 <ol style="list-style-type: decimal">
 <li>Assemble our custom PCB:
-<div class="figure"><span id="fig:custom-board"></span>
+<div class="figure"><span style="display:block;" id="fig:custom-board"></span>
 <img src="assets/custom_board.png" alt="Assembly of the custom PCB"  />
 <p class="caption">
 Figure 6: Assembly of the custom PCB
@@ -295,7 +303,7 @@ Figure 6: Assembly of the custom PCB
 <li>Make a custom connection to our push button (red in Figure <a href="hardware.html#fig:custom-board">6</a>C). This is arguably a bit of a hack, but that allows us to mimic the built-in TLP5110 push button, with our own.</li>
 <li>Thread the push button (before soldering it, not to twist the cables)</li>
 <li>Screw the PCB to the bottom of the light box (be careful not to split the material, do not hesitate to use shorter screw).
-<div class="figure"><span id="fig:light-box"></span>
+<div class="figure"><span style="display:block;" id="fig:light-box"></span>
 <img src="assets/light_box.png" alt="Assembly of the custom PCB"  />
 <p class="caption">
 Figure 7: Assembly of the custom PCB
@@ -306,7 +314,7 @@ Figure 7: Assembly of the custom PCB
 <li>Glue the solar panel in the top slot</li>
 </ol></li>
 <li>Assemble the light diffuser:
-<div class="figure"><span id="fig:light-diffuser"></span>
+<div class="figure"><span style="display:block;" id="fig:light-diffuser"></span>
 <img src="assets/light_diffuser.png" alt="Assembly of the custom PCB"  />
 <p class="caption">
 Figure 8: Assembly of the custom PCB
@@ -354,7 +362,44 @@ Figure 8: Assembly of the custom PCB
 </div>
 <div id="data-harvester" class="section level2 unnumbered">
 <h2>Data harvester</h2>
+The data harvester is a portable tool to retrieve the data from the Sticky Pis. It is a (micro) computer running custom server that are available to the devices through a wifi network (hotspot).<br />
 
+<div class="figure"><span style="display:block;" id="fig:data-harvester"></span>
+<img src="assets/harvester_schematics.png" alt="Sticky Pi Harvester schematic"  />
+<p class="caption">
+Figure 9: Sticky Pi Harvester schematic
+</p>
+</div>
+<p>Figure <a href="hardware.html#fig:data-harvester">9</a> show how the different hardware parts interact. The parts we used are described in the <a href="https://github.com/sticky-pi/sticky-pi-data-harvester/blob/main/hardware/BOM.csv">Bill of Material</a>.</p>
+<div id="rapsberry-pi" class="section level3 unnumbered">
+<h3>Rapsberry Pi</h3>
+<ol style="list-style-type: decimal">
+<li>Download our <a href="https://todo.com">our OS image</a> and burn it on an SD card</li>
+<li>Format the memory stick to make a single ext4 partition</li>
+<li><p>In the new partition you created, create a file names <code>.api-credentials.env</code> and fill it with:</p>
+<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="va">SPI_API_HOSTNAME=</span><span class="op">&lt;</span><span class="ex">the</span> hostname of the API server<span class="op">&gt;</span>
+<span class="va">SPI_API_USERNAME=</span><span class="op">&lt;</span><span class="ex">a</span> username for this data harvester<span class="op">&gt;</span>
+<span class="va">SPI_API_PASSWORD=</span><span class="op">&lt;</span><span class="ex">the</span> password for this data harvester<span class="op">&gt;</span></code></pre></div>
+<p>This will allow the data harvester to automatically upload the new images to your sever. This implies you have set up a server, and have created at least one user, which is described the <a href="/web-server">webserver section</a>.</p></li>
+</ol>
+</div>
+<div id="router" class="section level3 unnumbered">
+<h3>Router</h3>
+<ol style="list-style-type: decimal">
+<li>Set the name of the wifi network to <code>sticky-pi-net</code>, and the password to <code>sticky-pi</code> (this is to match the devices' <a href="todo">environment variables</a>).</li>
+<li>Ensure the subnet is <code>192.168.8.</code> (the ip address of the router should then be <code>192.168.8.1</code>).</li>
+<li>Write down the MAC address of the Raspberry Pi ethernet port (you can do that by using the <code>ifconfig eth0</code> command, and spot a six-fields number looking like <code>aa:db:e1:00:01:23</code>).</li>
+<li>In the DNS menu reserve the IP address <code>192.168.8.2</code> to the mac address of the eth0 port you just retrieved</li>
+</ol>
+</div>
+<div id="assembly-1" class="section level3 unnumbered">
+<h3>Assembly</h3>
+<p>A simple way to make the divice is to connect the parts according to the schematics, and arrange them in a</p>
+</div>
+<div id="use-1" class="section level3 unnumbered">
+<h3>Use</h3>
+
+</div>
 </div>
 </div>
             </section>

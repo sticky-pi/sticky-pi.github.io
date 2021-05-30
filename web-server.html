@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Web Server | Sticky Pi, a high-frequency smart insect trap to study daily activity in the field</title>
   <meta name="description" content="This is the documentation for the Sticky Pi project, a system to study insect activity in the field." />
-  <meta name="generator" content="bookdown 0.22.2 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22.3 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Web Server | Sticky Pi, a high-frequency smart insect trap to study daily activity in the field" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Quentin Geissmann" />
 
 
-<meta name="date" content="2021-05-14" />
+<meta name="date" content="2021-05-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -132,7 +132,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#qc-and-troubleshooting"><i class="fa fa-check"></i>QC and troubleshooting</a></li>
 <li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#use"><i class="fa fa-check"></i>Use</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#data-harvester"><i class="fa fa-check"></i>Data harvester</a></li>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#data-harvester"><i class="fa fa-check"></i>Data harvester</a><ul>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#rapsberry-pi"><i class="fa fa-check"></i>Rapsberry Pi</a></li>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#router"><i class="fa fa-check"></i>Router</a></li>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#assembly-1"><i class="fa fa-check"></i>Assembly</a></li>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#use-1"><i class="fa fa-check"></i>Use</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html"><i class="fa fa-check"></i>Web Server</a><ul>
 <li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#general-description"><i class="fa fa-check"></i>General description</a></li>
@@ -158,6 +163,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="ml.html"><a href="ml.html"><i class="fa fa-check"></i>Machine Learning</a></li>
+<li class="chapter" data-level="" data-path="outreach.html"><a href="outreach.html"><i class="fa fa-check"></i>Outreach</a><ul>
+<li class="chapter" data-level="0.1" data-path="outreach.html"><a href="outreach.html#wip"><i class="fa fa-check"></i><b>0.1</b> WIP</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="community.html"><a href="community.html"><i class="fa fa-check"></i>Issues and community</a><ul>
 <li class="chapter" data-level="" data-path="community.html"><a href="community.html#citation"><i class="fa fa-check"></i>Citation</a></li>
 <li class="chapter" data-level="" data-path="community.html"><a href="community.html#having-troubles"><i class="fa fa-check"></i>Having troubles</a></li>
@@ -193,13 +201,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="general-description" class="section level2 unnumbered">
 <h2>General description</h2>
 <p>Here is a schematics of how these services interact:</p>
-<div class="figure"><span id="fig:web-server"></span>
+<div class="figure"><span style="display:block;" id="fig:web-server"></span>
 <img src="assets/web-server.png" alt="Schematics of the web server services"  />
 <p class="caption">
-Figure 9: Schematics of the web server services
+Figure 10: Schematics of the web server services
 </p>
 </div>
-<p>As shown in Figure <a href="web-server.html#fig:web-server">9</a>, the web server is a suite of docker containers. The entry point is an <a href="https://en.wikipedia.org/wiki/Nginx">Nginx</a> server, <code>spi_nginx</code>, routes requests to the appropriate service:</p>
+<p>As shown in Figure <a href="web-server.html#fig:web-server">10</a>, the web server is a suite of docker containers. The entry point is an <a href="https://en.wikipedia.org/wiki/Nginx">Nginx</a> server, <code>spi_nginx</code>, routes requests to the appropriate service:</p>
 <ul>
 <li><code>spi_api</code> &lt;- <code>api.</code> -- our overall API server (<em>i.e.</em> a server that handles client requests to, for instance, upload/download images, create new users, retrieve image metadata, etc).</li>
 <li><code>spi_webapp</code> &lt;- <code>webapp.</code> -- an <a href="https://shiny.rstudio.com/">Rshiny</a> web interface to visualize data in real time.</li>
