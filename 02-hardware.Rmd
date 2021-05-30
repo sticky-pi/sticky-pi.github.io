@@ -137,7 +137,7 @@ A few suggestions:
 ## Data harvester{-}
 The data harvester is a portable tool to retrieve the data from the Sticky Pis.
 It is a (micro) computer running custom server that are available to the devices through a wifi network (hotspot).  
-```{r device-overview, fig.cap="Sticky Pi Harvester schematic", echo=FALSE}
+```{r data-harvester, fig.cap="Sticky Pi Harvester schematic", echo=FALSE}
 knitr::include_graphics("assets/harvester_schematics.png")
 ```
 Figure \@ref(fig:data-harvester) show how the different hardware parts interact.
