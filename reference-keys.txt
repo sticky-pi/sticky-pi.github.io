@@ -8,4 +8,4 @@ fig:light-box
 fig:light-diffuser
 fig:data-harvester
 fig:web-server
-wip
+june-august-2021
