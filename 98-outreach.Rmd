@@ -1,5 +1,8 @@
 # Outreach {#outreach -}
 
-## WIP
-[University of British Columbia farm](https://ubcfarm.ubc.ca)
+Sticky Pis are built on top of community hardware such as [Arduino](https://www.arduino.cc/) and [Raspberry Pi](https://www.raspberrypi.org/) as well as open-source software such as [Python](https://www.python.org/). We share their educational spirit and consider it our work to raise awareness about insect ecology and discuss how new technologies can indeed intersect with the study of insects. 
+
+## June-August 2021
+In 2021, we were able to deploy 36 Sticky Pi traps at the [University of British Columbia farm](https://ubcfarm.ubc.ca), a research, teaching and learning space, located on the traditional, ancestral, and unceded territory of the hən̓q̓əmin̓əm̓-speaking xʷməθkʷəy̓əm (Musqueam) people, and housed under the Faculty of Land and Food Systems. Our goal was to monitor insect populations in an organic strawberry field interspersed with different flowers (aka [intercropping](https://en.wikipedia.org/wiki/Intercropping)). Neighbouring flowers are known to attract pollinators and other beneficial insects that can then help to control pests. We wanted to study how different flowers such as buckwheat, clover and dill indirectly mitigate the infestation by the [spotted wing drosophila](https://en.wikipedia.org/wiki/Drosophila_suzukii) (a voracious fruit pest). Intercropping could be a tool within a suite of integrated solutions to maintain production whilst reducing the environmental impact of agriculture.
+The experiment is ongoing and we will communicate the results later this year.
 
