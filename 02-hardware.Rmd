@@ -176,7 +176,7 @@ This will allow the data harvester to automatically upload the new images to you
 ### Assembly{-}
 A simple way to make the device is to connect the parts according to the schematics, and arrange them in a junction box like:
 
-```{r data-harvester, fig.cap="Sticky Pi Harvester Assembled", echo=FALSE}
+```{r data-harvester-assembled, fig.cap="Sticky Pi Harvester Assembled", echo=FALSE}
 knitr::include_graphics("assets/harvester.jpg")
 ```
 
