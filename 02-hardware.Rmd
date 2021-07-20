@@ -132,22 +132,32 @@ A few suggestions:
     * The environmental data (temperature, relative humidity, GPS coordinates and other meta variables) are encoded in the exif metadata inside the "Make" field (Sometime, though rarely, the temperature/humidity sensor fails, so you may have missing values).
 
 
-### Use{-}
-
 ## Data harvester{-}
 The data harvester is a portable tool to retrieve the data from the Sticky Pis.
-It is a (micro) computer running custom server that are available to the devices through a wifi network (hotspot).  
+It is a (micro) computer running custom server that are available to the devices through a wifi network (hotspot). 
+
 ```{r data-harvester, fig.cap="Sticky Pi Harvester schematic", echo=FALSE}
 knitr::include_graphics("assets/harvester_schematics.png")
 ```
 Figure \@ref(fig:data-harvester) show how the different hardware parts interact.
 The parts we used are described in the [Bill of Material](https://github.com/sticky-pi/sticky-pi-data-harvester/blob/main/hardware/BOM.csv).
 
+Role of each part:
+* Raspberry Pi 4 --  the core computer
+* RTC -- Real Time Clock: persistent time.
+* Memory stick -- external drive where all the images will be saved.
+* Mini Router --  connect the harvester with the Sticky Pis during data transfer. 
+* Push Button -- to turn the Raspberyy Pi off
+* GPS -- optional, get geolocation
+* Display --optional, show the data harvseter webpage (can be accessed with other devices on the network at `192.168.8.2`)
+
+
+
 
 ### Rapsberry Pi{-}
 1. Download our [our OS image](https://todo.com) and burn it on an SD card
-1. Format the memory stick to make a single ext4 partition
-1. In the new partition you created, create a file names `.api-credentials.env` and fill it with:
+1. Format the USB stick to make a single ext4 partition
+1. In the new partition you created, create a file named `.api-credentials.env` and fill it with:
 ```sh
 SPI_API_HOSTNAME=<the hostname of the API server>
 SPI_API_USERNAME=<a username for this data harvester>
@@ -164,11 +174,19 @@ This will allow the data harvester to automatically upload the new images to you
 1. In the DNS menu reserve the IP address `192.168.8.2` to the mac address of the eth0 port you just retrieved
 
 ### Assembly{-}
-A simple way to make the divice is to connect the parts according to the schematics, and arrange them in a 
+A simple way to make the device is to connect the parts according to the schematics, and arrange them in a junction box like:
 
+```{r data-harvester, fig.cap="Sticky Pi Harvester Assembled", echo=FALSE}
+knitr::include_graphics("assets/harvester.jpg")
+```
 
-### Use{-}
+### QC and troubleshooting{-}
 
+You should be able to see a wifi network named `sticky-pi-net` and log on to is using the password `sticky-pi` using any device (phone, table, laptop). Then, when you connect to [http://192.168.8.2](http://192.168.8.2) a webpage should display the data harvester status.
 
+## Using Sticky Pis
+
+Assuming you have a data harvester and at least one Sticky Pi. You can plug your Sticky Pi, which should begin to take pictures every 20 min. Pushing its button will force it to take a picture and go back to sleep it should take ~40s between when you press the button and when the device shouts the picture (you should see a white flash).
+If the device turns on and detect a Data Harvester, it will send all the new data automatically. The progress can be monitored on the Harvester webpage.
 
 
