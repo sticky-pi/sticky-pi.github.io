@@ -130,14 +130,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#overview"><i class="fa fa-check"></i>Overview</a></li>
 <li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#assembly"><i class="fa fa-check"></i>Assembly</a></li>
 <li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#qc-and-troubleshooting"><i class="fa fa-check"></i>QC and troubleshooting</a></li>
-<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#use"><i class="fa fa-check"></i>Use</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#data-harvester"><i class="fa fa-check"></i>Data harvester</a><ul>
 <li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#rapsberry-pi"><i class="fa fa-check"></i>Rapsberry Pi</a></li>
 <li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#router"><i class="fa fa-check"></i>Router</a></li>
 <li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#assembly-1"><i class="fa fa-check"></i>Assembly</a></li>
-<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#use-1"><i class="fa fa-check"></i>Use</a></li>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#qc-and-troubleshooting-1"><i class="fa fa-check"></i>QC and troubleshooting</a></li>
 </ul></li>
+<li class="chapter" data-level="0.1" data-path="hardware.html"><a href="hardware.html#using-sticky-pis"><i class="fa fa-check"></i><b>0.1</b> Using Sticky Pis</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html"><i class="fa fa-check"></i>Web Server</a><ul>
 <li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#general-description"><i class="fa fa-check"></i>General description</a></li>
@@ -197,21 +197,21 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="web-server" class="section level1 unnumbered">
 <h1>Web Server</h1>
-<p>This page describes how to deploy and maintain the web server. As much as we try to streamline this process, deploying our web server on the cloud does require some familiarity with <a href="https://en.wikipedia.org/wiki/Linux">Unix/Linux</a> systems, <a href="https://www.docker.com/">Docker</a>. We are open for collaboration and may be able to help you deploy you server, so do not hesitate to <a href="/community#contact">contact us</a>. First, we describe the general function of the server. Second, we explain how to deploy and test it. Last, for completeness, we provide additional information on the individual components.</p>
+<p>This page describes how to deploy and maintain the web server. As much as we try to streamline this process, deploying our web server on the cloud does require some familiarity with <a href="https://en.wikipedia.org/wiki/Linux">Unix/Linux</a> systems, <a href="https://www.docker.com/">Docker</a>. We are open for collaboration and may be able to help you deploy your server, so do not hesitate to <a href="/community#contact">contact us</a>. First, we describe the general function of the server. Second, we explain how to deploy and test it. Last, for completeness, we provide additional information on the individual components.</p>
 <div id="general-description" class="section level2 unnumbered">
 <h2>General description</h2>
 <p>Here is a schematics of how these services interact:</p>
 <div class="figure"><span style="display:block;" id="fig:web-server"></span>
 <img src="assets/web-server.png" alt="Schematics of the web server services"  />
 <p class="caption">
-Figure 10: Schematics of the web server services
+Figure 11: Schematics of the web server services
 </p>
 </div>
-<p>As shown in Figure <a href="web-server.html#fig:web-server">10</a>, the web server is a suite of docker containers. The entry point is an <a href="https://en.wikipedia.org/wiki/Nginx">Nginx</a> server, <code>spi_nginx</code>, routes requests to the appropriate service:</p>
+<p>As shown in Figure <a href="web-server.html#fig:web-server">11</a>, the web server is a suite of docker containers. The entry point is an <a href="https://en.wikipedia.org/wiki/Nginx">Nginx</a> server, <code>spi_nginx</code>, routes requests to the appropriate service:</p>
 <ul>
-<li><code>spi_api</code> &lt;- <code>api.</code> -- our overall API server (<em>i.e.</em> a server that handles client requests to, for instance, upload/download images, create new users, retrieve image metadata, etc).</li>
-<li><code>spi_webapp</code> &lt;- <code>webapp.</code> -- an <a href="https://shiny.rstudio.com/">Rshiny</a> web interface to visualize data in real time.</li>
-<li><code>spi_s3</code> &lt;- <code>s3.</code> -- an optional local s3 server, using <a href="https://github.com/localstack/localstack">localstack</a>. This is an alternative to subscribe to a commercial s3 server.</li>
+<li><code>spi_api</code> &lt;- <code>api.*</code> -- our overall API server (<em>i.e.</em> a server that handles client requests to, for instance, upload/download images, create new users, retrieve image metadata, etc).</li>
+<li><code>spi_webapp</code> &lt;- <code>webapp.*</code> -- an <a href="https://shiny.rstudio.com/">Rshiny</a> web interface to visualize data in real time.</li>
+<li><code>spi_s3</code> &lt;- <code>s3.*</code> -- an optional local s3 server, using <a href="https://github.com/localstack/localstack">localstack</a>. This is an alternative to subscribe to a commercial s3 server.</li>
 </ul>
 <p>The other services are not routed (i.e must not be accessible by external users):</p>
 <ul>
@@ -236,7 +236,7 @@ Figure 10: Schematics of the web server services
 <h3>Security</h3>
 <p>A remote web resources implies security considerations:</p>
 <ul>
-<li>Your host should provide firewalls, the web-server only needs ports 80 (http) and 443 (https) open.</li>
+<li>Your host should use firewalls, the web-server only needs ports 80 (http) and 443 (https) open</li>
 <li>Ensure you use long, high entropy, passwords</li>
 <li>Update your host system</li>
 <li>Use ssh keys rather than passwords</li>
@@ -307,7 +307,7 @@ Figure 10: Schematics of the web server services
 </div>
 <div id="alternative-local-s3-server" class="section level3 unnumbered">
 <h3>Alternative local S3 server</h3>
-<p>The our recommended option is to use an external provider for S3. However, you can also run your own S3 as a docker container. To do that you just need to set <code>S3_HOST=s3.${ROOT_DOMAIN_NAME}</code> in the <code>.secret.env</code> file. Your data will be stored, by default on <code>${LOCAL_VOLUME_ROOT}/s3</code>. Beware that overall data can be large -- typically [1, 2] GB per device per week.</p>
+<p>Our recommended option is to use an external provider for S3. However, you can also run your own S3 as a docker container. To do that you just need to set <code>S3_HOST=s3.${ROOT_DOMAIN_NAME}</code> in the <code>.secret.env</code> file. Your data will be stored, by default on <code>${LOCAL_VOLUME_ROOT}/s3</code>. Beware that overall data can be large -- typically [1, 2] GB per device per week.</p>
 </div>
 <div id="deploy-script" class="section level3 unnumbered">
 <h3>Deploy script</h3>
@@ -360,7 +360,7 @@ Figure 10: Schematics of the web server services
 </div>
 <div id="webapp" class="section level3 unnumbered">
 <h3>Webapp</h3>
-<p>The Webapp (<code>spi_webapp</code>) is an Rshiny interactive website. It is mainly designed to visualise image and processing data. Typically hundreds of images are acquired every week, this interface allows you to select a date range to display a plot of environmental conditions and overlay images as well as UID results. This is very helpful to ensure the quality of your data in real time.</p>
+<p>The Webapp (<code>spi_webapp</code>) is an Rshiny interactive website. It is mainly designed to visualise image and processing data. Typically hundreds of images are acquired every week, this interface allows you to select a date range to display a plot of environmental conditions and overlay images as well as UID results. This is very helpful to ensure the quality of your data in real time. The webapp will be available at <code>webapp.&lt;ROOT_DOMAIN_NAME&gt;</code>, as defined in <a href="web-server.html#hosting">hosting</a>.</p>
 
 </div>
 </div>

@@ -130,14 +130,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#overview"><i class="fa fa-check"></i>Overview</a></li>
 <li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#assembly"><i class="fa fa-check"></i>Assembly</a></li>
 <li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#qc-and-troubleshooting"><i class="fa fa-check"></i>QC and troubleshooting</a></li>
-<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#use"><i class="fa fa-check"></i>Use</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#data-harvester"><i class="fa fa-check"></i>Data harvester</a><ul>
 <li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#rapsberry-pi"><i class="fa fa-check"></i>Rapsberry Pi</a></li>
 <li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#router"><i class="fa fa-check"></i>Router</a></li>
 <li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#assembly-1"><i class="fa fa-check"></i>Assembly</a></li>
-<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#use-1"><i class="fa fa-check"></i>Use</a></li>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#qc-and-troubleshooting-1"><i class="fa fa-check"></i>QC and troubleshooting</a></li>
 </ul></li>
+<li class="chapter" data-level="0.1" data-path="hardware.html"><a href="hardware.html#using-sticky-pis"><i class="fa fa-check"></i><b>0.1</b> Using Sticky Pis</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html"><i class="fa fa-check"></i>Web Server</a><ul>
 <li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#general-description"><i class="fa fa-check"></i>General description</a></li>
@@ -356,14 +356,10 @@ Figure 8: Assembly of the custom PCB
 </ul></li>
 </ol>
 </div>
-<div id="use" class="section level3 unnumbered">
-<h3>Use</h3>
-</div>
 </div>
 <div id="data-harvester" class="section level2 unnumbered">
 <h2>Data harvester</h2>
-The data harvester is a portable tool to retrieve the data from the Sticky Pis. It is a (micro) computer running custom server that are available to the devices through a wifi network (hotspot).<br />
-
+<p>The data harvester is a portable tool to retrieve the data from the Sticky Pis. It is a (micro) computer running custom server that are available to the devices through a wifi network (hotspot).</p>
 <div class="figure"><span style="display:block;" id="fig:data-harvester"></span>
 <img src="assets/harvester_schematics.png" alt="Sticky Pi Harvester schematic"  />
 <p class="caption">
@@ -371,12 +367,13 @@ Figure 9: Sticky Pi Harvester schematic
 </p>
 </div>
 <p>Figure <a href="hardware.html#fig:data-harvester">9</a> show how the different hardware parts interact. The parts we used are described in the <a href="https://github.com/sticky-pi/sticky-pi-data-harvester/blob/main/hardware/BOM.csv">Bill of Material</a>.</p>
+<p>Role of each part: * Raspberry Pi 4 -- the core computer * RTC -- Real Time Clock: persistent time. * Memory stick -- external drive where all the images will be saved. * Mini Router -- connect the harvester with the Sticky Pis during data transfer. * Push Button -- to turn the Raspberyy Pi off * GPS -- optional, get geolocation * Display --optional, show the data harvseter webpage (can be accessed with other devices on the network at <code>192.168.8.2</code>)</p>
 <div id="rapsberry-pi" class="section level3 unnumbered">
 <h3>Rapsberry Pi</h3>
 <ol style="list-style-type: decimal">
 <li>Download our <a href="https://todo.com">our OS image</a> and burn it on an SD card</li>
-<li>Format the memory stick to make a single ext4 partition</li>
-<li><p>In the new partition you created, create a file names <code>.api-credentials.env</code> and fill it with:</p>
+<li>Format the USB stick to make a single ext4 partition</li>
+<li><p>In the new partition you created, create a file named <code>.api-credentials.env</code> and fill it with:</p>
 <div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="va">SPI_API_HOSTNAME=</span><span class="op">&lt;</span><span class="ex">the</span> hostname of the API server<span class="op">&gt;</span>
 <span class="va">SPI_API_USERNAME=</span><span class="op">&lt;</span><span class="ex">a</span> username for this data harvester<span class="op">&gt;</span>
 <span class="va">SPI_API_PASSWORD=</span><span class="op">&lt;</span><span class="ex">the</span> password for this data harvester<span class="op">&gt;</span></code></pre></div>
@@ -394,12 +391,23 @@ Figure 9: Sticky Pi Harvester schematic
 </div>
 <div id="assembly-1" class="section level3 unnumbered">
 <h3>Assembly</h3>
-<p>A simple way to make the divice is to connect the parts according to the schematics, and arrange them in a</p>
+<p>A simple way to make the device is to connect the parts according to the schematics, and arrange them in a junction box like:</p>
+<div class="figure"><span style="display:block;" id="fig:data-harvester-assembled"></span>
+<img src="assets/harvester.jpg" alt="Sticky Pi Harvester Assembled"  />
+<p class="caption">
+Figure 10: Sticky Pi Harvester Assembled
+</p>
 </div>
-<div id="use-1" class="section level3 unnumbered">
-<h3>Use</h3>
+</div>
+<div id="qc-and-troubleshooting-1" class="section level3 unnumbered">
+<h3>QC and troubleshooting</h3>
+<p>You should be able to see a wifi network named <code>sticky-pi-net</code> and log on to is using the password <code>sticky-pi</code> using any device (phone, table, laptop). Then, when you connect to <a href="http://192.168.8.2" class="uri">http://192.168.8.2</a> a webpage should display the data harvester status.</p>
+</div>
+</div>
+<div id="using-sticky-pis" class="section level2">
+<h2><span class="header-section-number">0.1</span> Using Sticky Pis</h2>
+<p>Assuming you have a data harvester and at least one Sticky Pi. You can plug your Sticky Pi, which should begin to take pictures every 20 min. Pushing its button will force it to take a picture and go back to sleep it should take ~40s between when you press the button and when the device shouts the picture (you should see a white flash). If the device turns on and detect a Data Harvester, it will send all the new data automatically. The progress can be monitored on the Harvester webpage.</p>
 
-</div>
 </div>
 </div>
             </section>
