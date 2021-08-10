@@ -3,3 +3,4 @@
 The machine learning algorithms are described in the [Sticky Pi manuscript](`r PUBLICATION_URL`).
 The model files and datasets used in the publication are available on [Zenodo](https://zenodo.org/record/4680119).
 Our source code is publically available on [github](https://github.com/sticky-pi/sticky-pi-ml).
+We are happy to provide assistance to use and extend  our tools to specific contexts.
