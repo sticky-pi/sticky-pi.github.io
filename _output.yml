@@ -7,7 +7,7 @@ bookdown::gitbook:
         <li><a href="./"><img width="264" height="88" src="assets/logo/sticky_logo-text-doc.png"</a></li>
       after: |
         <li>
-        <a href="https://www.biorxiv.org/content/10.1101/2021.08.11.455750" target="blank">Cite Sticky Pis</a>
+        <a href="https://www.biorxiv.org/content/10.1101/2021.08.11.455750" target="blank">Cite Sticky Pi</a>
         <a href="https://bookdown.org/yihui/bookdown/" target="blank">Published with bookdown</a>
         </li>
     edit: https://github.com/sticky-pi/sticky-pi.github.io/edit/source/%s
