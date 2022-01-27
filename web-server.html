@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="hardware.html"/>
-<link rel="next" href="ml.html"/>
+<link rel="next" href="todos.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -162,7 +162,29 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#webapp"><i class="fa fa-check"></i>Webapp</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html"><i class="fa fa-check"></i>Machine Learning</a></li>
+<li class="chapter" data-level="1" data-path="todos.html"><a href="todos.html"><i class="fa fa-check"></i><b>1</b> TODOS:</a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html"><i class="fa fa-check"></i>Machine Learning</a><ul>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#general-description-1"><i class="fa fa-check"></i>General description</a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#prerequisites"><i class="fa fa-check"></i>General Prerequisites</a><ul>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#installation"><i class="fa fa-check"></i>Installation</a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#project-organisation"><i class="fa fa-check"></i>Project organisation</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#uid"><i class="fa fa-check"></i>Universal Insect Detector</a><ul>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#inference"><i class="fa fa-check"></i>Inference</a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#training"><i class="fa fa-check"></i>Training</a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#validation"><i class="fa fa-check"></i>Validation</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#sim"><i class="fa fa-check"></i>Siamese insect Matcher</a><ul>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#inference-1"><i class="fa fa-check"></i>Inference</a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#training-1"><i class="fa fa-check"></i>Training</a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#validation-1"><i class="fa fa-check"></i>Validation</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#itc"><i class="fa fa-check"></i>Insect Tuboid Classifer</a><ul>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#inference-2"><i class="fa fa-check"></i>Inference</a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#training-2"><i class="fa fa-check"></i>Training</a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#validation-2"><i class="fa fa-check"></i>Validation</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="outreach.html"><a href="outreach.html"><i class="fa fa-check"></i>Outreach</a><ul>
 <li class="chapter" data-level="" data-path="outreach.html"><a href="outreach.html#june-august-2021"><i class="fa fa-check"></i>June-August 2021</a></li>
 </ul></li>
@@ -204,10 +226,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="figure"><span style="display:block;" id="fig:web-server"></span>
 <img src="assets/web-server.png" alt="Schematics of the web server services"  />
 <p class="caption">
-Figure 11: Schematics of the web server services
+Figure 0.11: Schematics of the web server services
 </p>
 </div>
-<p>As shown in Figure <a href="web-server.html#fig:web-server">11</a>, the web server is a suite of docker containers. The entry point is an <a href="https://en.wikipedia.org/wiki/Nginx">Nginx</a> server, <code>spi_nginx</code>, routes requests to the appropriate service:</p>
+<p>As shown in Figure <a href="web-server.html#fig:web-server">0.11</a>, the web server is a suite of docker containers. The entry point is an <a href="https://en.wikipedia.org/wiki/Nginx">Nginx</a> server, <code>spi_nginx</code>, routes requests to the appropriate service:</p>
 <ul>
 <li><code>spi_api</code> &lt;- <code>api.*</code> -- our overall API server (<em>i.e.</em> a server that handles client requests to, for instance, upload/download images, create new users, retrieve image metadata, etc).</li>
 <li><code>spi_webapp</code> &lt;- <code>webapp.*</code> -- an <a href="https://shiny.rstudio.com/">Rshiny</a> web interface to visualize data in real time.</li>
@@ -371,7 +393,7 @@ Figure 11: Schematics of the web server services
         </div>
       </div>
 <a href="hardware.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="ml.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="todos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -31,7 +31,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="web-server.html"/>
+<link rel="prev" href="todos.html"/>
 <link rel="next" href="outreach.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -162,7 +162,29 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#webapp"><i class="fa fa-check"></i>Webapp</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html"><i class="fa fa-check"></i>Machine Learning</a></li>
+<li class="chapter" data-level="1" data-path="todos.html"><a href="todos.html"><i class="fa fa-check"></i><b>1</b> TODOS:</a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html"><i class="fa fa-check"></i>Machine Learning</a><ul>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#general-description-1"><i class="fa fa-check"></i>General description</a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#prerequisites"><i class="fa fa-check"></i>General Prerequisites</a><ul>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#installation"><i class="fa fa-check"></i>Installation</a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#project-organisation"><i class="fa fa-check"></i>Project organisation</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#uid"><i class="fa fa-check"></i>Universal Insect Detector</a><ul>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#inference"><i class="fa fa-check"></i>Inference</a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#training"><i class="fa fa-check"></i>Training</a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#validation"><i class="fa fa-check"></i>Validation</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#sim"><i class="fa fa-check"></i>Siamese insect Matcher</a><ul>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#inference-1"><i class="fa fa-check"></i>Inference</a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#training-1"><i class="fa fa-check"></i>Training</a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#validation-1"><i class="fa fa-check"></i>Validation</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#itc"><i class="fa fa-check"></i>Insect Tuboid Classifer</a><ul>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#inference-2"><i class="fa fa-check"></i>Inference</a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#training-2"><i class="fa fa-check"></i>Training</a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#validation-2"><i class="fa fa-check"></i>Validation</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="outreach.html"><a href="outreach.html"><i class="fa fa-check"></i>Outreach</a><ul>
 <li class="chapter" data-level="" data-path="outreach.html"><a href="outreach.html#june-august-2021"><i class="fa fa-check"></i>June-August 2021</a></li>
 </ul></li>
@@ -197,15 +219,144 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="ml" class="section level1 unnumbered">
 <h1>Machine Learning</h1>
-<p>The machine learning algorithms are described in the <a href="https://www.biorxiv.org/content/10.1101/2021.08.11.455750">Sticky Pi manuscript</a>. The model files and datasets used in the publication are available on <a href="https://zenodo.org/record/4680119">Zenodo</a>. Our source code is publically available on <a href="https://github.com/sticky-pi/sticky-pi-ml">github</a>. We are happy to provide assistance to use and extend our tools to specific contexts.</p>
+<p>This page describes how to annotate, train and use the machine learning model of the Sticky Pi project. This step does require some familiarity with <a href="https://en.wikipedia.org/wiki/Python_(programming_language)">python</a> -- in particular, scientific python (<a href="https://en.wikipedia.org/wiki/NumPy">NumPy</a>, <a href="https://en.wikipedia.org/wiki/PyTorch">PyTorch</a>, ...). Here, we complement the descriptions of the algorithms provided in the <a href="https://www.biorxiv.org/content/10.1101/2021.08.11.455750">Sticky Pi manuscript</a> with a practical documentation of how to use and adapt them. We are open for collaboration regarding training, building and extending Machine Learning models, so do not hesitate to <a href="/community#contact">contact us</a>. For simplicity, we describe the how to use the ML tools independently of the API (which would help storing and querring images/annotations on a remote or local machine).</p>
+<div id="general-description-1" class="section level2 unnumbered">
+<h2>General description</h2>
+<p>Briefly, we start from a series of images (every 20min for several day) of a sticky card. Our ultimate goal it to tell which, and when insects were captured. We break down this task in three independent steps:</p>
+<ol style="list-style-type: decimal">
+<li><a href="ml.html#uid"><strong>Universal Insect Detector</strong></a> -- We perform an <a href="https://en.wikipedia.org/wiki/Image_segmentation#Groups_of_image_segmentation">instance segmentation</a> on all images independently. This finds insects (foreground) <em>vs.</em> background. Importantly, at this stage, we do not yet classify insects.</li>
+<li><p><a href="ml.html#sim"><strong>Siamese Insect Matcher</strong></a> -- Captured insect actually may move, degrade, become occluded ... Therefore, in practice,classification from single images would be very inconsistent in time. Instead, we first track insects through time before classifying them. The function Siamese Insect Matcher is to track multiple insect instances through their respective timelapses.</p></li>
+<li><p><a href="ml.html#itc"><strong>Insect Tuboid Classifier</strong></a> -- After tracking, each insect in the time series is ideally represented by a variable number of standardised segmented shots as well as metadata (including size) -- that we call a tuboid. The Insect Tuboid Classifier allocates a taxonomy to each tuboid based on multiple images.</p></li>
+</ol>
+<p>Below, we describe how to implement each step. The model files and datasets used in the publication are available on <a href="https://zenodo.org/record/4680119">Zenodo</a>. Our source code is publicly available on <a href="https://github.com/sticky-pi/sticky-pi-ml">github</a>.</p>
+</div>
+<div id="prerequisites" class="section level2 unnumbered">
+<h2>General Prerequisites</h2>
+<div id="installation" class="section level3 unnumbered">
+<h3>Installation</h3>
+<p>We recommend starting by setting a <a href="https://docs.python.org/3/tutorial/venv.html">Python virtual environment</a>. And using the python package manager (pip).</p>
+<div id="detectron2-pytorch-and-pytorch-vision" class="section level4 unnumbered">
+<h4>Detectron2, PyTorch and PyTorch Vision</h4>
+<p>In your virtual environment, you want to manually install <a href="https://detectron2.readthedocs.io/en/latest/tutorials/install.html">detectron2</a>, <a href="https://detectron2.readthedocs.io/en/latest/tutorials/install.html#install-pre-built-detectron2-linux-only">which requieres <strong>matching</strong> PyTorch and Torchvision</a>. This has to be done manually since it depends on your platform/hardware (e.g. GPU support).</p>
+<p>For instance, on a Linux machine without CUDA (GPU support)</p>
+<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="co"># installing precompiled PyTorch and Torchvision (from at https://pytorch.org/)</span>
+<span class="ex">pip3</span> install torch==1.10.1+cpu torchvision==0.11.2+cpu torchaudio==0.10.1+cpu -f \
+    https://download.pytorch.org/whl/cpu/torch_stable.html
+<span class="co"># then installing detectron2</span>
+<span class="ex">pip3</span> install detectron2 -f \
+    https://dl.fbaipublicfiles.com/detectron2/wheels/cpu/torch1.10/index.html</code></pre></div>
+</div>
+<div id="sticky-py-ml" class="section level4 unnumbered">
+<h4>Sticky-py-ml</h4>
+<p>Once you have installed detectron2 (along with PyTorch and PyTorch Vision), you can install our package and its dependencies.</p>
+<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="fu">git</span> clone https://github.com/sticky-pi/sticky-pi-ml.git --depth=1
+<span class="bu">cd</span> sticky-pi-ml/src
+<span class="ex">pip</span> install .</code></pre></div>
+</div>
+</div>
+<div id="project-organisation" class="section level3 unnumbered">
+<h3>Project organisation</h3>
+<p>In the Sticky Pi project, each tool (i.e. UID, SIM and ITC) is stored and organised in a <strong>ML Bundle</strong>, a directory that contains everything needed to train, validate and use a tool. ML bundles all contain the subdirectories:</p>
+<ul>
+<li><code>config</code> -- one or several <code>yaml</code> configuration files</li>
+<li><code>data</code> -- the training and validation datasets</li>
+<li><code>output</code> -- the trained model (i.e. <code>.pth</code> files). The file <code>model_final.pth</code> being the working model used for inference.</li>
+</ul>
+</div>
+</div>
+<div id="uid" class="section level2 unnumbered">
+<h2>Universal Insect Detector</h2>
+<p>The goal of (Universal Insect Detector) UID is to find and segment all individual insects from arbitrary sticky card images. As part of the sticky-pi-ml package, we have made a standalone tool version of the UID, <code>standalone_uid.py</code> (see <code>standalone_uid.py --help</code>). From within your virtual environment, you can use this tool to segment images as well as re-train and validate the model on your own data.</p>
+<p>We can start by downloading the whole ML Bundle from Zenodo (that can take a while as we are getting both model and data):</p>
+<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="fu">wget</span> https://zenodo.org/record/4680119/files/universal-insect-detector.zip
+<span class="fu">unzip</span> universal-insect-detector.zip
+<span class="co"># show what is inside this new directory</span>
+<span class="fu">ls</span> universal-insect-detector</code></pre></div>
+<p>Our bundle directory is therefore <code>universal-insect-detector</code>.</p>
+<div id="inference" class="section level3 unnumbered">
+<h3>Inference</h3>
+<p>For inference with the standalone tool, all images should be <code>.jpg</code> stored in a directory structure. For this example, you could download a sample of three images we have put together for this tutorial.</p>
+<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="fu">wget</span> https://doc.sticky-pi.com/assets/uid_tutorial.zip
+<span class="fu">unzip</span> uid_tutorial.zip
+<span class="fu">ls</span> uid_tutorial.zip</code></pre></div>
+<p>Or just use the <a href="assets/uid_tutorial.zip">download link</a></p>
+<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="co"># We use the uid tool to predict, based on a model located in the bundle `./universal-insect-detector`</span>
+<span class="co"># We find all `.jpg` files in the target directory `./uid_tutorial`</span>
+<span class="co"># We set the verbose on (-v)</span>
+<span class="ex">standalone_uid.py</span> predict_dir --bundle-dir ./universal-insect-detector --target ./uid_tutorial -v</code></pre></div>
+<p>As a result, the uid tool makes an SVG image for each jpg. The svg contains paths that correspond to all detected instance. You can directly open the SVG files to check. By default, the inference tool does not overwrite existing SVG, unless you use <code>--force</code></p>
+</div>
+<div id="training" class="section level3 unnumbered">
+<h3>Training</h3>
+<div id="data-source" class="section level4 unnumbered">
+<h4>Data source</h4>
+<p>In order to train the model, you need to populate the <code>universal-insect-detector/data/</code>. For the UID, the input files are SVGs exactly like the ones outputted by yhe inference tool (a jpg image is embedded, each insect is a path). You can decide to add to the existing collection of SVGs already present in <code>universal-insect-detector/data</code>, or rebuild your own new set (though the later option would be rather labour intensive).</p>
+<p>A simple way to get started, is to run inference on your new images (as describe just above), and fix the resulting svg by hand. You can also use the <code>--de-novo</code> option to just wrap your images in an SVG. To edit the SVG, we recommend using <a href="https://inkscape.org/">inkscape</a>. The default is that every insect is a simple closed path/polygon (e.g. made with the Besier curve tool). The stroke colour of the path defines the class of the object (the filling colour does not matter). The default stroke colour for insects is in blue <code>#0000FF</code> (any other colour will not be recognised as an insect).</p>
+</div>
+<div id="configuration" class="section level4 unnumbered">
+<h4>Configuration</h4>
+<p>There are two configuration files: * <code>mask_rcnn_R_101_C4_3x.yaml</code> -- the configuration for Mask-RCNN as defined in the detectron2 documentation. This is the underlying segmentation algorithm we use. * <code>config.yaml</code> -- The specific configuration for the Sticky Pi project (which may override some of the <code>mask_rcnn_R_101_C4_3x.yaml</code> configuration). See inline comments for detail.</p>
+<p>The important configuration variables are likely going to be in the <code>SOLVER</code> section:</p>
+<ul>
+<li><code>IMS_PER_BATCH</code> -- the number of images in a training bash. The larger this number, the more memory will be used during training. This will depend on your GPU capabilities.</li>
+<li><code>BASE_LR</code> -- The starting learning rate</li>
+<li><code>GAMMA</code> -- The decay rate of the learning rate, at every 'step'</li>
+<li><code>STEPS</code>-- The training steps, in number of iterations. at each step, the learning rate will decrease</li>
+</ul>
+</div>
+<div id="data-integrity" class="section level4 unnumbered">
+<h4>Data integrity</h4>
+<p>Before training, you most likely want to check your data can indeed be loaded and parsed.</p>
+<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="ex">standalone_uid.py</span> check_data --bundle-dir ./universal-insect-detector -v</code></pre></div>
+<p>Read carefully the warnings, in particular if they hint that the SVG paths are malformed.</p>
+</div>
+<div id="section" class="section level4">
+<h4><span class="header-section-number">1.0.0.1</span> </h4>
+<p>The training itself can be very long (e.g. several days on a GPU can be expected). Likely, you have access to specialised hardware and support to do that. Once you have set the configuration, checked the input data, etc, you can use the standalone UID tool to make a new model.</p>
+<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="ex">standalone_uid.py</span> train --bundle-dir ./universal-insect-detector -v</code></pre></div>
+<p>The script will output information abnout the dataset and about print a summary every 20 iterations. Each summary contains information such as <code>total_loss</code>, which should eventually decrease (this is described in the detectron2 documentation). Every 5000 iteration (defined in the configuration as <code>SOLVER/CHECKPOINT_PERIOD</code>) a snapshot of the ongoing model will be generated as <code>universal-insect-detector/output/model_XXXXXX.pth</code>, where <code>XXXXXX</code> is the iteration number. Unless you have reached the maximal number of iteration, <strong>you will need to manually copy your latest snapshot into the final working model <code>universal-insect-detector/output/model_final.pth</code></strong>. You could use the intermediary snapshots to perform custom validation, or eventually remove them.</p>
+<p>If you want to train the model from &quot;scratch&quot;, use the <code>--restart_training</code> flag. This will actually build a resent on Mask-RCNN,which was pretrained on the COCO dataset (training from zero would be much longer).</p>
+</div>
+</div>
+<div id="validation" class="section level3 unnumbered">
+<h3>Validation</h3>
+<p>An important step is validation. By default, each original image is allocated to either a validation (25%) ot training (%75) dataset. This is based on the jpg checksum, so it is pseudorandom. To compute validation statistics, after training, you can run:</p>
+<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="ex">standalone_uid.py</span> validate --bundle-dir ./universal-insect-detector --target validation_results -v</code></pre></div>
+<p>This will run an inference on the validation set which has not been seen during training, create a resulting SVG files and issue summary statistics for each validation image (all in the target directory <code>validation_results/</code>).</p>
+</div>
+</div>
+<div id="sim" class="section level2 unnumbered">
+<h2>Siamese insect Matcher</h2>
+<div id="inference-1" class="section level3 unnumbered">
+<h3>Inference</h3>
+</div>
+<div id="training-1" class="section level3 unnumbered">
+<h3>Training</h3>
+</div>
+<div id="validation-1" class="section level3 unnumbered">
+<h3>Validation</h3>
+</div>
+</div>
+<div id="itc" class="section level2 unnumbered">
+<h2>Insect Tuboid Classifer</h2>
+<div id="inference-2" class="section level3 unnumbered">
+<h3>Inference</h3>
+</div>
+<div id="training-2" class="section level3 unnumbered">
+<h3>Training</h3>
+</div>
+<div id="validation-2" class="section level3 unnumbered">
+<h3>Validation</h3>
 
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="web-server.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="todos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="outreach.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

@@ -162,7 +162,29 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#webapp"><i class="fa fa-check"></i>Webapp</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html"><i class="fa fa-check"></i>Machine Learning</a></li>
+<li class="chapter" data-level="1" data-path="todos.html"><a href="todos.html"><i class="fa fa-check"></i><b>1</b> TODOS:</a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html"><i class="fa fa-check"></i>Machine Learning</a><ul>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#general-description-1"><i class="fa fa-check"></i>General description</a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#prerequisites"><i class="fa fa-check"></i>General Prerequisites</a><ul>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#installation"><i class="fa fa-check"></i>Installation</a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#project-organisation"><i class="fa fa-check"></i>Project organisation</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#uid"><i class="fa fa-check"></i>Universal Insect Detector</a><ul>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#inference"><i class="fa fa-check"></i>Inference</a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#training"><i class="fa fa-check"></i>Training</a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#validation"><i class="fa fa-check"></i>Validation</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#sim"><i class="fa fa-check"></i>Siamese insect Matcher</a><ul>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#inference-1"><i class="fa fa-check"></i>Inference</a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#training-1"><i class="fa fa-check"></i>Training</a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#validation-1"><i class="fa fa-check"></i>Validation</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#itc"><i class="fa fa-check"></i>Insect Tuboid Classifer</a><ul>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#inference-2"><i class="fa fa-check"></i>Inference</a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#training-2"><i class="fa fa-check"></i>Training</a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#validation-2"><i class="fa fa-check"></i>Validation</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="outreach.html"><a href="outreach.html"><i class="fa fa-check"></i>Outreach</a><ul>
 <li class="chapter" data-level="" data-path="outreach.html"><a href="outreach.html#june-august-2021"><i class="fa fa-check"></i>June-August 2021</a></li>
 </ul></li>
@@ -207,10 +229,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="figure"><span style="display:block;" id="fig:device-overview"></span>
 <img src="assets/device_overview.png" alt="Sticky Pi Device"  />
 <p class="caption">
-Figure 1: Sticky Pi Device
+Figure 0.1: Sticky Pi Device
 </p>
 </div>
-<p>As you can see in Figure <a href="hardware.html#fig:device-overview">1</a>, the device has two main parts, which are connected with a ribbon cable: the <em>camera box</em> and the <em>light box</em>.</p>
+<p>As you can see in Figure <a href="hardware.html#fig:device-overview">0.1</a>, the device has two main parts, which are connected with a ribbon cable: the <em>camera box</em> and the <em>light box</em>.</p>
 <p>A complete description of the parts, price and reference is available in our <a href="https://github.com/sticky-pi/sticky-pi-device/blob/main/hardware/BOM.csv">Bill of Material</a></p>
 <p>Note that all 3D-printed parts are available on <a href="https://cad.onshape.com/documents/73922dc6e3c6d7006b309c14/w/7e4fb88a2e93b6adba33fd5a/e/708b4c330014fa7fbda6bdeb">our onshape repository</a> where they can be exported in a variety of formats.</p>
 <p>You can also take a look at <a href="assets/spi_schematic.svg">our schematic</a>.</p>
@@ -223,7 +245,7 @@ Figure 1: Sticky Pi Device
 <div class="figure"><span style="display:block;" id="fig:camera-box-breakdown"></span>
 <img src="assets/camera_box_breakdown.png" alt="Needed parts for the camera box"  />
 <p class="caption">
-Figure 2: Needed parts for the camera box
+Figure 0.2: Needed parts for the camera box
 </p>
 </div>
 <ol style="list-style-type: decimal">
@@ -238,21 +260,21 @@ Figure 2: Needed parts for the camera box
 <div class="figure"><span style="display:block;" id="fig:pi-modifs"></span>
 <img src="assets/pi_modifs.png" alt="Modifications to the Raspberry Pi Zero"  />
 <p class="caption">
-Figure 3: Modifications to the Raspberry Pi Zero
+Figure 0.3: Modifications to the Raspberry Pi Zero
 </p>
 </div>
 <ol style="list-style-type: decimal">
-<li>Solder 2x5 headers for the Real Time Clock on pins 1-10. Mount the clock (Figure <a href="hardware.html#fig:pi-modifs">3</a>A).</li>
-<li>Solder directly the IDC right angle connector onto the board on pins 35-40 (Figure <a href="hardware.html#fig:pi-modifs">3</a>A).</li>
-<li>On the back of the Raspberry pi board, use a jumper cable to solder GPIO pin 40 to +5V (this provides power to the Pi, Figure <a href="hardware.html#fig:pi-modifs">3</a>B)
+<li>Solder 2x5 headers for the Real Time Clock on pins 1-10. Mount the clock (Figure <a href="hardware.html#fig:pi-modifs">0.3</a>A).</li>
+<li>Solder directly the IDC right angle connector onto the board on pins 35-40 (Figure <a href="hardware.html#fig:pi-modifs">0.3</a>A).</li>
+<li>On the back of the Raspberry pi board, use a jumper cable to solder GPIO pin 40 to +5V (this provides power to the Pi, Figure <a href="hardware.html#fig:pi-modifs">0.3</a>B)
 <div class="figure"><span style="display:block;" id="fig:pi-sledge"></span>
 <img src="assets/pi_sledge.png" alt="Mounting the Raspberry Pi on the sledge"  />
 <p class="caption">
-Figure 4: Mounting the Raspberry Pi on the sledge
+Figure 0.4: Mounting the Raspberry Pi on the sledge
 </p>
 </div></li>
-<li>Use four screws to mount the pi on the &quot;Pi sledge&quot;. Plug the ribbon cable for the camera (Figure <a href="hardware.html#fig:pi-sledge">4</a>A).</li>
-<li>Fold the ribbon cable around the sledge as in the picture, and mount the camera with another four screws (Figure <a href="hardware.html#fig:pi-sledge">4</a>B-C)</li>
+<li>Use four screws to mount the pi on the &quot;Pi sledge&quot;. Plug the ribbon cable for the camera (Figure <a href="hardware.html#fig:pi-sledge">0.4</a>A).</li>
+<li>Fold the ribbon cable around the sledge as in the picture, and mount the camera with another four screws (Figure <a href="hardware.html#fig:pi-sledge">0.4</a>B-C)</li>
 <li>Insert the OS SD card (burnt as described above)</li>
 <li>Focus the camera. For those who want to assemble multiple devices, we recommend a &quot;camera focusing station&quot; that can adapt a Pi sledge and has a display, keyboard... This way, one can use <a href="https://www.raspberrypi.org/documentation/usage/camera/raspicam/raspivid.md">raspivid</a> in preview mode to check focus and alignment.</li>
 <li>Initialize your device (you can do that at the same time as focusing), which you can do with the <a href="hardware.html#data-harvester">Data harvester</a>:
@@ -269,12 +291,12 @@ Figure 4: Mounting the Raspberry Pi on the sledge
 <div class="figure"><span style="display:block;" id="fig:glass-window"></span>
 <img src="assets/glass_window.png" alt="Assembly of the camera box lid"  />
 <p class="caption">
-Figure 5: Assembly of the camera box lid
+Figure 0.5: Assembly of the camera box lid
 </p>
 </div>
 <ol style="list-style-type: decimal">
-<li>Cut a glass microscope slide into a 25x25mm square with a glass cutter (e.g. with a <a href="https://cad.onshape.com/documents/73922dc6e3c6d7006b309c14/w/7e4fb88a2e93b6adba33fd5a/e/3f9dffd97a216a2d1bbd77ce">3d printed gauge and snaping tool</a> and tool it takes just a few seconds, Figure <a href="hardware.html#fig:glass-window">5</a>A-C).</li>
-<li>Place the glass window on the slot, use masking tape or duct tape to cover the central area and the back. Cast a layer of epoxy resin, and let it set for a day this will embed the glass in the lid. Note that it makes sense to make multiple lids at the same time and avoid wasting time and epoxy (Figure <a href="hardware.html#fig:glass-window">5</a>D-E).</li>
+<li>Cut a glass microscope slide into a 25x25mm square with a glass cutter (e.g. with a <a href="https://cad.onshape.com/documents/73922dc6e3c6d7006b309c14/w/7e4fb88a2e93b6adba33fd5a/e/3f9dffd97a216a2d1bbd77ce">3d printed gauge and snaping tool</a> and tool it takes just a few seconds, Figure <a href="hardware.html#fig:glass-window">0.5</a>A-C).</li>
+<li>Place the glass window on the slot, use masking tape or duct tape to cover the central area and the back. Cast a layer of epoxy resin, and let it set for a day this will embed the glass in the lid. Note that it makes sense to make multiple lids at the same time and avoid wasting time and epoxy (Figure <a href="hardware.html#fig:glass-window">0.5</a>D-E).</li>
 <li>Clean the lid. Optionally coat it with water repellent such as <a href="https://www.rainx.com/">Rain-X</a></li>
 </ol></li>
 <li>Add calk at the junction between the lid and the box, screw the lid on the box. Also use calk to seal the 6x1 ribbon cable outlet.</li>
@@ -293,38 +315,38 @@ Figure 5: Assembly of the camera box lid
 <div class="figure"><span style="display:block;" id="fig:custom-board"></span>
 <img src="assets/custom_board.png" alt="Assembly of the custom PCB"  />
 <p class="caption">
-Figure 6: Assembly of the custom PCB
+Figure 0.6: Assembly of the custom PCB
 </p>
 </div>
 <ol style="list-style-type: decimal">
-<li>Manufacture/order the PCB from the <a href="https://github.com/sticky-pi/sticky-pi-device/tree/main/hardware/main_gerber">gerber files</a> (Figure <a href="hardware.html#fig:custom-board">6</a>A)</li>
-<li>Prepare the timer (scratch the board to disable the built-in potentiometer) -- (red in Figure <a href="hardware.html#fig:custom-board">6</a>B).</li>
-<li>Solder all parts to the board. This should be fairly self explanatory from the labels (Figure <a href="hardware.html#fig:custom-board">6</a>C).</li>
-<li>Make a custom connection to our push button (red in Figure <a href="hardware.html#fig:custom-board">6</a>C). This is arguably a bit of a hack, but that allows us to mimic the built-in TLP5110 push button, with our own.</li>
+<li>Manufacture/order the PCB from the <a href="https://github.com/sticky-pi/sticky-pi-device/tree/main/hardware/main_gerber">gerber files</a> (Figure <a href="hardware.html#fig:custom-board">0.6</a>A)</li>
+<li>Prepare the timer (scratch the board to disable the built-in potentiometer) -- (red in Figure <a href="hardware.html#fig:custom-board">0.6</a>B).</li>
+<li>Solder all parts to the board. This should be fairly self explanatory from the labels (Figure <a href="hardware.html#fig:custom-board">0.6</a>C).</li>
+<li>Make a custom connection to our push button (red in Figure <a href="hardware.html#fig:custom-board">0.6</a>C). This is arguably a bit of a hack, but that allows us to mimic the built-in TLP5110 push button, with our own.</li>
 <li>Thread the push button (before soldering it, not to twist the cables)</li>
 <li>Screw the PCB to the bottom of the light box (be careful not to split the material, do not hesitate to use shorter screw).
 <div class="figure"><span style="display:block;" id="fig:light-box"></span>
 <img src="assets/light_box.png" alt="Assembly of the custom PCB"  />
 <p class="caption">
-Figure 7: Assembly of the custom PCB
+Figure 0.7: Assembly of the custom PCB
 </p>
 </div></li>
-<li>Insert the battery connector (Figure <a href="hardware.html#fig:light-box">7</a>A)</li>
-<li>Screw the Humidity and temperature sensor to the outside the box (Figure <a href="hardware.html#fig:light-box">7</a>A-B).</li>
+<li>Insert the battery connector (Figure <a href="hardware.html#fig:light-box">0.7</a>A)</li>
+<li>Screw the Humidity and temperature sensor to the outside the box (Figure <a href="hardware.html#fig:light-box">0.7</a>A-B).</li>
 <li>Glue the solar panel in the top slot</li>
 </ol></li>
 <li>Assemble the light diffuser:
 <div class="figure"><span style="display:block;" id="fig:light-diffuser"></span>
 <img src="assets/light_diffuser.png" alt="Assembly of the custom PCB"  />
 <p class="caption">
-Figure 8: Assembly of the custom PCB
+Figure 0.8: Assembly of the custom PCB
 </p>
 </div>
 <ol style="list-style-type: decimal">
-<li>Cut six 5V, white, led light strips (Figure <a href="hardware.html#fig:light-diffuser">8</a>A).</li>
+<li>Cut six 5V, white, led light strips (Figure <a href="hardware.html#fig:light-diffuser">0.8</a>A).</li>
 <li>On one side, cut away the + pad, and the - on the other side.</li>
 <li>Align all the + pads on the top, and solder them together, in parallel, with a transverse wire</li>
-<li>Solder the 1x2 header to be connected to our PCB as in the picture (the male pins will be protruding downward). Use superglue to glue the header to the diffuser (Figure <a href="hardware.html#fig:light-diffuser">8</a>B).</li>
+<li>Solder the 1x2 header to be connected to our PCB as in the picture (the male pins will be protruding downward). Use superglue to glue the header to the diffuser (Figure <a href="hardware.html#fig:light-diffuser">0.8</a>B).</li>
 </ol></li>
 <li>Test setup: Connect a camera box, using the 1x6 cable. Plug the light diffuser (or just a placeholder 5v LED light for now). Plug a battery. You should see the LED of the timer glowing (if not, press the push button to force reset the timer). After less than a minute, the The flash should be triggered, and the timer should shut down. Pressing the push button should restart the whole process. If left untouched, this should happen every 20min, approximately.</li>
 </ol>
@@ -363,10 +385,10 @@ Figure 8: Assembly of the custom PCB
 <div class="figure"><span style="display:block;" id="fig:data-harvester"></span>
 <img src="assets/harvester_schematics.png" alt="Sticky Pi Harvester schematic"  />
 <p class="caption">
-Figure 9: Sticky Pi Harvester schematic
+Figure 0.9: Sticky Pi Harvester schematic
 </p>
 </div>
-<p>Figure <a href="hardware.html#fig:data-harvester">9</a> show how the different hardware parts interact. The parts we used are described in the <a href="https://github.com/sticky-pi/sticky-pi-data-harvester/blob/main/hardware/BOM.csv">Bill of Material</a>.</p>
+<p>Figure <a href="hardware.html#fig:data-harvester">0.9</a> show how the different hardware parts interact. The parts we used are described in the <a href="https://github.com/sticky-pi/sticky-pi-data-harvester/blob/main/hardware/BOM.csv">Bill of Material</a>.</p>
 <p>Role of each part: * Raspberry Pi 4 -- the core computer * RTC -- Real Time Clock: persistent time. * Memory stick -- external drive where all the images will be saved. * Mini Router -- connect the harvester with the Sticky Pis during data transfer. * Push Button -- to turn the Raspberyy Pi off * GPS -- optional, get geolocation * Display --optional, show the data harvseter webpage (can be accessed with other devices on the network at <code>192.168.8.2</code>)</p>
 <div id="rapsberry-pi" class="section level3 unnumbered">
 <h3>Rapsberry Pi</h3>
@@ -395,7 +417,7 @@ Figure 9: Sticky Pi Harvester schematic
 <div class="figure"><span style="display:block;" id="fig:data-harvester-assembled"></span>
 <img src="assets/harvester.jpg" alt="Sticky Pi Harvester Assembled"  />
 <p class="caption">
-Figure 10: Sticky Pi Harvester Assembled
+Figure 0.10: Sticky Pi Harvester Assembled
 </p>
 </div>
 </div>
