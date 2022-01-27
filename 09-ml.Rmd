@@ -1,6 +1,199 @@
+#TODOS:
+
+* make upload tutorial images
+* merge git
+* re-upload UID model
+  * comment config inline
+* validation script
+
 # Machine Learning{#ml -}
 
-The machine learning algorithms are described in the [Sticky Pi manuscript](`r PUBLICATION_URL`).
-The model files and datasets used in the publication are available on [Zenodo](https://zenodo.org/record/4680119).
-Our source code is publically available on [github](https://github.com/sticky-pi/sticky-pi-ml).
-We are happy to provide assistance to use and extend  our tools to specific contexts.
+This page describes how to annotate, train and use the machine learning model of the Sticky Pi project. This step does require some familiarity with [python](https://en.wikipedia.org/wiki/Python_(programming_language)) -- in particular, scientific python ([NumPy](https://en.wikipedia.org/wiki/NumPy), [PyTorch](https://en.wikipedia.org/wiki/PyTorch), ...).
+Here, we complement the descriptions of the algorithms provided in the [Sticky Pi manuscript](`r PUBLICATION_URL`) with a practical documentation of how to use and adapt them.
+We are open for collaboration regarding training, building and extending Machine Learning models, so do not hesitate to [contact us](/community#contact). 
+For simplicity, we describe the how to use the ML tools independently of the API (which would help storing and querring images/annotations on a remote or local machine).
+
+
+## General description{-}
+
+Briefly, we start from a series of images (every 20min for several day) of a sticky card.
+Our ultimate goal it to tell which, and when insects were captured.
+We break down this task in three independent steps:
+
+1. [**Universal Insect Detector**](#uid) -- We perform an [instance segmentation](https://en.wikipedia.org/wiki/Image_segmentation#Groups_of_image_segmentation) on all images independently. This finds insects (foreground) *vs.* background. Importantly, at this stage, we do not yet classify insects.
+2. [**Siamese Insect Matcher**](#sim) -- Captured insect actually may move, degrade, become occluded ... Therefore, in practice,classification from single images would be very inconsistent in time. Instead, we first track insects through time before classifying them. The function Siamese Insect Matcher is to track multiple insect instances through their respective timelapses.
+
+3. [**Insect Tuboid Classifier**](#itc) -- After tracking, each insect in the time series is ideally represented by a variable number of standardised segmented shots as well as metadata (including size) -- that we call a tuboid. The Insect Tuboid Classifier allocates a taxonomy to each tuboid based on multiple images.
+
+
+Below, we describe how to implement each step. The model files and datasets used in the publication are available on [Zenodo](https://zenodo.org/record/4680119). Our source code is publicly available on [github](https://github.com/sticky-pi/sticky-pi-ml).
+
+
+## General Prerequisites{#prerequisites -}
+
+### Installation{-}
+
+We recommend  starting by setting a [Python virtual environment](https://docs.python.org/3/tutorial/venv.html). And using the python package manager (pip).
+
+#### Detectron2, PyTorch and PyTorch Vision{-}
+
+In your virtual environment, you want to manually install [detectron2](https://detectron2.readthedocs.io/en/latest/tutorials/install.html), [which requieres **matching** PyTorch and Torchvision](https://detectron2.readthedocs.io/en/latest/tutorials/install.html#install-pre-built-detectron2-linux-only). This has to be done manually since it depends on your platform/hardware (e.g. GPU support).
+
+
+For instance, on a Linux machine without CUDA (GPU support) 
+
+```sh
+# installing precompiled PyTorch and Torchvision (from at https://pytorch.org/)
+pip3 install torch==1.10.1+cpu torchvision==0.11.2+cpu torchaudio==0.10.1+cpu -f \
+    https://download.pytorch.org/whl/cpu/torch_stable.html
+# then installing detectron2
+pip3 install detectron2 -f \
+    https://dl.fbaipublicfiles.com/detectron2/wheels/cpu/torch1.10/index.html
+```
+
+#### Sticky-py-ml{-}
+
+Once you have installed detectron2 (along with PyTorch and PyTorch Vision), 
+you can install our package and its dependencies.
+
+```sh
+git clone https://github.com/sticky-pi/sticky-pi-ml.git --depth=1
+cd sticky-pi-ml/src
+pip install .
+```
+
+
+### Project organisation{-}
+In the Sticky Pi project, each tool (i.e.  UID, SIM and ITC) is stored and organised in a **ML Bundle**, a directory that contains everything needed to train, validate and use a tool.
+ML bundles all contain the subdirectories:
+
+* `config` -- one or several `yaml` configuration files
+* `data` -- the training and validation datasets
+* `output` -- the trained model (i.e. `.pth` files). The file `model_final.pth` being the working model used for inference.
+
+
+
+## Universal Insect Detector{#uid -}
+
+The goal of (Universal Insect Detector) UID is to find and segment all individual insects from arbitrary sticky card images.
+As part of the sticky-pi-ml package, we have made a standalone tool version of the UID, `standalone_uid.py` (see `standalone_uid.py --help`).
+From within your virtual environment, you can use this tool to segment images as well as re-train and validate the model on your own data.
+
+We can start by downloading the whole ML Bundle from Zenodo (that can take a while as we are getting both model and data):
+
+```sh
+wget https://zenodo.org/record/4680119/files/universal-insect-detector.zip
+unzip universal-insect-detector.zip
+# show what is inside this new directory
+ls universal-insect-detector
+```
+
+Our bundle directory is therefore `universal-insect-detector`.
+
+
+### Inference{-}
+
+For inference with the standalone tool, all images should be `.jpg` stored in a directory structure.
+For this example, you could download a sample of three images we have put together for this tutorial.
+
+```sh
+wget https://doc.sticky-pi.com/assets/uid_tutorial.zip
+unzip uid_tutorial.zip
+ls uid_tutorial.zip
+```
+
+Or just use the [download link](assets/uid_tutorial.zip)
+
+
+```sh
+# We use the uid tool to predict, based on a model located in the bundle `./universal-insect-detector`
+# We find all `.jpg` files in the target directory `./uid_tutorial`
+# We set the verbose on (-v)
+standalone_uid.py predict_dir --bundle-dir ./universal-insect-detector --target ./uid_tutorial -v
+```
+
+As a result, the uid tool makes an SVG image for each jpg. The svg contains paths that correspond to all detected instance.
+You can directly open the SVG files to check.
+By default, the inference tool does not overwrite existing SVG, unless you use `--force`
+
+### Training{-}
+
+#### Data source{-}
+
+In order to train the model, you need to populate the `universal-insect-detector/data/`.
+For the UID, the input files are SVGs exactly like the ones outputted by yhe inference tool (a jpg image is embedded, each insect is a path).
+You can decide to add to the existing collection of SVGs already present in `universal-insect-detector/data`, or rebuild your own new set (though the later option would be rather labour intensive).
+
+A simple way to get started, is to run inference on your new images (as describe just above), and fix the resulting svg by hand.
+You can also use the `--de-novo` option to just wrap your images in an SVG.
+To edit the SVG, we recommend using [inkscape](https://inkscape.org/).
+The default is that every insect is a simple closed path/polygon (e.g. made with the Besier curve tool).
+The stroke colour of the path defines the class of the object (the filling colour does not matter).
+The default stroke colour for insects is in blue `#0000FF` (any other colour will not be recognised as an insect).
+
+#### Configuration{-}
+
+There are two configuration files:
+* `mask_rcnn_R_101_C4_3x.yaml` -- the configuration for Mask-RCNN as defined in the detectron2 documentation. This is the underlying segmentation algorithm we use.
+* `config.yaml` -- The specific configuration for the Sticky Pi project (which may override some of the `mask_rcnn_R_101_C4_3x.yaml` configuration). See inline comments for detail.
+
+The important configuration variables are likely going to be in the `SOLVER` section:
+
+* `IMS_PER_BATCH` -- the number of images in a training bash. The larger this number, the more memory will be used during training. This will depend on your GPU capabilities.
+* `BASE_LR` -- The starting learning rate
+* `GAMMA` -- The decay rate of the learning rate, at every 'step'
+* `STEPS`-- The training steps, in number of iterations. at each step, the learning rate will decrease
+
+#### Data integrity{-}
+
+Before training, you most likely want to check your data can indeed be loaded and parsed.
+
+```sh
+standalone_uid.py check_data --bundle-dir ./universal-insect-detector -v
+```
+Read carefully the warnings, in particular if they hint that the SVG paths are malformed.
+
+####
+
+The training itself can be very long (e.g. several days on a GPU can be expected). Likely, you have access to specialised hardware and support to do that.
+Once you have set the configuration, checked the input data, etc, you can use the standalone UID tool to make a new model.
+
+
+```sh
+standalone_uid.py train --bundle-dir ./universal-insect-detector -v
+```
+
+The script will output information abnout the dataset and about print a summary every 20 iterations.
+Each summary contains information such as `total_loss`, which should eventually decrease (this is described in the detectron2 documentation).
+Every 5000 iteration (defined in the configuration as `SOLVER/CHECKPOINT_PERIOD`) a snapshot of the ongoing model will be generated as `universal-insect-detector/output/model_XXXXXX.pth`, where `XXXXXX` is the iteration number.
+Unless you have reached the maximal number of iteration, **you will need to manually copy your latest snapshot into the final working model `universal-insect-detector/output/model_final.pth`**.
+You could use the intermediary snapshots to perform custom validation, or eventually remove them.
+
+If you want to train the model from "scratch", use the `--restart_training` flag. This will actually build a resent on Mask-RCNN,which was pretrained on the COCO dataset (training from zero would be much longer).
+
+
+### Validation{-}
+
+An important step is validation.
+By default, each original image is allocated to either a validation (25%) ot training (%75) dataset.
+This is based on the jpg checksum, so it is pseudorandom. To compute validation statistics, after training, you can run:
+
+```sh
+standalone_uid.py validate --bundle-dir ./universal-insect-detector --target validation_results -v
+```
+
+This will run an inference on the validation set which has not been seen during training, create a resulting SVG files and issue summary statistics for each validation image (all in the target directory `validation_results/`).
+
+
+## Siamese insect Matcher{#sim -}
+
+### Inference{-}
+### Training{-}
+### Validation{-}
+
+
+## Insect Tuboid Classifer{#itc -}
+
+### Inference{-}
+### Training{-}
+### Validation{-}
