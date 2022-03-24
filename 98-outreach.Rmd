@@ -2,6 +2,14 @@
 
 Sticky Pis are built on top of community hardware such as [Arduino](https://www.arduino.cc/) and [Raspberry Pi](https://www.raspberrypi.org/) as well as open-source software such as [Python](https://www.python.org/). We share their educational spirit and consider it our work to raise awareness about insect ecology and discuss how new technologies can indeed intersect with the study of insects. 
 
+
+## UBC Campus Living Lab{-}
+In 2022, we were awarded the [Campus Living Lab fund](https://sustain.ubc.ca/research/cll-fund-competition/award-recipients) by [UBC sustainability](https://sustain.ubc.ca/).
+The CLL will allow us to improve and deploy Sticky Pis all over the UBC campus to monitor biodiversity in real-time.
+We will also involve the community by running workshops and hackathons.
+
+
+
 ## June-August 2021{-}
 
 ```{r outreach-2021, fig.cap="Sticky Pi at the UBC Research Farm", echo=FALSE}

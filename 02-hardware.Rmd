@@ -184,7 +184,7 @@ knitr::include_graphics("assets/harvester.jpg")
 
 You should be able to see a wifi network named `sticky-pi-net` and log on to is using the password `sticky-pi` using any device (phone, table, laptop). Then, when you connect to [http://192.168.8.2](http://192.168.8.2) a webpage should display the data harvester status.
 
-## Using Sticky Pis
+## Using Sticky Pis{-}
 
 Assuming you have a data harvester and at least one Sticky Pi. You can plug your Sticky Pi, which should begin to take pictures every 20 min. Pushing its button will force it to take a picture and go back to sleep it should take ~40s between when you press the button and when the device shouts the picture (you should see a white flash).
 If the device turns on and detect a Data Harvester, it will send all the new data automatically. The progress can be monitored on the Harvester webpage.
