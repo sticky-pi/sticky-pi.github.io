@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Machine Learning | Sticky Pi, a high-frequency smart insect trap to study daily activity in the field</title>
   <meta name="description" content="This is the documentation for the Sticky Pi project, a system to study insect activity in the field." />
-  <meta name="generator" content="bookdown 0.24.7 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.25.3 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Machine Learning | Sticky Pi, a high-frequency smart insect trap to study daily activity in the field" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is the documentation for the Sticky Pi project, a system to study insect activity in the field." />
   <meta name="github-repo" content="sticky-pi/sticky-pi.github.io" />
@@ -24,14 +23,14 @@
 <meta name="author" content="Quentin Geissmann" />
 
 
-<meta name="date" content="2022-01-27" />
+<meta name="date" content="2022-03-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="todos.html"/>
+<link rel="prev" href="web-server.html"/>
 <link rel="next" href="outreach.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -50,8 +49,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-188039384-1"></script>
 <script>
@@ -69,41 +69,68 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -123,76 +150,76 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="./"><img width="264" height="88" src="assets/logo/sticky_logo-text-doc.png"</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
-<li class="chapter" data-level="" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i>Platform Overview</a></li>
-<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html"><i class="fa fa-check"></i>Hardware</a><ul>
-<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#device"><i class="fa fa-check"></i>Device</a><ul>
-<li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#overview"><i class="fa fa-check"></i>Overview</a></li>
-<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#assembly"><i class="fa fa-check"></i>Assembly</a></li>
-<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#qc-and-troubleshooting"><i class="fa fa-check"></i>QC and troubleshooting</a></li>
+<li><a href="index.html#introduction">Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="overview.html#overview">Platform Overview<a href="overview.html#overview" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="hardware.html#hardware">Hardware<a href="hardware.html#hardware" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li><a href="hardware.html#device">Device<a href="hardware.html#device" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li><a href="hardware.html#overview-1">Overview<a href="hardware.html#overview-1" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="hardware.html#assembly">Assembly<a href="hardware.html#assembly" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="hardware.html#qc-and-troubleshooting">QC and troubleshooting<a href="hardware.html#qc-and-troubleshooting" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#data-harvester"><i class="fa fa-check"></i>Data harvester</a><ul>
-<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#rapsberry-pi"><i class="fa fa-check"></i>Rapsberry Pi</a></li>
-<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#router"><i class="fa fa-check"></i>Router</a></li>
-<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#assembly-1"><i class="fa fa-check"></i>Assembly</a></li>
-<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#qc-and-troubleshooting-1"><i class="fa fa-check"></i>QC and troubleshooting</a></li>
+<li><a href="hardware.html#data-harvester">Data harvester<a href="hardware.html#data-harvester" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li><a href="hardware.html#rapsberry-pi">Rapsberry Pi<a href="hardware.html#rapsberry-pi" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="hardware.html#router">Router<a href="hardware.html#router" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="hardware.html#assembly-1">Assembly<a href="hardware.html#assembly-1" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="hardware.html#qc-and-troubleshooting-1">QC and troubleshooting<a href="hardware.html#qc-and-troubleshooting-1" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
 </ul></li>
-<li class="chapter" data-level="0.1" data-path="hardware.html"><a href="hardware.html#using-sticky-pis"><i class="fa fa-check"></i><b>0.1</b> Using Sticky Pis</a></li>
+<li><a href="hardware.html#using-sticky-pis">Using Sticky Pis<a href="hardware.html#using-sticky-pis" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html"><i class="fa fa-check"></i>Web Server</a><ul>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#general-description"><i class="fa fa-check"></i>General description</a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#deployment"><i class="fa fa-check"></i>Deployment</a><ul>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#github-repository"><i class="fa fa-check"></i>Github repository</a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#hosting"><i class="fa fa-check"></i>Hosting</a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#security"><i class="fa fa-check"></i>Security</a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#configuration-and-important-files"><i class="fa fa-check"></i>Configuration and important files</a></li>
-<li><a href="web-server.html#env-file"><code>.env</code> file</a></li>
-<li><a href="web-server.html#secret.env-file"><code>.secret.env</code> file</a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#alternative-local-s3-server"><i class="fa fa-check"></i>Alternative local S3 server</a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#deploy-script"><i class="fa fa-check"></i>Deploy script</a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#check-the-api"><i class="fa fa-check"></i>Check the API</a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#create-users"><i class="fa fa-check"></i>Create users</a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#backups"><i class="fa fa-check"></i>Backups</a></li>
+<li><a href="web-server.html#web-server">Web Server<a href="web-server.html#web-server" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li><a href="web-server.html#general-description">General description<a href="web-server.html#general-description" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="web-server.html#deployment">Deployment<a href="web-server.html#deployment" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li><a href="web-server.html#github-repository">Github repository<a href="web-server.html#github-repository" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="web-server.html#hosting">Hosting<a href="web-server.html#hosting" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="web-server.html#security">Security<a href="web-server.html#security" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="web-server.html#configuration-and-important-files">Configuration and important files<a href="web-server.html#configuration-and-important-files" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="web-server.html#env-file"><code>.env</code> file<a href="web-server.html#env-file" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="web-server.html#secret.env-file"><code>.secret.env</code> file<a href="web-server.html#secret.env-file" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="web-server.html#alternative-local-s3-server">Alternative local S3 server<a href="web-server.html#alternative-local-s3-server" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="web-server.html#deploy-script">Deploy script<a href="web-server.html#deploy-script" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="web-server.html#check-the-api">Check the API<a href="web-server.html#check-the-api" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="web-server.html#create-users">Create users<a href="web-server.html#create-users" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="web-server.html#backups">Backups<a href="web-server.html#backups" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#additional-information"><i class="fa fa-check"></i>Additional information</a><ul>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#database"><i class="fa fa-check"></i>Database</a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#nginx"><i class="fa fa-check"></i>Nginx</a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#api"><i class="fa fa-check"></i>API</a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#universal-insect-detector"><i class="fa fa-check"></i>Universal Insect Detector</a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#webapp"><i class="fa fa-check"></i>Webapp</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="1" data-path="todos.html"><a href="todos.html"><i class="fa fa-check"></i><b>1</b> TODOS:</a></li>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html"><i class="fa fa-check"></i>Machine Learning</a><ul>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#general-description-1"><i class="fa fa-check"></i>General description</a></li>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#prerequisites"><i class="fa fa-check"></i>General Prerequisites</a><ul>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#installation"><i class="fa fa-check"></i>Installation</a></li>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#project-organisation"><i class="fa fa-check"></i>Project organisation</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#uid"><i class="fa fa-check"></i>Universal Insect Detector</a><ul>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#inference"><i class="fa fa-check"></i>Inference</a></li>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#training"><i class="fa fa-check"></i>Training</a></li>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#validation"><i class="fa fa-check"></i>Validation</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#sim"><i class="fa fa-check"></i>Siamese insect Matcher</a><ul>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#inference-1"><i class="fa fa-check"></i>Inference</a></li>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#training-1"><i class="fa fa-check"></i>Training</a></li>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#validation-1"><i class="fa fa-check"></i>Validation</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#itc"><i class="fa fa-check"></i>Insect Tuboid Classifer</a><ul>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#inference-2"><i class="fa fa-check"></i>Inference</a></li>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#training-2"><i class="fa fa-check"></i>Training</a></li>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#validation-2"><i class="fa fa-check"></i>Validation</a></li>
+<li><a href="web-server.html#additional-information">Additional information<a href="web-server.html#additional-information" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li><a href="web-server.html#database">Database<a href="web-server.html#database" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="web-server.html#nginx">Nginx<a href="web-server.html#nginx" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="web-server.html#api">API<a href="web-server.html#api" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="web-server.html#universal-insect-detector">Universal Insect Detector<a href="web-server.html#universal-insect-detector" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="web-server.html#webapp">Webapp<a href="web-server.html#webapp" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="outreach.html"><a href="outreach.html"><i class="fa fa-check"></i>Outreach</a><ul>
-<li class="chapter" data-level="" data-path="outreach.html"><a href="outreach.html#june-august-2021"><i class="fa fa-check"></i>June-August 2021</a></li>
+<li><a href="ml.html#ml">Machine Learning<a href="ml.html#ml" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li><a href="ml.html#general-description-1">General description<a href="ml.html#general-description-1" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="ml.html#prerequisites">General Prerequisites<a href="ml.html#prerequisites" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li><a href="ml.html#installation">Installation<a href="ml.html#installation" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="ml.html#project-organisation">Project organisation<a href="ml.html#project-organisation" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="community.html"><a href="community.html"><i class="fa fa-check"></i>Issues and community</a><ul>
-<li class="chapter" data-level="" data-path="community.html"><a href="community.html#citation"><i class="fa fa-check"></i>Citation</a></li>
-<li class="chapter" data-level="" data-path="community.html"><a href="community.html#having-troubles"><i class="fa fa-check"></i>Having troubles</a></li>
-<li class="chapter" data-level="" data-path="community.html"><a href="community.html#contributing"><i class="fa fa-check"></i>Contributing</a></li>
-<li class="chapter" data-level="" data-path="community.html"><a href="community.html#contact"><i class="fa fa-check"></i>Contact</a></li>
+<li><a href="ml.html#uid">Universal Insect Detector<a href="ml.html#uid" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li><a href="ml.html#inference">Inference<a href="ml.html#inference" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="ml.html#training">Training<a href="ml.html#training" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="ml.html#validation">Validation<a href="ml.html#validation" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+</ul></li>
+<li><a href="ml.html#sim">Siamese Insect Matcher<a href="ml.html#sim" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li><a href="ml.html#inference-1">Inference<a href="ml.html#inference-1" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="ml.html#training-2">Training<a href="ml.html#training-2" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="ml.html#validation-1">Validation<a href="ml.html#validation-1" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+</ul></li>
+<li><a href="ml.html#itc">Insect Tuboid Classifier<a href="ml.html#itc" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li><a href="ml.html#training-3">Training<a href="ml.html#training-3" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="ml.html#validation-2">Validation<a href="ml.html#validation-2" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="ml.html#inference-2">Inference<a href="ml.html#inference-2" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+</ul></li>
+</ul></li>
+<li><a href="outreach.html#outreach">Outreach<a href="outreach.html#outreach" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li><a href="outreach.html#ubc-campus-living-lab">UBC Campus Living Lab<a href="outreach.html#ubc-campus-living-lab" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="outreach.html#june-august-2021">June-August 2021<a href="outreach.html#june-august-2021" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+</ul></li>
+<li><a href="community.html#community">Issues and community<a href="community.html#community" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li><a href="community.html#citation">Citation<a href="community.html#citation" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="community.html#having-troubles">Having troubles<a href="community.html#having-troubles" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="community.html#contributing">Contributing<a href="community.html#contributing" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="community.html#contact">Contact<a href="community.html#contact" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
 </ul></li>
 <li class="divider"></li>
 <li>
@@ -217,136 +244,310 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="ml" class="section level1 unnumbered">
-<h1>Machine Learning</h1>
-<p>This page describes how to annotate, train and use the machine learning model of the Sticky Pi project. This step does require some familiarity with <a href="https://en.wikipedia.org/wiki/Python_(programming_language)">python</a> -- in particular, scientific python (<a href="https://en.wikipedia.org/wiki/NumPy">NumPy</a>, <a href="https://en.wikipedia.org/wiki/PyTorch">PyTorch</a>, ...). Here, we complement the descriptions of the algorithms provided in the <a href="https://www.biorxiv.org/content/10.1101/2021.08.11.455750">Sticky Pi manuscript</a> with a practical documentation of how to use and adapt them. We are open for collaboration regarding training, building and extending Machine Learning models, so do not hesitate to <a href="/community#contact">contact us</a>. For simplicity, we describe the how to use the ML tools independently of the API (which would help storing and querring images/annotations on a remote or local machine).</p>
-<div id="general-description-1" class="section level2 unnumbered">
-<h2>General description</h2>
-<p>Briefly, we start from a series of images (every 20min for several day) of a sticky card. Our ultimate goal it to tell which, and when insects were captured. We break down this task in three independent steps:</p>
+<div id="ml" class="section level1 unnumbered hasAnchor">
+<h1>Machine Learning<a href="ml.html#ml" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<!--  TODOS: -->
+<!-- * merge git -->
+<!-- * re-upload UID model -->
+<!--   * comment config inline -->
+<!-- * re-upload SIM model -->
+<p>This page describes how to annotate, train and use the machine learning model of the Sticky Pi project.
+This step <em>does</em> require some familiarity with scientific computing (e.g. Unix/Linux, <a href="https://en.wikipedia.org/wiki/Python_(programming_language),%20...">python</a>.
+Here, we complement the descriptions of the algorithms provided in the <a href="https://www.biorxiv.org/content/10.1101/2021.08.11.455750">Sticky Pi manuscript</a> with a practical documentation on how to use and adapt them.
+We are open for collaboration regarding training, building and extending Machine Learning models, so do not hesitate to <a href="/community#contact">contact us</a>.
+For simplicity, we describe the how to use the ML tools independently of the API (which is set to store and query images/annotations on a remote or a local machine). For production, with multiple concurrent devices, we recommend using the API.</p>
+<div id="general-description-1" class="section level2 unnumbered hasAnchor">
+<h2>General description<a href="ml.html#general-description-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Briefly, we start from a series of images (every 20min, for several day) of a sticky card.
+Our ultimate goal it to tell <em>which</em>, and <em>when</em> insects were captured.
+We break down this task in three independent steps:</p>
 <ol style="list-style-type: decimal">
-<li><a href="ml.html#uid"><strong>Universal Insect Detector</strong></a> -- We perform an <a href="https://en.wikipedia.org/wiki/Image_segmentation#Groups_of_image_segmentation">instance segmentation</a> on all images independently. This finds insects (foreground) <em>vs.</em> background. Importantly, at this stage, we do not yet classify insects.</li>
-<li><p><a href="ml.html#sim"><strong>Siamese Insect Matcher</strong></a> -- Captured insect actually may move, degrade, become occluded ... Therefore, in practice,classification from single images would be very inconsistent in time. Instead, we first track insects through time before classifying them. The function Siamese Insect Matcher is to track multiple insect instances through their respective timelapses.</p></li>
-<li><p><a href="ml.html#itc"><strong>Insect Tuboid Classifier</strong></a> -- After tracking, each insect in the time series is ideally represented by a variable number of standardised segmented shots as well as metadata (including size) -- that we call a tuboid. The Insect Tuboid Classifier allocates a taxonomy to each tuboid based on multiple images.</p></li>
+<li><a href="ml.html#uid"><strong>Universal Insect Detector</strong></a> – We perform an <a href="https://en.wikipedia.org/wiki/Image_segmentation#Groups_of_image_segmentation">instance segmentation</a> on all images independently. This extracts insects (foreground) from the background. Importantly, at this stage, we do not yet classify insects.</li>
+<li><a href="ml.html#sim"><strong>Siamese Insect Matcher</strong></a> – Captured insect actually may move, degrade, become occluded… Therefore, in practice, classification and timing of capture from single images would be very inconsistent in time. Instead, we first track insects through time before classifying them. The function of the Siamese Insect Matcher is to track multiple insect instances through their respective timelapses.</li>
+<li><a href="ml.html#itc"><strong>Insect Tuboid Classifier</strong></a> – After tracking, each insect in the time series is represented by a variable number of standardized segmented shots as well as metadata (including size) – which we call a “tuboid”. The Insect Tuboid Classifier infers a taxonomy to each tuboid based on multiple images.</li>
 </ol>
 <p>Below, we describe how to implement each step. The model files and datasets used in the publication are available on <a href="https://zenodo.org/record/4680119">Zenodo</a>. Our source code is publicly available on <a href="https://github.com/sticky-pi/sticky-pi-ml">github</a>.</p>
 </div>
-<div id="prerequisites" class="section level2 unnumbered">
-<h2>General Prerequisites</h2>
-<div id="installation" class="section level3 unnumbered">
-<h3>Installation</h3>
-<p>We recommend starting by setting a <a href="https://docs.python.org/3/tutorial/venv.html">Python virtual environment</a>. And using the python package manager (pip).</p>
-<div id="detectron2-pytorch-and-pytorch-vision" class="section level4 unnumbered">
-<h4>Detectron2, PyTorch and PyTorch Vision</h4>
-<p>In your virtual environment, you want to manually install <a href="https://detectron2.readthedocs.io/en/latest/tutorials/install.html">detectron2</a>, <a href="https://detectron2.readthedocs.io/en/latest/tutorials/install.html#install-pre-built-detectron2-linux-only">which requieres <strong>matching</strong> PyTorch and Torchvision</a>. This has to be done manually since it depends on your platform/hardware (e.g. GPU support).</p>
-<p>For instance, on a Linux machine without CUDA (GPU support)</p>
-<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="co"># installing precompiled PyTorch and Torchvision (from at https://pytorch.org/)</span>
-<span class="ex">pip3</span> install torch==1.10.1+cpu torchvision==0.11.2+cpu torchaudio==0.10.1+cpu -f \
-    https://download.pytorch.org/whl/cpu/torch_stable.html
-<span class="co"># then installing detectron2</span>
-<span class="ex">pip3</span> install detectron2 -f \
-    https://dl.fbaipublicfiles.com/detectron2/wheels/cpu/torch1.10/index.html</code></pre></div>
+<div id="prerequisites" class="section level2 unnumbered hasAnchor">
+<h2>General Prerequisites<a href="ml.html#prerequisites" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="installation" class="section level3 unnumbered hasAnchor">
+<h3>Installation<a href="ml.html#installation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We recommend starting by setting a <a href="https://docs.python.org/3/tutorial/venv.html">Python virtual environment</a> for the entire project.
+And using the python package manager (pip).</p>
+<div id="detectron2-pytorch-and-pytorch-vision" class="section level4 unnumbered hasAnchor">
+<h4>Detectron2, PyTorch and PyTorch Vision<a href="ml.html#detectron2-pytorch-and-pytorch-vision" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>In your virtual environment, you want to manually install <a href="https://detectron2.readthedocs.io/en/latest/tutorials/install.html">detectron2</a>, <a href="https://detectron2.readthedocs.io/en/latest/tutorials/install.html#install-pre-built-detectron2-linux-only">which requires <strong>matching</strong> PyTorch and Torchvision</a>. This has to be done manually since it depends on your platform/hardware (e.g. GPU support).</p>
+<p>For instance, on a Linux machine <em>without</em> CUDA (so, no GPU support)</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="co"># installing precompiled PyTorch and Torchvision (from at https://pytorch.org/)</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="ex">pip3</span> install torch==1.10.1+cpu torchvision==0.11.2+cpu torchaudio==0.10.1+cpu -f \</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3">    https://download.pytorch.org/whl/cpu/torch_stable.html</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="co"># then installing detectron2</span></a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="ex">pip3</span> install detectron2 -f \</a>
+<a class="sourceLine" id="cb8-6" data-line-number="6">    https://dl.fbaipublicfiles.com/detectron2/wheels/cpu/torch1.10/index.html</a></code></pre></div>
+<p><em>Note, to make the most of <a href="https://en.wikipedia.org/wiki/Convolutional_neural_network">CNNs</a> and PyTorch, you likely want to have hardware support (i.e. a GPU). Running models on a CPU is mostly for testing and development, and may be very slow (in particular for training).</em></p>
 </div>
-<div id="sticky-py-ml" class="section level4 unnumbered">
-<h4>Sticky-py-ml</h4>
-<p>Once you have installed detectron2 (along with PyTorch and PyTorch Vision), you can install our package and its dependencies.</p>
-<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="fu">git</span> clone https://github.com/sticky-pi/sticky-pi-ml.git --depth=1
-<span class="bu">cd</span> sticky-pi-ml/src
-<span class="ex">pip</span> install .</code></pre></div>
+<div id="sticky-py-ml" class="section level4 unnumbered hasAnchor">
+<h4>Sticky-py-ml<a href="ml.html#sticky-py-ml" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Once you have installed <code>detectron2</code> (along with PyTorch and PyTorch Vision), you can install our package and its dependencies.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="fu">git</span> clone https://github.com/sticky-pi/sticky-pi-ml.git --depth=1</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="bu">cd</span> sticky-pi-ml/src</a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="ex">pip</span> install .</a></code></pre></div>
 </div>
 </div>
-<div id="project-organisation" class="section level3 unnumbered">
-<h3>Project organisation</h3>
-<p>In the Sticky Pi project, each tool (i.e. UID, SIM and ITC) is stored and organised in a <strong>ML Bundle</strong>, a directory that contains everything needed to train, validate and use a tool. ML bundles all contain the subdirectories:</p>
+<div id="project-organisation" class="section level3 unnumbered hasAnchor">
+<h3>Project organisation<a href="ml.html#project-organisation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In the Sticky Pi project, the resources for each of the three algorithms described above (i.e. UID, SIM and ITC) are stored and organised in ab <strong>“Machine learning (ML) bundle”</strong>.
+An ML bundle is a directory that contains everything needed to train, validate and use a tool.
+ML bundles all contain the subdirectories:</p>
 <ul>
-<li><code>config</code> -- one or several <code>yaml</code> configuration files</li>
-<li><code>data</code> -- the training and validation datasets</li>
-<li><code>output</code> -- the trained model (i.e. <code>.pth</code> files). The file <code>model_final.pth</code> being the working model used for inference.</li>
+<li><code>config</code> – one or several <code>.yaml</code> configuration files</li>
+<li><code>data</code> – the training and validation data</li>
+<li><code>output</code> – the trained model (i.e. <code>.pth</code> files). The file <code>model_final.pth</code> being the working model used for inference.</li>
 </ul>
 </div>
 </div>
-<div id="uid" class="section level2 unnumbered">
-<h2>Universal Insect Detector</h2>
-<p>The goal of (Universal Insect Detector) UID is to find and segment all individual insects from arbitrary sticky card images. As part of the sticky-pi-ml package, we have made a standalone tool version of the UID, <code>standalone_uid.py</code> (see <code>standalone_uid.py --help</code>). From within your virtual environment, you can use this tool to segment images as well as re-train and validate the model on your own data.</p>
-<p>We can start by downloading the whole ML Bundle from Zenodo (that can take a while as we are getting both model and data):</p>
-<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="fu">wget</span> https://zenodo.org/record/4680119/files/universal-insect-detector.zip
-<span class="fu">unzip</span> universal-insect-detector.zip
-<span class="co"># show what is inside this new directory</span>
-<span class="fu">ls</span> universal-insect-detector</code></pre></div>
+<div id="uid" class="section level2 unnumbered hasAnchor">
+<h2>Universal Insect Detector<a href="ml.html#uid" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The goal of (Universal Insect Detector) UID is to find and segment all individual insects from arbitrary sticky card images.
+As part of the sticky-pi-ml package, we have made a standalone tool version of the UID, <code>standalone_uid.py</code> (see <code>standalone_uid.py --help</code>).
+From within your virtual environment, you can use this tool (it should be in your path after installation) to segment images as well as re-train and validate the model on your own data.</p>
+<p>We can start by downloading the whole ML Bundle from Zenodo (that can take a while as we are getting both the model and the data):</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="fu">wget</span> https://zenodo.org/record/4680119/files/universal-insect-detector.zip</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="fu">unzip</span> universal-insect-detector.zip</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="co"># show what is inside this new directory</span></a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="fu">ls</span> universal-insect-detector</a></code></pre></div>
 <p>Our bundle directory is therefore <code>universal-insect-detector</code>.</p>
-<div id="inference" class="section level3 unnumbered">
-<h3>Inference</h3>
-<p>For inference with the standalone tool, all images should be <code>.jpg</code> stored in a directory structure. For this example, you could download a sample of three images we have put together for this tutorial.</p>
-<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="fu">wget</span> https://doc.sticky-pi.com/assets/uid_tutorial.zip
-<span class="fu">unzip</span> uid_tutorial.zip
-<span class="fu">ls</span> uid_tutorial.zip</code></pre></div>
+<div id="inference" class="section level3 unnumbered hasAnchor">
+<h3>Inference<a href="ml.html#inference" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For inference with the standalone tool, all images should be <code>.jpg</code> stored in a directory structure.
+For this example, you could download a sample of three images we have put together for this tutorial.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="fu">wget</span> https://doc.sticky-pi.com/assets/uid_tutorial.zip</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="fu">unzip</span> uid_tutorial.zip</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="fu">ls</span> uid_tutorial</a></code></pre></div>
 <p>Or just use the <a href="assets/uid_tutorial.zip">download link</a></p>
-<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="co"># We use the uid tool to predict, based on a model located in the bundle `./universal-insect-detector`</span>
-<span class="co"># We find all `.jpg` files in the target directory `./uid_tutorial`</span>
-<span class="co"># We set the verbose on (-v)</span>
-<span class="ex">standalone_uid.py</span> predict_dir --bundle-dir ./universal-insect-detector --target ./uid_tutorial -v</code></pre></div>
-<p>As a result, the uid tool makes an SVG image for each jpg. The svg contains paths that correspond to all detected instance. You can directly open the SVG files to check. By default, the inference tool does not overwrite existing SVG, unless you use <code>--force</code></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="co"># We use the uid tool to predict, based on a model located in the bundle `./universal-insect-detector` (--bundle-dir)</span></a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="co"># We find all `.jpg` files in the target directory `./uid_tutorial` (--target)</span></a>
+<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="co"># We set the verbose on (-v)</span></a>
+<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="ex">standalone_uid.py</span> predict_dir --bundle-dir ./universal-insect-detector --target ./uid_tutorial -v</a>
+<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="co"># list the generated resulting files</span></a>
+<a class="sourceLine" id="cb12-6" data-line-number="6"><span class="fu">ls</span> ./uid_tutorial/*.svg</a></code></pre></div>
+<p>As a result, the uid tool makes an SVG image for each JPG.
+The SVG contains a path for each detected instance.
+You can directly open the SVG files to check.
+By default, the inference tool does not overwrite existing SVG, unless you use <code>--force</code></p>
 </div>
-<div id="training" class="section level3 unnumbered">
-<h3>Training</h3>
-<div id="data-source" class="section level4 unnumbered">
-<h4>Data source</h4>
-<p>In order to train the model, you need to populate the <code>universal-insect-detector/data/</code>. For the UID, the input files are SVGs exactly like the ones outputted by yhe inference tool (a jpg image is embedded, each insect is a path). You can decide to add to the existing collection of SVGs already present in <code>universal-insect-detector/data</code>, or rebuild your own new set (though the later option would be rather labour intensive).</p>
-<p>A simple way to get started, is to run inference on your new images (as describe just above), and fix the resulting svg by hand. You can also use the <code>--de-novo</code> option to just wrap your images in an SVG. To edit the SVG, we recommend using <a href="https://inkscape.org/">inkscape</a>. The default is that every insect is a simple closed path/polygon (e.g. made with the Besier curve tool). The stroke colour of the path defines the class of the object (the filling colour does not matter). The default stroke colour for insects is in blue <code>#0000FF</code> (any other colour will not be recognised as an insect).</p>
+<div id="training" class="section level3 unnumbered hasAnchor">
+<h3>Training<a href="ml.html#training" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="data-source" class="section level4 unnumbered hasAnchor">
+<h4>Data source<a href="ml.html#data-source" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>In order to train the model, you need to populate the <code>universal-insect-detector/data/</code>.
+For the UID, the input files are SVGs exactly like the ones outputted by the inference tool (i.e. a JPG image is embedded and each insect is a path).
+You can either add new data to the existing collection of SVGs already present in <code>universal-insect-detector/data</code>,
+or rebuild your own new set (though the later option would be rather labour-intensive).</p>
+<p>A simple way to get started, is to run inference on your new images (as describe just above), and fix the resulting SVGs by hand.
+Alternatively, you use the <code>--de-novo</code> option along with <code>--predict-dir</code> to just wrap your images in an empty SVG.
+To edit the SVG, we recommend using <a href="https://inkscape.org/">inkscape</a>.
+The default is that every insect is a simple, closed, path/polygon (e.g. made with the Bezier curve tool).
+The stroke colour of the path defines the class of the object (the filling colour does not matter).
+The default stroke colour for insects is in blue <code>#0000FF</code> (any other colour will not be recognised as an insect):</p>
+<div class="figure">
+<img src="assets/uid_annotations.jpg" alt="UID annotations. Using inkscape to generate annotations as SVG paths" />
+<p class="caption">UID annotations. Using inkscape to generate annotations as SVG paths</p>
 </div>
-<div id="configuration" class="section level4 unnumbered">
-<h4>Configuration</h4>
-<p>There are two configuration files: * <code>mask_rcnn_R_101_C4_3x.yaml</code> -- the configuration for Mask-RCNN as defined in the detectron2 documentation. This is the underlying segmentation algorithm we use. * <code>config.yaml</code> -- The specific configuration for the Sticky Pi project (which may override some of the <code>mask_rcnn_R_101_C4_3x.yaml</code> configuration). See inline comments for detail.</p>
+</div>
+<div id="configuration" class="section level4 unnumbered hasAnchor">
+<h4>Configuration<a href="ml.html#configuration" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>There are two configuration files:
+* <code>mask_rcnn_R_101_C4_3x.yaml</code> – the configuration for Mask-RCNN as defined in the <code>detectron2</code> documentation. This is the underlying segmentation algorithm we use.
+* <code>config.yaml</code> – The specific configuration for the Sticky Pi project (which may override some of the <code>mask_rcnn_R_101_C4_3x.yaml</code> configuration). See inline comments for detail.</p>
 <p>The important configuration variables are likely going to be in the <code>SOLVER</code> section:</p>
 <ul>
-<li><code>IMS_PER_BATCH</code> -- the number of images in a training bash. The larger this number, the more memory will be used during training. This will depend on your GPU capabilities.</li>
-<li><code>BASE_LR</code> -- The starting learning rate</li>
-<li><code>GAMMA</code> -- The decay rate of the learning rate, at every 'step'</li>
-<li><code>STEPS</code>-- The training steps, in number of iterations. at each step, the learning rate will decrease</li>
+<li><code>IMS_PER_BATCH</code> – the number of images in a training bash. The larger this number, the more memory will be used during training. This will depend on your GPU capabilities.</li>
+<li><code>BASE_LR</code> – The starting learning rate</li>
+<li><code>GAMMA</code> – The decay rate of the learning rate, at every ‘step’</li>
+<li><code>STEPS</code>– The training steps, in number of iterations. at each step, the learning rate will decrease (by a factor <code>GAMMA</code>)</li>
 </ul>
 </div>
-<div id="data-integrity" class="section level4 unnumbered">
-<h4>Data integrity</h4>
+<div id="data-integrity" class="section level4 unnumbered hasAnchor">
+<h4>Data integrity<a href="ml.html#data-integrity" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Before training, you most likely want to check your data can indeed be loaded and parsed.</p>
-<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="ex">standalone_uid.py</span> check_data --bundle-dir ./universal-insect-detector -v</code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="ex">standalone_uid.py</span> check_data --bundle-dir ./universal-insect-detector -v</a></code></pre></div>
 <p>Read carefully the warnings, in particular if they hint that the SVG paths are malformed.</p>
 </div>
-<div id="section" class="section level4">
-<h4><span class="header-section-number">1.0.0.1</span> </h4>
-<p>The training itself can be very long (e.g. several days on a GPU can be expected). Likely, you have access to specialised hardware and support to do that. Once you have set the configuration, checked the input data, etc, you can use the standalone UID tool to make a new model.</p>
-<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="ex">standalone_uid.py</span> train --bundle-dir ./universal-insect-detector -v</code></pre></div>
-<p>The script will output information abnout the dataset and about print a summary every 20 iterations. Each summary contains information such as <code>total_loss</code>, which should eventually decrease (this is described in the detectron2 documentation). Every 5000 iteration (defined in the configuration as <code>SOLVER/CHECKPOINT_PERIOD</code>) a snapshot of the ongoing model will be generated as <code>universal-insect-detector/output/model_XXXXXX.pth</code>, where <code>XXXXXX</code> is the iteration number. Unless you have reached the maximal number of iteration, <strong>you will need to manually copy your latest snapshot into the final working model <code>universal-insect-detector/output/model_final.pth</code></strong>. You could use the intermediary snapshots to perform custom validation, or eventually remove them.</p>
-<p>If you want to train the model from &quot;scratch&quot;, use the <code>--restart_training</code> flag. This will actually build a resent on Mask-RCNN,which was pretrained on the COCO dataset (training from zero would be much longer).</p>
+<div id="training-1" class="section level4 unnumbered hasAnchor">
+<h4>Training<a href="ml.html#training-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The training itself can be very long (e.g. several days on a GPU can be expected).
+Likely, you have access to specialised hardware and support to do that.
+Once you have set the configuration, checked the input data, etc, you can use the standalone UID tool to make a new model.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="ex">standalone_uid.py</span> train --bundle-dir ./universal-insect-detector -v</a></code></pre></div>
+<p>The script will output information about the dataset and print a summary every 20 iterations (by default).
+Each summary contains information such as <code>total_loss</code>, which should eventually decrease (this is described in the <code>detectron2</code> documentation).
+Every 5000 iteration (defined in the configuration as <code>SOLVER/CHECKPOINT_PERIOD</code>) a snapshot of the ongoing model will be generated as <code>universal-insect-detector/output/model_XXXXXX.pth</code>, where <code>XXXXXX</code> is the iteration number.
+Unless you have reached the maximal number of iteration, <strong>you will need to manually copy your latest snapshot into the final working model <code>universal-insect-detector/output/model_final.pth</code></strong>.
+You could use the intermediary snapshots to perform custom validation, or eventually remove them.</p>
+<p>If you want to train the model from “scratch”, use the <code>--restart_training</code> flag.
+This will actually use Mask-RCNN model that was pretrained on the COCO dataset (training from zero would be much longer).</p>
 </div>
 </div>
-<div id="validation" class="section level3 unnumbered">
-<h3>Validation</h3>
-<p>An important step is validation. By default, each original image is allocated to either a validation (25%) ot training (%75) dataset. This is based on the jpg checksum, so it is pseudorandom. To compute validation statistics, after training, you can run:</p>
-<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="ex">standalone_uid.py</span> validate --bundle-dir ./universal-insect-detector --target validation_results -v</code></pre></div>
-<p>This will run an inference on the validation set which has not been seen during training, create a resulting SVG files and issue summary statistics for each validation image (all in the target directory <code>validation_results/</code>).</p>
+<div id="validation" class="section level3 unnumbered hasAnchor">
+<h3>Validation<a href="ml.html#validation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>An important step is validation.
+By default, each original image is allocated to either a validation (25%) or training (75%) dataset.
+This is based on the checksum of the JPG image, so it is pseudorandom.
+To compute validation statistics on 25% of the images that were “randomly” excluded from training, you can run:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="ex">standalone_uid.py</span> validate --bundle-dir ./universal-insect-detector --target validation_results -v</a></code></pre></div>
+<p>This will run an inference on the validation set which has not been seen during training, create a resulting SVG files and issue summary statistics for each validation image (all in the target directory <code>validation_results/</code>).
+In particular, there will be a result JSON file <code>results.json</code>, which contains a list where each element is a detected instance. Each instance has the fields:</p>
+<ul>
+<li><code>area</code> – the number of pixels in the instance</li>
+<li><code>in_gt</code> – whether the instance is in the ground truth</li>
+<li><code>in_im</code> – whether the instance is in the detected image</li>
+<li><code>class</code> – the class (<em>i.e.</em> <code>insect</code>)</li>
+<li><code>filename</code> – the SVG file where the image is from</li>
+</ul>
+<p>You can then parse this file (e.g. in <code>R</code>) to compute summary statistics:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">library</span>(data.table)</a>
+<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="kw">library</span>(jsonlite)</a>
+<a class="sourceLine" id="cb16-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb16-4" data-line-number="4">dt &lt;-</a>
+<a class="sourceLine" id="cb16-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb16-6" data-line-number="6"><span class="kw">as.data.table</span>(jsonlite<span class="op">::</span><span class="kw">fromJSON</span>(<span class="st">&#39;results.json&#39;</span>))</a>
+<a class="sourceLine" id="cb16-7" data-line-number="7">dt[, .(<span class="dt">precision =</span> <span class="kw">sum</span>(in_gt <span class="op">&amp;</span><span class="st"> </span>in_im)<span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(in_im),</a>
+<a class="sourceLine" id="cb16-8" data-line-number="8">        <span class="dt">recall =</span> <span class="kw">sum</span>(in_gt <span class="op">&amp;</span><span class="st"> </span>in_im)<span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(in_gt)),</a>
+<a class="sourceLine" id="cb16-9" data-line-number="9">    ]</a></code></pre></div>
+<div class="figure">
+<img src="assets/validation_results.png" alt="Validation results. Left, the original svg; Right, highlighting the ground truth in thick green strokes" />
+<p class="caption">Validation results. Left, the original svg; Right, highlighting the ground truth in thick green strokes</p>
+</div>
+<p>You can also compare the validation images (SVG) generated in the target directory (<code>validation_results/</code>).
+Each path is a detected instance. The ones filled with red (<code>#ff0000</code>) are detected by the UID, whilst the blue (<code>#0000ff</code>) ones are the ground truth.
+I find it convenient to open images in inkscape and select, say a UID-generated path, right click and press “select same/fill and stroke” to then change the stroke style and colour to visualise better:</p>
 </div>
 </div>
-<div id="sim" class="section level2 unnumbered">
-<h2>Siamese insect Matcher</h2>
-<div id="inference-1" class="section level3 unnumbered">
-<h3>Inference</h3>
+<div id="sim" class="section level2 unnumbered hasAnchor">
+<h2>Siamese Insect Matcher<a href="ml.html#sim" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The Siamese Insect Matcher is the second step of the analysis.
+We start from a series of images annotated by the UID to generate “tuboids”, which are series of shots of the same insect, over time.
+To do that, we use Annotated Sticky Pi images.
+In the previous section, we described how to generate SVG images from JPGs in a directory.
+The SIM is specific to Sticky Pi images as their timestamp is encoded in their name.
+The name of each image is formatted as <code>&lt;device_name&gt;.&lt;datetime&gt;.jpg</code>.
+We also have a standalone tool to use the SIM <code>standalone_sim.py</code> (see <code>standalone_sim.py --help</code>).</p>
+<div id="inference-1" class="section level3 unnumbered hasAnchor">
+<h3>Inference<a href="ml.html#inference-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For this documentation, we have made available a small series of 50 pre-annotated images.</p>
+<p>First we download the images:</p>
+<!-- fixme todo -->
+<div class="sourceCode" id="cb17"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="fu">wget</span> https://doc.sticky-pi.com/assets/sim_tutorial.zip</a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="fu">unzip</span> sim_tutorial.zip</a>
+<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="fu">ls</span> sim_tutorial</a></code></pre></div>
+<p>Or just use the <a href="assets/sim_tutorial.zip">download link</a></p>
+<p>Using the standalone tool, you can then generate tuboids:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="ex">standalone_sim.py</span> predict_dir --bundle-dir ./siamese-insect-matcher --target ./sim_tutorial -v</a></code></pre></div>
+<p>This should show progress and processing information.
+As a result, you will find a directory named <code>tuboid</code> in <code>--target</code> (i.e. <code>./sim_tutorial</code>), with the following structure:</p>
+<pre><code>tuboids/
+└── 15e612cd.2020-07-08_22-05-10.2020-07-09_13-27-20.1611328841-264f9489eac5c0966ef34ff59998084f
+    ├── 15e612cd.2020-07-08_22-05-10.2020-07-09_13-27-20.1611328841-264f9489eac5c0966ef34ff59998084f.0000
+    │   ├── context.jpg
+    │   ├── metadata.txt
+    │   └── tuboid.jpg
+    ├── 15e612cd.2020-07-08_22-05-10.2020-07-09_13-27-20.1611328841-264f9489eac5c0966ef34ff59998084f.0001
+    │   ├── context.jpg
+    │   ├── metadata.txt
+    │   └── tuboid.jpg
+    .....................
+     SKIPPING DIRECTORY WITH SIMILAR STRUCTURE
+    .....................
+    ├── 15e612cd.2020-07-08_22-05-10.2020-07-09_13-27-20.1611328841-264f9489eac5c0966ef34ff59998084f.0019
+    │   ├── context.jpg
+    │   ├── metadata.txt
+    │   └── tuboid.jpg
+    └── 15e612cd.2020-07-08_22-05-10.2020-07-09_13-27-20.mp4</code></pre>
+<p>The parent directory, <code>15e612cd.2020-07-08_22-05-10.2020-07-09_13-27-20.1611328841-264f9489eac5c0966ef34ff59998084f</code>, is formatted as: <code>&lt;device_id&gt;.&lt;start_datetime&gt;.&lt;end-datetime&gt;.&lt;algorithm_unique_id&gt;</code>.</p>
+<p>The children directories are unique identifier of each tuboid in this specific series (ending in <code>.0000</code>, <code>.0001</code>, <code>.0002</code>, …)
+Inside each tuboid directory, there are three files:
+* <code>metadata.txt</code> – a small file describing each insect (parent image, x and y position, and scale)
+* <code>tuboid.jpg</code> – a JPG file where shots listed in metadata are represented as contiguous tiles. The file is padded with empty space when necessary
+* <code>context.jpg</code> – a compressed version of the first image containing the insect, where the insect is boxed (to show where and how large it is). This is mostly to give some context to the annotating team.</p>
+<p>You will also find a video (<code>15e612cd.2020-07-08_22-05-10.2020-07-09_13-27-20.mp4</code>):</p>
+<p><img src="https://www.youtube.com/watch?v=PA0p9RH67mk" /></p>
+<p>Note that each tuboid is shown by a rectangle with a number matching the unique identifier of a tuboid.
+This video can help you find a specific tuboid in the <code>tuboids</code> directory structure.
+For instance, tuboid number 12 looks like this:</p>
+<p><img src="assets/SIM_tuboid_0012.jpg" alt="Tuboid 0012" />
+Also, the date and time are written on top of the video.</p>
 </div>
-<div id="training-1" class="section level3 unnumbered">
-<h3>Training</h3>
+<div id="training-2" class="section level3 unnumbered hasAnchor">
+<h3>Training<a href="ml.html#training-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The core algorithm of the Siamese Insect Matcher is a Siamese neural network.
+It compares insects from consecutive picture and learns to discriminate between the same instance vs. another insect. The data to train this network is a set of paired UID-annotated images, where insects that are the same instances are labeled as a group.
+In practice, these are encoded as composite SVG images with the two images vertically stacked, and the instances labeled as an SVG group.</p>
+<p>Rather than manually generating a training set, we can use the standalone tool to generate candidates for us that we can then just amend:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="ex">standalone_sim.py</span> make_candidates --filter 5  --target ./sim_tutorial -v</a></code></pre></div>
+<p>The argument <code>--filter 5</code> keep only every fifth image, and skip the others.
+By default, this process will pre-group pairs of contours that highly overlap between consecutive images (based on their <a href="https://en.wikipedia.org/wiki/Jaccard_index">IoU</a> only). This should save a lot of time as most of these should be simple cases.
+This tool also draws a line to highlight paired groups.
+The line is simply a visual tool to help annotation and can be left as is:</p>
+<div class="figure">
+<img src="assets/sim_grouping_demo.gif" alt="Generate SIM annotations in Inkscape" />
+<p class="caption">Generate SIM annotations in Inkscape</p>
 </div>
-<div id="validation-1" class="section level3 unnumbered">
-<h3>Validation</h3>
+<p>Using <a href="https://inkscape.org/">inkscape</a>, you can group pairs using a shortcut like <code>CTRL+G</code>.
+We recommend using the XML editor (the pannel on the right) to check grouping is correct, and find unmatched instances.
+Keep in mind that <em>not all instances can / should be matched</em>.
+Indeed, some insects may be mislabeled in a first place, or may have escaped, appeared/…
+It is unnecessary (and probably counterproductive) to try to manually fix the segmentation by adding or deleting new instance annotations (paths).</p>
+<p>As before, you can either make your own data set, or just extend the existing SIM data bundle (the latter is recommended).</p>
+<p>For the training itself, we can run:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="ex">standalone_sim.py</span> train --bundle-dir ./siamese-insect-matcher -v</a></code></pre></div>
+<p><em>On a machine with CUDA, you should use the <code>--gpu</code> flag</em>.
+Also you can use the <code>--restart-training</code> flag to restart from scratch rather than use the previous weights.</p>
+<p>The training involves two preliminary stages that independently train separate branches of the network followed by a longer third (final) stage that trains the whole network.
+Every 200 rounds (default), the model takes a snapshot (i.e. saves the weights) in <code>siamese-insect-matcher/output/model_XXXXXX.pth</code>.
+You can also manually the any <code>.pth</code> file as <code>model_final.pth</code> to specifically use this model during inference</p>
+</div>
+<div id="validation-1" class="section level3 unnumbered hasAnchor">
+<h3>Validation<a href="ml.html#validation-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Like for the UID, each original image is allocated to either a validation (25%) or a training (75%) dataset based on a checksum.
+Validation is automatically computed to generate a loss and accuracy when training reches a checkpoit (by default, every 200 rounds).
+One can also specifically run validation:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="ex">standalone_sim.py</span> validate   --bundle-dir ./siamese-insect-matcher --target ./sim_tutorial/validation/ -v</a></code></pre></div>
+<p>this will generate a json file <code>./sim_tutorial/validation/results.json</code>, which is a list of dictionaries
+with fields <code>pred</code> (predicted score) and <code>gt</code> (ground truth, i.e. 0 or 1).
+<code>pred</code> is the raw match score, so one can use this result file to vary the the match threshold and make an ROC curve.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">library</span>(plotROC)</a>
+<a class="sourceLine" id="cb23-2" data-line-number="2"><span class="kw">library</span>(data.table)</a>
+<a class="sourceLine" id="cb23-3" data-line-number="3"><span class="kw">library</span>(jsonlite)</a>
+<a class="sourceLine" id="cb23-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb23-5" data-line-number="5">dt &lt;-<span class="st"> </span><span class="kw">as.data.table</span>(jsonlite<span class="op">::</span><span class="kw">fromJSON</span>(<span class="st">&#39;results.json&#39;</span>))</a>
+<a class="sourceLine" id="cb23-6" data-line-number="6">rocplot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dt, <span class="kw">aes</span>(<span class="dt">m =</span> pred, <span class="dt">d =</span> gt))<span class="op">+</span><span class="st"> </span><span class="kw">geom_roc</span>(<span class="dt">n.cuts=</span><span class="dv">20</span>,<span class="dt">labels=</span><span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb23-7" data-line-number="7">rocplot <span class="op">+</span><span class="st"> </span><span class="kw">style_roc</span>(<span class="dt">theme =</span> theme_grey) <span class="op">+</span><span class="st"> </span><span class="kw">geom_rocci</span>(<span class="dt">fill=</span><span class="st">&quot;pink&quot;</span>) </a></code></pre></div>
 </div>
 </div>
-<div id="itc" class="section level2 unnumbered">
-<h2>Insect Tuboid Classifer</h2>
-<div id="inference-2" class="section level3 unnumbered">
-<h3>Inference</h3>
+<div id="itc" class="section level2 unnumbered hasAnchor">
+<h2>Insect Tuboid Classifier<a href="ml.html#itc" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The Insect Tuboid Classifier (ITC) is the last step of the analysis.
+Its goal is to infer taxonomy from tuboids (several shot of an insect).
+It is an adapted Resnet architecture, that takes multiple images as input, average them on the feature space, and outputs one prediction.
+This algorithm also uses the initial pixel-size of the insect, which is contained in the tuboid data.
+As opposed the other two generalist algorithms, the ITC will need to be retrained for specific contexts (location, season, …).
+Therefore, we will describe how to perform inference after we explain the training process.</p>
+<div id="training-3" class="section level3 unnumbered hasAnchor">
+<h3>Training<a href="ml.html#training-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="ground-truth-data" class="section level4 unnumbered hasAnchor">
+<h4>Ground-truth data<a href="ml.html#ground-truth-data" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The previous algorithm (SIM) generated “tuboids”, each of which corresponds to a unique insect. These are uniquely identified directories.
+The goal of the annotation is to associate a taxonomy to a set of reference tuboids.
+In order to facilitate annotation of many tuboid, we have multi-user made web tool.
+This tool is available as a docker package.</p>
 </div>
-<div id="training-2" class="section level3 unnumbered">
-<h3>Training</h3>
 </div>
-<div id="validation-2" class="section level3 unnumbered">
-<h3>Validation</h3>
+<div id="validation-2" class="section level3 unnumbered hasAnchor">
+<h3>Validation<a href="ml.html#validation-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="inference-2" class="section level3 unnumbered hasAnchor">
+<h3>Inference<a href="ml.html#inference-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 
 </div>
 </div>
@@ -356,7 +557,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           </div>
         </div>
       </div>
-<a href="todos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="web-server.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="outreach.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

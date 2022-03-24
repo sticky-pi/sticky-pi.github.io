@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Hardware | Sticky Pi, a high-frequency smart insect trap to study daily activity in the field</title>
   <meta name="description" content="This is the documentation for the Sticky Pi project, a system to study insect activity in the field." />
-  <meta name="generator" content="bookdown 0.24.7 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.25.3 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Hardware | Sticky Pi, a high-frequency smart insect trap to study daily activity in the field" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is the documentation for the Sticky Pi project, a system to study insect activity in the field." />
   <meta name="github-repo" content="sticky-pi/sticky-pi.github.io" />
@@ -24,7 +23,7 @@
 <meta name="author" content="Quentin Geissmann" />
 
 
-<meta name="date" content="2022-01-27" />
+<meta name="date" content="2022-03-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,8 +49,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-188039384-1"></script>
 <script>
@@ -69,41 +69,68 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -123,76 +150,76 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="./"><img width="264" height="88" src="assets/logo/sticky_logo-text-doc.png"</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
-<li class="chapter" data-level="" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i>Platform Overview</a></li>
-<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html"><i class="fa fa-check"></i>Hardware</a><ul>
-<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#device"><i class="fa fa-check"></i>Device</a><ul>
-<li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#overview"><i class="fa fa-check"></i>Overview</a></li>
-<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#assembly"><i class="fa fa-check"></i>Assembly</a></li>
-<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#qc-and-troubleshooting"><i class="fa fa-check"></i>QC and troubleshooting</a></li>
+<li><a href="index.html#introduction">Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="overview.html#overview">Platform Overview<a href="overview.html#overview" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="hardware.html#hardware">Hardware<a href="hardware.html#hardware" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li><a href="hardware.html#device">Device<a href="hardware.html#device" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li><a href="hardware.html#overview-1">Overview<a href="hardware.html#overview-1" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="hardware.html#assembly">Assembly<a href="hardware.html#assembly" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="hardware.html#qc-and-troubleshooting">QC and troubleshooting<a href="hardware.html#qc-and-troubleshooting" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#data-harvester"><i class="fa fa-check"></i>Data harvester</a><ul>
-<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#rapsberry-pi"><i class="fa fa-check"></i>Rapsberry Pi</a></li>
-<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#router"><i class="fa fa-check"></i>Router</a></li>
-<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#assembly-1"><i class="fa fa-check"></i>Assembly</a></li>
-<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#qc-and-troubleshooting-1"><i class="fa fa-check"></i>QC and troubleshooting</a></li>
+<li><a href="hardware.html#data-harvester">Data harvester<a href="hardware.html#data-harvester" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li><a href="hardware.html#rapsberry-pi">Rapsberry Pi<a href="hardware.html#rapsberry-pi" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="hardware.html#router">Router<a href="hardware.html#router" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="hardware.html#assembly-1">Assembly<a href="hardware.html#assembly-1" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="hardware.html#qc-and-troubleshooting-1">QC and troubleshooting<a href="hardware.html#qc-and-troubleshooting-1" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
 </ul></li>
-<li class="chapter" data-level="0.1" data-path="hardware.html"><a href="hardware.html#using-sticky-pis"><i class="fa fa-check"></i><b>0.1</b> Using Sticky Pis</a></li>
+<li><a href="hardware.html#using-sticky-pis">Using Sticky Pis<a href="hardware.html#using-sticky-pis" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html"><i class="fa fa-check"></i>Web Server</a><ul>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#general-description"><i class="fa fa-check"></i>General description</a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#deployment"><i class="fa fa-check"></i>Deployment</a><ul>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#github-repository"><i class="fa fa-check"></i>Github repository</a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#hosting"><i class="fa fa-check"></i>Hosting</a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#security"><i class="fa fa-check"></i>Security</a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#configuration-and-important-files"><i class="fa fa-check"></i>Configuration and important files</a></li>
-<li><a href="web-server.html#env-file"><code>.env</code> file</a></li>
-<li><a href="web-server.html#secret.env-file"><code>.secret.env</code> file</a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#alternative-local-s3-server"><i class="fa fa-check"></i>Alternative local S3 server</a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#deploy-script"><i class="fa fa-check"></i>Deploy script</a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#check-the-api"><i class="fa fa-check"></i>Check the API</a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#create-users"><i class="fa fa-check"></i>Create users</a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#backups"><i class="fa fa-check"></i>Backups</a></li>
+<li><a href="web-server.html#web-server">Web Server<a href="web-server.html#web-server" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li><a href="web-server.html#general-description">General description<a href="web-server.html#general-description" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="web-server.html#deployment">Deployment<a href="web-server.html#deployment" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li><a href="web-server.html#github-repository">Github repository<a href="web-server.html#github-repository" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="web-server.html#hosting">Hosting<a href="web-server.html#hosting" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="web-server.html#security">Security<a href="web-server.html#security" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="web-server.html#configuration-and-important-files">Configuration and important files<a href="web-server.html#configuration-and-important-files" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="web-server.html#env-file"><code>.env</code> file<a href="web-server.html#env-file" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="web-server.html#secret.env-file"><code>.secret.env</code> file<a href="web-server.html#secret.env-file" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="web-server.html#alternative-local-s3-server">Alternative local S3 server<a href="web-server.html#alternative-local-s3-server" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="web-server.html#deploy-script">Deploy script<a href="web-server.html#deploy-script" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="web-server.html#check-the-api">Check the API<a href="web-server.html#check-the-api" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="web-server.html#create-users">Create users<a href="web-server.html#create-users" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="web-server.html#backups">Backups<a href="web-server.html#backups" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#additional-information"><i class="fa fa-check"></i>Additional information</a><ul>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#database"><i class="fa fa-check"></i>Database</a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#nginx"><i class="fa fa-check"></i>Nginx</a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#api"><i class="fa fa-check"></i>API</a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#universal-insect-detector"><i class="fa fa-check"></i>Universal Insect Detector</a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#webapp"><i class="fa fa-check"></i>Webapp</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="1" data-path="todos.html"><a href="todos.html"><i class="fa fa-check"></i><b>1</b> TODOS:</a></li>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html"><i class="fa fa-check"></i>Machine Learning</a><ul>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#general-description-1"><i class="fa fa-check"></i>General description</a></li>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#prerequisites"><i class="fa fa-check"></i>General Prerequisites</a><ul>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#installation"><i class="fa fa-check"></i>Installation</a></li>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#project-organisation"><i class="fa fa-check"></i>Project organisation</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#uid"><i class="fa fa-check"></i>Universal Insect Detector</a><ul>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#inference"><i class="fa fa-check"></i>Inference</a></li>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#training"><i class="fa fa-check"></i>Training</a></li>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#validation"><i class="fa fa-check"></i>Validation</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#sim"><i class="fa fa-check"></i>Siamese insect Matcher</a><ul>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#inference-1"><i class="fa fa-check"></i>Inference</a></li>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#training-1"><i class="fa fa-check"></i>Training</a></li>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#validation-1"><i class="fa fa-check"></i>Validation</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#itc"><i class="fa fa-check"></i>Insect Tuboid Classifer</a><ul>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#inference-2"><i class="fa fa-check"></i>Inference</a></li>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#training-2"><i class="fa fa-check"></i>Training</a></li>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#validation-2"><i class="fa fa-check"></i>Validation</a></li>
+<li><a href="web-server.html#additional-information">Additional information<a href="web-server.html#additional-information" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li><a href="web-server.html#database">Database<a href="web-server.html#database" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="web-server.html#nginx">Nginx<a href="web-server.html#nginx" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="web-server.html#api">API<a href="web-server.html#api" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="web-server.html#universal-insect-detector">Universal Insect Detector<a href="web-server.html#universal-insect-detector" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="web-server.html#webapp">Webapp<a href="web-server.html#webapp" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="outreach.html"><a href="outreach.html"><i class="fa fa-check"></i>Outreach</a><ul>
-<li class="chapter" data-level="" data-path="outreach.html"><a href="outreach.html#june-august-2021"><i class="fa fa-check"></i>June-August 2021</a></li>
+<li><a href="ml.html#ml">Machine Learning<a href="ml.html#ml" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li><a href="ml.html#general-description-1">General description<a href="ml.html#general-description-1" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="ml.html#prerequisites">General Prerequisites<a href="ml.html#prerequisites" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li><a href="ml.html#installation">Installation<a href="ml.html#installation" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="ml.html#project-organisation">Project organisation<a href="ml.html#project-organisation" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="community.html"><a href="community.html"><i class="fa fa-check"></i>Issues and community</a><ul>
-<li class="chapter" data-level="" data-path="community.html"><a href="community.html#citation"><i class="fa fa-check"></i>Citation</a></li>
-<li class="chapter" data-level="" data-path="community.html"><a href="community.html#having-troubles"><i class="fa fa-check"></i>Having troubles</a></li>
-<li class="chapter" data-level="" data-path="community.html"><a href="community.html#contributing"><i class="fa fa-check"></i>Contributing</a></li>
-<li class="chapter" data-level="" data-path="community.html"><a href="community.html#contact"><i class="fa fa-check"></i>Contact</a></li>
+<li><a href="ml.html#uid">Universal Insect Detector<a href="ml.html#uid" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li><a href="ml.html#inference">Inference<a href="ml.html#inference" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="ml.html#training">Training<a href="ml.html#training" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="ml.html#validation">Validation<a href="ml.html#validation" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+</ul></li>
+<li><a href="ml.html#sim">Siamese Insect Matcher<a href="ml.html#sim" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li><a href="ml.html#inference-1">Inference<a href="ml.html#inference-1" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="ml.html#training-2">Training<a href="ml.html#training-2" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="ml.html#validation-1">Validation<a href="ml.html#validation-1" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+</ul></li>
+<li><a href="ml.html#itc">Insect Tuboid Classifier<a href="ml.html#itc" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li><a href="ml.html#training-3">Training<a href="ml.html#training-3" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="ml.html#validation-2">Validation<a href="ml.html#validation-2" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="ml.html#inference-2">Inference<a href="ml.html#inference-2" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+</ul></li>
+</ul></li>
+<li><a href="outreach.html#outreach">Outreach<a href="outreach.html#outreach" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li><a href="outreach.html#ubc-campus-living-lab">UBC Campus Living Lab<a href="outreach.html#ubc-campus-living-lab" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="outreach.html#june-august-2021">June-August 2021<a href="outreach.html#june-august-2021" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+</ul></li>
+<li><a href="community.html#community">Issues and community<a href="community.html#community" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li><a href="community.html#citation">Citation<a href="community.html#citation" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="community.html#having-troubles">Having troubles<a href="community.html#having-troubles" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="community.html#contributing">Contributing<a href="community.html#contributing" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li><a href="community.html#contact">Contact<a href="community.html#contact" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
 </ul></li>
 <li class="divider"></li>
 <li>
@@ -217,35 +244,41 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="hardware" class="section level1 unnumbered">
-<h1>Hardware</h1>
-<p>This page describes how to build the two main components of the hardware: the <em>Sticky Pi Device</em> and the <em>Data Harvester</em>. Briefly, multiple Sticky Pis are deployed in the field. Each device stores its images on its own SD card. On a regular basis (<em>e.g.</em> weekly), experimenters use a data harvester to retrieve the data from multiple devices. Silently, the data harvester also syncs the location and time of the devices it communicates with. One Data Harvester may be used to maintain multiple traps. Multiple Data Harvesters can exist in the same platform (<em>e.g.</em> five experimenters, one harvester per experimenter, ten devices per experimenter).</p>
-<p>This section involve familiarity with 3D printing, electronics, DIY, ... We are working on streamlining the assembly process towards a more `off-the-shelf tool', but are generally happy to collaborate and help building devices -- do not hesitate to <a href="/community#contact">contact us</a>.</p>
-<div id="device" class="section level2 unnumbered">
-<h2>Device</h2>
-<div id="overview" class="section level3 unnumbered">
-<h3>Overview</h3>
+<div id="hardware" class="section level1 unnumbered hasAnchor">
+<h1>Hardware<a href="hardware.html#hardware" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This page describes how to build the two main components of the hardware:
+the <em>Sticky Pi Device</em> and the <em>Data Harvester</em>.
+Briefly, multiple Sticky Pis are deployed in the field. Each device stores its images on its own SD card.
+On a regular basis (<em>e.g.</em> weekly), experimenters use a data harvester to retrieve the data from multiple devices.
+Silently, the data harvester also syncs the location and time of the devices it communicates with.
+One Data Harvester may be used to maintain multiple traps. Multiple Data Harvesters can exist in the same platform (<em>e.g.</em> five experimenters, one harvester per experimenter, ten devices per experimenter).</p>
+<p>This section involve familiarity with 3D printing, electronics, DIY, …
+We are working on streamlining the assembly process towards a more `off-the-shelf tool’, but are generally happy to collaborate and help building devices – do not hesitate to <a href="/community#contact">contact us</a>.</p>
+<div id="device" class="section level2 unnumbered hasAnchor">
+<h2>Device<a href="hardware.html#device" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="overview-1" class="section level3 unnumbered hasAnchor">
+<h3>Overview<a href="hardware.html#overview-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <!-- ![Sticky Pi Device](assets/device_overview.png) -->
 <div class="figure"><span style="display:block;" id="fig:device-overview"></span>
 <img src="assets/device_overview.png" alt="Sticky Pi Device"  />
 <p class="caption">
-Figure 0.1: Sticky Pi Device
+Figure 1: Sticky Pi Device
 </p>
 </div>
-<p>As you can see in Figure <a href="hardware.html#fig:device-overview">0.1</a>, the device has two main parts, which are connected with a ribbon cable: the <em>camera box</em> and the <em>light box</em>.</p>
+<p>As you can see in Figure <a href="hardware.html#fig:device-overview">1</a>, the device has two main parts, which are connected with a ribbon cable: the <em>camera box</em> and the <em>light box</em>.</p>
 <p>A complete description of the parts, price and reference is available in our <a href="https://github.com/sticky-pi/sticky-pi-device/blob/main/hardware/BOM.csv">Bill of Material</a></p>
 <p>Note that all 3D-printed parts are available on <a href="https://cad.onshape.com/documents/73922dc6e3c6d7006b309c14/w/7e4fb88a2e93b6adba33fd5a/e/708b4c330014fa7fbda6bdeb">our onshape repository</a> where they can be exported in a variety of formats.</p>
 <p>You can also take a look at <a href="assets/spi_schematic.svg">our schematic</a>.</p>
 </div>
-<div id="assembly" class="section level3 unnumbered">
-<h3>Assembly</h3>
+<div id="assembly" class="section level3 unnumbered hasAnchor">
+<h3>Assembly<a href="hardware.html#assembly" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The camera Box and light box can be assembled separately and swapped between devices (<em>i.e.</em> the light box acts as a plug and play module for the camera box).</p>
-<div id="camera-box" class="section level4 unnumbered">
-<h4>Camera box</h4>
+<div id="camera-box" class="section level4 unnumbered hasAnchor">
+<h4>Camera box<a href="hardware.html#camera-box" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div class="figure"><span style="display:block;" id="fig:camera-box-breakdown"></span>
 <img src="assets/camera_box_breakdown.png" alt="Needed parts for the camera box"  />
 <p class="caption">
-Figure 0.2: Needed parts for the camera box
+Figure 2: Needed parts for the camera box
 </p>
 </div>
 <ol style="list-style-type: decimal">
@@ -255,48 +288,49 @@ Figure 0.2: Needed parts for the camera box
 <strong>Danger Zone!</strong> Ensure you know what you are doing here. In particular, give the path to the correct drive otherwise you may wipe out the wrong drive, and <em>lose data</em>. On Unix-like systems, use <code>lsblk</code> to see all drives.
 </p>
 </div>
-<p>To burn an SD card use <a href="https://github.com/sticky-pi/sticky-pi-device/blob/main/software/burn_image.sh">our script</a> like <code>sh burn_image.sh -i &lt;PATH_TO_LOCAL_IMAGE&gt; -d &lt;DEVICE&gt;</code>, where <code>&lt;PATH_TO_LOCAL_IMAGE&gt;</code> is the OS image you just downloaded, and <code>&lt;DEVICE&gt;</code> the SD card location <code>e.g. /dev/mmcblk0</code> -- you need <a href="https://github.com/balena-io/etcher-cli"><code>etcher-cli</code></a>.</p></li>
+<p>To burn an SD card use <a href="https://github.com/sticky-pi/sticky-pi-device/blob/main/software/burn_image.sh">our script</a> like <code>sh burn_image.sh -i &lt;PATH_TO_LOCAL_IMAGE&gt; -d &lt;DEVICE&gt;</code>, where <code>&lt;PATH_TO_LOCAL_IMAGE&gt;</code> is the OS image you just downloaded, and <code>&lt;DEVICE&gt;</code> the SD card location <code>e.g. /dev/mmcblk0</code> – you need <a href="https://github.com/balena-io/etcher-cli"><code>etcher-cli</code></a>.</p></li>
 <li>Prepare the Raspberry Pi.
 <div class="figure"><span style="display:block;" id="fig:pi-modifs"></span>
 <img src="assets/pi_modifs.png" alt="Modifications to the Raspberry Pi Zero"  />
 <p class="caption">
-Figure 0.3: Modifications to the Raspberry Pi Zero
+Figure 3: Modifications to the Raspberry Pi Zero
 </p>
 </div>
 <ol style="list-style-type: decimal">
-<li>Solder 2x5 headers for the Real Time Clock on pins 1-10. Mount the clock (Figure <a href="hardware.html#fig:pi-modifs">0.3</a>A).</li>
-<li>Solder directly the IDC right angle connector onto the board on pins 35-40 (Figure <a href="hardware.html#fig:pi-modifs">0.3</a>A).</li>
-<li>On the back of the Raspberry pi board, use a jumper cable to solder GPIO pin 40 to +5V (this provides power to the Pi, Figure <a href="hardware.html#fig:pi-modifs">0.3</a>B)
+<li>Solder 2x5 headers for the Real Time Clock on pins 1-10. Mount the clock (Figure <a href="hardware.html#fig:pi-modifs">3</a>A).</li>
+<li>Solder directly the IDC right angle connector onto the board on pins 35-40 (Figure <a href="hardware.html#fig:pi-modifs">3</a>A).</li>
+<li>On the back of the Raspberry pi board, use a jumper cable to solder GPIO pin 40 to +5V (this provides power to the Pi, Figure <a href="hardware.html#fig:pi-modifs">3</a>B)
 <div class="figure"><span style="display:block;" id="fig:pi-sledge"></span>
 <img src="assets/pi_sledge.png" alt="Mounting the Raspberry Pi on the sledge"  />
 <p class="caption">
-Figure 0.4: Mounting the Raspberry Pi on the sledge
+Figure 4: Mounting the Raspberry Pi on the sledge
 </p>
 </div></li>
-<li>Use four screws to mount the pi on the &quot;Pi sledge&quot;. Plug the ribbon cable for the camera (Figure <a href="hardware.html#fig:pi-sledge">0.4</a>A).</li>
-<li>Fold the ribbon cable around the sledge as in the picture, and mount the camera with another four screws (Figure <a href="hardware.html#fig:pi-sledge">0.4</a>B-C)</li>
+<li>Use four screws to mount the pi on the “Pi sledge”. Plug the ribbon cable for the camera (Figure <a href="hardware.html#fig:pi-sledge">4</a>A).</li>
+<li>Fold the ribbon cable around the sledge as in the picture, and mount the camera with another four screws (Figure <a href="hardware.html#fig:pi-sledge">4</a>B-C)</li>
 <li>Insert the OS SD card (burnt as described above)</li>
-<li>Focus the camera. For those who want to assemble multiple devices, we recommend a &quot;camera focusing station&quot; that can adapt a Pi sledge and has a display, keyboard... This way, one can use <a href="https://www.raspberrypi.org/documentation/usage/camera/raspicam/raspivid.md">raspivid</a> in preview mode to check focus and alignment.</li>
+<li>Focus the camera. For those who want to assemble multiple devices, we recommend a “camera focusing station” that can adapt a Pi sledge and has a display, keyboard… This way, one can use <a href="https://www.raspberrypi.org/documentation/usage/camera/raspicam/raspivid.md">raspivid</a> in preview mode to check focus and alignment.</li>
 <li>Initialize your device (you can do that at the same time as focusing), which you can do with the <a href="hardware.html#data-harvester">Data harvester</a>:
 <ol style="list-style-type: decimal">
 <li>Power the data harvester, and ensure the time is set (not it is in GMT/UTC).</li>
-<li>Plug it to the pi's USB port.</li>
+<li>Plug it to the pi’s USB port.</li>
 <li>Boot/power the pi.</li>
 <li>The data harvester should then display information, including <strong>the unique ID of the pi</strong>. It will be an eight-digit hexadecimal number (e.g. <code>abcd0123</code>). Make a couple of physical label with this tag and stick them to the box (and write them on the sledge).</li>
 <li>As part of the communication process, the <strong>clock of the raspberry pi will be updated</strong> (indeed the factory RTC is unset)</li>
 </ol></li>
-<li>Thread the 1x6 ribbon cable (it should be at least 50cm long) through the &quot;camera box&quot; <strong>before</strong> clamping the 2x3 IDC connector on each side. <strong>You want have the two connectors in the same orientation</strong> (i.e. a wire connect pin 1 of the left connector to pin 1 o the right connector -- and <em>not</em> pin 6): <img src="" alt="IDC" /></li>
+<li>Thread the 1x6 ribbon cable (it should be at least 50cm long) through the “camera box” <strong>before</strong> clamping the 2x3 IDC connector on each side. <strong>You want have the two connectors in the same orientation</strong> (i.e. a wire connect pin 1 of the left connector to pin 1 o the right connector – and <em>not</em> pin 6):
+<img src="" alt="IDC" /></li>
 <li>Plug the ITC connector on the Pi GPIO, and gently slide the Pi sledge inside the camera box, while pulling the slack cable from the outside. Note, at the stage, you can also add some desiccant inside the box to reduce fogging.</li>
-<li>Assemble the &quot;camera box lid&quot;:
+<li>Assemble the “camera box lid”:
 <div class="figure"><span style="display:block;" id="fig:glass-window"></span>
 <img src="assets/glass_window.png" alt="Assembly of the camera box lid"  />
 <p class="caption">
-Figure 0.5: Assembly of the camera box lid
+Figure 5: Assembly of the camera box lid
 </p>
 </div>
 <ol style="list-style-type: decimal">
-<li>Cut a glass microscope slide into a 25x25mm square with a glass cutter (e.g. with a <a href="https://cad.onshape.com/documents/73922dc6e3c6d7006b309c14/w/7e4fb88a2e93b6adba33fd5a/e/3f9dffd97a216a2d1bbd77ce">3d printed gauge and snaping tool</a> and tool it takes just a few seconds, Figure <a href="hardware.html#fig:glass-window">0.5</a>A-C).</li>
-<li>Place the glass window on the slot, use masking tape or duct tape to cover the central area and the back. Cast a layer of epoxy resin, and let it set for a day this will embed the glass in the lid. Note that it makes sense to make multiple lids at the same time and avoid wasting time and epoxy (Figure <a href="hardware.html#fig:glass-window">0.5</a>D-E).</li>
+<li>Cut a glass microscope slide into a 25x25mm square with a glass cutter (e.g. with a <a href="https://cad.onshape.com/documents/73922dc6e3c6d7006b309c14/w/7e4fb88a2e93b6adba33fd5a/e/3f9dffd97a216a2d1bbd77ce">3d printed gauge and snaping tool</a> and tool it takes just a few seconds, Figure <a href="hardware.html#fig:glass-window">5</a>A-C).</li>
+<li>Place the glass window on the slot, use masking tape or duct tape to cover the central area and the back. Cast a layer of epoxy resin, and let it set for a day this will embed the glass in the lid. Note that it makes sense to make multiple lids at the same time and avoid wasting time and epoxy (Figure <a href="hardware.html#fig:glass-window">5</a>D-E).</li>
 <li>Clean the lid. Optionally coat it with water repellent such as <a href="https://www.rainx.com/">Rain-X</a></li>
 </ol></li>
 <li>Add calk at the junction between the lid and the box, screw the lid on the box. Also use calk to seal the 6x1 ribbon cable outlet.</li>
@@ -304,8 +338,8 @@ Figure 0.5: Assembly of the camera box lid
 </ol></li>
 </ol>
 </div>
-<div id="light-box" class="section level4 unnumbered">
-<h4>Light box</h4>
+<div id="light-box" class="section level4 unnumbered hasAnchor">
+<h4>Light box<a href="hardware.html#light-box" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div class="figure">
 <img src="assets/light_box_breakdown.png" alt="Needed parts for the light box" />
 <p class="caption">Needed parts for the light box</p>
@@ -315,52 +349,54 @@ Figure 0.5: Assembly of the camera box lid
 <div class="figure"><span style="display:block;" id="fig:custom-board"></span>
 <img src="assets/custom_board.png" alt="Assembly of the custom PCB"  />
 <p class="caption">
-Figure 0.6: Assembly of the custom PCB
+Figure 6: Assembly of the custom PCB
 </p>
 </div>
 <ol style="list-style-type: decimal">
-<li>Manufacture/order the PCB from the <a href="https://github.com/sticky-pi/sticky-pi-device/tree/main/hardware/main_gerber">gerber files</a> (Figure <a href="hardware.html#fig:custom-board">0.6</a>A)</li>
-<li>Prepare the timer (scratch the board to disable the built-in potentiometer) -- (red in Figure <a href="hardware.html#fig:custom-board">0.6</a>B).</li>
-<li>Solder all parts to the board. This should be fairly self explanatory from the labels (Figure <a href="hardware.html#fig:custom-board">0.6</a>C).</li>
-<li>Make a custom connection to our push button (red in Figure <a href="hardware.html#fig:custom-board">0.6</a>C). This is arguably a bit of a hack, but that allows us to mimic the built-in TLP5110 push button, with our own.</li>
+<li>Manufacture/order the PCB from the <a href="https://github.com/sticky-pi/sticky-pi-device/tree/main/hardware/main_gerber">gerber files</a> (Figure <a href="hardware.html#fig:custom-board">6</a>A)</li>
+<li>Prepare the timer (scratch the board to disable the built-in potentiometer) – (red in Figure <a href="hardware.html#fig:custom-board">6</a>B).</li>
+<li>Solder all parts to the board. This should be fairly self explanatory from the labels (Figure <a href="hardware.html#fig:custom-board">6</a>C).</li>
+<li>Make a custom connection to our push button (red in Figure <a href="hardware.html#fig:custom-board">6</a>C). This is arguably a bit of a hack, but that allows us to mimic the built-in TLP5110 push button, with our own.</li>
 <li>Thread the push button (before soldering it, not to twist the cables)</li>
 <li>Screw the PCB to the bottom of the light box (be careful not to split the material, do not hesitate to use shorter screw).
 <div class="figure"><span style="display:block;" id="fig:light-box"></span>
 <img src="assets/light_box.png" alt="Assembly of the custom PCB"  />
 <p class="caption">
-Figure 0.7: Assembly of the custom PCB
+Figure 7: Assembly of the custom PCB
 </p>
 </div></li>
-<li>Insert the battery connector (Figure <a href="hardware.html#fig:light-box">0.7</a>A)</li>
-<li>Screw the Humidity and temperature sensor to the outside the box (Figure <a href="hardware.html#fig:light-box">0.7</a>A-B).</li>
+<li>Insert the battery connector (Figure <a href="hardware.html#fig:light-box">7</a>A)</li>
+<li>Screw the Humidity and temperature sensor to the outside the box (Figure <a href="hardware.html#fig:light-box">7</a>A-B).</li>
 <li>Glue the solar panel in the top slot</li>
 </ol></li>
 <li>Assemble the light diffuser:
 <div class="figure"><span style="display:block;" id="fig:light-diffuser"></span>
 <img src="assets/light_diffuser.png" alt="Assembly of the custom PCB"  />
 <p class="caption">
-Figure 0.8: Assembly of the custom PCB
+Figure 8: Assembly of the custom PCB
 </p>
 </div>
 <ol style="list-style-type: decimal">
-<li>Cut six 5V, white, led light strips (Figure <a href="hardware.html#fig:light-diffuser">0.8</a>A).</li>
+<li>Cut six 5V, white, led light strips (Figure <a href="hardware.html#fig:light-diffuser">8</a>A).</li>
 <li>On one side, cut away the + pad, and the - on the other side.</li>
 <li>Align all the + pads on the top, and solder them together, in parallel, with a transverse wire</li>
-<li>Solder the 1x2 header to be connected to our PCB as in the picture (the male pins will be protruding downward). Use superglue to glue the header to the diffuser (Figure <a href="hardware.html#fig:light-diffuser">0.8</a>B).</li>
+<li>Solder the 1x2 header to be connected to our PCB as in the picture (the male pins will be protruding downward). Use superglue to glue the header to the diffuser (Figure <a href="hardware.html#fig:light-diffuser">8</a>B).</li>
 </ol></li>
 <li>Test setup: Connect a camera box, using the 1x6 cable. Plug the light diffuser (or just a placeholder 5v LED light for now). Plug a battery. You should see the LED of the timer glowing (if not, press the push button to force reset the timer). After less than a minute, the The flash should be triggered, and the timer should shut down. Pressing the push button should restart the whole process. If left untouched, this should happen every 20min, approximately.</li>
 </ol>
 </div>
 </div>
-<div id="qc-and-troubleshooting" class="section level3 unnumbered">
-<h3>QC and troubleshooting</h3>
-<p>Controlling the assembly before deployment in the field will save you a lot of trouble. A few suggestions:</p>
+<div id="qc-and-troubleshooting" class="section level3 unnumbered hasAnchor">
+<h3>QC and troubleshooting<a href="hardware.html#qc-and-troubleshooting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Controlling the assembly before deployment in the field will save you a lot of trouble.
+A few suggestions:</p>
 <ol style="list-style-type: decimal">
 <li>Plug all devices, and press the push button to initiate the image acquisition.</li>
 <li>Ensure all devices flash. <strong>The light should blink twice</strong>.
 <ul>
 <li>If the light does not blink. Check power/timer/light connection</li>
-<li>If the light blinks more than twice, the device is reporting an error. Typically, the camera cannot be found.</li>
+<li>If the light blinks more than twice, the device is reporting an error.
+Typically, the camera cannot be found.</li>
 </ul></li>
 <li>Plug the Data Harvester and boot a device you want to test. Data transfer should be initiated.
 <ul>
@@ -373,62 +409,72 @@ Figure 0.8: Assembly of the custom PCB
 <li>Each directory contains all the pictures for this device and <strong>a log file</strong></li>
 <li>Open the log file to check no errors were reported</li>
 <li>The name of each image contains the time in UTC. Ensure the time is correct.</li>
-<li>Open the images to check exposure, focus,...</li>
-<li>The environmental data (temperature, relative humidity, GPS coordinates and other meta variables) are encoded in the exif metadata inside the &quot;Make&quot; field (Sometime, though rarely, the temperature/humidity sensor fails, so you may have missing values).</li>
+<li>Open the images to check exposure, focus,…</li>
+<li>The environmental data (temperature, relative humidity, GPS coordinates and other meta variables) are encoded in the exif metadata inside the “Make” field (Sometime, though rarely, the temperature/humidity sensor fails, so you may have missing values).</li>
 </ul></li>
 </ol>
 </div>
 </div>
-<div id="data-harvester" class="section level2 unnumbered">
-<h2>Data harvester</h2>
-<p>The data harvester is a portable tool to retrieve the data from the Sticky Pis. It is a (micro) computer running custom server that are available to the devices through a wifi network (hotspot).</p>
+<div id="data-harvester" class="section level2 unnumbered hasAnchor">
+<h2>Data harvester<a href="hardware.html#data-harvester" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The data harvester is a portable tool to retrieve the data from the Sticky Pis.
+It is a (micro) computer running custom server that are available to the devices through a wifi network (hotspot).</p>
 <div class="figure"><span style="display:block;" id="fig:data-harvester"></span>
 <img src="assets/harvester_schematics.png" alt="Sticky Pi Harvester schematic"  />
 <p class="caption">
-Figure 0.9: Sticky Pi Harvester schematic
+Figure 9: Sticky Pi Harvester schematic
 </p>
 </div>
-<p>Figure <a href="hardware.html#fig:data-harvester">0.9</a> show how the different hardware parts interact. The parts we used are described in the <a href="https://github.com/sticky-pi/sticky-pi-data-harvester/blob/main/hardware/BOM.csv">Bill of Material</a>.</p>
-<p>Role of each part: * Raspberry Pi 4 -- the core computer * RTC -- Real Time Clock: persistent time. * Memory stick -- external drive where all the images will be saved. * Mini Router -- connect the harvester with the Sticky Pis during data transfer. * Push Button -- to turn the Raspberyy Pi off * GPS -- optional, get geolocation * Display --optional, show the data harvseter webpage (can be accessed with other devices on the network at <code>192.168.8.2</code>)</p>
-<div id="rapsberry-pi" class="section level3 unnumbered">
-<h3>Rapsberry Pi</h3>
+<p>Figure <a href="hardware.html#fig:data-harvester">9</a> show how the different hardware parts interact.
+The parts we used are described in the <a href="https://github.com/sticky-pi/sticky-pi-data-harvester/blob/main/hardware/BOM.csv">Bill of Material</a>.</p>
+<p>Role of each part:
+* Raspberry Pi 4 – the core computer
+* RTC – Real Time Clock: persistent time.
+* Memory stick – external drive where all the images will be saved.
+* Mini Router – connect the harvester with the Sticky Pis during data transfer.
+* Push Button – to turn the Raspberyy Pi off
+* GPS – optional, get geolocation
+* Display –optional, show the data harvseter webpage (can be accessed with other devices on the network at <code>192.168.8.2</code>)</p>
+<div id="rapsberry-pi" class="section level3 unnumbered hasAnchor">
+<h3>Rapsberry Pi<a href="hardware.html#rapsberry-pi" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol style="list-style-type: decimal">
 <li>Download our <a href="https://todo.com">our OS image</a> and burn it on an SD card</li>
 <li>Format the USB stick to make a single ext4 partition</li>
-<li><p>In the new partition you created, create a file named <code>.api-credentials.env</code> and fill it with:</p>
-<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="va">SPI_API_HOSTNAME=</span><span class="op">&lt;</span><span class="ex">the</span> hostname of the API server<span class="op">&gt;</span>
-<span class="va">SPI_API_USERNAME=</span><span class="op">&lt;</span><span class="ex">a</span> username for this data harvester<span class="op">&gt;</span>
-<span class="va">SPI_API_PASSWORD=</span><span class="op">&lt;</span><span class="ex">the</span> password for this data harvester<span class="op">&gt;</span></code></pre></div>
-<p>This will allow the data harvester to automatically upload the new images to your sever. This implies you have set up a server, and have created at least one user, which is described the <a href="/web-server">webserver section</a>.</p></li>
+<li>In the new partition you created, create a file named <code>.api-credentials.env</code> and fill it with:</li>
 </ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="va">SPI_API_HOSTNAME=</span><span class="op">&lt;</span><span class="ex">the</span> hostname of the API server<span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="va">SPI_API_USERNAME=</span><span class="op">&lt;</span><span class="ex">a</span> username for this data harvester<span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="va">SPI_API_PASSWORD=</span><span class="op">&lt;</span><span class="ex">the</span> password for this data harvester<span class="op">&gt;</span></a></code></pre></div>
+<p>This will allow the data harvester to automatically upload the new images to your sever. This implies you have set up a server, and have created at least one user, which is described the <a href="/web-server">webserver section</a>.</p>
 </div>
-<div id="router" class="section level3 unnumbered">
-<h3>Router</h3>
+<div id="router" class="section level3 unnumbered hasAnchor">
+<h3>Router<a href="hardware.html#router" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol style="list-style-type: decimal">
-<li>Set the name of the wifi network to <code>sticky-pi-net</code>, and the password to <code>sticky-pi</code> (this is to match the devices' <a href="todo">environment variables</a>).</li>
+<li>Set the name of the wifi network to <code>sticky-pi-net</code>, and the password to <code>sticky-pi</code> (this is to match the devices’ <a href="todo">environment variables</a>).</li>
 <li>Ensure the subnet is <code>192.168.8.</code> (the ip address of the router should then be <code>192.168.8.1</code>).</li>
 <li>Write down the MAC address of the Raspberry Pi ethernet port (you can do that by using the <code>ifconfig eth0</code> command, and spot a six-fields number looking like <code>aa:db:e1:00:01:23</code>).</li>
 <li>In the DNS menu reserve the IP address <code>192.168.8.2</code> to the mac address of the eth0 port you just retrieved</li>
 </ol>
 </div>
-<div id="assembly-1" class="section level3 unnumbered">
-<h3>Assembly</h3>
+<div id="assembly-1" class="section level3 unnumbered hasAnchor">
+<h3>Assembly<a href="hardware.html#assembly-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A simple way to make the device is to connect the parts according to the schematics, and arrange them in a junction box like:</p>
 <div class="figure"><span style="display:block;" id="fig:data-harvester-assembled"></span>
 <img src="assets/harvester.jpg" alt="Sticky Pi Harvester Assembled"  />
 <p class="caption">
-Figure 0.10: Sticky Pi Harvester Assembled
+Figure 10: Sticky Pi Harvester Assembled
 </p>
 </div>
 </div>
-<div id="qc-and-troubleshooting-1" class="section level3 unnumbered">
-<h3>QC and troubleshooting</h3>
+<div id="qc-and-troubleshooting-1" class="section level3 unnumbered hasAnchor">
+<h3>QC and troubleshooting<a href="hardware.html#qc-and-troubleshooting-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>You should be able to see a wifi network named <code>sticky-pi-net</code> and log on to is using the password <code>sticky-pi</code> using any device (phone, table, laptop). Then, when you connect to <a href="http://192.168.8.2" class="uri">http://192.168.8.2</a> a webpage should display the data harvester status.</p>
 </div>
 </div>
-<div id="using-sticky-pis" class="section level2">
-<h2><span class="header-section-number">0.1</span> Using Sticky Pis</h2>
-<p>Assuming you have a data harvester and at least one Sticky Pi. You can plug your Sticky Pi, which should begin to take pictures every 20 min. Pushing its button will force it to take a picture and go back to sleep it should take ~40s between when you press the button and when the device shouts the picture (you should see a white flash). If the device turns on and detect a Data Harvester, it will send all the new data automatically. The progress can be monitored on the Harvester webpage.</p>
+<div id="using-sticky-pis" class="section level2 unnumbered hasAnchor">
+<h2>Using Sticky Pis<a href="hardware.html#using-sticky-pis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Assuming you have a data harvester and at least one Sticky Pi. You can plug your Sticky Pi, which should begin to take pictures every 20 min. Pushing its button will force it to take a picture and go back to sleep it should take ~40s between when you press the button and when the device shouts the picture (you should see a white flash).
+If the device turns on and detect a Data Harvester, it will send all the new data automatically. The progress can be monitored on the Harvester webpage.</p>
 
 </div>
 </div>

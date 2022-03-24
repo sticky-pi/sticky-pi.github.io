@@ -10,6 +10,3 @@ fig:data-harvester
 fig:data-harvester-assembled
 fig:web-server
 fig:outreach-2021
-using-sticky-pis
-todos
-section
