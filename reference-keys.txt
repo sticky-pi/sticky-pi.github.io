@@ -10,3 +10,11 @@ fig:data-harvester
 fig:data-harvester-assembled
 fig:web-server
 fig:outreach-2021
+introduction
+overview
+hardware
+web-server
+ml
+sticky-py-ml
+outreach
+community
