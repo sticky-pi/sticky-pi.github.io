@@ -1,4 +1,4 @@
-# Web Server{#web-server -}
+# Web Server{#web-server}
 
 This page describes how to deploy and maintain the web server.
 As much as we try to streamline this process, deploying our web server on the cloud does require some familiarity with [Unix/Linux](https://en.wikipedia.org/wiki/Linux) systems, [Docker](https://www.docker.com/). We are open for collaboration and may be able to help you deploy your server, so do not hesitate to [contact us](/community#contact). 

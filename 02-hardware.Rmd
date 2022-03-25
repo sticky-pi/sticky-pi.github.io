@@ -1,4 +1,4 @@
-# Hardware{#hardware -}
+# Hardware{#hardware}
 
 This page describes how to build the two main components of the hardware:
 the *Sticky Pi Device* and the *Data Harvester*.

@@ -19,7 +19,7 @@ options("datatable.print.nrows" = 30)
 It describes the different parts of the projects, how to build, deploy and use the various resources.*
 
 
-# Introduction{-}
+# Introduction
 
 ![The principle behind Sticky Pis](assets/description_animation.gif){width=75%}
 

@@ -1,4 +1,4 @@
-book_filename: "sticky-pi.Rmd"
+book_filename: "sticky-pi"
 delete_merged_file: true
 language:
   ui:

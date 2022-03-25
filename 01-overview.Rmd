@@ -1,4 +1,4 @@
-# Platform Overview{#overview -}
+# Platform Overview{#overview}
 
 The Sticky Pi project contains several interconnected tools. 
 A [github organisation](https://github.com/sticky-pi) features the material (source code, data, CAD files, ...) for each individual tool.

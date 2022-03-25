@@ -1,4 +1,4 @@
-# Outreach {#outreach -}
+# Outreach {#outreach}
 
 Sticky Pis are built on top of community hardware such as [Arduino](https://www.arduino.cc/) and [Raspberry Pi](https://www.raspberrypi.org/) as well as open-source software such as [Python](https://www.python.org/). We share their educational spirit and consider it our work to raise awareness about insect ecology and discuss how new technologies can indeed intersect with the study of insects. 
 

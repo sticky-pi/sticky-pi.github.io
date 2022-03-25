@@ -1,4 +1,4 @@
-# Machine Learning{#ml -}
+# Machine Learning{#ml}
 
 <!--  TODOS: -->
 <!-- * merge git -->
@@ -11,7 +11,7 @@ This page describes how to annotate, train and use the machine learning model of
 This step *does* require some familiarity with scientific computing (e.g. Unix/Linux, [python](https://en.wikipedia.org/wiki/Python_(programming_language), ...).
 Here, we complement the descriptions of the algorithms provided in the [Sticky Pi manuscript](`r PUBLICATION_URL`) with a practical documentation on how to use and adapt them.
 We are open for collaboration regarding training, building and extending Machine Learning models, so do not hesitate to [contact us](/community#contact). 
-For simplicity, we describe the how to use the ML tools independently of the API (which is set to store and query images/annotations on a remote or a local machine). For production, with multiple concurrent devices, we recommend using the API.
+For simplicity, we describe the how to use the ML tools independently of the API (which is set to store and query images/annotations on a remote or a local machine). For production, with multiple concurrent Sticky Pi devices, we recommend using the API.
 
 
 ## General description{-}
@@ -52,7 +52,7 @@ pip3 install detectron2 -f \
 
 *Note, to make the most of [CNNs](https://en.wikipedia.org/wiki/Convolutional_neural_network) and PyTorch, you likely want to have hardware support (i.e. a GPU). Running models on a CPU is mostly for testing and development, and may be very slow (in particular for training).*
 
-#### Sticky-py-ml{-}
+#### `sticky-py-ml`{-}
 
 Once you have installed `detectron2` (along with PyTorch and PyTorch Vision), you can install our package and its dependencies.
 
@@ -64,7 +64,7 @@ pip install .
 
 
 ### Project organisation{-}
-In the Sticky Pi project, the resources for each of the three algorithms described above (i.e.  UID, SIM and ITC) are stored and organised in ab **"Machine learning (ML) bundle"**.
+In the Sticky Pi project, the resources for each of the three algorithms described above (i.e.  UID, SIM and ITC) are stored and organised in a **"Machine learning (ML) bundle"**.
 An ML bundle is a directory that contains everything needed to train, validate and use a tool.
 ML bundles all contain the subdirectories:
 
