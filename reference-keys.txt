@@ -15,6 +15,5 @@ overview
 hardware
 web-server
 ml
-sticky-py-ml
 outreach
 community
