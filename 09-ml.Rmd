@@ -21,7 +21,7 @@ Our ultimate goal it to tell *which*, and *when* insects were captured.
 We break down this task in three independent steps:
 
 1. [**Universal Insect Detector**](#uid) -- We perform an [instance segmentation](https://en.wikipedia.org/wiki/Image_segmentation#Groups_of_image_segmentation) on all images independently. This extracts insects (foreground) from the background. Importantly, at this stage, we do not yet classify insects.
-2. [**Siamese Insect Matcher**](#sim) -- Captured insect actually may move, degrade, become occluded... Therefore, in practice, classification and timing of capture from single images would be very inconsistent in time. Instead, we first track insects through time before classifying them. The function of the Siamese Insect Matcher is to track multiple insect instances through their respective timelapses.
+2. [**Siamese Insect Matcher**](#sim) -- Captured insect actually may move, degrade, become occluded... Therefore, in practice, classification and timing of capture from single images would be very inconsistent through time. Instead, we first track insects before classifying them. The function of the Siamese Insect Matcher is to track multiple insect instances through their respective timelapses.
 3. [**Insect Tuboid Classifier**](#itc) -- After tracking, each insect in the time series is represented by a variable number of standardized segmented shots as well as metadata (including size) -- which we call a "tuboid". The Insect Tuboid Classifier infers a taxonomy to each tuboid based on multiple images.
 
 
@@ -41,21 +41,20 @@ In your virtual environment, you want to manually install [detectron2](https://d
 This has to be done manually since it depends on your platform/hardware (e.g. GPU support).
 
 
-For instance, on a Linux machine *without* CUDA (so, no GPU support)
+For instance, on a Linux machine *without* CUDA (so, no GPU support), from the [pytorch website](https://pytorch.org/):
 
 ```sh
 # installing precompiled PyTorch and Torchvision (from at https://pytorch.org/)
-pip3 install torch==1.10.1+cpu torchvision==0.11.2+cpu torchaudio==0.10.1+cpu -f \
-    https://download.pytorch.org/whl/cpu/torch_stable.html
-# then installing detectron2
-pip3 install detectron2 -f \
-    https://dl.fbaipublicfiles.com/detectron2/wheels/cpu/torch1.10/index.html
+pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cpu
+# then building detectron2 from source
+# you could also use prebuilt versions
+pip3 install 'git+https://github.com/facebookresearch/detectron2.git'
 ```
 
 *Note, to make the most of [CNNs](https://en.wikipedia.org/wiki/Convolutional_neural_network) and PyTorch, you likely want to have hardware support (i.e. a GPU).
 Running models on a CPU is mostly for testing and development, and may be very slow (in particular for training).*
 
-#### sticky-p-ml{-}
+#### sticky-pi-ml{-}
 
 Once you have installed `detectron2` (along with PyTorch and PyTorch Vision), you can install our package and its dependencies.
 
@@ -67,7 +66,7 @@ pip install .
 
 
 ### Project organisation{-}
-In the Sticky Pi project, the resources for each of the three algorithms described above (i.e.  UID, SIM and ITC) are stored and organised in a **"Machine learning (ML) bundle"**.
+In the Sticky Pi project, the resources for each of the three algorithms described above (i.e.  UID, SIM and ITC) are stored and organised in a **"Machine Learning (ML) bundle"**.
 An ML bundle is a directory that contains everything needed to train, validate and use a tool.
 ML bundles all contain the subdirectories:
 
@@ -86,7 +85,7 @@ From within your virtual environment, you can use this tool (it should be in you
 We can start by downloading the whole ML Bundle from Zenodo (that can take a while as we are getting both the model and the data):
 
 ```sh
-wget https://zenodo.org/record/4680119/files/universal-insect-detector.zip
+wget https://zenodo.org/record/6382496/files/universal-insect-detector.zip
 unzip universal-insect-detector.zip
 # show what is inside this new directory
 ls universal-insect-detector
@@ -108,12 +107,14 @@ ls uid_tutorial
 
 Or just use the [download link](assets/uid_tutorial.zip)
 
+Then, we can use our custom script `standalone_uid.py` to "predict" -- i.e. segment the images:
 
 ```sh
 # We use the uid tool to predict, based on a model located in the bundle `./universal-insect-detector` (--bundle-dir)
 # We find all `.jpg` files in the target directory `./uid_tutorial` (--target)
 # We set the verbose on (-v)
-standalone_uid.py predict_dir --bundle-dir ./universal-insect-detector --target ./uid_tutorial -v
+standalone_uid.py predict_dir --bundle-dir ./universal-insect-detector \
+                              --target ./uid_tutorial -v
 # list the generated resulting files
 ls ./uid_tutorial/*.svg
 ```
@@ -145,6 +146,7 @@ The default stroke colour for insects is in blue `#0000FF` (This is defined in t
 #### Configuration{-}
 
 There are two configuration files for the UID:
+
 * `mask_rcnn_R_101_C4_3x.yaml` -- the configuration for Mask-RCNN as defined in the `detectron2` documentation. This is the underlying segmentation algorithm we use.
 * `config.yaml` -- The specific configuration for the Sticky Pi project (which may override some of the `mask_rcnn_R_101_C4_3x.yaml` configuration). See inline comments for detail.
 
@@ -192,7 +194,8 @@ This is based on the checksum of the JPG image, so it is pseudorandom.
 To compute validation statistics on 25% of the images that were "randomly" excluded from training, you can run:
 
 ```sh
-standalone_uid.py validate --bundle-dir ./universal-insect-detector --target validation_results -v
+standalone_uid.py validate --bundle-dir ./universal-insect-detector \
+                           --target validation_results -v
 ```
 
 This will run an inference on the validation set which has not been seen during training, create a resulting SVG files and issue summary statistics for each validation image (all in the target directory `validation_results/`).
@@ -237,7 +240,7 @@ We also have a standalone tool to use the SIM `standalone_sim.py` (see `standalo
 We can start by downloading the whole ML Bundle from Zenodo (that can take a while as we are getting both the model and the data):
 
 ```sh
-wget https://zenodo.org/record/4680119/files/siamese-insect-matcher.zip
+wget https://zenodo.org/record/6382496/files/siamese-insect-matcher.zip
 unzip siamese-insect-matcher.zip
 # show what is inside this new directory
 ls siamese-insect-matcher
@@ -262,7 +265,8 @@ Or just use the [download link](assets/sim_tutorial.zip).
 Using the standalone tool, you can then generate tuboids:
 
 ```sh
-standalone_sim.py predict_dir --bundle-dir ./siamese-insect-matcher --target ./sim_tutorial -v
+standalone_sim.py predict_dir --bundle-dir ./siamese-insect-matcher \
+                              --target ./sim_tutorial -v
 ```
 
 This should show progress and processing information.
@@ -360,12 +364,13 @@ Validation is automatically computed to generate a loss and accuracy when traini
 One can also specifically run validation:
 
 ```sh
-standalone_sim.py validate   --bundle-dir ./siamese-insect-matcher --target ./sim_tutorial/validation/ -v
+standalone_sim.py validate --bundle-dir ./siamese-insect-matcher \
+                           --target ./sim_tutorial/validation/ -v
 ```
 
-this will generate a json file `./sim_tutorial/validation/results.json`, which is a list of dictionaries
+This will generate a json file `./sim_tutorial/validation/results.json`, which is a list of dictionaries
 with fields `pred` (predicted score) and `gt` (ground truth, i.e. 0 or 1).
-`pred` is the raw match score, so one can use this result file to vary the match threshold and make an ROC curve.
+`pred` is the raw match score (between 0 and 1), so one can use this result file to vary the match threshold and make an ROC curve.
 E.g. to make a ROC curve in R:
 
 ```R
@@ -382,8 +387,9 @@ rocplot + style_roc(theme = theme_grey) + geom_rocci(fill="pink")
 ## Insect Tuboid Classifier{#itc -}
 The Insect Tuboid Classifier (ITC) is the last step of the analysis.
 Its goal is to infer taxonomy from tuboids (several shot of an insect).
-It is an adapted [ResNet](https://en.wikipedia.org/wiki/Residual_neural_network) architecture, that takes multiple images as input, average them on the feature space, and outputs one prediction.
-This algorithm also uses the initial pixel-size of the insect, which is contained in the tuboid data.
+It is an adapted [ResNet](https://en.wikipedia.org/wiki/Residual_neural_network) architecture that:
+takes multiple images as input, average them on the feature space, and outputs one prediction.
+This algorithm also uses the initial pixel-size of the insect, which is contained in the tuboid metadata.
 As opposed the other two generalist algorithms, the ITC will need to be retrained for specific contexts (location, season, ...).
 Therefore, we will first describe how to train the algorithm.
 
@@ -395,7 +401,7 @@ Therefore, we will first describe how to train the algorithm.
 The previous algorithm (SIM) generated "tuboids", each of which corresponds to a unique insect.
 These are uniquely identified directories.
 The goal of the annotation is to associate a taxonomy to a set of reference tuboids.
-In order to facilitate annotation of many tuboid, we have made  an open source [multi-user made web tool](https://github.com/sticky-pi/tuboid-annotation-tool).
+In order to facilitate annotation of many tuboid, we have made  an open source [multi-user web tool](https://github.com/sticky-pi/tuboid-annotation-tool).
 Taxonomy is the hardest task, so multiple experts might be involved.
 
 In order to use the annotation tool, two steps are required:
@@ -420,7 +426,7 @@ We assume, you have a directory (`$TUBOID_DATA_DIR`) with the tuboid data.
 This would be typically a subdirectory named `tuboids` in the `--target` directory you set when using the SIM for inference.
 
 
-For practice, you can use tutorial data we have put together for the ITC:
+To practice, you can use tutorial data we have put together for the ITC:
 
 ```sh
 wget https://doc.sticky-pi.com/assets/itc_tutorial.zip
@@ -432,6 +438,7 @@ Or just use the [download link](assets/itc_tutorial.zip)
 
 ```sh
 TUBOID_DATA_DIR=itc_tutorial/data # or REPLACE_WITH_YOUR_PATH
+# this send the local data on the remote s3 server
 s3cmd sync ${TUBOID_DATA_DIR}/ s3://${S3_BUCKET}
 ```
 
@@ -442,7 +449,13 @@ We also pre-generate an index file that list all the tuboids.
 TMP_DIR=$(mktemp -d)
 echo 'tuboid_id, tuboid_dir' > ${TMP_DIR}/index.csv
 
-for i in $( s3cmd ls s3://${S3_BUCKET}/ --recursive  | grep metadata\.txt | cut  -d : -f 3 | cut -c2-); do echo  $(basename $(dirname $i)), $(dirname  $(realpath --relative-to="/${S3_BUCKET}" $i  -m)) >> ${TMP_DIR}/index.csv; done
+# this loop generates the index file
+for i in $( s3cmd ls s3://${S3_BUCKET}/ --recursive  | \
+                                  grep metadata\.txt | \
+                                  cut  -d : -f 3     | \  cut -c2-);
+do echo  $(basename $(dirname $i)), $(dirname  $(realpath --relative-to="/${S3_BUCKET}" $i  -m)) \
+                         >> ${TMP_DIR}/index.csv;
+done
 # for each tuboid, 3 files are uploaded (`metadata.txt`, `tuboid.jpg` and `context.jpg`)
 head ${TMP_DIR}/index.csv # just to take a look at the index file
 wc -l ${TMP_DIR}/index.csv # the number of line should be the number of tuboids +1 (for the header)
@@ -462,7 +475,9 @@ You can set docker on your machine, a local or a remote server.
 There are also a range of commercial docker hosting platform.
 
 
-To run our docker container, first create a local environment file to store your variables, including s3 credentials, for instance `.secret.env` (ensure this file) has the appropriate access set. In `.secret.env`
+To run our docker container, first create a local environment file to store your variables, including s3 credentials, for instance `.secret.env` (ensure this file) has the appropriate access set (i.e. only you/ the administrator should be able to read this file).
+
+In `.secret.env`, we can edit the environment variables according to the comment:
 
 ```sh
 export S3_HOST=some.host.com              # The host of the bucket e.g. `location.
@@ -478,7 +493,7 @@ Then to run the container, you can do:
 
 ```sh
 source ./.secret.env
-docker run --rm --publish $PORT:80 \
+docker run --rm --publish ${PORT}:80 \
                 --name tuboid-annotation-tool \
                --env S3_BUCKET=${S3_BUCKET} \
                --env S3_HOST=${S3_HOST} \
@@ -487,18 +502,22 @@ docker run --rm --publish $PORT:80 \
                --volume ${LOCAL_VOLUME}:/opt/data_root_dir \
                 -d  stickypi/tuboid-annotation-tool:latest
 ```
-The first time, this will download the image from the dockerhub.
+The first time, this will download the image from the dockerhub, where we have stored a copy of the [prebuilt docker image](https://hub.docker.com/r/stickypi/tuboid-annotation-tool).
 
 
-For this simple application, we just use plaintext credentials as a json file, `credentials.json`, in `LOCAL_VOLUME`. For instance:
-```sh
-echo  '{"user1" : {"password": "password1", "allow_write": 1}, "user2" : {"password": "password2", "allow_write": 0}}' > ${LOCAL_VOLUME}/credentials.json
+For this simple application, we just use plaintext credentials as a json file, `credentials.json`, in `LOCAL_VOLUME`.
+For instance, in `${LOCAL_VOLUME}/credentials.json`, yo0u could have:
+```json
+{
+    "user1" : {"password": "password1", "allow_write": 1},
+    "user2" : {"password": "password2", "allow_write": 0}
+}
 ```
 This creates two users, `user1` and `user2`, with passwords, `password1` and `password2`, respectively.
 `allow_write=1` means the user (`user1`) has write access. `user2` can only view images, but cannot annotate.
 
 
-If you run the annotation tool on your local computer, you shoulkd be able to access it on `http://localhost:<PORT>`, where `<PORT is the port you defined in your configuration file.
+If you run the annotation tool on your local computer, you should be able to access it on `http://localhost:<PORT>`, where `<PORT>` is the port you defined in your configuration file.
 This video shows how you can use the tool to annotate tuboid images and export the data:
 
 <div><iframe width="100%" height="400" src="https://www.youtube.com/embed/TmFSLPsKugg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
@@ -540,7 +559,7 @@ As a functional example, you can download and train the model we used for the ma
 We can start by downloading the whole ML Bundle from Zenodo (that can take a while as we are getting both the model and the data):
 
 ```sh
-wget https://zenodo.org/record/4680119/files/insect-tuboid-classifier.zip
+wget https://zenodo.org/record/6382496/files/insect-tuboid-classifier.zip
 unzip insect-tuboid-classifier.zip
 # show what is inside this new directory
 ls insect-tuboid-classifier
@@ -548,7 +567,7 @@ ls insect-tuboid-classifier
 
 **Importantly, you need to adapt the configuration file `config.yaml` to your scenario.**
 
-In particular, in this model, we define flat labels from taxonomy, using regular expressions.
+In particular, in this model, we define flat labels from taxonomy, using [regular expressions](https://en.wikipedia.org/wiki/Regular_expression).
 
 
 The taxonomical levels are: type, order,family,genus,species, and extra (extra could be other information such as sex and morph).
@@ -591,14 +610,24 @@ Since `^Insecta\.Coleoptera\.Elateridae.*`, comes first, we keep it as a label.
 
 ### Inference{-}
 
-Since we already have a functional model for the manuscript data, we can use it for inference. GIven you store the ML bundle for the ITC in `insect-tuboid-classifier/`
+Since we already have a functional model for the manuscript data, we can use it to demonstrate how the inference works.
+Given you store the ML bundle for the ITC in `insect-tuboid-classifier/`
 we could run inference, using this model, on its own data `--target insect-tuboid-classifier/data`.
 
 ```sh
 standalone_itc.py predict_dir --bundle-dir insect-tuboid-classifier --target insect-tuboid-classifier/data -v
 ```
 
-This will generate a CSV file, `insect-tuboid-classifier/data/results.csv"` with column names describing the taxonomy and the name/oriine of unique tuboids in the column `directory`.
+This will generate a CSV file, `insect-tuboid-classifier/data/results.csv"` with column names describing the taxonomy and the name/origin of unique tuboids in the column `directory`.
+
+
+## Conclusion{-}
+
+We have covered the basics of how to perform machine learning with the Sticky Pi project.
+Hopefully this is a good starting point to use and adapt our tools.
+The project is still active, and we are always welcoming contributions and collaborations.
+
+
 
 
 
