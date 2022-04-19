@@ -21,7 +21,7 @@ As you can see in Figure \@ref(fig:device-overview), the device has two main par
 
 A complete description of the parts, price and reference is available in our [Bill of Material](https://github.com/sticky-pi/sticky-pi-device/blob/main/hardware/BOM.csv)
 
-Note that all 3D-printed parts are available on [our onshape repository](https://cad.onshape.com/documents/73922dc6e3c6d7006b309c14/w/7e4fb88a2e93b6adba33fd5a/e/708b4c330014fa7fbda6bdeb) where they can be exported in a variety of formats.
+Note that all 3D-printed parts are available on [our onshape repository](https://cad.onshape.com/documents/73922dc6e3c6d7006b309c14/v/d1e69af36c2d3e0d43fc1b91/e/3c1c1988a968c0636b7ec5b3) where they can be exported in a variety of formats.
 
 You can also take a look at [our schematic](assets/spi_schematic.svg).
 
