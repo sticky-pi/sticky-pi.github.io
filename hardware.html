@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Hardware | Sticky Pi, a high-frequency smart insect trap to study daily activity in the field</title>
   <meta name="description" content="This is the documentation for the Sticky Pi project, a system to study insect activity in the field." />
-  <meta name="generator" content="bookdown 0.26.1 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26.2 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Hardware | Sticky Pi, a high-frequency smart insect trap to study daily activity in the field" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Quentin Geissmann" />
 
 
-<meta name="date" content="2022-04-19" />
+<meta name="date" content="2022-04-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -282,7 +282,7 @@ Figure 3.2: Needed parts for the camera box
 </p>
 </div>
 <ol style="list-style-type: decimal">
-<li>Burn <a href="https://todo.com">our OS image</a> onto the SD card (note you can also make your own from scratch image by adapting<a href="https://github.com/sticky-pi/sticky-pi-device/tree/main/software">the scripts in</a>).
+<li>Burn <a href="http://us-east-1.linodeobjects.com/sticky-pi-os-snapshots/2020-06-08_sticky_pi_rpi.img?AWSAccessKeyId=PYG0U26Y8RUIW2G657ZT&amp;Expires=2282394577&amp;Signature=G0WUx%2FaIdQNFPTXU%2FSFMA2RM%2BR4%3D">our OS image</a> onto the SD card (note you can also make your own from scratch image by adapting<a href="https://github.com/sticky-pi/sticky-pi-device/tree/main/software">the scripts in</a>).
 <div class="rmdwarning">
 <p>
 <strong>Danger Zone!</strong> Ensure you know what you are doing here. In particular, give the path to the correct drive otherwise you may wipe out the wrong drive, and <em>lose data</em>. On Unix-like systems, use <code>lsblk</code> to see all drives.
@@ -438,7 +438,7 @@ The parts we used are described in the <a href="https://github.com/sticky-pi/sti
 <div id="rapsberry-pi" class="section level3 unnumbered hasAnchor">
 <h3>Rapsberry Pi<a href="hardware.html#rapsberry-pi" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol style="list-style-type: decimal">
-<li>Download our <a href="https://todo.com">our OS image</a> and burn it on an SD card</li>
+<li>Download <a href="http://us-east-1.linodeobjects.com/sticky-pi-os-snapshots/2021-05-17_sticky_pi_harvester_rpi.img.gz?AWSAccessKeyId=PYG0U26Y8RUIW2G657ZT&amp;Expires=2282394412&amp;Signature=Mn6kZlWaBPwua8hEqgxzGk0uAv8%3D">our OS image</a> and burn it on an SD card</li>
 <li>Format the USB stick to make a single ext4 partition</li>
 <li>In the new partition you created, create a file named <code>.api-credentials.env</code> and fill it with:</li>
 </ol>
