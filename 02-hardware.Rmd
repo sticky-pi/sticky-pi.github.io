@@ -34,7 +34,7 @@ The camera Box and light box can be assembled separately and swapped between dev
 knitr::include_graphics("assets/camera_box_breakdown.png")
 ```
 
-1. Burn [our OS image](https://todo.com) onto the SD card (note you can also make your own from scratch image by adapting[the scripts in](https://github.com/sticky-pi/sticky-pi-device/tree/main/software)).
+1. Burn [our OS image](http://us-east-1.linodeobjects.com/sticky-pi-os-snapshots/2020-06-08_sticky_pi_rpi.img?AWSAccessKeyId=PYG0U26Y8RUIW2G657ZT&Expires=2282394577&Signature=G0WUx%2FaIdQNFPTXU%2FSFMA2RM%2BR4%3D) onto the SD card (note you can also make your own from scratch image by adapting[the scripts in](https://github.com/sticky-pi/sticky-pi-device/tree/main/software)).
 ```{block, type='rmdwarning'}
 **Danger Zone!** Ensure you know what you are doing here. In particular, give the path to the correct drive otherwise you may wipe out the wrong drive, and *lose data*. On Unix-like systems, use `lsblk` to see all drives.
 ```
@@ -155,7 +155,7 @@ Role of each part:
 
 
 ### Rapsberry Pi{-}
-1. Download our [our OS image](https://todo.com) and burn it on an SD card
+1. Download [our OS image](http://us-east-1.linodeobjects.com/sticky-pi-os-snapshots/2021-05-17_sticky_pi_harvester_rpi.img.gz?AWSAccessKeyId=PYG0U26Y8RUIW2G657ZT&Expires=2282394412&Signature=Mn6kZlWaBPwua8hEqgxzGk0uAv8%3D) and burn it on an SD card
 1. Format the USB stick to make a single ext4 partition
 1. In the new partition you created, create a file named `.api-credentials.env` and fill it with:
 ```sh
