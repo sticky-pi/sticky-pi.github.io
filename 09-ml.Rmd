@@ -10,18 +10,18 @@ This page describes how to annotate, train and use the machine learning model of
 This step *does* require some familiarity with scientific computing (e.g. Unix/Linux, [python](https://en.wikipedia.org/wiki/Python_(programming_language), ...).
 Here, we complement the descriptions of the algorithms provided in the [Sticky Pi manuscript](`r PUBLICATION_URL`) with a practical documentation on how to use and adapt them.
 We are open for collaboration regarding training, building and extending Machine Learning models, so do not hesitate to [contact us](/community#contact). 
-For simplicity, we describe the how to use the ML tools independently of the API (which is set to store and query images/annotations on a remote or a local machine).
+For simplicity, we describe how to use the ML tools independently of the API (which is set to store and query images/annotations on a remote or a local machine).
 For production, with multiple concurrent Sticky Pi devices, we recommend using the API.
 
 
 ## General description{-}
 
-Briefly, we start from a series of images (every 20min, for several day) of a sticky card.
-Our ultimate goal it to tell *which*, and *when* insects were captured.
+Briefly, we start from a series of images (every 20min, for several days) of a sticky card.
+Our ultimate goal is to tell *which*, and *when* insects were captured.
 We break down this task in three independent steps:
 
 1. [**Universal Insect Detector**](#uid) -- We perform an [instance segmentation](https://en.wikipedia.org/wiki/Image_segmentation#Groups_of_image_segmentation) on all images independently. This extracts insects (foreground) from the background. Importantly, at this stage, we do not yet classify insects.
-2. [**Siamese Insect Matcher**](#sim) -- Captured insect actually may move, degrade, become occluded... Therefore, in practice, classification and timing of capture from single images would be very inconsistent through time. Instead, we first track insects before classifying them. The function of the Siamese Insect Matcher is to track multiple insect instances through their respective timelapses.
+2. [**Siamese Insect Matcher**](#sim) -- Captured insects actually may move, degrade, become occluded... Therefore, in practice, classification and timing of capture from single images would be very inconsistent through time. Instead, we first track insects before classifying them. The function of the Siamese Insect Matcher is to track multiple insect instances through their respective timelapses.
 3. [**Insect Tuboid Classifier**](#itc) -- After tracking, each insect in the time series is represented by a variable number of standardized segmented shots as well as metadata (including size) -- which we call a "tuboid". The Insect Tuboid Classifier infers a taxonomy to each tuboid based on multiple images.
 
 
@@ -164,7 +164,7 @@ Before training, you most likely want to check your data can indeed be loaded an
 ```sh
 standalone_uid.py check_data --bundle-dir ./universal-insect-detector -v
 ```
-Read carefully the warnings, in particular if they hint that the SVG paths are malformed.
+Carefully read the warnings, in particular if they hint that the SVG paths are malformed.
 
 #### Training{-}
 
@@ -178,12 +178,12 @@ standalone_uid.py train --bundle-dir ./universal-insect-detector -v
 
 The script will output information about the dataset and print a summary every 20 iterations (by default).
 Each summary contains information such as `total_loss`, which should eventually decrease (this is described in the `detectron2` documentation).
-Every 5000 iteration (defined in the configuration as `SOLVER/CHECKPOINT_PERIOD`) a snapshot of the ongoing model will be generated as `universal-insect-detector/output/model_XXXXXX.pth`, where `XXXXXX` is the iteration number.
-Unless you have reached the maximal number of iteration, **you will need to manually copy your latest snapshot into the final working model `universal-insect-detector/output/model_final.pth`**.
+Every 5000 iterations (defined in the configuration as `SOLVER/CHECKPOINT_PERIOD`), a snapshot of the ongoing model will be generated as `universal-insect-detector/output/model_XXXXXX.pth`, where `XXXXXX` is the iteration number.
+Unless you have reached the maximal number of iterations, **you will need to manually copy your latest snapshot into the final working model `universal-insect-detector/output/model_final.pth`**.
 You could use the intermediary snapshots to perform custom validation, or eventually remove them.
 
 If you want to train the model from "scratch", use the `--restart_training` flag.
-This will actually use Mask-RCNN model that was pretrained on the COCO dataset (training from zero would be much longer).
+This will actually use Mask-RCNN model that was pretrained on the COCO dataset (training from zero would take much longer).
 
 
 ### Validation{-}
@@ -296,7 +296,7 @@ tuboids/
 
 The parent directory, `15e612cd.2020-07-08_22-05-10.2020-07-09_13-27-20.1611328841-264f9489eac5c0966ef34ff59998084f`, is formatted as: `<device_id>.<start_datetime>.<end-datetime>.<algorithm_unique_id>`.
 
-The children directories are unique identifier of each tuboid in this specific series (ending in `.0000`, `.0001`, `.0002`, ...).
+The children directories are unique identifiers of each tuboid in this specific series (ending in `.0000`, `.0001`, `.0002`, ...).
 Inside each tuboid directory, there are three files:
 
 * `metadata.txt` -- a small file describing each insect (parent image, x and y position, and scale)
@@ -319,7 +319,7 @@ Also, the UTC date and time are written on top of the video.
 ### Training{-}
 
 The core algorithm of the Siamese Insect Matcher is a [Siamese neural network](https://en.wikipedia.org/wiki/Siamese_neural_network).
-It compares insects from consecutive picture and learns to discriminate between the same instance vs. another insect.
+It compares insects from consecutive pictures and learns to discriminate between the same instance vs. another insect.
 The data to train this network is a set of paired UID-annotated images, where insects that are the same instances are labeled as a group.
 In practice, these are encoded as composite SVG images with the two images vertically stacked, and the instances labeled as an SVG group.
 
@@ -338,9 +338,9 @@ The line is simply a visual tool to help annotation and can be left as is:
 ![Generate SIM annotations in Inkscape](assets/sim_grouping_demo.gif)
 
 Using [inkscape](https://inkscape.org/), you can group pairs using a shortcut like `CTRL+G`.
-We recommend using the XML editor (the panel on the right) to check grouping is correct, and find unmatched instances.
+We recommend using the XML editor (the panel on the right) to check that the grouping is correct, and find unmatched instances.
 Keep in mind that *not all instances can / should be matched*. 
-Indeed, some insects may be mislabeled in a first place, or may have escaped, appeared, ...
+Indeed, some insects may be mislabeled in the first place, or may have escaped, appeared, ...
 It is unnecessary (and probably counterproductive) to try to manually fix the segmentation (i.e. the UID) by adding or deleting new instance annotations (paths).
 
 As before, you can either make your own data set, or just extend the existing SIM data bundle (the latter is recommended).
@@ -360,7 +360,7 @@ You can also manually the any `.pth` file as `model_final.pth` to specifically u
 
 ### Validation{-}
 Like for the UID, each original image is allocated to either a validation (25%) or a training (75%) dataset based on a checksum.
-Validation is automatically computed to generate a loss and accuracy when training reaches a checkpoint (by default, every 200 rounds).
+Validation is automatically computed to generate a loss and accuracy when the training reaches a checkpoint (by default, every 200 rounds).
 One can also specifically run validation:
 
 ```sh
@@ -388,7 +388,7 @@ rocplot + style_roc(theme = theme_grey) + geom_rocci(fill="pink")
 The Insect Tuboid Classifier (ITC) is the last step of the analysis.
 Its goal is to infer taxonomy from tuboids (several shot of an insect).
 It is an adapted [ResNet](https://en.wikipedia.org/wiki/Residual_neural_network) architecture that:
-takes multiple images as input, average them on the feature space, and outputs one prediction.
+takes multiple images as input, averages them on the feature space, and outputs one prediction.
 This algorithm also uses the initial pixel-size of the insect, which is contained in the tuboid metadata.
 As opposed the other two generalist algorithms, the ITC will need to be retrained for specific contexts (location, season, ...).
 Therefore, we will first describe how to train the algorithm.
@@ -401,7 +401,7 @@ Therefore, we will first describe how to train the algorithm.
 The previous algorithm (SIM) generated "tuboids", each of which corresponds to a unique insect.
 These are uniquely identified directories.
 The goal of the annotation is to associate a taxonomy to a set of reference tuboids.
-In order to facilitate annotation of many tuboid, we have made  an open source [multi-user web tool](https://github.com/sticky-pi/tuboid-annotation-tool).
+In order to facilitate annotation of many tuboid, we have made an open source [multi-user web tool](https://github.com/sticky-pi/tuboid-annotation-tool).
 Taxonomy is the hardest task, so multiple experts might be involved.
 
 In order to use the annotation tool, two steps are required:
@@ -475,7 +475,7 @@ You can set docker on your machine, a local or a remote server.
 There are also a range of commercial docker hosting platform.
 
 
-To run our docker container, first create a local environment file to store your variables, including s3 credentials, for instance `.secret.env` (ensure this file) has the appropriate access set (i.e. only you/ the administrator should be able to read this file).
+To run our docker container, first create a local environment file to store your variables, including s3 credentials, for instance `.secret.env` (ensure this file has the appropriate access set; i.e. only you/ the administrator should be able to read this file).
 
 In `.secret.env`, we can edit the environment variables according to the comment:
 
@@ -547,7 +547,7 @@ SKIPPING DIRECTORY WITH SIMILAR STRUCTURE
 .....................
 ```
 
-As for the two other tool, we have built a standalone executable for the ITC.
+As for the two other tools, we have built a standalone executable for the ITC.
 Given `itc_tutorial/`  is your bundle dir, you can then train the model using:
 
 ```sh
@@ -598,10 +598,10 @@ LABELS:
 
 ```
 
-`regex` is a regular expression matching the taxonomy. All taxonomical levels are collapsed in a single sting separated by `.`.
+`regex` is a regular expression matching the taxonomy. All taxonomic levels are collapsed in a single sting separated by `.`.
 For instance, *Drosophila suzukii* is defined as `^Insecta\.Diptera\.Drosophilidae\.Drosophila\.Drosophila suzukii.*`
 
-`number` is an integer >=0, for this label. If `null`, the labels take automatically the next available value. (here we set background and undefined insects as 0 and 1, respectively).
+`number` is an integer >=0, for this label. If `null`, the labels automatically take the next available value. (here we set background and undefined insects as 0 and 1, respectively).
 Since multiple labels may match an annotation, **the order of definition of labels matter**. A given annotation will take the value of the first matched label.
 For instance, if we have an annotation that is `Insecta\.Coleoptera\.Elateridae.abcd.efg`, it matches both `^Insecta\.Coleoptera\.Elateridae.*` and `^Insecta\.Coleoptera.*`.
 Since `^Insecta\.Coleoptera\.Elateridae.*`, comes first, we keep it as a label.
