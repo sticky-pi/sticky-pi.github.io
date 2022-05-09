@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Machine Learning | Sticky Pi, a high-frequency smart insect trap to study daily activity in the field</title>
   <meta name="description" content="This is the documentation for the Sticky Pi project, a system to study insect activity in the field." />
-  <meta name="generator" content="bookdown 0.26.2 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26.3 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Machine Learning | Sticky Pi, a high-frequency smart insect trap to study daily activity in the field" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Quentin Geissmann" />
 
 
-<meta name="date" content="2022-04-29" />
+<meta name="date" content="2022-05-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -253,16 +253,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 This step <em>does</em> require some familiarity with scientific computing (e.g. Unix/Linux, <a href="https://en.wikipedia.org/wiki/Python_(programming_language),%20...">python</a>.
 Here, we complement the descriptions of the algorithms provided in the <a href="https://www.biorxiv.org/content/10.1101/2021.08.11.455750">Sticky Pi manuscript</a> with a practical documentation on how to use and adapt them.
 We are open for collaboration regarding training, building and extending Machine Learning models, so do not hesitate to <a href="/community#contact">contact us</a>.
-For simplicity, we describe the how to use the ML tools independently of the API (which is set to store and query images/annotations on a remote or a local machine).
+For simplicity, we describe how to use the ML tools independently of the API (which is set to store and query images/annotations on a remote or a local machine).
 For production, with multiple concurrent Sticky Pi devices, we recommend using the API.</p>
 <div id="general-description-1" class="section level2 unnumbered hasAnchor">
 <h2>General description<a href="ml.html#general-description-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Briefly, we start from a series of images (every 20min, for several day) of a sticky card.
-Our ultimate goal it to tell <em>which</em>, and <em>when</em> insects were captured.
+<p>Briefly, we start from a series of images (every 20min, for several days) of a sticky card.
+Our ultimate goal is to tell <em>which</em>, and <em>when</em> insects were captured.
 We break down this task in three independent steps:</p>
 <ol style="list-style-type: decimal">
 <li><a href="ml.html#uid"><strong>Universal Insect Detector</strong></a> – We perform an <a href="https://en.wikipedia.org/wiki/Image_segmentation#Groups_of_image_segmentation">instance segmentation</a> on all images independently. This extracts insects (foreground) from the background. Importantly, at this stage, we do not yet classify insects.</li>
-<li><a href="ml.html#sim"><strong>Siamese Insect Matcher</strong></a> – Captured insect actually may move, degrade, become occluded… Therefore, in practice, classification and timing of capture from single images would be very inconsistent through time. Instead, we first track insects before classifying them. The function of the Siamese Insect Matcher is to track multiple insect instances through their respective timelapses.</li>
+<li><a href="ml.html#sim"><strong>Siamese Insect Matcher</strong></a> – Captured insects actually may move, degrade, become occluded… Therefore, in practice, classification and timing of capture from single images would be very inconsistent through time. Instead, we first track insects before classifying them. The function of the Siamese Insect Matcher is to track multiple insect instances through their respective timelapses.</li>
 <li><a href="ml.html#itc"><strong>Insect Tuboid Classifier</strong></a> – After tracking, each insect in the time series is represented by a variable number of standardized segmented shots as well as metadata (including size) – which we call a “tuboid”. The Insect Tuboid Classifier infers a taxonomy to each tuboid based on multiple images.</li>
 </ol>
 <p>Below, we describe how to implement each step. The model files and datasets used in the publication are available on <a href="https://zenodo.org/record/4680119">Zenodo</a>.
@@ -377,7 +377,7 @@ The default stroke colour for insects is in blue <code>#0000FF</code> (This is d
 <h4>Data integrity<a href="ml.html#data-integrity" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Before training, you most likely want to check your data can indeed be loaded and parsed.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="ex">standalone_uid.py</span> check_data --bundle-dir ./universal-insect-detector -v</a></code></pre></div>
-<p>Read carefully the warnings, in particular if they hint that the SVG paths are malformed.</p>
+<p>Carefully read the warnings, in particular if they hint that the SVG paths are malformed.</p>
 </div>
 <div id="training-1" class="section level4 unnumbered hasAnchor">
 <h4>Training<a href="ml.html#training-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -387,11 +387,11 @@ Once you have set the configuration, checked the input data, etc, you can use th
 <div class="sourceCode" id="cb14"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="ex">standalone_uid.py</span> train --bundle-dir ./universal-insect-detector -v</a></code></pre></div>
 <p>The script will output information about the dataset and print a summary every 20 iterations (by default).
 Each summary contains information such as <code>total_loss</code>, which should eventually decrease (this is described in the <code>detectron2</code> documentation).
-Every 5000 iteration (defined in the configuration as <code>SOLVER/CHECKPOINT_PERIOD</code>) a snapshot of the ongoing model will be generated as <code>universal-insect-detector/output/model_XXXXXX.pth</code>, where <code>XXXXXX</code> is the iteration number.
-Unless you have reached the maximal number of iteration, <strong>you will need to manually copy your latest snapshot into the final working model <code>universal-insect-detector/output/model_final.pth</code></strong>.
+Every 5000 iterations (defined in the configuration as <code>SOLVER/CHECKPOINT_PERIOD</code>), a snapshot of the ongoing model will be generated as <code>universal-insect-detector/output/model_XXXXXX.pth</code>, where <code>XXXXXX</code> is the iteration number.
+Unless you have reached the maximal number of iterations, <strong>you will need to manually copy your latest snapshot into the final working model <code>universal-insect-detector/output/model_final.pth</code></strong>.
 You could use the intermediary snapshots to perform custom validation, or eventually remove them.</p>
 <p>If you want to train the model from “scratch”, use the <code>--restart_training</code> flag.
-This will actually use Mask-RCNN model that was pretrained on the COCO dataset (training from zero would be much longer).</p>
+This will actually use Mask-RCNN model that was pretrained on the COCO dataset (training from zero would take much longer).</p>
 </div>
 </div>
 <div id="validation" class="section level3 unnumbered hasAnchor">
@@ -474,7 +474,7 @@ As a result, you will find a directory named <code>tuboids</code> in <code>--tar
     │   └── tuboid.jpg
     └── 15e612cd.2020-07-08_22-05-10.2020-07-09_13-27-20.mp4</code></pre>
 <p>The parent directory, <code>15e612cd.2020-07-08_22-05-10.2020-07-09_13-27-20.1611328841-264f9489eac5c0966ef34ff59998084f</code>, is formatted as: <code>&lt;device_id&gt;.&lt;start_datetime&gt;.&lt;end-datetime&gt;.&lt;algorithm_unique_id&gt;</code>.</p>
-<p>The children directories are unique identifier of each tuboid in this specific series (ending in <code>.0000</code>, <code>.0001</code>, <code>.0002</code>, …).
+<p>The children directories are unique identifiers of each tuboid in this specific series (ending in <code>.0000</code>, <code>.0001</code>, <code>.0002</code>, …).
 Inside each tuboid directory, there are three files:</p>
 <ul>
 <li><code>metadata.txt</code> – a small file describing each insect (parent image, x and y position, and scale)</li>
@@ -495,7 +495,7 @@ Also, the UTC date and time are written on top of the video.</p>
 <div id="training-2" class="section level3 unnumbered hasAnchor">
 <h3>Training<a href="ml.html#training-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The core algorithm of the Siamese Insect Matcher is a <a href="https://en.wikipedia.org/wiki/Siamese_neural_network">Siamese neural network</a>.
-It compares insects from consecutive picture and learns to discriminate between the same instance vs. another insect.
+It compares insects from consecutive pictures and learns to discriminate between the same instance vs. another insect.
 The data to train this network is a set of paired UID-annotated images, where insects that are the same instances are labeled as a group.
 In practice, these are encoded as composite SVG images with the two images vertically stacked, and the instances labeled as an SVG group.</p>
 <p>Rather than manually generating a training set, we can use the standalone tool to generate candidates for us that we can then just amend:</p>
@@ -510,9 +510,9 @@ The line is simply a visual tool to help annotation and can be left as is:</p>
 <p class="caption">Generate SIM annotations in Inkscape</p>
 </div>
 <p>Using <a href="https://inkscape.org/">inkscape</a>, you can group pairs using a shortcut like <code>CTRL+G</code>.
-We recommend using the XML editor (the panel on the right) to check grouping is correct, and find unmatched instances.
+We recommend using the XML editor (the panel on the right) to check that the grouping is correct, and find unmatched instances.
 Keep in mind that <em>not all instances can / should be matched</em>.
-Indeed, some insects may be mislabeled in a first place, or may have escaped, appeared, …
+Indeed, some insects may be mislabeled in the first place, or may have escaped, appeared, …
 It is unnecessary (and probably counterproductive) to try to manually fix the segmentation (i.e. the UID) by adding or deleting new instance annotations (paths).</p>
 <p>As before, you can either make your own data set, or just extend the existing SIM data bundle (the latter is recommended).</p>
 <p>For the training itself, we can run:</p>
@@ -526,7 +526,7 @@ You can also manually the any <code>.pth</code> file as <code>model_final.pth</c
 <div id="validation-1" class="section level3 unnumbered hasAnchor">
 <h3>Validation<a href="ml.html#validation-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Like for the UID, each original image is allocated to either a validation (25%) or a training (75%) dataset based on a checksum.
-Validation is automatically computed to generate a loss and accuracy when training reaches a checkpoint (by default, every 200 rounds).
+Validation is automatically computed to generate a loss and accuracy when the training reaches a checkpoint (by default, every 200 rounds).
 One can also specifically run validation:</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="ex">standalone_sim.py</span> validate --bundle-dir ./siamese-insect-matcher \</a>
 <a class="sourceLine" id="cb23-2" data-line-number="2">                           --target ./sim_tutorial/validation/ -v</a></code></pre></div>
@@ -548,7 +548,7 @@ E.g. to make a ROC curve in R:</p>
 <p>The Insect Tuboid Classifier (ITC) is the last step of the analysis.
 Its goal is to infer taxonomy from tuboids (several shot of an insect).
 It is an adapted <a href="https://en.wikipedia.org/wiki/Residual_neural_network">ResNet</a> architecture that:
-takes multiple images as input, average them on the feature space, and outputs one prediction.
+takes multiple images as input, averages them on the feature space, and outputs one prediction.
 This algorithm also uses the initial pixel-size of the insect, which is contained in the tuboid metadata.
 As opposed the other two generalist algorithms, the ITC will need to be retrained for specific contexts (location, season, …).
 Therefore, we will first describe how to train the algorithm.</p>
@@ -610,7 +610,7 @@ Do not share the private key, but keep it as you will need it to configure the d
 It allows you to run a virtualised self-contained service on top of a host machine.
 You can set docker on your machine, a local or a remote server.
 There are also a range of commercial docker hosting platform.</p>
-<p>To run our docker container, first create a local environment file to store your variables, including s3 credentials, for instance <code>.secret.env</code> (ensure this file) has the appropriate access set (i.e. only you/ the administrator should be able to read this file).</p>
+<p>To run our docker container, first create a local environment file to store your variables, including s3 credentials, for instance <code>.secret.env</code> (ensure this file has the appropriate access set; i.e. only you/ the administrator should be able to read this file).</p>
 <p>In <code>.secret.env</code>, we can edit the environment variables according to the comment:</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="bu">export</span> <span class="va">S3_HOST=</span>some.host.com              <span class="co"># The host of the bucket e.g. `location.</span></a>
 <a class="sourceLine" id="cb29-2" data-line-number="2"><span class="bu">export</span> <span class="va">S3_BUCKET=</span>my-bucket-name           <span class="co"># the name of the s3 bucket. ame as above</span></a>
@@ -667,7 +667,7 @@ If you have used the tutorial bundle, it should look like that:</p>
 .....................
 SKIPPING DIRECTORY WITH SIMILAR STRUCTURE
 .....................</code></pre>
-<p>As for the two other tool, we have built a standalone executable for the ITC.
+<p>As for the two other tools, we have built a standalone executable for the ITC.
 Given <code>itc_tutorial/</code> is your bundle dir, you can then train the model using:</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="ex">standalone_itc.py</span> train --bundle-dir itc_tutorial/</a></code></pre></div>
 <p>This will start training the model from scratch and output validation statistics and confusion matrices at every checkpoint.</p>
@@ -701,9 +701,9 @@ We can start by downloading the whole ML Bundle from Zenodo (that can take a whi
   - [&#39;^Insecta\.Lepidoptera.*&#39;, null]
   - [&#39;^Insecta.*&#39;,1]
 </code></pre>
-<p><code>regex</code> is a regular expression matching the taxonomy. All taxonomical levels are collapsed in a single sting separated by <code>.</code>.
+<p><code>regex</code> is a regular expression matching the taxonomy. All taxonomic levels are collapsed in a single sting separated by <code>.</code>.
 For instance, <em>Drosophila suzukii</em> is defined as <code>^Insecta\.Diptera\.Drosophilidae\.Drosophila\.Drosophila suzukii.*</code></p>
-<p><code>number</code> is an integer &gt;=0, for this label. If <code>null</code>, the labels take automatically the next available value. (here we set background and undefined insects as 0 and 1, respectively).
+<p><code>number</code> is an integer &gt;=0, for this label. If <code>null</code>, the labels automatically take the next available value. (here we set background and undefined insects as 0 and 1, respectively).
 Since multiple labels may match an annotation, <strong>the order of definition of labels matter</strong>. A given annotation will take the value of the first matched label.
 For instance, if we have an annotation that is <code>Insecta\.Coleoptera\.Elateridae.abcd.efg</code>, it matches both <code>^Insecta\.Coleoptera\.Elateridae.*</code> and <code>^Insecta\.Coleoptera.*</code>.
 Since <code>^Insecta\.Coleoptera\.Elateridae.*</code>, comes first, we keep it as a label.</p>
