@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # Rscript -e "bookdown::render_book('index.Rmd', c('bookdown::gitbook', 'bookdown::pdf_book'))"
+
 Rscript -e "bookdown::render_book('index.Rmd', 'bookdown::gitbook')" &&
 rsync -rvP assets/hardware/ _book/assets/hardware/ &&
 rsync -rvP js/ _book/js/
