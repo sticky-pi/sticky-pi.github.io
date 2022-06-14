@@ -1,11 +1,11 @@
 // global consts
-var INFO_DIV_ID = "info_panel";
-var DOCS_GRAPH_ID = "docs_graph";
+var INFO_DIV_ID = "doc-info";
+var DOCS_GRAPH_ID = "doc-graph";
 var GRAPHML_PATH = "../assets/hardware/doc_graph.graphml"
 var GRAPH_STYLE_PATH = "../assets/hardware/graph_style.json"
 var ALL_PARTS_PATH = "../assets/hardware/parts.json"
 var PROCS_PATH = "../assets/hardware/processes.json"
-var IMGS_DIR_PATH = "assets/hardware"
+var IMGS_DIR_PATH = "../assets/hardware"
 
 function capital_case(str) {
 	return str[0].toUpperCase() + str.slice(1);
@@ -134,20 +134,24 @@ function update_info_panel(clicked_ele, info_div_id, items_data, imgs_dir_root) 
     //console.log(clicked_ele.id() + " : " + clicked_ele.data("label"));
     // key is tag
     let tag = clicked_ele.data("label");
-    let ite_data = items_data[tag];
+    // make a copy, ensure no data actually modified
+    let ite_data = Object.assign({}, items_data[tag]);
     //console.log(ite_data);
 
     let $info_panel = $('#'+ info_div_id);
     $info_panel.html( "<h1>"+ ite_data["part"] +"</h1>");
-	$info_panel.append( obj_to_HTMLtable(ite_data) );
 
     let img_HTML = `<img src="${imgs_dir_root}/${tag}.jpg" />`;
     $info_panel.append(img_HTML);
+
+    // already showing [part] as Title
+    delete ite_data.part;
+	$info_panel.append( obj_to_HTMLtable(ite_data) );
 }
 
 function init_graph(graphml_data, graph_style_data) {
     var cy = window.cy = cytoscape({
-        container: $("#docs_graph")[0],
+        container: $('#'+DOCS_GRAPH_ID)[0],
 
         style: graph_style_data,
 
