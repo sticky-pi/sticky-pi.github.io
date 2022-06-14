@@ -84,39 +84,28 @@ function graphML_to_cyEles(gml_data) {
 }
 
 /*
+ * DEPRECATED
 function get_node_pos_init_graph(id, gml_data) {
     let $gml = $( $.parseXML(gml_data) );
     return(get_GML_pos( $gml.find('#'+id), "node"));
 }
 */
 
-/*
-function setup_tooltip() {
-    //cy.removeListener("mouseover", "node, edge");
-    cy.on("mouseover", "node, edge", function(event) {
-        // adapted from Cyto-Popper extension docs (https://github.com/cytoscape/cytoscape.js-popper)
-        let ref = event.target.popperRef();
-        console.log(ref);
-        console.log(ref.getBoundingClientRect);
-        // dummy DOM element for tooltip
-        let $dumDOM = $('#'+ DOCS_GRAPH_ID ).append("<div></div>");
-        $dumDOM.html( event.target.data("label") );
+function make_node_tooltip(node) {
+    // adapted from cyto-Popper extension docs (https://github.com/cytoscape/cytoscape.js-popper)
+    let ref = node.popperRef();
+    console.log(ref);
+    console.log(ref.getBoundingClientRect);
+    // dummy DOM element for tooltip
+    let $dumDOM = $('#'+ DOCS_GRAPH_ID ).append("div");
+    $dumDOM.html( node.data("label") );
 
-        let tip = new tippy($dumDOM[0], {
-			getReferenceClientRect: ref.getBoundingClientRect,
-			trigger: "manual",
-			content: $dumDOM.html()
-        });
-
-        //tip.show();
-    });
-
-    //cy.removeListener("mouseover", "node, edge");
-    cy.on("mouseout", "node, edge", function(event) {
-        //this.id2tip[event.target.id()].hide();
+    node.tip = tippy($dumDOM[0], {
+        getReferenceClientRect: ref.getBoundingClientRect,
+        trigger: "manual",
+        content: $dumDOM.html()
     });
 }
-*/
 
 function obj_to_HTMLtable(data) {
     let HTMLstr = "<table>";
@@ -173,13 +162,22 @@ function init_graph(graphml_data, graph_style_data) {
 
         ready: function(event) {
             console.log("graph created");
+            // make edges unselectable
+            this.$("edge").unselectify();
+
+            // change processes to diamonds
+            // we denote processes by preceding _'s in the tags
+            this.$('node[label^="_"]').style( "shape", "diamond" );
         }
     });
-    // make edges unselectable
-    cy.$("edge").unselectify();
-    // change processes to diamonds
-    // we denote processes by preceding _'s in the tags
-    cy.$('node[label^="_"]').style( "shape", "diamond" );
+
+    /*
+    cy.batch(function() {
+        cy.nodes("").forEach( function(node){
+            make_node_tooltip(node);
+        });
+    });
+    */
 
     // ensure elements come into view
     cy.fit();
@@ -203,6 +201,16 @@ function init_graph(graphml_data, graph_style_data) {
             //window.location.reload();
         }
     });
+    /*
+    cy.unbind("mouseover", "node, edge");
+    cy.bind("mouseover", "node, edge", function(event) {
+        event.target.tip.show();
+    });
+    cy.unbind("mouseover", "node, edge");
+    cy.bind("mouseout", "node, edge", function(event) {
+        event.target.tip.hide();
+    });
+    */
 
     return cy;
 }
@@ -244,11 +252,11 @@ $( document ).ready(function () {
     $.when(
         $.get(GRAPHML_PATH, function(gml_data) {
             graphml_data = gml_data;
-            console.log( $.parseXML(graphml_data) );
+            //console.log( $.parseXML(graphml_data) );
         }),
         $.getJSON(GRAPH_STYLE_PATH, function(stylesheet_data) {
             graph_style_data = stylesheet_data;
-            console.log(graph_style_data);
+            //console.log(graph_style_data);
         }),
         // just check if exist, fetch on demand
         $.getJSON(ALL_PARTS_PATH, function(parts_data) {
@@ -270,7 +278,7 @@ $( document ).ready(function () {
             imgs_dir_root: IMGS_DIR_PATH,
             info_div_id: INFO_DIV_ID
         }, handle_URL_hash);
-        console.log("bound");
+        //console.log("bound");
 
         // hashchange event doesn't include initial loading
         $(window).trigger("hashchange", {
@@ -280,6 +288,6 @@ $( document ).ready(function () {
             imgs_dir_root: IMGS_DIR_PATH,
             info_div_id: INFO_DIV_ID
         });
-        console.log("after run");
+        //console.log("after run");
     });
 });

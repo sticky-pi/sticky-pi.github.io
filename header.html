@@ -30,6 +30,10 @@
     
 <!--import Cytoscape.js-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.21.1/cytoscape.min.js"></script>
+<!--Popper wrapper for Cytoscape.js
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape-popper/2.0.0/cytoscape-popper.min.js"></script>
+-->
+<script src="libs/cytoscape.js-popper-2.0.0/cytoscape-popper.js"></script>
 
 <script src="js/custom.js"></script>
 
@@ -38,3 +42,6 @@
 <link rel="icon" type="image/png" sizes="16x16" href="assets/logo/favicon-16x16.png">
 <link rel="manifest" href="site.webmanifest">
 
+<!--import tooltip lib,
+apparently need to "Place at the very bottom of the <body>, ensuring they are placed before your own scripts."-->
+<script src="https://unpkg.com/tippy.js@6"></script>
