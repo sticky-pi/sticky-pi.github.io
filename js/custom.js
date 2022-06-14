@@ -1,11 +1,11 @@
 // global consts
 var INFO_DIV_ID = "doc-info";
 var DOCS_GRAPH_ID = "doc-graph";
-var GRAPHML_PATH = "../assets/hardware/doc_graph.graphml"
-var GRAPH_STYLE_PATH = "../assets/hardware/graph_style.json"
-var ALL_PARTS_PATH = "../assets/hardware/parts.json"
-var PROCS_PATH = "../assets/hardware/processes.json"
-var IMGS_DIR_PATH = "../assets/hardware"
+var GRAPHML_PATH = "assets/hardware/doc_graph.graphml"
+var GRAPH_STYLE_PATH = "assets/hardware/graph_style.json"
+var ALL_PARTS_PATH = "assets/hardware/parts.json"
+var PROCS_PATH = "assets/hardware/processes.json"
+var IMGS_DIR_PATH = "assets/hardware"
 
 function capital_case(str) {
 	return str[0].toUpperCase() + str.slice(1);
