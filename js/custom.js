@@ -3,7 +3,7 @@ var INFO_DIV_ID = "doc-info";
 var DOCS_GRAPH_ID = "doc-graph";
 var HW_ASSETS_ROOT = "assets/hardware/";
 var GRAPHML_PATH = HW_ASSETS_ROOT + "doc_graph.graphml"
-var GRAPH_STYLE_PATH = HW_ASSETS_ROOT + "graph_style.json"
+var GRAPH_STYLE_PATH = "css/graph_style.json"
 var ALL_PARTS_PATH = HW_ASSETS_ROOT + "parts.json"
 var PROCS_PATH = HW_ASSETS_ROOT + "processes.json"
 var IMGS_DIR_PATH = HW_ASSETS_ROOT
@@ -228,6 +228,7 @@ function init_graph(graphml_data, graph_style_data) {
             // change processes to diamonds
             // we denote processes by preceding _'s in the tags
             this.$('node[label^="_"]').style( "shape", "diamond" );
+            this.$('node[label^="_"]').style( "background-color", "Khaki" );
         }
     });
 
