@@ -12,14 +12,18 @@ This section involve familiarity with 3D printing, electronics, DIY, ...
 We are working on streamlining the assembly process towards a more `off-the-shelf tool', but are generally happy to collaborate and help building devices -- do not hesitate to [contact us](/community#contact).
 
 ```{=html}
-<div class="container">
+<!--
+<style>
+#doc-graph {
+    height: 100%;
+    width: 100%;
+}
+</style>
+-->
+<div class="container-fluid">
   <div class="row">
-    <div id="doc-graph" class="col-lg-6">
-      This is where the graph lives
-    </div>
-    <div id="doc-info" class="col-lg-6">
-      This is where the info will go
-    </div>
+    <div id="doc-graph" class="col-lg-6 min-vh-100"></div>
+    <div id="doc-info" class="col-lg-6"></div>
   </div>
 </div>
 ```

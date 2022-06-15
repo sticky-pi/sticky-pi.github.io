@@ -1,11 +1,12 @@
 // global consts
 var INFO_DIV_ID = "doc-info";
 var DOCS_GRAPH_ID = "doc-graph";
-var GRAPHML_PATH = "../assets/hardware/doc_graph.graphml"
-var GRAPH_STYLE_PATH = "../assets/hardware/graph_style.json"
-var ALL_PARTS_PATH = "../assets/hardware/parts.json"
-var PROCS_PATH = "../assets/hardware/processes.json"
-var IMGS_DIR_PATH = "../assets/hardware"
+var HW_ASSETS_ROOT = "assets/hardware/";
+var GRAPHML_PATH = HW_ASSETS_ROOT + "doc_graph.graphml"
+var GRAPH_STYLE_PATH = HW_ASSETS_ROOT + "graph_style.json"
+var ALL_PARTS_PATH = HW_ASSETS_ROOT + "parts.json"
+var PROCS_PATH = HW_ASSETS_ROOT + "processes.json"
+var IMGS_DIR_PATH = HW_ASSETS_ROOT
 
 function capital_case(str) {
 	return str[0].toUpperCase() + str.slice(1);
@@ -179,26 +180,21 @@ function init_graph(graphml_data, graph_style_data) {
     });
     */
 
-    // ensure elements come into view
-    cy.fit();
-    /*
-    cy.center();
-    cy.zoom(1.0);
-    */
-
-    /*
-    console.log("graph elements: ", cy.elements(""));
-    console.log("graph assigned to ", cy.container());
-    console.log(cy.graphml());
-    */
-
     // only respond to node clicks
-    cy.on("tap", "node", function(event) {
-        // check if already done: set current URL hash to clicked element's tag
-		let clicked_tag = event.target.data("label");
-        if (window.location.hash != clicked_tag) {
-            window.location.hash = ('#'+ clicked_tag);
-            //window.location.reload();
+    cy.on("tap", function(event) {
+        // disable deselecting any/all nodes (tapping background)
+        if (event.target === cy) {
+            cy.nodes().unselectify();
+        }
+        else if (event.target.isNode())
+        {
+            cy.nodes().selectify();
+            // check if already done: set current URL hash to clicked element's tag
+            let clicked_tag = event.target.data("label");
+            if (window.location.hash != clicked_tag) {
+                window.location.hash = ('#'+ clicked_tag);
+                //window.location.reload();
+            }
         }
     });
     /*
@@ -212,11 +208,18 @@ function init_graph(graphml_data, graph_style_data) {
     });
     */
 
+    // ensure elements come into view
+    cy.center();
+    cy.zoom(1.0);
+    cy.fit();
+
     return cy;
 }
 
 function handle_URL_hash(event) {
     // data: {graph: cytoscape graph, all_parts_data: obj, procs_data: obj, imgs_dir_root: str, info_div_id: str}
+    // due to system for disabling deselecting all by tapping background, need to ensure all nodes selectable again
+    event.data.graph.elements().selectify();
     // first ensure any previous selections cleared
     event.data.graph.elements().unselect();
 
