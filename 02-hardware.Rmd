@@ -9,15 +9,36 @@ One Data Harvester may be used to maintain multiple traps. Multiple Data Harvest
 
 
 This section involve familiarity with 3D printing, electronics, DIY, ...
-We are working on streamlining the assembly process towards a more `off-the-shelf tool', but are generally happy to collaborate and help building devices -- do not hesitate to [contact us](/community#contact).
+We are working on streamlining the assembly process towards a more 'off-the-shelf tool', but are generally happy to collaborate and help building devices -- do not hesitate to [contact us](/community#contact).
 
 ```{=html}
 <div class="container">
   <div class="row">
-    <div id="doc-graph" class="col-lg-6">
+    <div id="doc-graph" class="col-lg-7">
 
     </div>
-    <div id="doc-info" class="col-lg-6">
+    <div id="doc-info" class="col-lg-5">
+        <h1> </h1>
+
+        <iframe class="process_only"  allowfullscreen frameborder="0" width="250" height="250">
+
+        </iframe>
+
+        <img class="part_only" />
+        <div id="description">
+        </div>
+        <div id="note">
+        </div>
+        <div id="process-asset" class="process_only">
+        </div>
+
+
+        <div id="footer" class="part_only">
+            <p> <a  target="_blank" id="link">Link</a>. Estimate (per device) = $<span id="price"></span> </p>
+        </div>
+
+
+
 
     </div>
   </div>

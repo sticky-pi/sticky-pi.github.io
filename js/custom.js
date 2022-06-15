@@ -6,6 +6,7 @@ var GRAPH_STYLE_PATH = "assets/hardware/graph_style.json"
 var ALL_PARTS_PATH = "assets/hardware/parts.json"
 var PROCS_PATH = "assets/hardware/processes.json"
 var IMGS_DIR_PATH = "assets/hardware"
+var DUMMY_PROCESS_VIDEO = "https://widgets.figshare.com/articles/15135750/embed?show_title=0"
 
 function capital_case(str) {
 	return str[0].toUpperCase() + str.slice(1);
@@ -119,23 +120,81 @@ function obj_to_HTMLtable(data) {
 	return HTMLstr;
 }
 
+//fixme you likely do not need info_div_id as we already have INFO_DIV_ID
+//fixme same for img_root_dir
 function update_info_panel(clicked_ele, info_div_id, items_data, imgs_dir_root) {
     //console.log(clicked_ele.id() + " : " + clicked_ele.data("label"));
     // key is tag
     let tag = clicked_ele.data("label");
     // make a copy, ensure no data actually modified
-    let ite_data = Object.assign({}, items_data[tag]);
+    let ite_data = Object();
+    if(!tag in items_data){
+        console.log("ERROR: No such tag: " + tag);
+        ite_data = Object({"part": "FIXME"});
+    }
+    else{
+
+        ite_data = Object.assign({}, items_data[tag]);
+        if(ite_data["part"] == null){
+            console.log("ERROR: tag" + tag + " seems empty");
+            console.log(ite_data);
+            ite_data = Object({"part": "FIXME"});
+        }
+    }
     //console.log(ite_data);
 
-    let $info_panel = $('#'+ info_div_id);
-    $info_panel.html( "<h1>"+ ite_data["part"] +"</h1>");
+//    let $info_panel = $('#'+ INFO_DIV_ID);
 
-    let img_HTML = `<img src="${imgs_dir_root}/${tag}.jpg" />`;
-    $info_panel.append(img_HTML);
+//    $info_panel.html( "<h1>+ ite_data["part"] +"</h1>");
+    // process
+    if(tag[0] == "_"){
+        $("#doc-info").addClass("process");
+        $("#doc-info").removeClass("part");
+        $(".part_only").hide();
+        $(".process_only").show();
+        if(ite_data["name"] == null){
+            ite_data["name"] = "";
+            console.log(tag + " has no 'name'");
+        }
+        $("#doc-info > h1").html(ite_data["name"]);
+        $("#doc-info > iframe").attr("src", src=DUMMY_PROCESS_VIDEO);
+
+    }
+    // part
+    else{
+
+        $("#doc-info").addClass("part");
+        $("#doc-info").removeClass("process");
+        $(".process_only").hide();
+        $(".part_only").show();
+        $("#doc-info > h1").html(ite_data["part"] + "[" + ite_data["number"]  +"]");
+        $("#doc-info > img").attr("src",IMGS_DIR_PATH + "/" + tag + ".jpg");
+
+        $("#doc-info > #footer > p > #price").html(ite_data["price_per_device_CAD"]);
+        console.log(ite_data["link"]);
+        $("#doc-info > #footer > p > #link").attr("href", ite_data["link"]);
+    }
+    if(ite_data["description"] == null){
+            $("#doc-info > #description").html("");
+    }
+    else{
+        $("#doc-info > #description").html(ite_data["description"]);
+    }
+
+    if(ite_data["note"] == null){
+            $("#doc-info > #note").html("");
+    }
+    else{
+        $("#doc-info > #note").html(ite_data["note"]);
+    }
+
+
+    //let img_HTML = `<img src="${imgs_dir_root}/${tag}.jpg" />`;
+    //$info_panel.append(img_HTML);
 
     // already showing [part] as Title
-    delete ite_data.part;
-	$info_panel.append( obj_to_HTMLtable(ite_data) );
+    //delete ite_data.part;
+	//$info_panel.append( obj_to_HTMLtable(ite_data) );
 }
 
 function init_graph(graphml_data, graph_style_data) {
