@@ -5,10 +5,11 @@
             "content": "data(label)",
 			"text-valign": "center",
 			"text-halign": "center",
-            "width": "60px",
-            "height": "60px",
+            "width": "100px",
+            "height": "100px",
             "color": "orange",
             "text-background-color": "blue",
+            "text-background-opacity": 0.8,
             "shape": "ellipse"
         }
     }, {
