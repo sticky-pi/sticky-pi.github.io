@@ -123,7 +123,7 @@ function obj_to_HTMLtable(data) {
 //fixme you likely do not need info_div_id as we already have INFO_DIV_ID
 //fixme same for img_root_dir
 function update_info_panel(clicked_ele, info_div_id, items_data, imgs_dir_root) {
-    //console.log(clicked_ele.id() + " : " + clicked_ele.data("label"));
+
     // key is tag
     let tag = clicked_ele.data("label");
     // make a copy, ensure no data actually modified
@@ -151,6 +151,7 @@ function update_info_panel(clicked_ele, info_div_id, items_data, imgs_dir_root) 
         $("#doc-info").addClass("process");
         $("#doc-info").removeClass("part");
         $(".part_only").hide();
+        $(".init_only").hide();
         $(".process_only").show();
         if(ite_data["name"] == null){
             ite_data["name"] = "";
@@ -167,6 +168,7 @@ function update_info_panel(clicked_ele, info_div_id, items_data, imgs_dir_root) 
         $("#doc-info").removeClass("process");
         $(".process_only").hide();
         $(".part_only").show();
+        $(".init_only").hide();
         $("#doc-info > h1").html(ite_data["part"] + "[" + ite_data["number"]  +"]");
         $("#doc-info > img").attr("src",IMGS_DIR_PATH + "/" + tag + ".jpg");
 

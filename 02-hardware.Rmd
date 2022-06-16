@@ -15,10 +15,15 @@ We are working on streamlining the assembly process towards a more 'off-the-shel
 <div class="container">
   <div class="row">
     <div id="doc-graph" class="col-lg-7">
-
     </div>
+
     <div id="doc-info" class="col-lg-5">
-        <h1> </h1>
+        <h1> Interactive building instructions</h1>
+        <div class="init_only">
+            <p>
+                this is some init
+            </p>
+        </div>
 
         <iframe class="process_only"  allowfullscreen frameborder="0" width="250" height="250">
 
@@ -36,10 +41,6 @@ We are working on streamlining the assembly process towards a more 'off-the-shel
         <div id="footer" class="part_only">
             <p> <a  target="_blank" id="link">Link</a>. Estimate (per device) = $<span id="price"></span> </p>
         </div>
-
-
-
-
     </div>
   </div>
 </div>
