@@ -1,6 +1,6 @@
 node {
     width: 80px;
-    height: 80px;
+    height: 50px;
     shape: ellipse;
     content: data(short_name);
     text-valign: center;
@@ -11,9 +11,10 @@ node {
 
 edge {
     label: data(label);
-    color: BlanchedAlmond
+    color: BlanchedAlmond;
     text-background-opacity: 0.7;
     width: 6px;
     mid-target-arrow-shape: triangle;
     mid-target-arrow-color: GoldenRod;
+    arrow-scale: 1.6;
 }
