@@ -179,6 +179,7 @@ function update_info_panel(clicked_ele, items_data) {
         $(INFO_DIV_ID).addClass("process");
         $(INFO_DIV_ID).removeClass("part");
         $(".part_only").hide();
+        $(".init_only").hide();
         $(".process_only").show();
         if(ite_data["name"] == null){
             ite_data["name"] = "";
@@ -193,6 +194,8 @@ function update_info_panel(clicked_ele, items_data) {
         $('#'+INFO_DIV_ID).removeClass("process");
         $(".process_only").hide();
         $(".part_only").show();
+
+        $(".init_only").hide();
         $('#'+INFO_DIV_ID +" > h1").html(ite_data["part"] + "[" + ite_data["number"]  +"]");
         $('#'+INFO_DIV_ID +" > img").attr("src",IMGS_DIR_PATH + "/" + tag + ".jpg");
 
