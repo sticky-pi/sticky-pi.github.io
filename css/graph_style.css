@@ -1,12 +1,27 @@
 node {
-    width: 80px;
-    height: 50px;
-    shape: ellipse;
     content: data(short_name);
     text-valign: center;
     text-halign: center;
     color: black;
+    width: 90px;
+    height: 60px;
+    shape: ellipse;
     background-color: #bcde77;
+}
+node[type="part"] {
+    width: 90px;
+    height: 60px;
+    shape: ellipse;
+    background-color: #bcde77;
+}
+node[type="proc"] {
+    width: 110px;
+    height: 110px;
+    shape: diamond;
+    background-color: Khaki;
+}
+node:selected {
+    background-color: YellowGreen;
 }
 
 edge {

@@ -55,7 +55,10 @@ function graphML_to_cyEles(gml_data, parts_data, procs_data) {
             group: "nodes",
             // short name for keeping graph legible, will show full name in tooltip on hover
             data: { id: "", label: "",
-                name: "", short_name: "" },
+                name: "", short_name: "",
+                // \/ part or proc \/
+                type: ""
+            },
             position: { x: 0, y: 0 },
         };
 
@@ -67,11 +70,13 @@ function graphML_to_cyEles(gml_data, parts_data, procs_data) {
             if (cyEle_obj.data.label[0] === '_') {
                 //console.log(procs_data[cyEle_obj.data.label]);
                 cyEle_obj.data.name = procs_data[cyEle_obj.data.label].name;
+                cyEle_obj.data.type = "proc";
             }
             // part
             else {
                 //console.log(parts_data[cyEle_obj.data.label]);
                 cyEle_obj.data.name = parts_data[cyEle_obj.data.label].part;
+                cyEle_obj.data.type = "part";
             }
         }
         catch (err) {
@@ -150,9 +155,7 @@ function obj_to_HTMLtable(data) {
 	return HTMLstr;
 }
 
-//fixme you likely do not need info_div_id as we already have INFO_DIV_ID
-//fixme same for img_root_dir
-function update_info_panel(clicked_ele, items_data, imgs_dir_root) {
+function update_info_panel(clicked_ele, items_data) {
     // key is tag
     let tag = clicked_ele.data("label");
     // make a copy, ensure no data actually modified
@@ -215,7 +218,7 @@ function update_info_panel(clicked_ele, items_data, imgs_dir_root) {
     let $info_panel = $('#'+ INFO_DIV_ID);
     $info_panel.html( "<h1>+ ite_data["part"] +"</h1>");
 
-    let img_HTML = `<img src="${imgs_dir_root}/${tag}.jpg" />`;
+    let img_HTML = `<img src="${IMGS_DIR_PATH}/${tag}.jpg" />`;
     $info_panel.append(img_HTML);
 
     // already showing [part] as Title
@@ -227,6 +230,8 @@ function update_info_panel(clicked_ele, items_data, imgs_dir_root) {
 function init_graph(graphml_data, graph_style_data, parts_data, procs_data) {
     var cy = window.cy = cytoscape({
         container: $('#'+DOCS_GRAPH_ID)[0],
+
+        elements: graphML_to_cyEles(graphml_data, parts_data, procs_data),
 
         style: graph_style_data,
 
@@ -244,17 +249,17 @@ function init_graph(graphml_data, graph_style_data, parts_data, procs_data) {
         // only allow selecting one at a time
         selectionType: "single",
 
-        elements: graphML_to_cyEles(graphml_data, parts_data, procs_data),
-
         ready: function(event) {
             console.log("graph created");
             // make edges unselectable
             this.edges().unselectify();
 
+            /*
             // change processes to diamonds
             // we denote processes by preceding _'s in the tags
             this.$('node[label^="_"]').style( "shape", "diamond" );
             this.$('node[label^="_"]').style( "background-color", "Khaki" );
+            */
         }
     });
 

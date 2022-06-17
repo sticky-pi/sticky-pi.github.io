@@ -1,0 +1,660 @@
+[
+  {
+    "id": "n0",
+    "label": "terminal_block",
+    "name": "11pin 2.54mm PCB Screw Terminal Blocks",
+    "short_name": "11pin 2.5",
+    "type": "part"
+  },
+  {
+    "id": "n1",
+    "label": "_prep_pi_hat",
+    "name": "Prepare Pi Hat",
+    "short_name": "Prepare P",
+    "type": "proc"
+  },
+  {
+    "id": "n2",
+    "label": "coin_cell",
+    "name": "CR1220 Coin Cell",
+    "short_name": "CR1220 Co",
+    "type": "part"
+  },
+  {
+    "id": "n3",
+    "label": "header_male_2x1",
+    "name": "Male PCB headers (2x1, 2.54mm)",
+    "short_name": "Male PCB ",
+    "type": "part"
+  },
+  {
+    "id": "n4",
+    "label": "pi_zero",
+    "name": "Pi zero W",
+    "short_name": "Pi zero W",
+    "type": "part"
+  },
+  {
+    "id": "n5",
+    "label": "_prep_pi_zero",
+    "name": "Prepare Pi Zero",
+    "short_name": "Prepare P",
+    "type": "proc"
+  },
+  {
+    "id": "n6",
+    "label": "burnt_sd_card",
+    "name": "burnt_sd_card",
+    "short_name": "burnt_sd_",
+    "type": ""
+  },
+  {
+    "id": "n7",
+    "label": "header_male_2x20",
+    "name": "Male PCB headers (2x20, 2.54mm)",
+    "short_name": "Male PCB ",
+    "type": "part"
+  },
+  {
+    "id": "n8",
+    "label": "_burn_sd_card",
+    "name": "Burn SD Card",
+    "short_name": "Burn SD C",
+    "type": "proc"
+  },
+  {
+    "id": "n9",
+    "label": "sd_card",
+    "name": "32 GB SD card (5 units / pack)",
+    "short_name": "32 GB SD ",
+    "type": "part"
+  },
+  {
+    "id": "n10",
+    "label": "pi_sledge",
+    "name": "Raspberry pi sledge",
+    "short_name": "Raspberry",
+    "type": "part"
+  },
+  {
+    "id": "n11",
+    "label": "camera",
+    "name": "Pi camera HQ",
+    "short_name": "Pi camera",
+    "type": "part"
+  },
+  {
+    "id": "n12",
+    "label": "lens",
+    "name": "8mm CS lens",
+    "short_name": "8mm CS le",
+    "type": "part"
+  },
+  {
+    "id": "n13",
+    "label": "flex_cable",
+    "name": "15cm camera flex cable ( (HBV RPI 160 FPC)",
+    "short_name": "15cm came",
+    "type": "part"
+  },
+  {
+    "id": "n14",
+    "label": "_mount_camera",
+    "name": "Mount Camera",
+    "short_name": "Mount Cam",
+    "type": "proc"
+  },
+  {
+    "id": "n15",
+    "label": "_assemble_sledge",
+    "name": "_assemble_sledge",
+    "short_name": "_assemble",
+    "type": ""
+  },
+  {
+    "id": "n16",
+    "label": "prepped_hat",
+    "name": "prepped_hat",
+    "short_name": "prepped_h",
+    "type": ""
+  },
+  {
+    "id": "n17",
+    "label": "pi_hat",
+    "name": "custom pi hat",
+    "short_name": "custom pi",
+    "type": "part"
+  },
+  {
+    "id": "n18",
+    "label": "prepped_pi_zero",
+    "name": "prepped_pi_zero",
+    "short_name": "prepped_p",
+    "type": ""
+  },
+  {
+    "id": "n19",
+    "label": "pi_standoff",
+    "name": "Standoff",
+    "short_name": "Standoff",
+    "type": "part"
+  },
+  {
+    "id": "n20",
+    "label": "screw_m3x6",
+    "name": "M3 x 6 self-tapping philips screws",
+    "short_name": "M3 x 6 se",
+    "type": "part"
+  },
+  {
+    "id": "n21",
+    "label": "screw_m3x20",
+    "name": "M3 x 20 self-tapping philips screws",
+    "short_name": "M3 x 20 s",
+    "type": "part"
+  },
+  {
+    "id": "n22",
+    "label": "silica_bag",
+    "name": "Silica desiccant bag",
+    "short_name": "Silica de",
+    "type": "part"
+  },
+  {
+    "id": "n23",
+    "label": "tape_duct",
+    "name": "tape_duct",
+    "short_name": "tape_duct",
+    "type": ""
+  },
+  {
+    "id": "n24",
+    "label": "assembled_sledge",
+    "name": "assembled_sledge",
+    "short_name": "assembled",
+    "type": ""
+  },
+  {
+    "id": "n25",
+    "label": "_prep_cambox_back",
+    "name": "Prepare Cambox Back",
+    "short_name": "Prepare C",
+    "type": "proc"
+  },
+  {
+    "id": "n26",
+    "label": "cambox_back",
+    "name": "Camera back",
+    "short_name": "Camera ba",
+    "type": "part"
+  },
+  {
+    "id": "n27",
+    "label": "cable_gland",
+    "name": "M12x1.2 cable gland",
+    "short_name": "M12x1.2 c",
+    "type": "part"
+  },
+  {
+    "id": "n28",
+    "label": "led_orange",
+    "name": "5mm orange led (WP7113SECK)",
+    "short_name": "5mm orang",
+    "type": "part"
+  },
+  {
+    "id": "n29",
+    "label": "push_button",
+    "name": "8mm push button",
+    "short_name": "8mm push ",
+    "type": "part"
+  },
+  {
+    "id": "n30",
+    "label": "prepped_cambox_back",
+    "name": "prepped_cambox_back",
+    "short_name": "prepped_c",
+    "type": ""
+  },
+  {
+    "id": "n31",
+    "label": "cable_ribbon",
+    "name": "cable_ribbon",
+    "short_name": "cable_rib",
+    "type": ""
+  },
+  {
+    "id": "n32",
+    "label": "heatshrink_small",
+    "name": "heatshrink_small",
+    "short_name": "heatshrin",
+    "type": ""
+  },
+  {
+    "id": "n33",
+    "label": "liquid_tape",
+    "name": "liquid_tape",
+    "short_name": "liquid_ta",
+    "type": ""
+  },
+  {
+    "id": "n34",
+    "label": "epoxy",
+    "name": "epoxy",
+    "short_name": "epoxy",
+    "type": ""
+  },
+  {
+    "id": "n35",
+    "label": "_merge_sledge_back",
+    "name": "_merge_sledge_back",
+    "short_name": "_merge_sl",
+    "type": ""
+  },
+  {
+    "id": "n36",
+    "label": "foam",
+    "name": "foam",
+    "short_name": "foam",
+    "type": ""
+  },
+  {
+    "id": "n37",
+    "label": "slab",
+    "name": "slab",
+    "short_name": "slab",
+    "type": ""
+  },
+  {
+    "id": "n38",
+    "label": "cambox_tube",
+    "name": "Camera tube",
+    "short_name": "Camera tu",
+    "type": "part"
+  },
+  {
+    "id": "n39",
+    "label": "epoxy",
+    "name": "epoxy",
+    "short_name": "epoxy",
+    "type": ""
+  },
+  {
+    "id": "n40",
+    "label": "_epoxy_tube",
+    "name": "Epoxy Tube",
+    "short_name": "Epoxy Tub",
+    "type": "proc"
+  },
+  {
+    "id": "n41",
+    "label": "epoxied_tube",
+    "name": "epoxied_tube",
+    "short_name": "epoxied_t",
+    "type": ""
+  },
+  {
+    "id": "n42",
+    "label": "cambox_front",
+    "name": "Camera front",
+    "short_name": "Camera fr",
+    "type": "part"
+  },
+  {
+    "id": "n43",
+    "label": "cut_slide",
+    "name": "cut_slide",
+    "short_name": "cut_slide",
+    "type": ""
+  },
+  {
+    "id": "n44",
+    "label": "_prep_cambox_front",
+    "name": "Prepare Cambox Front",
+    "short_name": "Prepare C",
+    "type": "proc"
+  },
+  {
+    "id": "n45",
+    "label": "clay",
+    "name": "clay",
+    "short_name": "clay",
+    "type": ""
+  },
+  {
+    "id": "n46",
+    "label": "hot_glue",
+    "name": "hot_glue",
+    "short_name": "hot_glue",
+    "type": ""
+  },
+  {
+    "id": "n47",
+    "label": "_mount_cambox_front",
+    "name": "Mount Cambox Font",
+    "short_name": "Mount Cam",
+    "type": "proc"
+  },
+  {
+    "id": "n48",
+    "label": "prepped_cambox_front",
+    "name": "prepped_cambox_front",
+    "short_name": "prepped_c",
+    "type": ""
+  },
+  {
+    "id": "n49",
+    "label": "epoxy",
+    "name": "epoxy",
+    "short_name": "epoxy",
+    "type": ""
+  },
+  {
+    "id": "n50",
+    "label": "foam",
+    "name": "foam",
+    "short_name": "foam",
+    "type": ""
+  },
+  {
+    "id": "n51",
+    "label": "screw_m3x14",
+    "name": "M3 x 14 self-tapping philips screws",
+    "short_name": "M3 x 14 s",
+    "type": "part"
+  },
+  {
+    "id": "n52",
+    "label": "cambox_visor",
+    "name": "Camera visor",
+    "short_name": "Camera vi",
+    "type": "part"
+  },
+  {
+    "id": "n53",
+    "label": "prepped_dht",
+    "name": "prepped_dht",
+    "short_name": "prepped_d",
+    "type": ""
+  },
+  {
+    "id": "n54",
+    "label": "_prep_dht",
+    "name": "Prepare Humidity Sensor",
+    "short_name": "Prepare H",
+    "type": "proc"
+  },
+  {
+    "id": "n55",
+    "label": "dht_shell",
+    "name": "DHT22 shell",
+    "short_name": "DHT22 she",
+    "type": "part"
+  },
+  {
+    "id": "n56",
+    "label": "dht22",
+    "name": "dht22 temperature humidity sensor",
+    "short_name": "dht22 tem",
+    "type": "part"
+  },
+  {
+    "id": "n57",
+    "label": "screw_m3x6",
+    "name": "M3 x 6 self-tapping philips screws",
+    "short_name": "M3 x 6 se",
+    "type": "part"
+  },
+  {
+    "id": "n58",
+    "label": "cable_ribbon",
+    "name": "cable_ribbon",
+    "short_name": "cable_rib",
+    "type": ""
+  },
+  {
+    "id": "n59",
+    "label": "auto_connector",
+    "name": "2-pin automotive connector",
+    "short_name": "2-pin aut",
+    "type": "part"
+  },
+  {
+    "id": "n60",
+    "label": "cable_twocore",
+    "name": "cable_twocore",
+    "short_name": "cable_two",
+    "type": ""
+  },
+  {
+    "id": "n61",
+    "label": "_prep_connector",
+    "name": "Prepare Connector",
+    "short_name": "Prepare C",
+    "type": "proc"
+  },
+  {
+    "id": "n62",
+    "label": "heatshrink_red",
+    "name": "heatshrink_red",
+    "short_name": "heatshrin",
+    "type": ""
+  },
+  {
+    "id": "n63",
+    "label": "heatshrink_black",
+    "name": "heatshrink_black",
+    "short_name": "heatshrin",
+    "type": ""
+  },
+  {
+    "id": "n64",
+    "label": "prepped_connector",
+    "name": "prepped_connector",
+    "short_name": "prepped_c",
+    "type": ""
+  },
+  {
+    "id": "n65",
+    "label": "_prep_lightbox_back",
+    "name": "_prep_lightbox_back",
+    "short_name": "_prep_lig",
+    "type": ""
+  },
+  {
+    "id": "n66",
+    "label": "lightbox_back",
+    "name": "Light box back",
+    "short_name": "Light box",
+    "type": "part"
+  },
+  {
+    "id": "n67",
+    "label": "led_strips",
+    "name": "led_strips",
+    "short_name": "led_strip",
+    "type": ""
+  },
+  {
+    "id": "n68",
+    "label": "wire_copper",
+    "name": "wire_copper",
+    "short_name": "wire_copp",
+    "type": ""
+  },
+  {
+    "id": "n69",
+    "label": "zip_tie_short",
+    "name": "Zip tie 4in",
+    "short_name": "Zip tie 4",
+    "type": "part"
+  },
+  {
+    "id": "n70",
+    "label": "tape_masking",
+    "name": "tape_masking",
+    "short_name": "tape_mask",
+    "type": ""
+  },
+  {
+    "id": "n71",
+    "label": "cable_twocore",
+    "name": "cable_twocore",
+    "short_name": "cable_two",
+    "type": ""
+  },
+  {
+    "id": "n72",
+    "label": "epoxy",
+    "name": "epoxy",
+    "short_name": "epoxy",
+    "type": ""
+  },
+  {
+    "id": "n73",
+    "label": "prepped_lightbox_back",
+    "name": "prepped_lightbox_back",
+    "short_name": "prepped_l",
+    "type": ""
+  },
+  {
+    "id": "n74",
+    "label": "lightbox_front",
+    "name": "Light box front",
+    "short_name": "Light box",
+    "type": "part"
+  },
+  {
+    "id": "n75",
+    "label": "_assemble_lightbox",
+    "name": "Assemble Lightbox",
+    "short_name": "Assemble ",
+    "type": "proc"
+  },
+  {
+    "id": "n76",
+    "label": "silicone",
+    "name": "silicone",
+    "short_name": "silicone",
+    "type": ""
+  },
+  {
+    "id": "n77",
+    "label": "assembled_lightbox",
+    "name": "assembled_lightbox",
+    "short_name": "assembled",
+    "type": ""
+  },
+  {
+    "id": "n78",
+    "label": "_merge_slab_dht_lightbox",
+    "name": "Connect Cambox to Peripherals",
+    "short_name": "Connect C",
+    "type": "proc"
+  },
+  {
+    "id": "n79",
+    "label": "testable_device",
+    "name": "testable_device",
+    "short_name": "testable_",
+    "type": ""
+  },
+  {
+    "id": "n80",
+    "label": "_test_device",
+    "name": "Test Device",
+    "short_name": "Test Devi",
+    "type": "proc"
+  },
+  {
+    "id": "n81",
+    "label": "tested_device",
+    "name": "tested_device",
+    "short_name": "tested_de",
+    "type": ""
+  },
+  {
+    "id": "n82",
+    "label": "_cambox_tube",
+    "name": "_cambox_tube",
+    "short_name": "_cambox_t",
+    "type": ""
+  },
+  {
+    "id": "n83",
+    "label": "_assemble_cambox",
+    "name": "Assemble Camera Box",
+    "short_name": "Assemble ",
+    "type": "proc"
+  },
+  {
+    "id": "n84",
+    "label": "zip_tie_long",
+    "name": "Zip tie 12in",
+    "short_name": "Zip tie 1",
+    "type": "part"
+  },
+  {
+    "id": "n85",
+    "label": "screw_m3x14",
+    "name": "M3 x 14 self-tapping philips screws",
+    "short_name": "M3 x 14 s",
+    "type": "part"
+  },
+  {
+    "id": "n86",
+    "label": "assembled_cambox",
+    "name": "assembled_cambox",
+    "short_name": "assembled",
+    "type": ""
+  },
+  {
+    "id": "n87",
+    "label": "nut_acorn_m3",
+    "name": "M3 Stainless Acorn Nut Cap",
+    "short_name": "M3 Stainl",
+    "type": "part"
+  },
+  {
+    "id": "n88",
+    "label": "nut_standard_m3",
+    "name": "M3 nuts",
+    "short_name": "M3 nuts",
+    "type": "part"
+  },
+  {
+    "id": "n89",
+    "label": "rod_m3x250",
+    "name": "M3 x 250 threaded rods",
+    "short_name": "M3 x 250 ",
+    "type": "part"
+  },
+  {
+    "id": "n90",
+    "label": "rod_m3x250",
+    "name": "M3 x 250 threaded rods",
+    "short_name": "M3 x 250 ",
+    "type": "part"
+  },
+  {
+    "id": "n91",
+    "label": "drawer_hook",
+    "name": "Drawer hook",
+    "short_name": "Drawer ho",
+    "type": "part"
+  },
+  {
+    "id": "n92",
+    "label": "_merge_cambox_lightbox",
+    "name": "_merge_cambox_lightbox",
+    "short_name": "_merge_ca",
+    "type": ""
+  },
+  {
+    "id": "n93",
+    "label": "sticky_pi",
+    "name": "sticky_pi",
+    "short_name": "sticky_pi",
+    "type": ""
+  }
+]
