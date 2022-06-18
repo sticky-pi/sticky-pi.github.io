@@ -155,9 +155,23 @@ function obj_to_HTMLtable(data) {
 	return HTMLstr;
 }
 
-function update_info_panel(clicked_ele, items_data) {
+function update_info_panel(clicked_ele, parts_data, processes_data) {
     // key is tag
     let tag = clicked_ele.data("label");
+
+    let items_data = {};
+    let name_key = "";
+    if (tag[0] == "_"){
+        name_key = "name";
+        items_data = processes_data;
+    }
+    else{
+        name_key = "part";
+        items_data = parts_data;
+
+
+    }
+
     // make a copy, ensure no data actually modified
     let ite_data = Object();
     if (! tag in items_data){
@@ -166,15 +180,18 @@ function update_info_panel(clicked_ele, items_data) {
     }
     else {
         ite_data = Object.assign({}, items_data[tag]);
-        if (ite_data["part"] == null){
-            console.log("ERROR: tag" + tag + " seems empty");
+
+
+        if (ite_data[name_key] == null){
+            console.log("ERROR: tag: " + tag + " seems empty");
             console.log(ite_data);
-            ite_data = Object({"part": "FIXME"});
+            ite_data = Object({name_key: "FIXME"});
         }
     }
     //console.log(ite_data);
 
     // processes
+
     if (tag[0] == "_"){
         $(INFO_DIV_ID).addClass("process");
         $(INFO_DIV_ID).removeClass("part");
@@ -185,8 +202,9 @@ function update_info_panel(clicked_ele, items_data) {
             ite_data["name"] = "";
             console.log(tag + " has no 'name'");
         }
-        $(INFO_DIV_ID +" > h1").html(ite_data["name"]);
-        $(INFO_DIV_ID +" > iframe").attr("src", src=DUMMY_PROCESS_VIDEO);
+
+        $('#' + INFO_DIV_ID +" > h1").html(ite_data["name"]);
+        $('#'+ INFO_DIV_ID +" > iframe").attr("src", src=DUMMY_PROCESS_VIDEO);
     }
     // parts
     else {
@@ -328,16 +346,17 @@ function handle_URL_hash(event) {
 
         if (seld.isNode()) {
             //console.log("node");
-            update_info_panel(seld, event.data.all_parts_data, event.data.imgs_dir_root);
+            update_info_panel(seld, event.data.all_parts_data, event.data.procs_data, event.data.imgs_dir_root);
         }
         else if (seld.isEdge()) {
-            //console.log("edge");
-            update_info_panel(seld, event.data.procs_data, event.data.imgs_dir_root);
+            console.log("nothing happens when clicking on an edge");
+//            update_info_panel(seld, event.data.procs_data, event.data.imgs_dir_root);
         }
     }
 }
 
 $( document ).ready(function () {
+    $(".part_only").hide();
     var cy;
     let graphml_data;
     let graph_style_data;
