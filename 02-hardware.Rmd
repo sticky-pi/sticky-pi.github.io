@@ -12,6 +12,7 @@ This section involve familiarity with 3D printing, electronics, DIY, ...
 We are working on streamlining the assembly process towards a more 'off-the-shelf tool', but are generally happy to collaborate and help building devices -- do not hesitate to [contact us](/community#contact).
 
 ```{=html}
+<input id="search-bar"/>
 <div class="container-fluid">
   <div class="row">
     <div id="doc-graph" class="col-lg-7 min-vh-100">

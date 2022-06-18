@@ -2,7 +2,6 @@
 var INFO_DIV_ID = "doc-info";
 var DOCS_GRAPH_ID = "doc-graph";
 var SEARCH_BAR_ID = "search-bar";
-var THUMBNAIL_DIM = 128;
 
 var HW_ASSETS_ROOT = "assets/hardware/";
 var GRAPHML_PATH = HW_ASSETS_ROOT + "doc_graph.graphml"
@@ -14,17 +13,15 @@ var PROCS_PATH = HW_ASSETS_ROOT + "processes.json"
 var IMGS_DIR_PATH = HW_ASSETS_ROOT
 var DUMMY_PROCESS_VIDEO = "https://widgets.figshare.com/articles/15135750/embed?show_title=0"
 
-var SEARCH_KEY = "description";
-/*
+//var SEARCH_KEY = "search_str";
 var SEARCH_KEYS = {
     part: [ "part", "description" ],
     proc: [ "name", "description" ]
 }
-*/
 // img credit <a href="https://www.flaticon.com/free-icons/component" title="component icons">Component icons created by Freepik - Flaticon</a>
-var PART_ICON_PATH = HW_ASSETS_ROOT + "part_icon.png";
+var PART_ICON_PATH = "part_icon.png";
 // img cred <a href="https://www.flaticon.com/free-icons/process" title="process icons">Process icons created by Eucalyp - Flaticon</a>
-var PROC_ICON_PATH = HW_ASSETS_ROOT + "proc_icon.png";
+var PROC_ICON_PATH = "proc_icon.png";
 
 function capital_case(str) {
 	return str[0].toUpperCase() + str.slice(1);
@@ -160,9 +157,6 @@ function graphML_to_cyEles(gml_data, parts_data, procs_data) {
         cy_eles_data.push(cyEle_obj);
     });
 
-    //console.log(parts_data);
-    //console.log(procs_data);
-
     return cy_eles_data;
 }
 
@@ -187,16 +181,6 @@ function make_node_tooltip(node) {
 			// actual content div
 			let div = document.createElement("div");
 			div.innerHTML = node.data("name");
-
-            if (! node.data("is_proc")) {
-                div.appendChild( document.createElement("BR") );
-
-                let img_ele = document.createElement("IMG");
-                img_ele.src = IMGS_DIR_PATH + "/" + node.data("label") + ".jpg";
-                img_ele.width = THUMBNAIL_DIM;
-                img_ele.height = THUMBNAIL_DIM;
-                div.appendChild(img_ele);
-            }
 			return div;
 		},
 		arrow: true,
@@ -320,6 +304,13 @@ function init_graph(graphml_data, graph_style_data, parts_data, procs_data) {
             console.log("graph created");
             // make edges unselectable
             this.edges().unselectify();
+
+            /*
+            // change processes to diamonds
+            // we denote processes by preceding _'s in the tags
+            this.$('node[label^="_"]').style( "shape", "diamond" );
+            this.$('node[label^="_"]').style( "background-color", "Khaki" );
+            */
         }
     });
 
@@ -365,34 +356,80 @@ function init_graph(graphml_data, graph_style_data, parts_data, procs_data) {
     return cy;
 }
 
-function init_search_bar(parts_data, procs_data) {
-    let options = {
-        // just merge parts_data, procs_data arrays
-        data: [...Object.values(parts_data), ...Object.values(procs_data)],
+function add_description(full_node_data, cyNode_data, parts_data, procs_data) {
+    if (cyNode_data.is_proc) {
+         procs_data[ cyNode_data.label ][ SEARCH_KEYS.proc[1] ];
+    }
+    else {
+        return parts_data[ cyNode_data.label ][ SEARCH_KEYS.part[1] ];
+    }
+}
 
-        getValue: SEARCH_KEY,
-        placeholder: "Search for a part or process",
+/*
+function prep_search_tags(graph) {
+    // merge all the data into
+    // [
+    //      {
+    //          <name>,
+    //          <description>,
+    //          <tag>,
+    //          <id>
+    //      },
+    //      ...
+    // ]
+    // convert { <index : node {...}>, ... } obj to flat array of nodes
+    let graph_data = Object.values(graph.nodes());
+    // last 2 non-node extra items are
+    // 1. some internal cytoscape thing in graph.nodes(), not a node
+    // 2. from copying
+    search_data.pop();
+    search_data.pop();
+
+    let full_node_data;
+    let search_data = graph_data.map((node) => {
+        // just the Cytoscape data
+        full_node_data = node.data();
+        // add description from parts/proc_data
+        add_description(full_node_data, node.data(), parts_data, procs_data);
+        return ;
+    });
+    return search_data;
+}
+*/
+function prep_search_tags(parts_data, procs_data) {
+    let search_data = [];
+    // TODO
+    return search_data;
+}
+
+function init_search_bar(graph, parts_data, procs_data) {
+    let search_data = prep_search_tags(graph, parts_data, procs_data);
+    console.log(search_data);
+    /*
+    let options = {
+        data: search_data,
+
+        getValue:
+
         list: {
-            match: { enabled: true },
-            onChooseEvent: function() {
-                let tag = $('#' + SEARCH_BAR_ID).getSelectedItemData().tag;
-                window.location.hash = ('#'+ tag);
-            }
+            match: { enabled: true }
         },
+
         template: {
             type: "custom",
             method: function(val, item) {
                 if (item.is_proc) {
-                    return "<img src='" + PROC_ICON_PATH + "'/> | " + item.name;
+                    return "<img src='" + PROC_ICON_PATH + "'/> | " + val;
                 }
                 else {
-                    return "<img src='" + PART_ICON_PATH + "'/> | " + item.part;
+                    return "<img src='" + PART_ICON_PATH + "'/> | " + val;
                 }
             }
         }
     };
 
     $('#' + SEARCH_BAR_ID).easyAutocomplete(options);
+    */
 }
 
 function handle_URL_hash(event) {
@@ -448,7 +485,7 @@ $( document ).ready(function () {
     )
     .then(function() {
         cy = window.cy = init_graph(graphml_data, graph_style_data, all_parts_data, procs_data);
-        init_search_bar(all_parts_data, procs_data);
+        init_search_bar(cy, all_parts_data, procs_data);
 
         // enable dynamic checking
         $(window).on("hashchange", {
