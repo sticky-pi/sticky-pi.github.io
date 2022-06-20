@@ -2,7 +2,7 @@
 var INFO_DIV_ID = "doc-info";
 var DOCS_GRAPH_ID = "doc-graph";
 var SEARCH_BAR_ID = "search-bar";
-var THUMBNAIL_DIM = 128;
+var THUMBNAIL_WIDTH = 128;
 
 var HW_ASSETS_ROOT = "assets/hardware/";
 var GRAPHML_PATH = HW_ASSETS_ROOT + "doc_graph.graphml"
@@ -14,7 +14,7 @@ var PROCS_PATH = HW_ASSETS_ROOT + "processes.json"
 var IMGS_DIR_PATH = HW_ASSETS_ROOT
 var DUMMY_PROCESS_VIDEO = "https://widgets.figshare.com/articles/15135750/embed?show_title=0"
 
-var SEARCH_KEY = "description";
+var SEARCH_KEY = "search_str";
 /*
 var SEARCH_KEYS = {
     part: [ "part", "description" ],
@@ -80,12 +80,12 @@ function set_node_name(cyNode_obj, parts_data, procs_data) {
 function set_node_type(cyNode_obj) {
     // process
     if (cyNode_obj.data.label[0] === '_') {
-        cyNode_obj.data.is_proc = true;
+        cyNode_obj.data.is_proc = 1;
     }
     // part
     else {
         //console.log(parts_data[cyNode_obj.data.label]);
-        cyNode_obj.data.is_proc = false;
+        cyNode_obj.data.is_proc = 0;
     }
 }
 
@@ -95,7 +95,7 @@ function props_data_add_cyID(cyNode_obj, parts_data, procs_data) {
     // warning message for user already logged by set_node_name()
     if (cyNode_obj.data.label in parts_data || cyNode_obj.data.label in procs_data) {
         // add id to parts/procs data
-        if (cyNode_obj.data.is_proc) {
+        if (cyNode_obj.data.is_proc == 1) {
             //console.log("process", cyNode_obj.data.label, cyNode_obj.data.is_proc, procs_data[ cyNode_obj.data.label ]);
             procs_data[ cyNode_obj.data.label ].id = cyNode_obj.data.id;
         }
@@ -127,7 +127,7 @@ function graphML_to_cyEles(gml_data, parts_data, procs_data) {
             // short name for keeping graph legible, will show full name in tooltip on hover
             data: { id: "", label: "",
                 name: "", short_name: "",
-                is_proc: false
+                is_proc: 0
             },
             position: { x: 0, y: 0 },
         };
@@ -188,13 +188,14 @@ function make_node_tooltip(node) {
 			let div = document.createElement("div");
 			div.innerHTML = node.data("name");
 
-            if (! node.data("is_proc")) {
+            if (node.data("is_proc") == 0) {
                 div.appendChild( document.createElement("BR") );
 
                 let img_ele = document.createElement("IMG");
-                img_ele.src = IMGS_DIR_PATH + "/" + node.data("label") + ".jpg";
-                img_ele.width = THUMBNAIL_DIM;
-                img_ele.height = THUMBNAIL_DIM;
+                img_ele.src = IMGS_DIR_PATH + node.data("label") + ".jpg";
+                // all 4:3 aspect ratio
+                img_ele.width = THUMBNAIL_WIDTH;
+                img_ele.height = THUMBNAIL_WIDTH * 0.75;
                 div.appendChild(img_ele);
             }
 			return div;
@@ -229,11 +230,9 @@ function update_info_panel(clicked_ele, parts_data, processes_data) {
         name_key = "name";
         items_data = processes_data;
     }
-    else{
+    else {
         name_key = "part";
         items_data = parts_data;
-
-
     }
 
     // make a copy, ensure no data actually modified
@@ -244,9 +243,7 @@ function update_info_panel(clicked_ele, parts_data, processes_data) {
     }
     else {
         ite_data = Object.assign({}, items_data[tag]);
-
-
-        if (ite_data[name_key] == null){
+        if (ite_data[name_key] == null) {
             console.log("ERROR: tag: " + tag + " seems empty");
             console.log(ite_data);
             ite_data = Object({name_key: "FIXME"});
@@ -255,7 +252,6 @@ function update_info_panel(clicked_ele, parts_data, processes_data) {
     //console.log(ite_data);
 
     // processes
-
     if (tag[0] == "_"){
         $(INFO_DIV_ID).addClass("process");
         $(INFO_DIV_ID).removeClass("part");
@@ -279,7 +275,7 @@ function update_info_panel(clicked_ele, parts_data, processes_data) {
 
         $(".init_only").hide();
         $('#'+INFO_DIV_ID +" > h1").html(ite_data["part"] + "[" + ite_data["number"]  +"]");
-        $('#'+INFO_DIV_ID +" > img").attr("src",IMGS_DIR_PATH + "/" + tag + ".jpg");
+        $('#'+INFO_DIV_ID +" > img").attr("src",IMGS_DIR_PATH + tag + ".jpg");
 
         $('#'+INFO_DIV_ID +" > #footer > p > #price").html(ite_data["price_per_device_CAD"]);
         console.log(ite_data["link"]);
@@ -303,7 +299,7 @@ function update_info_panel(clicked_ele, parts_data, processes_data) {
     let $info_panel = $('#'+ INFO_DIV_ID);
     $info_panel.html( "<h1>+ ite_data["part"] +"</h1>");
 
-    let img_HTML = `<img src="${IMGS_DIR_PATH}/${tag}.jpg" />`;
+    let img_HTML = `<img src="${IMGS_DIR_PATH}${tag}.jpg" />`;
     $info_panel.append(img_HTML);
 
     // already showing [part] as Title
@@ -383,24 +379,50 @@ function init_graph(graphml_data, graph_style_data, parts_data, procs_data) {
     return cy;
 }
 
+function get_item_name(ite_data) {
+    try {
+        if (ite_data.is_proc) {
+            return ite_data.name;
+        }
+        else {
+            return ite_data.part;
+        }
+    }
+    catch (err) {
+        if (err instanceof TypeError) {
+            return ite_data.tag;
+        }
+    }
+}
+
+function insert_is_procs(data, whether_proc) {
+    let filled_data = Object.values(data)
+        .map(ele => (
+            { ...ele, is_proc: whether_proc }
+        )
+    );
+    return filled_data;
+}
+
 function init_search_bar(parts_data, procs_data) {
     let options = {
         // just merge parts_data, procs_data arrays
-        data: [...Object.values(parts_data), ...Object.values(procs_data)],
+        data: [...insert_is_procs(parts_data, 0), ...insert_is_procs(procs_data, 1)],
 
         getValue: SEARCH_KEY,
         placeholder: "Search for a part or process",
         list: {
             match: { enabled: true },
             onChooseEvent: function() {
-                let tag = $('#' + SEARCH_BAR_ID).getSelectedItemData().tag;
-                window.location.hash = ('#'+ tag);
+                let ite_data = $('#' + SEARCH_BAR_ID).getSelectedItemData();
+                window.location.hash = ('#'+ ite_data.tag);
+                $('#' + SEARCH_BAR_ID).val( get_item_name(ite_data));
             }
         },
         template: {
             type: "custom",
             method: function(val, item) {
-                if (item.is_proc) {
+                if (item.is_proc == 1) {
                     return "<img src='" + PROC_ICON_PATH + "'/> | " + item.name;
                 }
                 else {

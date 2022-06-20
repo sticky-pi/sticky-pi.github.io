@@ -8,20 +8,20 @@ node {
     shape: ellipse;
     background-color: #bcde77;
 }
-node[type="part"] {
+node[is_proc=0] {
     width: 90px;
     height: 60px;
     shape: ellipse;
     background-color: #bcde77;
 }
-node[type="proc"] {
+node[is_proc=1] {
     width: 110px;
     height: 110px;
     shape: diamond;
     background-color: Khaki;
 }
 node:selected {
-    background-color: YellowGreen;
+    background-color: LightSalmon;
 }
 
 edge {
