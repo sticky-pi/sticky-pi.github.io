@@ -22,7 +22,7 @@ var SEARCH_KEYS = {
 }
 */
 // img credit <a href="https://www.flaticon.com/free-icons/component" title="component icons">Component icons created by Freepik - Flaticon</a>
-var PART_ICON_PATH = HW_ASSETS_ROOT + "part_icon.png";
+var PART_ICON_PATH = HW_ASSETS_ROOT + "part_icon.jpg";
 // img cred <a href="https://www.flaticon.com/free-icons/process" title="process icons">Process icons created by Eucalyp - Flaticon</a>
 var PROC_ICON_PATH = HW_ASSETS_ROOT + "proc_icon.png";
 
@@ -263,6 +263,8 @@ function update_info_panel(clicked_ele, parts_data, processes_data) {
             console.log(tag + " has no 'name'");
         }
 
+        // process icon
+        $('#'+INFO_DIV_ID +" > img.type_icon").attr("src",PROC_ICON_PATH);
         $('#' + INFO_DIV_ID +" > h1").html(ite_data["name"]);
         $('#'+ INFO_DIV_ID +" > iframe").attr("src", src=DUMMY_PROCESS_VIDEO);
     }
@@ -274,8 +276,10 @@ function update_info_panel(clicked_ele, parts_data, processes_data) {
         $(".part_only").show();
 
         $(".init_only").hide();
+        // part icon
+        $('#'+INFO_DIV_ID +" > img.type_icon").attr("src",PART_ICON_PATH);
         $('#'+INFO_DIV_ID +" > h1").html(ite_data["part"] + "[" + ite_data["number"]  +"]");
-        $('#'+INFO_DIV_ID +" > img").attr("src",IMGS_DIR_PATH + tag + ".jpg");
+        $('#'+INFO_DIV_ID +" > img.part_only").attr("src",IMGS_DIR_PATH + tag + ".jpg");
 
         $('#'+INFO_DIV_ID +" > #footer > p > #price").html(ite_data["price_per_device_CAD"]);
         console.log(ite_data["link"]);
