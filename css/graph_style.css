@@ -6,22 +6,22 @@ node {
     width: 90px;
     height: 60px;
     shape: ellipse;
-    background-color: #bcde77;
+    background-color: YellowGreen;
 }
-node[type="part"] {
+node[is_proc=0] {
     width: 90px;
     height: 60px;
     shape: ellipse;
-    background-color: #bcde77;
+    background-color: YellowGreen;
 }
-node[type="proc"] {
+node[is_proc=1] {
     width: 110px;
     height: 110px;
     shape: diamond;
-    background-color: Khaki;
+    background-color: Gold;
 }
 node:selected {
-    background-color: YellowGreen;
+    background-color: LightSalmon;
 }
 
 edge {
@@ -30,6 +30,6 @@ edge {
     text-background-opacity: 0.7;
     width: 6px;
     mid-target-arrow-shape: triangle;
-    mid-target-arrow-color: GoldenRod;
+    mid-target-arrow-color: Gold;
     arrow-scale: 1.6;
 }

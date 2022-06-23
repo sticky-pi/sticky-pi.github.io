@@ -1,0 +1,21 @@
+part,type,tag,quantity,price_per_device_CAD,description,note,provider,link
+Epoxy,consumables,epoxy,5ml,0.005,"To seal, weatherproof and strengthen components",,amazon.ca,https://www.amazon.ca/gp/product/B011T3CWPC/ref=ppx_yo_dt_b_asin_title_o02_s00?ie=UTF8&psc=1
+Rainx,consumables,rainx,1 spray,0,To make the [camera cover](#prepped_cambox_front) water repellent,Optional,amazon.ca,https://www.amazon.ca/gp/product/B000BVRZ74/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1
+Liquid tape,consumables,liquid_tape,1ml,0,To electrically insulate electrical connections,,amazon.ca,https://www.amazon.ca/Gardner-Bender-LTB-400-4-Ounce-Electrical/dp/B000FPAN2K/ref=sr_1_2?keywords=liquid+tape&qid=1589929357&s=hi&sr=1-2
+"100% Silicone, transparent",consumables,silicone,10ml,0,To seal the [lightbox](#assembled_lightbox),,amazon.ca,https://www.amazon.ca/gp/product/B000LGCEES/ref=ppx_yo_dt_b_asin_title_o05_s00?ie=UTF8&psc=1
+Closed-cell insulating foam tape,consumables,foam,15cm,0,To seal the [camera box](#assembled_cambox),,amazon.ca,https://www.amazon.ca/M-D-Building-Products-2758-Density/dp/B000CSIBCE/ref=sr_1_3?crid=2GG79BLS1NQO8&keywords=climaloc+foam&qid=1654124770&sprefix=climaloc+foam%2Caps%2C125&sr=8-3
+Copper 30cm (24 AWG),consumables,wire_copper,27cm,0,To connect the [LED strips](led_strips) inside the [lightbox](#assembled_lightbox),,amazon.ca,https://www.amazon.ca/gp/product/B00E4WL2D4/ref=ppx_yo_dt_b_asin_title_o04_s00?ie=UTF8&psc=1
+Ribbon cables,consumables,cable_ribbon,7x15cm,0,To connect peripherals to our [Raspberry Pi hat](#custom_pi_hat),,aliexpress.com,"https://www.aliexpress.com/item/1005003090897764.html?spm=a2g0o.detail.1000060.1.3db8542ahBQ2Ut&gps-id=pcDetailBottomMoreThisSeller&scm=1007.13339.169870.0&scm_id=1007.13339.169870.0&scm-url=1007.13339.169870.0&pvid=e491e051-a6d5-469f-b0d5-a677642ccd8a&_t=gps-id:pcDetailBottomMoreThisSeller,scm-url:1007.13339.169870.0,pvid:e491e051-a6d5-469f-b0d5-a677642ccd8a,tpp_buckets:668%232846%238116%232002&&pdp_ext_f=%7B%22sceneId%22:%223339%22,%22sku_id%22:%2212000024023383531%22%7D"
+22AWG 2core cables,consumables,cable_twocore,1m,1,To power the device and the [lightbox](#assembled_lightbox),,amazon.ca,https://www.amazon.ca/gp/product/B078TR567C/ref=ppx_yo_dt_b_asin_title_o02_s00?ie=UTF8&th=1
+5v white led,consumables,led_strips,1.2m,2,To illuminate the [lightbox](#assembled_lightbox),,aliexpress.com,https://www.aliexpress.com/item/4000074675463.html?spm=a2g0o.order_list.0.0.21ef1802VsAzYQ
+Heat-shrink tubing 1mm,consumables,heatshrink_small,10cm,0,To insulate the pins of small components,,aliexpress.com,https://www.aliexpress.com/item/1005002395602372.html?spm=a2g0o.order_detail.0.0.7130f19cJAoJ6N
+Heat-shrink tubing 3mm red,consumables,heatshrink_red,10cm,0,To splice and insulate the [2-core cables](#cable_twocore),,aliexpress.com,https://www.aliexpress.com/item/1005002395602372.html?spm=a2g0o.order_detail.0.0.7130f19cJAoJ6N
+Heat-shrink tubing 3mm black,consumables,heatshrink_black,10cm,0,To splice and insulate the [2-core cables](#cable_twocore),,aliexpress.com,https://www.aliexpress.com/item/1005002395602372.html?spm=a2g0o.order_detail.0.0.7130f19cJAoJ6N
+Masking tape,consumables,tape_masking,5cm,0,To help the [lightbox assembly](#_assemble_lightbox),,amazon.ca,https://www.amazon.ca/Scotch%C2%AE-General-Purpose-Masking-Tape/dp/B00004Z47H/ref=sr_1_7?keywords=masking+tape&qid=1654126965&sr=8-7
+Parchment paper,consumables,parchment_paper,50cm,0,To prevent epoxy from sticking to worktops,,amazon.ca,https://www.amazon.ca/Reynolds-Kitchens-Parchment-Premium-Non-Stick/dp/B0166SPEL4/ref=sr_1_6?keywords=parchment+paper&qid=1654127009&sprefix=parchm%2Caps%2C136&sr=8-6
+Gloves,consumables,gloves,2,0,To work with epoxy,,,
+Duct tape,consumables,tape_duct,10cm,0,To secure the [desiccant bags](#silica_bag) on the [pi sledge](#assembled_sledge),,,
+Hot glue,consumables,hot_glue,2g,0,To build the [camera cover](#prepped_cambox_front),,,
+Modeling clay,consumables,clay,5g,0,"To build the (camera cover)[#prepped_cambox_front]
+]",,amazon.ca,https://www.amazon.ca/Crayola-Modeling-Supplies-Stocking-Stuffers/dp/B011Q25T6K/ref=sr_1_15?crid=2U4AY2P90TOQ9&keywords=plasticine+modeling+clay+non+hardening&qid=1654127251&sprefix=plasticine%2Caps%2C124&sr=8-15
+Lead free solder,consumables,solder,?,0,To assemble various electronics,,,

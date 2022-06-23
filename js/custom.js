@@ -1,13 +1,30 @@
 // global consts
 var INFO_DIV_ID = "doc-info";
 var DOCS_GRAPH_ID = "doc-graph";
+var SEARCH_BAR_ID = "search-bar";
+var THUMBNAIL_WIDTH = 128;
+
 var HW_ASSETS_ROOT = "assets/hardware/";
 var GRAPHML_PATH = HW_ASSETS_ROOT + "doc_graph.graphml"
 var GRAPH_STYLE_PATH = "css/graph_style.css"
+
 var ALL_PARTS_PATH = HW_ASSETS_ROOT + "parts.json"
 var PROCS_PATH = HW_ASSETS_ROOT + "processes.json"
+// matches the "search_str" field header in the above JSONs
 var IMGS_DIR_PATH = HW_ASSETS_ROOT
 var DUMMY_PROCESS_VIDEO = "https://widgets.figshare.com/articles/15135750/embed?show_title=0"
+
+var SEARCH_KEY = "search_str";
+/*
+var SEARCH_KEYS = {
+    part: [ "part", "description" ],
+    proc: [ "name", "description" ]
+}
+*/
+// img credit <a href="https://www.flaticon.com/free-icons/component" title="component icons">Component icons created by Freepik - Flaticon</a>
+var PART_ICON_PATH = HW_ASSETS_ROOT + "part_icon.jpg";
+// img cred <a href="https://www.flaticon.com/free-icons/process" title="process icons">Process icons created by Eucalyp - Flaticon</a>
+var PROC_ICON_PATH = HW_ASSETS_ROOT + "proc_icon.png";
 
 function capital_case(str) {
 	return str[0].toUpperCase() + str.slice(1);
@@ -36,10 +53,64 @@ function get_GML_pos($gml_node, ele_type, xscale=1, yscale=1) {
     return pos;
 }
 
+function set_node_name(cyNode_obj, parts_data, procs_data) {
+    try {
+        // process
+        //console.log(cyNode_obj.data.id + ':');
+        if (cyNode_obj.data.label[0] === '_') {
+            //console.log(procs_data[cyNode_obj.data.label]);
+            cyNode_obj.data.name = procs_data[cyNode_obj.data.label].name;
+        }
+        // part
+        else {
+            //console.log(parts_data[cyNode_obj.data.label]);
+            cyNode_obj.data.name = parts_data[cyNode_obj.data.label].part;
+        }
+    }
+    catch (err) {
+        if (err instanceof TypeError) {
+            console.log("name for element with tag "+ cyNode_obj.data.label +" may be missing from JSON properties file");
+            console.log("continuing with name set to tag");
+            cyNode_obj.data.name = cyNode_obj.data.label;
+        }
+    }
+    cyNode_obj.data.short_name = cyNode_obj.data.name.slice(0, 9);
+}
+
+function set_node_type(cyNode_obj) {
+    // process
+    if (cyNode_obj.data.label[0] === '_') {
+        cyNode_obj.data.is_proc = 1;
+    }
+    // part
+    else {
+        //console.log(parts_data[cyNode_obj.data.label]);
+        cyNode_obj.data.is_proc = 0;
+    }
+}
+
+// add given cytoscape node ID for part/proc in parts/procs_data
+function props_data_add_cyID(cyNode_obj, parts_data, procs_data) {
+    // for potential items in graph but not parts/procs properties JSON
+    // warning message for user already logged by set_node_name()
+    if (cyNode_obj.data.label in parts_data || cyNode_obj.data.label in procs_data) {
+        // add id to parts/procs data
+        if (cyNode_obj.data.is_proc == 1) {
+            //console.log("process", cyNode_obj.data.label, cyNode_obj.data.is_proc, procs_data[ cyNode_obj.data.label ]);
+            procs_data[ cyNode_obj.data.label ].id = cyNode_obj.data.id;
+        }
+        else {
+            //console.log("part", cyNode_obj.data.label, cyNode_obj.data.is_proc, parts_data[ cyNode_obj.data.label ]);
+            parts_data[ cyNode_obj.data.label ].id = cyNode_obj.data.id;
+        }
+    }
+}
+
 /* for each element of ele_type("node" or "edge"), add to the Cyto graph from the GraphML data a...
  * - tag field
  * - name and short name field
  * - element positions
+ * and add the cytoscape node id to the parts/procs data
 // TODO: change ele_type to enum
  */
 function graphML_to_cyEles(gml_data, parts_data, procs_data) {
@@ -56,41 +127,21 @@ function graphML_to_cyEles(gml_data, parts_data, procs_data) {
             // short name for keeping graph legible, will show full name in tooltip on hover
             data: { id: "", label: "",
                 name: "", short_name: "",
-                // \/ part or proc \/
-                type: ""
+                is_proc: 0
             },
             position: { x: 0, y: 0 },
         };
 
         cyEle_obj.data.id = $(this).attr("id");
         cyEle_obj.data.label = get_GML_tag(this, "node");
-        try {
-            // process
-            //console.log(cyEle_obj.data.id + ':');
-            if (cyEle_obj.data.label[0] === '_') {
-                //console.log(procs_data[cyEle_obj.data.label]);
-                cyEle_obj.data.name = procs_data[cyEle_obj.data.label].name;
-                cyEle_obj.data.type = "proc";
-            }
-            // part
-            else {
-                //console.log(parts_data[cyEle_obj.data.label]);
-                cyEle_obj.data.name = parts_data[cyEle_obj.data.label].part;
-                cyEle_obj.data.type = "part";
-            }
-        }
-        catch (err) {
-            if (err instanceof TypeError) {
-                console.log("name for element with tag "+ cyEle_obj.data.label +" may be missing from JSON properties file");
-                console.log("continuing with name set to tag");
-                cyEle_obj.data.name = cyEle_obj.data.label;
-            }
-        }
-        cyEle_obj.data.short_name = cyEle_obj.data.name.slice(0, 9);
+        set_node_name(cyEle_obj, parts_data, procs_data);
+        set_node_type(cyEle_obj);
         cyEle_obj.position = get_GML_pos(this, "node");
         //console.log(curr_cyEle.position());
 
         cy_eles_data.push(cyEle_obj);
+
+        props_data_add_cyID(cyEle_obj, parts_data, procs_data);
     });
     let $all_edges = $gml.find("edge");
     $all_edges.each( function() {
@@ -108,6 +159,9 @@ function graphML_to_cyEles(gml_data, parts_data, procs_data) {
 
         cy_eles_data.push(cyEle_obj);
     });
+
+    //console.log(parts_data);
+    //console.log(procs_data);
 
     return cy_eles_data;
 }
@@ -133,6 +187,17 @@ function make_node_tooltip(node) {
 			// actual content div
 			let div = document.createElement("div");
 			div.innerHTML = node.data("name");
+
+            if (node.data("is_proc") == 0) {
+                div.appendChild( document.createElement("BR") );
+
+                let img_ele = document.createElement("IMG");
+                img_ele.src = IMGS_DIR_PATH + node.data("label") + ".jpg";
+                // all 4:3 aspect ratio
+                img_ele.width = THUMBNAIL_WIDTH;
+                img_ele.height = THUMBNAIL_WIDTH * 0.75;
+                div.appendChild(img_ele);
+            }
 			return div;
 		},
 		arrow: true,
@@ -165,11 +230,9 @@ function update_info_panel(clicked_ele, parts_data, processes_data) {
         name_key = "name";
         items_data = processes_data;
     }
-    else{
+    else {
         name_key = "part";
         items_data = parts_data;
-
-
     }
 
     // make a copy, ensure no data actually modified
@@ -180,9 +243,7 @@ function update_info_panel(clicked_ele, parts_data, processes_data) {
     }
     else {
         ite_data = Object.assign({}, items_data[tag]);
-
-
-        if (ite_data[name_key] == null){
+        if (ite_data[name_key] == null) {
             console.log("ERROR: tag: " + tag + " seems empty");
             console.log(ite_data);
             ite_data = Object({name_key: "FIXME"});
@@ -191,7 +252,6 @@ function update_info_panel(clicked_ele, parts_data, processes_data) {
     //console.log(ite_data);
 
     // processes
-
     if (tag[0] == "_"){
         $(INFO_DIV_ID).addClass("process");
         $(INFO_DIV_ID).removeClass("part");
@@ -203,6 +263,8 @@ function update_info_panel(clicked_ele, parts_data, processes_data) {
             console.log(tag + " has no 'name'");
         }
 
+        // process icon
+        $('#'+INFO_DIV_ID +" > img.type_icon").attr("src",PROC_ICON_PATH);
         $('#' + INFO_DIV_ID +" > h1").html(ite_data["name"]);
         $('#'+ INFO_DIV_ID +" > iframe").attr("src", src=DUMMY_PROCESS_VIDEO);
     }
@@ -214,8 +276,10 @@ function update_info_panel(clicked_ele, parts_data, processes_data) {
         $(".part_only").show();
 
         $(".init_only").hide();
+        // part icon
+        $('#'+INFO_DIV_ID +" > img.type_icon").attr("src",PART_ICON_PATH);
         $('#'+INFO_DIV_ID +" > h1").html(ite_data["part"] + "[" + ite_data["number"]  +"]");
-        $('#'+INFO_DIV_ID +" > img").attr("src",IMGS_DIR_PATH + "/" + tag + ".jpg");
+        $('#'+INFO_DIV_ID +" > img.part_only").attr("src",IMGS_DIR_PATH + tag + ".jpg");
 
         $('#'+INFO_DIV_ID +" > #footer > p > #price").html(ite_data["price_per_device_CAD"]);
         console.log(ite_data["link"]);
@@ -239,7 +303,7 @@ function update_info_panel(clicked_ele, parts_data, processes_data) {
     let $info_panel = $('#'+ INFO_DIV_ID);
     $info_panel.html( "<h1>+ ite_data["part"] +"</h1>");
 
-    let img_HTML = `<img src="${IMGS_DIR_PATH}/${tag}.jpg" />`;
+    let img_HTML = `<img src="${IMGS_DIR_PATH}${tag}.jpg" />`;
     $info_panel.append(img_HTML);
 
     // already showing [part] as Title
@@ -274,13 +338,6 @@ function init_graph(graphml_data, graph_style_data, parts_data, procs_data) {
             console.log("graph created");
             // make edges unselectable
             this.edges().unselectify();
-
-            /*
-            // change processes to diamonds
-            // we denote processes by preceding _'s in the tags
-            this.$('node[label^="_"]').style( "shape", "diamond" );
-            this.$('node[label^="_"]').style( "background-color", "Khaki" );
-            */
         }
     });
 
@@ -324,6 +381,62 @@ function init_graph(graphml_data, graph_style_data, parts_data, procs_data) {
     cy.fit();
 
     return cy;
+}
+
+function get_item_name(ite_data) {
+    try {
+        if (ite_data.is_proc) {
+            return ite_data.name;
+        }
+        else {
+            return ite_data.part;
+        }
+    }
+    catch (err) {
+        if (err instanceof TypeError) {
+            return ite_data.tag;
+        }
+    }
+}
+
+function insert_is_procs(data, whether_proc) {
+    let filled_data = Object.values(data)
+        .map(ele => (
+            { ...ele, is_proc: whether_proc }
+        )
+    );
+    return filled_data;
+}
+
+function init_search_bar(parts_data, procs_data) {
+    let options = {
+        // just merge parts_data, procs_data arrays
+        data: [...insert_is_procs(parts_data, 0), ...insert_is_procs(procs_data, 1)],
+
+        getValue: SEARCH_KEY,
+        placeholder: "Search for a part or process",
+        list: {
+            match: { enabled: true },
+            onChooseEvent: function() {
+                let ite_data = $('#' + SEARCH_BAR_ID).getSelectedItemData();
+                window.location.hash = ('#'+ ite_data.tag);
+                $('#' + SEARCH_BAR_ID).val( get_item_name(ite_data));
+            }
+        },
+        template: {
+            type: "custom",
+            method: function(val, item) {
+                if (item.is_proc == 1) {
+                    return "<img src='" + PROC_ICON_PATH + "'/> | " + item.name;
+                }
+                else {
+                    return "<img src='" + PART_ICON_PATH + "'/> | " + item.part;
+                }
+            }
+        }
+    };
+
+    $('#' + SEARCH_BAR_ID).easyAutocomplete(options);
 }
 
 function handle_URL_hash(event) {
@@ -380,6 +493,7 @@ $( document ).ready(function () {
     )
     .then(function() {
         cy = window.cy = init_graph(graphml_data, graph_style_data, all_parts_data, procs_data);
+        init_search_bar(all_parts_data, procs_data);
 
         // enable dynamic checking
         $(window).on("hashchange", {
