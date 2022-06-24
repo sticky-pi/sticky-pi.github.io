@@ -1,15 +1,35 @@
 # Hardware{#hardware}
 
-This page describes how to build the two main components of the hardware:
-the *Sticky Pi Device* and the *Data Harvester*.
-Briefly, multiple Sticky Pis are deployed in the field. Each device stores its images on its own SD card.
-On a regular basis (*e.g.* weekly), experimenters use a data harvester to retrieve the data from multiple devices.
-Silently, the data harvester also syncs the location and time of the devices it communicates with.
-One Data Harvester may be used to maintain multiple traps. Multiple Data Harvesters can exist in the same platform (*e.g.* five experimenters, one harvester per experimenter, ten devices per experimenter).
-
-
-This section involve familiarity with 3D printing, electronics, DIY, ...
+This page describes how to build a Sticky Pi. It involves familiarity with 3D printing, electronics, DIY, ...
+First, we present an short overview of the device itself.
+Second, we describe the "assembly graph" to construct it from basic parts.
+Third, we present the minimal attachments/modules needed to test abd operate it (battery, sticky card holder).
 We are working on streamlining the assembly process towards a more 'off-the-shelf tool', but are generally happy to collaborate and help building devices -- do not hesitate to [contact us](/community#contact).
+
+
+## Overview{-}
+
+As shown here, Sticky Pis have two main part, the *camera box*, which contains all the electronic and the camera, and the *lightbox*, which works like a backlight when images are taken.
+These two parts are connected by metal rods.
+
+```{r hardware-overview, fig.cap="Assembled and deployed Sticky Pi, version 2", echo=FALSE}
+knitr::include_graphics("assets/hardware/overview.jpg")
+```
+
+The complete list of parts and consumables required (i.e. Bill Of Material) is available [here](https://github.com/sticky-pi/sticky-pi-device/blob/main/hardware/BOM.csv).
+The first part is a custom board, the Sticky Pi Hat, that we designed to simplify the assembly process.
+This board has its [own BOM](https://github.com/sticky-pi/sticky-pi-device/blob/v2/hardware/sticky_pi_hat/pcbway_BOM.xls).
+The KiKad project (including schematics) and Gerber files are available [here](https://github.com/sticky-pi/sticky-pi-device/tree/main/hardware/sticky_pi_hat) .
+The Sticky Pi Hat and can be readily machine-assembled in a factory. We are happy to assist users with ordering.
+
+
+## Assembly graph{-}
+
+We decided to describe the assembly process as an interactive graph.
+The assembly process goes from the top down.
+Each part, is a rectangle that you can click on to access its documentation.
+Each diamond shape, is a "process", which you can click on to show a video and written description.
+
 
 ```{=html}
 <input id="search-bar"/>
@@ -20,17 +40,21 @@ We are working on streamlining the assembly process towards a more 'off-the-shel
     </div>
 
     <div id="doc-info" class="col-lg-5">
-        <img class="type_icon" />
-        <h1> Interactive building instructions</h1>
+
+        <h1> <img class="type_icon" /><span>Interactive building instructions</span></h1>
         <div class="init_only">
             <p>
                 this is some init
             </p>
         </div>
+    <div class="process_only">
+        <video id='video' controls="controls" preload='none' width="250">
+        <source id='mp4' src="http://media.w3.org/2010/05/sintel/trailer.mp4" type='video/mp4' />
+        </video>
+    </div>
 
-        <iframe class="process_only"  allowfullscreen frameborder="0" width="250" height="250">
 
-        </iframe>
+
 
         <img class="part_only" />
         <div id="description">
