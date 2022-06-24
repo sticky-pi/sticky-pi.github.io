@@ -16,8 +16,6 @@ var PROCS_PATH = HW_ASSETS_ROOT + "processes.json"
 var IMGS_DIR_PATH = HW_ASSETS_ROOT
 var DUMMY_PROCESS_VIDEO = "https://widgets.figshare.com/articles/15135750/embed?show_title=0"
 
-
-
 var SEARCH_KEY = "search_str";
 /*
 var SEARCH_KEYS = {
@@ -205,6 +203,8 @@ function make_node_tooltip(node) {
 			return div;
 		},
 		arrow: true,
+        // padding
+        maxWidth: THUMBNAIL_WIDTH + 15,
 		placement: "top",
 		hideOnClick: false,
         multiple: true,
@@ -222,6 +222,18 @@ function obj_to_HTMLtable(data) {
     }
 	HTMLstr += "</table>";
 	return HTMLstr;
+}
+
+function parse_ite_data_NAs_to_null(item_data) {
+    for (field in item_data) {
+        if (typeof item_data[field] == "string")
+        {
+            // change any fields containing "NA" to null
+            if (item_data[field] == "NA") {
+                item_data[field] = null;
+            }
+        }
+    }
 }
 
 function update_info_panel(clicked_ele, parts_data, processes_data) {
@@ -252,6 +264,7 @@ function update_info_panel(clicked_ele, parts_data, processes_data) {
             console.log(ite_data);
             ite_data = Object({name_key: "FIXME"});
         }
+        parse_ite_data_NAs_to_null(ite_data);
     }
     //console.log(ite_data);
 

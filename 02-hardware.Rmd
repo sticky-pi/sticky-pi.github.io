@@ -42,7 +42,7 @@ Each diamond shape, is a "process", which you can click on to show a video and w
 <input id="search-bar"/>
 <div class="container-fluid">
   <div class="row">
-    <div id="doc-graph" class="col-lg-7 min-vh-100">
+  <div id="doc-graph" class="col-lg-7 min-vh-100" style="background:PapayaWhip;">
 
     </div>
 
