@@ -8,7 +8,8 @@ library("htm2txt")
 
 BOM_FILE <- "BOM_extended.xlsx"
 OUT_DIR <- "bom_tables"
-SD_IMAGE_LINK <- "http://TEST"
+SD_IMAGE_LINK <- "https://zenodo.org/record/6672639/files/custom-2022-05-31_sticky_pi_rpi.img.gz"
+
 SEARCH_FIELD <- "search_str"
 
 dir.create(OUT_DIR, recursive=T)
@@ -59,7 +60,7 @@ setcolorder(l$consumables, colnames(l$parts))
 parts <- rbindlist(list(l$parts, l$derived_parts, l$consumables))
 
 processes <- l$processes
-
+print(processes)
 
 colnames(parts)
 parts[, tmp_ := paste(description, note, part)]
@@ -74,6 +75,6 @@ setnames(processes, "tmp_", SEARCH_FIELD)
 #todo extract plaintext from both
 dt_to_json(parts, "parts.json")
 dt_to_json(processes, "processes.json")
-
+print(processes)
 
 print("done")
