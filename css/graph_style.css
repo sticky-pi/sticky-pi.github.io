@@ -1,3 +1,7 @@
+#doc-graph {
+    background: Bisque;
+}
+
 node {
     content: data(short_name);
     font-size: 34;

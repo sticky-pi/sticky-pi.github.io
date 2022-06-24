@@ -16,6 +16,8 @@ var PROCS_PATH = HW_ASSETS_ROOT + "processes.json"
 var IMGS_DIR_PATH = HW_ASSETS_ROOT
 var DUMMY_PROCESS_VIDEO = "https://widgets.figshare.com/articles/15135750/embed?show_title=0"
 
+
+
 var SEARCH_KEY = "search_str";
 /*
 var SEARCH_KEYS = {
@@ -266,9 +268,16 @@ function update_info_panel(clicked_ele, parts_data, processes_data) {
         }
 
         // process icon
-        $('#'+INFO_DIV_ID +" > img.type_icon").attr("src",PROC_ICON_PATH);
-        $('#' + INFO_DIV_ID +" > h1").html(ite_data["name"]);
-        $('#'+ INFO_DIV_ID +" > iframe").attr("src", src=DUMMY_PROCESS_VIDEO);
+        $('#'+INFO_DIV_ID +" > h1 > img.type_icon").attr("src",PROC_ICON_PATH);
+        $('#' + INFO_DIV_ID +" > h1 > span").html(ite_data["name"]);
+
+        var video = $('#'+ INFO_DIV_ID +" > div > video");
+        video.find("source").attr("src", ite_data["asset"]);
+        video.get(0).load();
+        video.get(0).play();
+//        $( > source").attr("src", src=ite_data["asset"]);
+//        $('#'+ INFO_DIV_ID +" > div > video").load();
+//        $('#'+ INFO_DIV_ID +" > div > video").play()
     }
     // parts
     else {
@@ -279,8 +288,8 @@ function update_info_panel(clicked_ele, parts_data, processes_data) {
 
         $(".init_only").hide();
         // part icon
-        $('#'+INFO_DIV_ID +" > img.type_icon").attr("src",PART_ICON_PATH);
-        $('#'+INFO_DIV_ID +" > h1").html(ite_data["part"] + "[" + ite_data["number"]  +"]");
+        $('#'+INFO_DIV_ID +" > h1 > img.type_icon").attr("src",PART_ICON_PATH);
+        $('#'+INFO_DIV_ID +" > h1 > span").html(ite_data["part"] + "[" + ite_data["number"]  +"]");
         $('#'+INFO_DIV_ID +" > img.part_only").attr("src",IMGS_DIR_PATH + tag + ".jpg");
 
         $('#'+INFO_DIV_ID +" > #footer > p > #price").html(ite_data["price_per_device_CAD"]);
