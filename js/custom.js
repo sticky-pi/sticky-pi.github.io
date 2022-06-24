@@ -3,6 +3,8 @@ var INFO_DIV_ID = "doc-info";
 var DOCS_GRAPH_ID = "doc-graph";
 var SEARCH_BAR_ID = "search-bar";
 var THUMBNAIL_WIDTH = 128;
+// max num chars for shortened/abbreviated name to be displayed in node label
+var DISP_NAME_MAX_LEN = 13;
 
 var HW_ASSETS_ROOT = "assets/hardware/";
 var GRAPHML_PATH = HW_ASSETS_ROOT + "doc_graph.graphml"
@@ -74,7 +76,7 @@ function set_node_name(cyNode_obj, parts_data, procs_data) {
             cyNode_obj.data.name = cyNode_obj.data.label;
         }
     }
-    cyNode_obj.data.short_name = cyNode_obj.data.name.slice(0, 9);
+    cyNode_obj.data.short_name = cyNode_obj.data.name.slice(0, DISP_NAME_MAX_LEN);
 }
 
 function set_node_type(cyNode_obj) {
