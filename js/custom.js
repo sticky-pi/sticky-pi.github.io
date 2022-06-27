@@ -4,7 +4,7 @@ var DOCS_GRAPH_ID = "doc-graph";
 var SEARCH_BAR_ID = "search-bar";
 var THUMBNAIL_WIDTH = 128;
 // max num chars for shortened/abbreviated name to be displayed in node label
-var DISP_NAME_MAX_LEN = 13;
+var DISP_NAME_MAX_LEN = 20;
 
 var HW_ASSETS_ROOT = "assets/hardware/";
 var GRAPHML_PATH = HW_ASSETS_ROOT + "doc_graph.graphml"
