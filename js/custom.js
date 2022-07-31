@@ -3,6 +3,8 @@ var INFO_DIV_ID = "doc-info";
 var DOCS_GRAPH_ID = "doc-graph";
 var SEARCH_BAR_ID = "search-bar";
 var THUMBNAIL_WIDTH = 128;
+// max num chars for shortened/abbreviated name to be displayed in node label
+var DISP_NAME_MAX_LEN = 20;
 
 var HW_ASSETS_ROOT = "assets/hardware/";
 var GRAPHML_PATH = HW_ASSETS_ROOT + "doc_graph.graphml"
@@ -13,8 +15,6 @@ var PROCS_PATH = HW_ASSETS_ROOT + "processes.json"
 // matches the "search_str" field header in the above JSONs
 var IMGS_DIR_PATH = HW_ASSETS_ROOT
 var DUMMY_PROCESS_VIDEO = "https://widgets.figshare.com/articles/15135750/embed?show_title=0"
-
-
 
 var SEARCH_KEY = "search_str";
 /*
@@ -76,7 +76,7 @@ function set_node_name(cyNode_obj, parts_data, procs_data) {
             cyNode_obj.data.name = cyNode_obj.data.label;
         }
     }
-    cyNode_obj.data.short_name = cyNode_obj.data.name.slice(0, 9);
+    cyNode_obj.data.short_name = cyNode_obj.data.name.slice(0, DISP_NAME_MAX_LEN);
 }
 
 function set_node_type(cyNode_obj) {
@@ -203,6 +203,8 @@ function make_node_tooltip(node) {
 			return div;
 		},
 		arrow: true,
+        // padding
+        maxWidth: THUMBNAIL_WIDTH + 15,
 		placement: "top",
 		hideOnClick: false,
         multiple: true,
@@ -220,6 +222,18 @@ function obj_to_HTMLtable(data) {
     }
 	HTMLstr += "</table>";
 	return HTMLstr;
+}
+
+function parse_ite_data_NAs_to_null(item_data) {
+    for (field in item_data) {
+        if (typeof item_data[field] == "string")
+        {
+            // change any fields containing "NA" to null
+            if (item_data[field] == "NA") {
+                item_data[field] = null;
+            }
+        }
+    }
 }
 
 function update_info_panel(clicked_ele, parts_data, processes_data) {
@@ -250,6 +264,7 @@ function update_info_panel(clicked_ele, parts_data, processes_data) {
             console.log(ite_data);
             ite_data = Object({name_key: "FIXME"});
         }
+        parse_ite_data_NAs_to_null(ite_data);
     }
     //console.log(ite_data);
 

@@ -1,22 +1,31 @@
 node {
     content: data(short_name);
+    font-size: 34;
     text-valign: center;
     text-halign: center;
+
+    /* trying to implement multiline auto ellipsis (abbreviating)
+     * see https://stackoverflow.com/q/3922739/10855624
+    overflow: hidden;
+    text-overflow: ellipsis;
+	display: -webkit-box;
+    -webkit-line-clamp: 2;
+		line-clamp: 2; 
+	-webkit-box-orient: vertical;
+    */
+
+    text-wrap: wrap;
+    text-max-width: 135px;
     color: black;
-    width: 90px;
-    height: 60px;
-    shape: ellipse;
-    background-color: YellowGreen;
-}
-node[is_proc=0] {
-    width: 90px;
-    height: 60px;
-    shape: ellipse;
+    width: 160px;
+    height: 120px;
+    /*shape: round-rectangle;*/
+    shape: round-hexagon;
     background-color: YellowGreen;
 }
 node[is_proc=1] {
-    width: 110px;
-    height: 110px;
+    width: 170px;
+    height: 170px;
     shape: diamond;
     background-color: Gold;
 }
@@ -26,6 +35,7 @@ node:selected {
 
 edge {
     label: data(label);
+    font-size: 34;
     color: BlanchedAlmond;
     text-background-opacity: 0.7;
     width: 6px;
