@@ -96,9 +96,13 @@ The top of the lightbox exposes a flexible attachment we intended for batteries.
 In most of our use cases, we opted for off-the shelf tablet lithium ion batteries such as [this one](https://www.aliexpress.com/item/32791077730.html?spm=a2g0o.order_list.0.0.4e4a18023yvNSH).
 Then we encased the batteries battery in epoxy with [custom pegboard pins](https://cad.onshape.com/documents/73922dc6e3c6d7006b309c14/w/7e4fb88a2e93b6adba33fd5a/e/e36f0fdef7738a73acea5bae) to hang the it on the light box:
 
+```{r battery-module, fig.cap="Battery module", echo=FALSE}
+knitr::include_graphics("assets/hardware/battery_module.jpg")
+```
+
 In order to charge the batteries, we modified [solar panel chargers](https://www.aliexpress.com/item/33034581059.html?spm=a2g0o.order_list.0.0.4e4a18023yvNSH):
 
-```{r battery-charger, fig.cap="Simmle battery charger", echo=FALSE}
+```{r battery-charger, fig.cap="Simple battery charger", echo=FALSE}
 knitr::include_graphics("assets/hardware/battery_charger.jpg")
 ```
 
@@ -118,7 +122,7 @@ You can also just download the [STL file](https://github.com/sticky-pi/sticky-pi
 Note that you need a **transparent material**.
 You can also make a drawing from the Onshape part and laser-cut a of acrylic to do the job.
 
-### Testing Station
+### Testing Station{-}
 
 The testing station is used to adjust the focus of devices.
 It consists of two main parts: a testing tower, on which the "sledge" rests, and a perpendicular plane at the same distance as the sticky card would be:
