@@ -1,2 +1,2 @@
-PUBLICATION_URL="https://www.biorxiv.org/content/10.1101/2021.08.11.455750"
-SD_IMAGE_LINK="https://todo"
+PUBLICATION_URL="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3001689"
+SD_IMAGE_LINK="https://zenodo.org/record/6672639/files/custom-2022-05-31_sticky_pi_rpi.img.gz?download=1"

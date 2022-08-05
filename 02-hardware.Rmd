@@ -21,7 +21,7 @@ The complete list of parts and consumables required (i.e. Bill Of Material) is a
 ### Custom Board{-}
 The first part is a custom board, the Sticky Pi Hat, that we designed to simplify the assembly process.
 This board has its [own BOM](https://github.com/sticky-pi/sticky-pi-device/blob/v2/hardware/sticky_pi_hat/pcbway_BOM.xls).
-The KiKad project (including schematics) and Gerber files are available [here](https://github.com/sticky-pi/sticky-pi-device/tree/main/hardware/sticky_pi_hat) .
+The KiKad project (including schematics) and Gerber files are available [here](https://github.com/sticky-pi/sticky-pi-device/tree/main/hardware/sticky_pi_hat).
 The Sticky Pi Hat and can be readily machine-assembled in a factory. We are happy to assist users with ordering.
 
 ### 3D-printed parts{-}
@@ -34,8 +34,9 @@ Snapshots of individual stl files are also on our github [here](https://github.c
 
 We decided to describe the assembly process as an interactive graph.
 The assembly process goes from the top down.
-Each part, is a rectangle that you can click on to access its documentation.
-Each diamond shape, is a "process", which you can click on to show a video and written description.
+Each part is a rectangle on which you can click to access its documentation.
+Each diamond shape, is a "process" on which you can click to show a video and written description.
+You can also use the search bar to find parts or processes.
 
 
 ```{=html}

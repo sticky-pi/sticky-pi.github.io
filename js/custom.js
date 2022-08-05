@@ -294,20 +294,31 @@ function update_info_panel(clicked_ele, parts_data, processes_data) {
     }
     // parts
     else {
+      
+        console.log("ite_data");
+        console.log(ite_data);
+        
         $('#'+INFO_DIV_ID).addClass("part");
         $('#'+INFO_DIV_ID).removeClass("process");
         $(".process_only").hide();
         $(".part_only").show();
-
         $(".init_only").hide();
         // part icon
         $('#'+INFO_DIV_ID +" > h1 > img.type_icon").attr("src",PART_ICON_PATH);
         $('#'+INFO_DIV_ID +" > h1 > span").html(ite_data["part"] + "[" + ite_data["number"]  +"]");
         $('#'+INFO_DIV_ID +" > img.part_only").attr("src",IMGS_DIR_PATH + tag + ".jpg");
 
-        $('#'+INFO_DIV_ID +" > #footer > p > #price").html(ite_data["price_per_device_CAD"]);
-        console.log(ite_data["link"]);
-        $('#'+INFO_DIV_ID +" > #footer > p > #link").attr("href", ite_data["link"]);
+      
+        
+        if(ite_data["price_per_device_CAD"] === null && ite_data["price_per_device_CAD"] === null){
+          $('#'+INFO_DIV_ID +" > #footer").hide();
+        }
+        else{
+          $('#'+INFO_DIV_ID +" > #footer").show();
+          $('#'+INFO_DIV_ID +" > #footer > p > #price").html(ite_data["price_per_device_CAD"]);
+          $('#'+INFO_DIV_ID +" > #footer > p > #link").attr("href", ite_data["link"]);
+        }
+        
     }
     if(ite_data["description"] == null){
             $('#'+INFO_DIV_ID +" > #description").html("");

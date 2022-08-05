@@ -8,9 +8,7 @@ Here is a list of all the tools:
 df <- tibble::tribble(
   ~Name,~Description,
   "sticky-pi-device","The Hardware and software for the Sticky Pi cameras (i.e. device)",
-  "sticky-pi-device-v2","The improved version of the smart traps (in development)",
-  "sticky-pi-data-harvester","The Hardware and software for the Data Harvester",
-  "sticky-pi-data-harvester-v2","The improved version of the Data Harvester (in development)",
+  "sticky-pi-android-harvester","An android app to harvest the data and interact with the sticky pis",
   "sticky-pi-api","Server and client api and the docker services for the server webapps",
   "sticky-pi-ml","Machine learning for the Sticky Pi project",
   "sticky-pi-manuscript","Manuscipt material and experiments for the 2021 method publication",
@@ -21,8 +19,6 @@ url = sprintf("https://github.com/sticky-pi/%s", df$Name)
 knitr::kable(df, link=url)
 ```
 
-
-**TODO include image here: platform. A clickable svg would be great**
 
 This is an overview of the main components of the platform. 
 The details of each part will be explain further.
