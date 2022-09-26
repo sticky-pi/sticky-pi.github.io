@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 User Manual | Sticky Pi, a high-frequency smart insect trap to study daily activity in the field</title>
+  <meta name="description" content="This is the documentation for the Sticky Pi project, a system to study insect activity in the field." />
+  <meta name="generator" content="bookdown 0.29.2 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 User Manual | Sticky Pi, a high-frequency smart insect trap to study daily activity in the field" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is the documentation for the Sticky Pi project, a system to study insect activity in the field." />
+  <meta name="github-repo" content="sticky-pi/sticky-pi.github.io" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 User Manual | Sticky Pi, a high-frequency smart insect trap to study daily activity in the field" />
+  
+  <meta name="twitter:description" content="This is the documentation for the Sticky Pi project, a system to study insect activity in the field." />
+  
+
+<meta name="author" content="Quentin Geissmann" />
+
+
+<meta name="date" content="2022-09-26" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="mobile-app.html"/>
+<link rel="next" href="web-server.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-188039384-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-188039384-1');
+</script>
+
+<!--jQuery-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!--import Bootstrap style-->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<!--
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+-->
+
+<!-- Popper JS -->
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+
+<!--import Bootstrap JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+    
+<!--import Cytoscape.js-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.21.1/cytoscape.min.js"></script>
+<!--Popper wrapper for Cytoscape.js
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape-popper/2.0.0/cytoscape-popper.min.js"></script>
+-->
+<script src="_libs/cytoscape.js-popper-2.0.0/cytoscape-popper.js"></script>
+
+<!-- EasyAutocomplete -->
+<link rel="stylesheet" href="_libs/EasyAutocomplete-1.3.6/dist/easy-autocomplete.min.css">
+<script src="_libs/EasyAutocomplete-1.3.6/dist/jquery.easy-autocomplete.min.js"></script>
+
+<script src="js/custom.js"></script>
+
+<link rel="apple-touch-icon" sizes="180x180" href="assets/logo/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/logo/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/logo/favicon-16x16.png">
+<link rel="manifest" href="site.webmanifest">
+
+<!--import tooltip lib,
+apparently need to "Place at the very bottom of the <body>, ensuring they are placed before your own scripts."-->
+<script src="https://unpkg.com/tippy.js@6"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="css/my_style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><img width="264" height="88" src="assets/logo/sticky_logo-text-doc.png"</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="2" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i><b>2</b> Platform Overview<a href="overview.html#overview" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="3" data-path="hardware.html"><a href="hardware.html"><i class="fa fa-check"></i><b>3</b> Hardware<a href="hardware.html#hardware" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#overview-1"><i class="fa fa-check"></i>Overview<a href="hardware.html#overview-1" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#custom-board"><i class="fa fa-check"></i>Custom Board<a href="hardware.html#custom-board" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#d-printed-parts"><i class="fa fa-check"></i>3D-printed parts<a href="hardware.html#d-printed-parts" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#assembly-graph"><i class="fa fa-check"></i>Assembly graph<a href="hardware.html#assembly-graph" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#modules"><i class="fa fa-check"></i>Modules<a href="hardware.html#modules" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#battery-module"><i class="fa fa-check"></i>Battery module<a href="hardware.html#battery-module" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#sticky-card-drawer"><i class="fa fa-check"></i>Sticky Card Drawer<a href="hardware.html#sticky-card-drawer" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#testing-station"><i class="fa fa-check"></i>Testing Station<a href="hardware.html#testing-station" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="mobile-app.html"><a href="mobile-app.html"><i class="fa fa-check"></i><b>4</b> Mobile App<a href="mobile-app.html#mobile-app" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li class="chapter" data-level="" data-path="mobile-app.html"><a href="mobile-app.html#installation"><i class="fa fa-check"></i>Installation<a href="mobile-app.html#installation" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li class="chapter" data-level="" data-path="mobile-app.html"><a href="mobile-app.html#through-google-play"><i class="fa fa-check"></i>Through Google Play<a href="mobile-app.html#through-google-play" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="" data-path="mobile-app.html"><a href="mobile-app.html#manual-installation"><i class="fa fa-check"></i>Manual Installation<a href="mobile-app.html#manual-installation" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="mobile-app.html"><a href="mobile-app.html#configuration"><i class="fa fa-check"></i>Configuration<a href="mobile-app.html#configuration" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="" data-path="mobile-app.html"><a href="mobile-app.html#use"><i class="fa fa-check"></i>Use<a href="mobile-app.html#use" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="user-manual.html"><a href="user-manual.html"><i class="fa fa-check"></i><b>5</b> User Manual<a href="user-manual.html#user-manual" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li class="chapter" data-level="" data-path="user-manual.html"><a href="user-manual.html#first-boot-tunning-and-testing"><i class="fa fa-check"></i>First boot tunning and testing<a href="user-manual.html#first-boot-tunning-and-testing" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li class="chapter" data-level="" data-path="user-manual.html"><a href="user-manual.html#overview-2"><i class="fa fa-check"></i>Overview<a href="user-manual.html#overview-2" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="" data-path="user-manual.html"><a href="user-manual.html#detail"><i class="fa fa-check"></i>Detail<a href="user-manual.html#detail" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="user-manual.html"><a href="user-manual.html#maintenance-and-data-harvesting"><i class="fa fa-check"></i>Maintenance and Data Harvesting<a href="user-manual.html#maintenance-and-data-harvesting" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li class="chapter" data-level="" data-path="user-manual.html"><a href="user-manual.html#maintenance"><i class="fa fa-check"></i>Maintenance<a href="user-manual.html#maintenance" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="" data-path="user-manual.html"><a href="user-manual.html#data-harvesting-process"><i class="fa fa-check"></i>Data Harvesting Process<a href="user-manual.html#data-harvesting-process" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="web-server.html"><a href="web-server.html"><i class="fa fa-check"></i><b>6</b> Web Server<a href="web-server.html#web-server" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#general-description"><i class="fa fa-check"></i>General description<a href="web-server.html#general-description" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#deployment"><i class="fa fa-check"></i>Deployment<a href="web-server.html#deployment" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#github-repository"><i class="fa fa-check"></i>Github repository<a href="web-server.html#github-repository" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#hosting"><i class="fa fa-check"></i>Hosting<a href="web-server.html#hosting" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#security"><i class="fa fa-check"></i>Security<a href="web-server.html#security" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#configuration-and-important-files"><i class="fa fa-check"></i>Configuration and important files<a href="web-server.html#configuration-and-important-files" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#env-file"><i class="fa fa-check"></i><code>.env</code> file<a href="web-server.html#env-file" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#secret.env-file"><i class="fa fa-check"></i><code>.secret.env</code> file<a href="web-server.html#secret.env-file" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#alternative-local-s3-server"><i class="fa fa-check"></i>Alternative local S3 server<a href="web-server.html#alternative-local-s3-server" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#deploy-script"><i class="fa fa-check"></i>Deploy script<a href="web-server.html#deploy-script" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#check-the-api"><i class="fa fa-check"></i>Check the API<a href="web-server.html#check-the-api" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#create-users"><i class="fa fa-check"></i>Create users<a href="web-server.html#create-users" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#backups"><i class="fa fa-check"></i>Backups<a href="web-server.html#backups" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#additional-information"><i class="fa fa-check"></i>Additional information<a href="web-server.html#additional-information" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#database"><i class="fa fa-check"></i>Database<a href="web-server.html#database" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#nginx"><i class="fa fa-check"></i>Nginx<a href="web-server.html#nginx" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#api"><i class="fa fa-check"></i>API<a href="web-server.html#api" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#universal-insect-detector"><i class="fa fa-check"></i>Universal Insect Detector<a href="web-server.html#universal-insect-detector" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#webapp"><i class="fa fa-check"></i>Webapp<a href="web-server.html#webapp" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="ml.html"><a href="ml.html"><i class="fa fa-check"></i><b>7</b> Machine Learning<a href="ml.html#ml" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#general-description-1"><i class="fa fa-check"></i>General description<a href="ml.html#general-description-1" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="" data-path="user-manual.html"><a href="user-manual.html#prerequisites"><i class="fa fa-check"></i>General Prerequisites<a href="user-manual.html#prerequisites" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#installation-1"><i class="fa fa-check"></i>Installation<a href="ml.html#installation-1" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#project-organisation"><i class="fa fa-check"></i>Project organisation<a href="ml.html#project-organisation" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#uid"><i class="fa fa-check"></i>Universal Insect Detector<a href="ml.html#uid" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#inference"><i class="fa fa-check"></i>Inference<a href="ml.html#inference" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#training"><i class="fa fa-check"></i>Training<a href="ml.html#training" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#validation"><i class="fa fa-check"></i>Validation<a href="ml.html#validation" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#sim"><i class="fa fa-check"></i>Siamese Insect Matcher<a href="ml.html#sim" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#inference-1"><i class="fa fa-check"></i>Inference<a href="ml.html#inference-1" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#training-2"><i class="fa fa-check"></i>Training<a href="ml.html#training-2" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#validation-1"><i class="fa fa-check"></i>Validation<a href="ml.html#validation-1" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#itc"><i class="fa fa-check"></i>Insect Tuboid Classifier<a href="ml.html#itc" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#training-3"><i class="fa fa-check"></i>Training<a href="ml.html#training-3" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#inference-2"><i class="fa fa-check"></i>Inference<a href="ml.html#inference-2" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#conclusion"><i class="fa fa-check"></i>Conclusion<a href="ml.html#conclusion" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="outreach.html"><a href="outreach.html"><i class="fa fa-check"></i><b>8</b> Outreach<a href="outreach.html#outreach" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li class="chapter" data-level="" data-path="outreach.html"><a href="outreach.html#ubc-campus-living-lab"><i class="fa fa-check"></i>UBC Campus Living Lab<a href="outreach.html#ubc-campus-living-lab" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="" data-path="outreach.html"><a href="outreach.html#june-august-2021"><i class="fa fa-check"></i>June-August 2021<a href="outreach.html#june-august-2021" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="community.html"><a href="community.html"><i class="fa fa-check"></i><b>9</b> Issues and community<a href="community.html#community" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
+<li class="chapter" data-level="" data-path="community.html"><a href="community.html#citation"><i class="fa fa-check"></i>Citation<a href="community.html#citation" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="" data-path="community.html"><a href="community.html#having-troubles"><i class="fa fa-check"></i>Having troubles<a href="community.html#having-troubles" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="" data-path="community.html"><a href="community.html#contributing"><i class="fa fa-check"></i>Contributing<a href="community.html#contributing" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="" data-path="community.html"><a href="community.html#authors-and-contacts"><i class="fa fa-check"></i>Authors and Contacts<a href="community.html#authors-and-contacts" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+</ul></li>
+<li class="divider"></li>
+<li>
+<a href="https://www.biorxiv.org/content/10.1101/2021.08.11.455750" target="blank">Cite Sticky Pi</a>
+<a href="https://bookdown.org/yihui/bookdown/" target="blank">Published with bookdown</a>
+</li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Sticky Pi, a high-frequency smart insect trap to study daily activity in the field</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="user-manual" class="section level1 hasAnchor">
+<h1><span class="header-section-number">Chapter 5</span> User Manual<a href="user-manual.html#user-manual" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="first-boot-tunning-and-testing" class="section level2 unnumbered hasAnchor">
+<h2>First boot tunning and testing<a href="user-manual.html#first-boot-tunning-and-testing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As part of the <a href="hardware.html">assembly</a>, it is crucial to initialise, tune and test <strong>each device</strong>.
+Here we show a video overview of the process, then we describe each step in more detail.</p>
+<div id="overview-2" class="section level3 unnumbered hasAnchor">
+<h3>Overview<a href="user-manual.html#overview-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<video id='video' controls="controls" preload='none' width="100%">
+<source id='mp4' src="https://figshare.com/ndownloader/files/36534747/preview/36534747/video_preview.mp4" type='video/mp4' />
+</video>
+<p>The main aims of this manual operation are:</p>
+<ul>
+<li>Perform the initial system boot</li>
+<li>Check system peripherals/sensors</li>
+<li>Calibrate the focus and aperture of the camera</li>
+<li>Pair devices to a <a href="mobile-app.html">data harvester</a></li>
+</ul>
+</div>
+<div id="detail" class="section level3 unnumbered hasAnchor">
+<h3>Detail<a href="user-manual.html#detail" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="prerequisites" class="section level4 unnumbered hasAnchor">
+<h4>Prerequisites<a href="user-manual.html#prerequisites" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li>A <a href="hardware.html#testing-station">testing platform</a></li>
+<li>A screen and an HDMI-HDMI-mini cable (or an adapter). You need a screen to adjust the focus dynamically</li>
+<li>A simple 5V power supply (splice an old USB cable and a female 2-pin auto-connector), or use a <a href="hardware.html#battery-module">full battery</a></li>
+<li>A testing bridge (a two-pin female header on which the two pins connect). We advise to use a long cable to bridge the two pins. This way, you can attach the cable to the platform and make it impossible to “forget” the bridge on the board.</li>
+<li>A phone with the <a href="mobile-app.html">mobile app</a> installed</li>
+</ul>
+<p>Before starting, <strong>in that order</strong>:</p>
+<ol style="list-style-type: decimal">
+<li>Plug the screen (HDMI cable) into the Sticky Pi</li>
+<li>Bridge the testing pins (female bridge), see label on the Sticky Pi hat</li>
+<li>Power the board (female auto connector, 5V)</li>
+</ol>
+<p>As you plug in the board, you should immediately see the <a href="http://0.0.0.0:8000/hardware.html#led_orange">orange led indicator</a> turning on, as in the video.
+If it does not turn on, unplug power at once and check your board for misplugged cables.</p>
+</div>
+<div id="initial-boot" class="section level4 unnumbered hasAnchor">
+<h4>Initial boot<a href="user-manual.html#initial-boot" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><strong>Important: do not unplug device during the first boot</strong>. When <a href="http://0.0.0.0:8000/hardware.html#_burn_sd_card">flashing our stock image file</a>, the resulting operating system only occupies a small portion of the SD card (because we cannot know ahead how large the user’s SD card will be). During the very first boot, the system creates a new partition that fills all remaining available space, where the images will be saved. Furthermore, the system sets the RTC (hardware clock) to a dummy time (<code>2000-01-01</code>) as it cannot know the real time at this stage. Lastly, the system makes the OS partition read-only (so as not to corrupt itself during future operations). Throughout this process, the flash (from the lightbox) should blink, to indicate the process is still running. In the end, the system reboots itself.</p>
+</div>
+<div id="testing" class="section level4 unnumbered hasAnchor">
+<h4>Testing<a href="user-manual.html#testing" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>When the system reboots it prints some debugging information on the screen. Pay special attention to:</p>
+<ul>
+<li><code>Device ID</code> – a 8 hexadecimal digit you need to write down (it will come up again).</li>
+<li><code>Time</code> – When testing a device for the first time, it should be set shortly after <code>2000-01-01</code>. If not, check the <a href="http://0.0.0.0:8000/hardware.html#coin_cell">coin cell on Sticky Pi Hat</a> – if the cell is missing or drained, the clock will fail to keep time.</li>
+<li><code>Blinking flash</code> – The <a href="http://0.0.0.0:8000/hardware.html#assembled_lightbox">lightbox</a> should blink 10 times. If not, check the wiring of the light box, or <a href="http://0.0.0.0:8000/hardware.html#_assemble_lightbox">retest the light box</a></li>
+<li><code>Reading DHT</code> – should output sensible values of temperature and humidity. It may randomly fail at times – if after retesting several times <a href="http://0.0.0.0:8000/hardware.html#prepped_dht">DHT</a> it keeps failing, check wiring and try swapping with another probe.</li>
+<li><code>Battery level</code> – an internal analog sensor to read the voltage of the input power. When testing with USB (5V), the value should be near 1000. When testing with a lithium battery, it should be lower.</li>
+<li><code>Push button</code> – the system waits for the <a href="http://0.0.0.0:8000/hardware.html#push_button">push button</a> to be activated. If you have pushed the button before (e.g. by accident), the system will say so and continue. If, whilst the system is waiting, you push the button, but nothing happens, check the button is <a href="http://0.0.0.0:8000/hardware.html#_prep_cambox_back">properly wired</a>.</li>
+<li><code>Camera testing and callibration</code> – The system turns the camera on for a few seconds at a time. You can then visually assess focus. It is important that the <strong>testing rig places the camera at the same focal distance as it will be in the assembled device</strong>. We recommend putting a constantly powered (5V) <a href="http://0.0.0.0:8000/hardware.html#prepped_lightbox_back">lightbox back</a> behind the imaging plane and working in a dark room to calibrate the aperture consistently. In our context, we calibrate the aperture so that images have an exposure time of ~30ms (this value will be printed on the screen between image previews), which works well during night and day, on yellow sticky cards. Draw or place objects on the imaging plane and adjust the focus until all are sharp and visible. When done, <strong>use a pair of pliers to lock the moving parts of the lens</strong> – and double check the image and exposure value. To move to the next step, remove the testing bridge.</li>
+<li><code>Pairing with data harvester</code> – Start the <a href="http://0.0.0.0:8000/mobile-app.html">data harvester app</a>. Start a persistent wifi hotspot (as shown in video). Display the QR code for this hotspot, and place it in front of the camera. The system should detect the QR code and, after a few seconds, the device name/parameters will be shown on the phone screen. The device will remember this specific phone as long as the name/password of the hotspot remains unchanged. Note that it is possible to pair multiple phones to a single device, and this can be done after assembly/testing, when the devices are in the field. <strong>During pairing, the time of a device gets set to the time of the phone</strong>. After pairing, the screen attached to the Sticky Pi will display the time for the device and turn off. Note that the time is in UTC (not in your local timezone).</li>
+<li><code>Labeling</code> – The <code>Device ID</code> displayed earlier is also the last device shown on the phone app. Write this number on the device (e.g. using a label maker). <strong>Always double check the ID and make multiple labels</strong>, as labels may peel off or become invisible in the field. We also like to glue an internal label on the back of the <a href="http://0.0.0.0:8000/hardware.html#assembled_sledge">Pi sledge</a>.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="maintenance-and-data-harvesting" class="section level2 unnumbered hasAnchor">
+<h2>Maintenance and Data Harvesting<a href="user-manual.html#maintenance-and-data-harvesting" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="maintenance" class="section level3 unnumbered hasAnchor">
+<h3>Maintenance<a href="user-manual.html#maintenance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Periodically, users should retrieve data and collect sticky cards. We suggest to do so every week. The video below shows how to perform the different steps:</p>
+<ul>
+<li>Labeling sticky cards</li>
+<li>Replacing batteries</li>
+<li>Harvesting data using the phone app</li>
+<li>Replacing the sticky cards</li>
+</ul>
+<video id='video' controls="controls" preload='none' width="100%">
+<source id='mp4' src="https://s3-eu-west-1.amazonaws.com/pfigshare-u-previews/36468051/video_preview.mp4" type='video/mp4' />
+</video>
+</div>
+<div id="data-harvesting-process" class="section level3 unnumbered hasAnchor">
+<h3>Data Harvesting Process<a href="user-manual.html#data-harvesting-process" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ensure you have the <a href="/mobile-app.html">mobile app</a> installed. Then,</p>
+<ol style="list-style-type: decimal">
+<li>Turn off the wifi on your phone</li>
+<li>Start a hotspot (see <a href="http://0.0.0.0:8000/user-manual.html#testing">testing</a>). Ideally, your Sticky Pi is paired to this phone/hotspot already. Otherwise you will need to pair using a QR code as described above.</li>
+<li>Push the power on button on a nearby Sticky Pi (note that several Sticky Pis) can be harvested in parallel</li>
+<li>After a few seconds, you will see devices appear on the “Devices” tab of the app.</li>
+<li>Pay attention to the fields in the device description (see figure below)</li>
+<li>Ensure all images have been downloaded (otherwise restart the Sticky Pi)</li>
+</ol>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="mobile-app.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="web-server.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/sticky-pi/sticky-pi.github.io/edit/source/04-user-manual.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["sticky-pi.pdf", "sticky-pi.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

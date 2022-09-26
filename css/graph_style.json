@@ -1,0 +1,24 @@
+[
+    {
+        "selector": "node",
+        "style": {
+            "width": "80px",
+            "height": "80px",
+            "shape": "ellipse",
+            "content": "data(name)",
+			"text-valign": "center",
+			"text-halign": "center",
+            "color": "black",
+            "background-color": "#bcde77"
+        }
+    }, {
+        "selector": "edge",
+        "style": {
+            "label": "data(label)",
+            "text-background-opacity": 0.7,
+            "width": "6px",
+            "mid-target-arrow-shape": "triangle",
+            "mid-target-arrow-color": "GoldenRod"
+        }
+    }
+]
