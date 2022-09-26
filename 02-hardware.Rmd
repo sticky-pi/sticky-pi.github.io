@@ -37,6 +37,7 @@ The assembly process goes from the top down.
 Each part is a rectangle on which you can click to access its documentation.
 Each diamond shape, is a "process" on which you can click to show a video and written description.
 You can also use the search bar to find parts or processes.
+Here is an [example showing how to use this interactive documentation](https://figshare.com/ndownloader/files/37483477/preview/37483477/video_preview.mp4).
 
 
 ```{=html}

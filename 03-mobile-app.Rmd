@@ -1,1 +1,32 @@
 # Mobile App{#mobile-app}
+
+In order to retrieve the data from the Sticky Pis, we provide an Android mobile app `Sticky Pi Data Harvester`.
+This page describes how to install and use this app.
+
+## Installation{-}
+
+You can either install the app though the official Google play (WIP), or manually, using android studio (advanced).
+
+### Through Google Play {-}
+
+Work in progress
+
+### Manual Installation {-}
+
+This is the advanced approach, mostly for developers and testers.
+
+1. Clone the [app repository](https://github.com/sticky-pi/sticky-pi-android-harvester)
+2. Install [Android Studio]()
+3. Make a new project for the app
+4. Compile and upload the app to the phone (using USB or wifi)
+
+## Configuration {-}
+In the "SETTINGS" menu, the API settings (Host, User name, Password) are the address (e.g. `api.<your-domain.com>` and logging credentials -- with write access) for the harvester user. See the [webserver documentation](/web-server.html) for detail. These settings are exclusively to upload data to the cloud.
+
+There are also user preferences you can tick:
+
+* Delete local images after upload -- to save storage on your phone, the app can delete images on the phone when they have been uploaded to the cloud (API)
+* Enforce geolocation before syncing -- this setting prevents you from retrieving data from Sticky Pis unless your GPS is functioning. The default (on) means Sticky Pis retrieve their approximate location from the phone when syncing. 
+
+##  Use {-}
+See [the data harvsesting section of the user manual](user-manual.html#maintenance-and-data-harvesting).

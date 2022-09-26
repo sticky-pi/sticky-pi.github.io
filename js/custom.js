@@ -305,7 +305,11 @@ function update_info_panel(clicked_ele, parts_data, processes_data) {
         $(".init_only").hide();
         // part icon
         $('#'+INFO_DIV_ID +" > h1 > img.type_icon").attr("src",PART_ICON_PATH);
-        $('#'+INFO_DIV_ID +" > h1 > span").html(ite_data["part"] + "[" + ite_data["number"]  +"]");
+        if(ite_data["number"]  !== null)
+            $('#'+INFO_DIV_ID +" > h1 > span").html(ite_data["part"] + "[" + ite_data["number"]  +"]");
+        else
+            $('#'+INFO_DIV_ID +" > h1 > span").html(ite_data["part"] );
+
         $('#'+INFO_DIV_ID +" > img.part_only").attr("src",IMGS_DIR_PATH + tag + ".jpg");
 
       

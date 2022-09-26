@@ -1,5 +1,6 @@
 # Issues and community {#community}
 
+
 ## Citation{-}
 
 Sticky Pis are a research tool. As such, they are -- and will always be -- as free and open-source as possible. 
@@ -19,7 +20,8 @@ There are several ways you can contribute:
 * By sending pull requests to preexisting tools
 * By volunteering to maintain/develop a tools
 
-## Contact {-}
+## Authors and Contacts {-}
 
-Sticky Pis are developed at the [Plant-Insect Ecology and Evolution lab](https://piee-lab.landfood.ubc.ca/) at UBC, Vancouver in collaboration with the [Haney Lab](https://haneylab.msl.ubc.ca/) and the [Insect Biocontrol lab](https://profils-profiles.science.gc.ca/en/profile/paul-k-abram-phd). Do not hesitate to contact [Quentin Geissmann](qgeissmann@gmail.com), the main contributor of the project for inquiries.
+Sticky Pis are developed at the [Plant-Insect Ecology and Evolution lab](https://piee-lab.landfood.ubc.ca/) at UBC, Vancouver in collaboration with the [Haney Lab](https://haneylab.msl.ubc.ca/) and the [Insect Biocontrol lab](https://profils-profiles.science.gc.ca/en/profile/paul-k-abram-phd). Do not hesitate to contact [Quentin Geissmann](https://quentin.geissmann.net), the main contributor of the project, for inquiries. [Daphne Chevalier](https://orcid.org/0000-0001-5558-0610) and [Wei (Tom) Xie](https://sites.google.com/view/tom-x/) helped generating and curating content for this documentation. 
+
 

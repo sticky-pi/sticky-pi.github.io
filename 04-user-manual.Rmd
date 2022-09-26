@@ -3,7 +3,7 @@
 ## First boot tunning and testing{-}
 
 As part of the [assembly](hardware.html), it is crucial to initialise, tune and test **each device**.
-Here we show an video overview of the process, then we describe in each step on more detail.
+Here we show a video overview of the process, then we describe each step in more detail.
 
 ### Overview {-}
 
@@ -11,7 +11,7 @@ Here we show an video overview of the process, then we describe in each step on 
 <source id='mp4' src="https://figshare.com/ndownloader/files/36534747/preview/36534747/video_preview.mp4" type='video/mp4' />
 </video>
 
-The main aims of the this manual operation are:
+The main aims of this manual operation are:
 
 * Perform the initial system boot
 * Check system peripherals/sensors
@@ -23,43 +23,44 @@ The main aims of the this manual operation are:
 #### Prerequisites {-}
 
 * A [testing platform](hardware.html#testing-station)
-* A screen and an HDMI-HDMI-mini cable (or an adapter). You need a screen to adjust the focus dynamically. 
-* A simple 5V power supply (splice an old USB cable and a female 2-pin auto), or use a [full battery](hardware.html#battery-module)
+* A screen and an HDMI-HDMI-mini cable (or an adapter). You need a screen to adjust the focus dynamically 
+* A simple 5V power supply (splice an old USB cable and a female 2-pin auto-connector), or use a [full battery](hardware.html#battery-module)
 * A testing bridge (a two-pin female header on which the two pins connect). We advise to use a long cable to bridge the two pins. This way, you can attach the cable to the platform and make it impossible to "forget" the bridge on the board.
 * A phone with the [mobile app](mobile-app.html) installed
 
 
 Before starting, **in that order**:
 
-1. Plug the screen (HDMI cable)
-2. Bridge the testing pins (female bridge), see label on the sticky pi hat
+1. Plug the screen (HDMI cable) into the Sticky Pi
+2. Bridge the testing pins (female bridge), see label on the Sticky Pi hat
 3. Power the board (female auto connector, 5V)
 
-As you plug the board, you should immediately see the [orange led indicator](http://0.0.0.0:8000/hardware.html#led_orange) turning on, as in the video. 
+As you plug in the board, you should immediately see the [orange led indicator](http://0.0.0.0:8000/hardware.html#led_orange) turning on, as in the video. 
 If it does not turn on, unplug power at once and check your board for misplugged cables.
 
 
 #### Initial boot {-}
 
-**Important: do not unplug device during the first boot**. When [flashing our stock image file](http://0.0.0.0:8000/hardware.html#_burn_sd_card), the resulting operating system only occupies a small portion of the SD card (because we cannot know ahead how large the user SD card will be). During the very first boot, the system creates a new partition that fills all remaining available space, where the images will be saved. Furthermore, the system sets the RTC (hardware clock) to a dummy time (`2000-01-01`) as it cannot know the real time at this stage. Lastly, the system makes the OS partition read-only (so not to corrupt itself during future operations). Throughout this process, the flash (from the lightbox should blink), to indicate the process is still running. In the end, the system reboot itself.
+**Important: do not unplug device during the first boot**. When [flashing our stock image file](http://0.0.0.0:8000/hardware.html#_burn_sd_card), the resulting operating system only occupies a small portion of the SD card (because we cannot know ahead how large the user's SD card will be). During the very first boot, the system creates a new partition that fills all remaining available space, where the images will be saved. Furthermore, the system sets the RTC (hardware clock) to a dummy time (`2000-01-01`) as it cannot know the real time at this stage. Lastly, the system makes the OS partition read-only (so as not to corrupt itself during future operations). Throughout this process, the flash (from the lightbox) should blink, to indicate the process is still running. In the end, the system reboots itself.
 
 #### Testing {-}
 
-When the system reboots it print some debugging information on the screen. Pay special attention to:
+When the system reboots it prints some debugging information on the screen. Pay special attention to:
 
 * `Device ID` -- a 8 hexadecimal digit you need to write down (it will come up again).
 * `Time` -- When testing a device for the first time, it should be set shortly after `2000-01-01`. If not, check the [coin cell on Sticky Pi Hat](http://0.0.0.0:8000/hardware.html#coin_cell) -- if the cell is missing or drained, the clock will fail to keep time.
 * `Blinking flash` -- The [lightbox](http://0.0.0.0:8000/hardware.html#assembled_lightbox) should blink 10 times. If not, check the wiring of the light box, or [retest the light box](http://0.0.0.0:8000/hardware.html#_assemble_lightbox)
-* `Reading DHT` -- should output sensible values of temperature and humidity. It may randomly fail at times -- if after retesting several times [DHT](http://0.0.0.0:8000/hardware.html#prepped_dht) keeps failing, check wiring and try swapping with another probe.
-* `Battery level` -- an internal analog sensor read the voltage of the input power. When testing with USB (5V), the value should be near 1000 -- and lower with a Lithium battery.
+* `Reading DHT` -- should output sensible values of temperature and humidity. It may randomly fail at times -- if after retesting several times [DHT](http://0.0.0.0:8000/hardware.html#prepped_dht) it keeps failing, check wiring and try swapping with another probe.
+* `Battery level` -- an internal analog sensor to read the voltage of the input power. When testing with USB (5V), the value should be near 1000. When testing with a lithium battery, it should be lower.
 * `Push button` -- the system waits for the [push button](http://0.0.0.0:8000/hardware.html#push_button) to be activated. If you have pushed the button before (e.g. by accident), the system will say so and continue. If, whilst the system is waiting, you push the button, but nothing happens, check the button is [properly wired](http://0.0.0.0:8000/hardware.html#_prep_cambox_back).
-* `Camera testing and callibration` -- The system turns the camera on for a few seconds at a time. You can then visually assess focus. It is important that the **testing rig places the camera at the same focal distance as it will be in the assemble device**. We recommend puting a constantly powered (5V) [lightbox back](http://0.0.0.0:8000/hardware.html#prepped_lightbox_back) behind the imaging plan and work in a dark room to calibrate the aperture consistently. In our context, we calibrate the aperture so that images have an exposure time of ~30ms (this value will be printed on the screen between image previews), which works well during night and day, on yellow sticky cards. Draw or place objects on the imaging plan and adjust the focus until are sharp and visible. When done, **use a pair of pliers to lock the moving parts of the lens** -- and double check the image and exposure value. To move to the next step, remove the testing bridge.
-* `Pairing with data harvester` -- Start the [data harvester app](http://0.0.0.0:8000/mobile-app.html). Start a persistent wifi hotspot (as shown in video). Display the QR code for this hotspot, and place it in front of the camera. The system should detect the QR code and, after a few seconds, the device name/parameters will shown on the phone screen. The device will remember this specific phone as long as the name/password of the hotspot remains unchanged. Note that it is possible to pair multiple phones to a single device, and this can be done after assembly/testing, when the devices are in the field. **During pairing, the time of a device gets set to the time of the phone**. After pairing, the screen  attached to the Sticky Pi will display the time for the device and turn off. Note that the time is in UTC (not in your local timezone).
-* `Labeling` --  The `Device ID` displayed earlier is also the last device shown on the phone app. Write this number (e.g. using a label maker). **Always double check the ID and make multiple labels**, as labels may peel off of become invisible in the field. We also like to glue an internal label on the back of the [Pi sledge](http://0.0.0.0:8000/hardware.html#assembled_sledge).
+* `Camera testing and callibration` -- The system turns the camera on for a few seconds at a time. You can then visually assess focus. It is important that the **testing rig places the camera at the same focal distance as it will be in the assembled device**. We recommend putting a constantly powered (5V) [lightbox back](http://0.0.0.0:8000/hardware.html#prepped_lightbox_back) behind the imaging plane and working in a dark room to calibrate the aperture consistently. In our context, we calibrate the aperture so that images have an exposure time of ~30ms (this value will be printed on the screen between image previews), which works well during night and day, on yellow sticky cards. Draw or place objects on the imaging plane and adjust the focus until all are sharp and visible. When done, **use a pair of pliers to lock the moving parts of the lens** -- and double check the image and exposure value. To move to the next step, remove the testing bridge.
+* `Pairing with data harvester` -- Start the [data harvester app](http://0.0.0.0:8000/mobile-app.html). Start a persistent wifi hotspot (as shown in video). Display the QR code for this hotspot, and place it in front of the camera. The system should detect the QR code and, after a few seconds, the device name/parameters will be shown on the phone screen. The device will remember this specific phone as long as the name/password of the hotspot remains unchanged. Note that it is possible to pair multiple phones to a single device, and this can be done after assembly/testing, when the devices are in the field. **During pairing, the time of a device gets set to the time of the phone**. After pairing, the screen  attached to the Sticky Pi will display the time for the device and turn off. Note that the time is in UTC (not in your local timezone).
+* `Labeling` --  The `Device ID` displayed earlier is also the last device shown on the phone app. Write this number on the device (e.g. using a label maker). **Always double check the ID and make multiple labels**, as labels may peel off or become invisible in the field. We also like to glue an internal label on the back of the [Pi sledge](http://0.0.0.0:8000/hardware.html#assembled_sledge).
 
 ## Maintenance and Data Harvesting {-}
 
-Periodically, users should retrieve data and collect sticky cards. We suggest to do so every week. The video below show how to perform the different steps:
+### Maintenance {-}
+Periodically, users should retrieve data and collect sticky cards. We suggest to do so every week. The video below shows how to perform the different steps:
 
 * Labeling sticky cards
 * Replacing batteries
@@ -69,3 +70,16 @@ Periodically, users should retrieve data and collect sticky cards. We suggest to
 <video id='video' controls="controls" preload='none' width="100%">
 <source id='mp4' src="https://s3-eu-west-1.amazonaws.com/pfigshare-u-previews/36468051/video_preview.mp4" type='video/mp4' />
 </video>
+
+### Data Harvesting Process {-}
+
+Ensure you have the [mobile app](/mobile-app.html) installed. Then,
+
+1. Turn off the wifi on your phone 
+2. Start a hotspot (see [testing](http://0.0.0.0:8000/user-manual.html#testing)). Ideally, your Sticky Pi is paired to this phone/hotspot already. Otherwise you will need to pair using a QR code as described above.
+3. Push the power on button on a nearby Sticky Pi (note that several Sticky Pis) can be harvested in parallel
+4. After a few seconds, you will see devices appear on the "Devices" tab of the app. 
+5. Pay attention to the fields in the device description (see figure below)
+6. Ensure  all images have been downloaded (otherwise restart the Sticky Pi)
+
+
