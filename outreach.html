@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 8 Outreach | Sticky Pi, a high-frequency smart insect trap to study daily activity in the field</title>
   <meta name="description" content="This is the documentation for the Sticky Pi project, a system to study insect activity in the field." />
-  <meta name="generator" content="bookdown 0.29.2 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 8 Outreach | Sticky Pi, a high-frequency smart insect trap to study daily activity in the field" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Quentin Geissmann" />
 
 
-<meta name="date" content="2022-09-26" />
+<meta name="date" content="2023-01-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -82,11 +82,11 @@
 <!--Popper wrapper for Cytoscape.js
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape-popper/2.0.0/cytoscape-popper.min.js"></script>
 -->
-<script src="_libs/cytoscape.js-popper-2.0.0/cytoscape-popper.js"></script>
+<script src="libs/cytoscape.js-popper-2.0.0/cytoscape-popper.js"></script>
 
 <!-- EasyAutocomplete -->
-<link rel="stylesheet" href="_libs/EasyAutocomplete-1.3.6/dist/easy-autocomplete.min.css">
-<script src="_libs/EasyAutocomplete-1.3.6/dist/jquery.easy-autocomplete.min.js"></script>
+<link rel="stylesheet" href="libs/EasyAutocomplete-1.3.6/dist/easy-autocomplete.min.css">
+<script src="libs/EasyAutocomplete-1.3.6/dist/jquery.easy-autocomplete.min.js"></script>
 
 <script src="js/custom.js"></script>
 
@@ -101,27 +101,27 @@ apparently need to "Place at the very bottom of the <body>, ensuring they are pl
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -130,15 +130,15 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -151,7 +151,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -182,92 +182,110 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./"><img width="264" height="88" src="assets/logo/sticky_logo-text-doc.png"</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
-<li class="chapter" data-level="2" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i><b>2</b> Platform Overview<a href="overview.html#overview" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
-<li class="chapter" data-level="3" data-path="hardware.html"><a href="hardware.html"><i class="fa fa-check"></i><b>3</b> Hardware<a href="hardware.html#hardware" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
-<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#overview-1"><i class="fa fa-check"></i>Overview<a href="hardware.html#overview-1" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
-<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#custom-board"><i class="fa fa-check"></i>Custom Board<a href="hardware.html#custom-board" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
-<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#d-printed-parts"><i class="fa fa-check"></i>3D-printed parts<a href="hardware.html#d-printed-parts" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i><b>2</b> Platform Overview</a></li>
+<li class="chapter" data-level="3" data-path="hardware.html"><a href="hardware.html"><i class="fa fa-check"></i><b>3</b> Hardware</a>
+<ul>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#overview-1"><i class="fa fa-check"></i>Overview</a>
+<ul>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#custom-board"><i class="fa fa-check"></i>Custom Board</a></li>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#d-printed-parts"><i class="fa fa-check"></i>3D-printed parts</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#assembly-graph"><i class="fa fa-check"></i>Assembly graph<a href="hardware.html#assembly-graph" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
-<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#modules"><i class="fa fa-check"></i>Modules<a href="hardware.html#modules" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
-<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#battery-module"><i class="fa fa-check"></i>Battery module<a href="hardware.html#battery-module" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
-<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#sticky-card-drawer"><i class="fa fa-check"></i>Sticky Card Drawer<a href="hardware.html#sticky-card-drawer" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
-<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#testing-station"><i class="fa fa-check"></i>Testing Station<a href="hardware.html#testing-station" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="mobile-app.html"><a href="mobile-app.html"><i class="fa fa-check"></i><b>4</b> Mobile App<a href="mobile-app.html#mobile-app" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
-<li class="chapter" data-level="" data-path="mobile-app.html"><a href="mobile-app.html#installation"><i class="fa fa-check"></i>Installation<a href="mobile-app.html#installation" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
-<li class="chapter" data-level="" data-path="mobile-app.html"><a href="mobile-app.html#through-google-play"><i class="fa fa-check"></i>Through Google Play<a href="mobile-app.html#through-google-play" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
-<li class="chapter" data-level="" data-path="mobile-app.html"><a href="mobile-app.html#manual-installation"><i class="fa fa-check"></i>Manual Installation<a href="mobile-app.html#manual-installation" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="mobile-app.html"><a href="mobile-app.html#configuration"><i class="fa fa-check"></i>Configuration<a href="mobile-app.html#configuration" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
-<li class="chapter" data-level="" data-path="mobile-app.html"><a href="mobile-app.html#use"><i class="fa fa-check"></i>Use<a href="mobile-app.html#use" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="user-manual.html"><a href="user-manual.html"><i class="fa fa-check"></i><b>5</b> User Manual<a href="user-manual.html#user-manual" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
-<li class="chapter" data-level="" data-path="user-manual.html"><a href="user-manual.html#first-boot-tunning-and-testing"><i class="fa fa-check"></i>First boot tunning and testing<a href="user-manual.html#first-boot-tunning-and-testing" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
-<li class="chapter" data-level="" data-path="user-manual.html"><a href="user-manual.html#overview-2"><i class="fa fa-check"></i>Overview<a href="user-manual.html#overview-2" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
-<li class="chapter" data-level="" data-path="user-manual.html"><a href="user-manual.html#detail"><i class="fa fa-check"></i>Detail<a href="user-manual.html#detail" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="user-manual.html"><a href="user-manual.html#maintenance-and-data-harvesting"><i class="fa fa-check"></i>Maintenance and Data Harvesting<a href="user-manual.html#maintenance-and-data-harvesting" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
-<li class="chapter" data-level="" data-path="user-manual.html"><a href="user-manual.html#maintenance"><i class="fa fa-check"></i>Maintenance<a href="user-manual.html#maintenance" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
-<li class="chapter" data-level="" data-path="user-manual.html"><a href="user-manual.html#data-harvesting-process"><i class="fa fa-check"></i>Data Harvesting Process<a href="user-manual.html#data-harvesting-process" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#assembly-graph"><i class="fa fa-check"></i>Assembly graph</a></li>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#modules"><i class="fa fa-check"></i>Modules</a>
+<ul>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#battery-module"><i class="fa fa-check"></i>Battery module</a></li>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#sticky-card-drawer"><i class="fa fa-check"></i>Sticky Card Drawer</a></li>
+<li class="chapter" data-level="" data-path="hardware.html"><a href="hardware.html#testing-station"><i class="fa fa-check"></i>Testing Station</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="web-server.html"><a href="web-server.html"><i class="fa fa-check"></i><b>6</b> Web Server<a href="web-server.html#web-server" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#general-description"><i class="fa fa-check"></i>General description<a href="web-server.html#general-description" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#deployment"><i class="fa fa-check"></i>Deployment<a href="web-server.html#deployment" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#github-repository"><i class="fa fa-check"></i>Github repository<a href="web-server.html#github-repository" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#hosting"><i class="fa fa-check"></i>Hosting<a href="web-server.html#hosting" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#security"><i class="fa fa-check"></i>Security<a href="web-server.html#security" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#configuration-and-important-files"><i class="fa fa-check"></i>Configuration and important files<a href="web-server.html#configuration-and-important-files" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#env-file"><i class="fa fa-check"></i><code>.env</code> file<a href="web-server.html#env-file" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#secret.env-file"><i class="fa fa-check"></i><code>.secret.env</code> file<a href="web-server.html#secret.env-file" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#alternative-local-s3-server"><i class="fa fa-check"></i>Alternative local S3 server<a href="web-server.html#alternative-local-s3-server" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#deploy-script"><i class="fa fa-check"></i>Deploy script<a href="web-server.html#deploy-script" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#check-the-api"><i class="fa fa-check"></i>Check the API<a href="web-server.html#check-the-api" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#create-users"><i class="fa fa-check"></i>Create users<a href="web-server.html#create-users" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#backups"><i class="fa fa-check"></i>Backups<a href="web-server.html#backups" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="4" data-path="mobile-app.html"><a href="mobile-app.html"><i class="fa fa-check"></i><b>4</b> Mobile App</a>
+<ul>
+<li class="chapter" data-level="" data-path="mobile-app.html"><a href="mobile-app.html#installation"><i class="fa fa-check"></i>Installation</a>
+<ul>
+<li class="chapter" data-level="" data-path="mobile-app.html"><a href="mobile-app.html#through-google-play"><i class="fa fa-check"></i>Through Google Play</a></li>
+<li class="chapter" data-level="" data-path="mobile-app.html"><a href="mobile-app.html#manual-installation"><i class="fa fa-check"></i>Manual Installation</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#additional-information"><i class="fa fa-check"></i>Additional information<a href="web-server.html#additional-information" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#database"><i class="fa fa-check"></i>Database<a href="web-server.html#database" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#nginx"><i class="fa fa-check"></i>Nginx<a href="web-server.html#nginx" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#api"><i class="fa fa-check"></i>API<a href="web-server.html#api" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#universal-insect-detector"><i class="fa fa-check"></i>Universal Insect Detector<a href="web-server.html#universal-insect-detector" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
-<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#webapp"><i class="fa fa-check"></i>Webapp<a href="web-server.html#webapp" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="" data-path="mobile-app.html"><a href="mobile-app.html#configuration"><i class="fa fa-check"></i>Configuration</a></li>
+<li class="chapter" data-level="" data-path="mobile-app.html"><a href="mobile-app.html#use"><i class="fa fa-check"></i>Use</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="user-manual.html"><a href="user-manual.html"><i class="fa fa-check"></i><b>5</b> User Manual</a>
+<ul>
+<li class="chapter" data-level="" data-path="user-manual.html"><a href="user-manual.html#first-boot-tunning-and-testing"><i class="fa fa-check"></i>First boot tunning and testing</a>
+<ul>
+<li class="chapter" data-level="" data-path="user-manual.html"><a href="user-manual.html#overview-2"><i class="fa fa-check"></i>Overview</a></li>
+<li class="chapter" data-level="" data-path="user-manual.html"><a href="user-manual.html#detail"><i class="fa fa-check"></i>Detail</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="user-manual.html"><a href="user-manual.html#maintenance-and-data-harvesting"><i class="fa fa-check"></i>Maintenance and Data Harvesting</a>
+<ul>
+<li class="chapter" data-level="" data-path="user-manual.html"><a href="user-manual.html#maintenance"><i class="fa fa-check"></i>Maintenance</a></li>
+<li class="chapter" data-level="" data-path="user-manual.html"><a href="user-manual.html#data-harvesting-process"><i class="fa fa-check"></i>Data Harvesting Process</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="ml.html"><a href="ml.html"><i class="fa fa-check"></i><b>7</b> Machine Learning<a href="ml.html#ml" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#general-description-1"><i class="fa fa-check"></i>General description<a href="ml.html#general-description-1" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
-<li class="chapter" data-level="" data-path="user-manual.html"><a href="user-manual.html#prerequisites"><i class="fa fa-check"></i>General Prerequisites<a href="user-manual.html#prerequisites" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#installation-1"><i class="fa fa-check"></i>Installation<a href="ml.html#installation-1" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#project-organisation"><i class="fa fa-check"></i>Project organisation<a href="ml.html#project-organisation" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="6" data-path="web-server.html"><a href="web-server.html"><i class="fa fa-check"></i><b>6</b> Web Server</a>
+<ul>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#general-description"><i class="fa fa-check"></i>General description</a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#deployment"><i class="fa fa-check"></i>Deployment</a>
+<ul>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#github-repository"><i class="fa fa-check"></i>Github repository</a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#hosting"><i class="fa fa-check"></i>Hosting</a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#security"><i class="fa fa-check"></i>Security</a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#configuration-and-important-files"><i class="fa fa-check"></i>Configuration and important files</a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#env-file"><i class="fa fa-check"></i><code>.env</code> file</a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#secret.env-file"><i class="fa fa-check"></i><code>.secret.env</code> file</a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#alternative-local-s3-server"><i class="fa fa-check"></i>Alternative local S3 server</a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#deploy-script"><i class="fa fa-check"></i>Deploy script</a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#check-the-api"><i class="fa fa-check"></i>Check the API</a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#create-users"><i class="fa fa-check"></i>Create users</a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#backups"><i class="fa fa-check"></i>Backups</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#uid"><i class="fa fa-check"></i>Universal Insect Detector<a href="ml.html#uid" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#inference"><i class="fa fa-check"></i>Inference<a href="ml.html#inference" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#training"><i class="fa fa-check"></i>Training<a href="ml.html#training" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#validation"><i class="fa fa-check"></i>Validation<a href="ml.html#validation" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#additional-information"><i class="fa fa-check"></i>Additional information</a>
+<ul>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#database"><i class="fa fa-check"></i>Database</a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#nginx"><i class="fa fa-check"></i>Nginx</a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#api"><i class="fa fa-check"></i>API</a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#universal-insect-detector"><i class="fa fa-check"></i>Universal Insect Detector</a></li>
+<li class="chapter" data-level="" data-path="web-server.html"><a href="web-server.html#webapp"><i class="fa fa-check"></i>Webapp</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#sim"><i class="fa fa-check"></i>Siamese Insect Matcher<a href="ml.html#sim" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#inference-1"><i class="fa fa-check"></i>Inference<a href="ml.html#inference-1" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#training-2"><i class="fa fa-check"></i>Training<a href="ml.html#training-2" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#validation-1"><i class="fa fa-check"></i>Validation<a href="ml.html#validation-1" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#itc"><i class="fa fa-check"></i>Insect Tuboid Classifier<a href="ml.html#itc" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#training-3"><i class="fa fa-check"></i>Training<a href="ml.html#training-3" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#inference-2"><i class="fa fa-check"></i>Inference<a href="ml.html#inference-2" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="7" data-path="ml.html"><a href="ml.html"><i class="fa fa-check"></i><b>7</b> Machine Learning</a>
+<ul>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#general-description-1"><i class="fa fa-check"></i>General description</a></li>
+<li class="chapter" data-level="" data-path="user-manual.html"><a href="user-manual.html#prerequisites"><i class="fa fa-check"></i>General Prerequisites</a>
+<ul>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#installation-1"><i class="fa fa-check"></i>Installation</a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#project-organisation"><i class="fa fa-check"></i>Project organisation</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#conclusion"><i class="fa fa-check"></i>Conclusion<a href="ml.html#conclusion" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#uid"><i class="fa fa-check"></i>Universal Insect Detector</a>
+<ul>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#inference"><i class="fa fa-check"></i>Inference</a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#training"><i class="fa fa-check"></i>Training</a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#validation"><i class="fa fa-check"></i>Validation</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="outreach.html"><a href="outreach.html"><i class="fa fa-check"></i><b>8</b> Outreach<a href="outreach.html#outreach" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
-<li class="chapter" data-level="" data-path="outreach.html"><a href="outreach.html#ubc-campus-living-lab"><i class="fa fa-check"></i>UBC Campus Living Lab<a href="outreach.html#ubc-campus-living-lab" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
-<li class="chapter" data-level="" data-path="outreach.html"><a href="outreach.html#june-august-2021"><i class="fa fa-check"></i>June-August 2021<a href="outreach.html#june-august-2021" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#sim"><i class="fa fa-check"></i>Siamese Insect Matcher</a>
+<ul>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#inference-1"><i class="fa fa-check"></i>Inference</a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#training-2"><i class="fa fa-check"></i>Training</a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#validation-1"><i class="fa fa-check"></i>Validation</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="community.html"><a href="community.html"><i class="fa fa-check"></i><b>9</b> Issues and community<a href="community.html#community" class="anchor-section" aria-label="Anchor link to header"></a></a><ul>
-<li class="chapter" data-level="" data-path="community.html"><a href="community.html#citation"><i class="fa fa-check"></i>Citation<a href="community.html#citation" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
-<li class="chapter" data-level="" data-path="community.html"><a href="community.html#having-troubles"><i class="fa fa-check"></i>Having troubles<a href="community.html#having-troubles" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
-<li class="chapter" data-level="" data-path="community.html"><a href="community.html#contributing"><i class="fa fa-check"></i>Contributing<a href="community.html#contributing" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
-<li class="chapter" data-level="" data-path="community.html"><a href="community.html#authors-and-contacts"><i class="fa fa-check"></i>Authors and Contacts<a href="community.html#authors-and-contacts" class="anchor-section" aria-label="Anchor link to header"></a></a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#itc"><i class="fa fa-check"></i>Insect Tuboid Classifier</a>
+<ul>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#training-3"><i class="fa fa-check"></i>Training</a></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#inference-2"><i class="fa fa-check"></i>Inference</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ml.html"><a href="ml.html#conclusion"><i class="fa fa-check"></i>Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="outreach.html"><a href="outreach.html"><i class="fa fa-check"></i><b>8</b> Outreach</a>
+<ul>
+<li class="chapter" data-level="" data-path="outreach.html"><a href="outreach.html#ubc-campus-living-lab"><i class="fa fa-check"></i>UBC Campus Living Lab</a></li>
+<li class="chapter" data-level="" data-path="outreach.html"><a href="outreach.html#june-august-2021"><i class="fa fa-check"></i>June-August 2021</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="community.html"><a href="community.html"><i class="fa fa-check"></i><b>9</b> Issues and community</a>
+<ul>
+<li class="chapter" data-level="" data-path="community.html"><a href="community.html#citation"><i class="fa fa-check"></i>Citation</a></li>
+<li class="chapter" data-level="" data-path="community.html"><a href="community.html#having-troubles"><i class="fa fa-check"></i>Having troubles</a></li>
+<li class="chapter" data-level="" data-path="community.html"><a href="community.html#contributing"><i class="fa fa-check"></i>Contributing</a></li>
+<li class="chapter" data-level="" data-path="community.html"><a href="community.html#authors-and-contacts"><i class="fa fa-check"></i>Authors and Contacts</a></li>
 </ul></li>
 <li class="divider"></li>
 <li>
@@ -292,7 +310,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="outreach" class="section level1 hasAnchor">
+<div id="outreach" class="section level1 hasAnchor" number="8">
 <h1><span class="header-section-number">Chapter 8</span> Outreach<a href="outreach.html#outreach" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Sticky Pis are built on top of community hardware such as <a href="https://www.arduino.cc/">Arduino</a> and <a href="https://www.raspberrypi.org/">Raspberry Pi</a> as well as open-source software such as <a href="https://www.python.org/">Python</a>. We share their educational spirit and consider it our work to raise awareness about insect ecology and discuss how new technologies can indeed intersect with the study of insects.</p>
 <div id="ubc-campus-living-lab" class="section level2 unnumbered hasAnchor">
