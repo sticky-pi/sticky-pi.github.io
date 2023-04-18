@@ -14,6 +14,7 @@ Each circle represents a part and each diamond a "process". Click on one to see 
 - graph layout specified in `app/graph_GML.js` as `layout` in the Cytoscape.js graph construction, default `dagre`
 - graph style (e.g. node and edge colour, size) specified as CSS-style sheet, `assets/graph_style.json`
 
+
 ##### Node Selecting Handling
 - at initial loading, URL hash parsed --> trigger cytojs internal node select event
 - when user taps a node,
