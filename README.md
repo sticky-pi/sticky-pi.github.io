@@ -19,3 +19,4 @@ Each circle represents a part and each diamond a "process". Click on one to see 
 - when user taps a node,
     1. hash updated
     2. `hashchange` event binding in "main" function *automatically* trigger URL hash parsing
+
